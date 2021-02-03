@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Vazir-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v27.2.0/dist/Vazir-Regular.ttf'); /*URL to font*/
+}
+
+* {
+ font-size: 100%;
+ font-family: Vazir-Regular;
+}
 body
 {
 	background-image: none;
@@ -15,7 +24,7 @@ h1.banner
         background: #6a8fbd;
         text-align: center;
         font-family: Arial, sans-serif;
-	  font-size: large;
+	    font-size: large;
 }
 
 h2
