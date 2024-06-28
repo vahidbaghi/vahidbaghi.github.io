@@ -1,0 +1,114 @@
+@mixin button{
+    display: inline-block;
+	background-color: $red;
+	color: #fff;
+	font-size: 14px;
+	padding: 7px 25px;
+	border-radius: $border-radius;
+	border: 2px solid transparent;
+	letter-spacing: 0.3px;
+	font-weight: 500;
+    font-family: $title-font-family;
+    border-radius: $border-radius;
+    @include transition;
+	&:hover{
+		border-color: $red;
+		color: $red;
+		background-color: transparent;
+    }
+    &.small{ font-size: 12px; padding: 5px 15px; }
+    &.medium{ font-size: 16px; padding: 6px 25px; font-weight: 500; letter-spacing: 0.75px; }
+    &.large{ font-size: 22px; padding: 8px 25px; font-weight: bold; border-radius: 32px; }
+    &.circle{
+        padding: 7px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 30px;
+        font-size: 16px;
+        i.fa{ margin: 0; vertical-align: middle; }
+    }
+	&.outline{
+		background-color: transparent;
+		box-shadow: none;
+		border: 2px solid $red;
+		color: $red;
+	}
+	&.outline:hover{
+		color: #fff;
+		background-color: $red;
+	}
+	&.dark{
+		background-color: $black1;
+	}
+	&.dark:hover{
+		color: #fff;
+		background-color: lighten($black1, $lighten);
+	}
+	& i.fa{ font-size: 85%; margin-right: 5px; }
+}
+
+.button, .epcl-button{
+    @include button;
+}
+
+.epcl-load-more{
+    &.disabled{
+        cursor: default;
+    }
+}
+
+div.epcl-download{
+    padding-top: 26px;
+	text-align: center;
+	a{
+        @extend .button, .outline, .large;
+        color: $red;
+		&:hover{ color: #fff !important;  }
+		&:before{
+			content: '\f0ed';
+			font-family: 'FontAwesome';
+			margin-right: 10px;
+			text-transform: uppercase;
+			display:inline-block;
+			text-rendering:auto;
+			-webkit-font-smoothing:antialiased;
+			-moz-osx-font-smoothing:grayscale;
+		}
+	}
+}
+
+/* Global Tags */
+
+div.tags{
+	display: inline-block;
+	&.absolute{
+		position: absolute;
+		right: 15px;
+		top: 15px;
+		z-index: 10;
+    }
+    &.no-thumb{ margin-bottom: half($element-padding); margin-left: -5px; }
+	a, span{
+		font-size: 13px;
+		color: $black1;
+		background: $yellow;
+		display: inline-block;
+		padding: 3px 15px;
+		vertical-align: top;
+        border-radius: 3px;
+        margin-bottom: 5px;
+        margin-left: 5px;
+        border-radius: $border-radius;
+	}
+	a:hover{
+		background: $black1;
+		color: #fff;
+	}
+}
+
+a[href*="nosidebar"], span.nosidebar,
+a[href*="fullcover"], span.fullcover{ display: none !important; }
+
+/* @end */

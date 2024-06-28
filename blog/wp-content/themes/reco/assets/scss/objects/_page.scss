@@ -1,0 +1,21 @@
+/* @group Page */
+
+#page{
+	h2.title{ margin-bottom: 10px; font-size: 28px; }
+	.content{
+		border-top-left-radius: 10px;
+	    border-top-right-radius: 10px;
+	}
+    .post-content{ padding-top: 0; }
+    .no-thumb{
+        .featured-image{ display: none; }
+        &.fullcover .widget_search{
+            border-top-right-radius: 7px;
+        }
+    }
+    &.fullwidth{
+        .left-content{ border: 0; }
+    }
+}
+
+/* @end */

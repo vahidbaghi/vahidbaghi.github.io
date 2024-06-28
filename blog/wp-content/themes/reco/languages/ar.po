@@ -1,0 +1,773 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Reco\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-20 21:36-0300\n"
+"PO-Revision-Date: 2020-12-20 21:50-0300\n"
+"Last-Translator: مدير المدونة\n"
+"Language-Team: العربية\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-Basepath: ../../..\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100 >= 3 "
+"&& n%100<=10 ? 3 : n%100 >= 11 && n%100<=99 ? 4 : 5;\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e;esc_attr__;esc_attr_e;"
+"_n:1,2;_x:1,2c\n"
+"X-Loco-Version: 2.4.0; wp-5.4.1\n"
+"X-Poedit-SearchPath-0: themes/reco\n"
+"X-Poedit-SearchPath-1: plugins/reco-functions/widgets\n"
+"X-Poedit-SearchPathExcluded-0: themes/reco/functions/plugins\n"
+"X-Poedit-SearchPathExcluded-1: themes/reco/woocommerce\n"
+"X-Poedit-SearchPathExcluded-2: themes/reco/assets\n"
+
+#: plugins/reco-functions/twitter_api/Creare_Twitter.php:57
+msgid "Less than 1 minute ago"
+msgstr ""
+
+#: plugins/reco-functions/twitter_api/Creare_Twitter.php:59
+#, php-format
+msgid "%s minute ago"
+msgstr ""
+
+#: plugins/reco-functions/twitter_api/Creare_Twitter.php:61
+#, php-format
+msgid "%s minutes ago"
+msgstr ""
+
+#: plugins/reco-functions/twitter_api/Creare_Twitter.php:65
+#, php-format
+msgid "%s hour ago"
+msgstr ""
+
+#: plugins/reco-functions/twitter_api/Creare_Twitter.php:67
+#, php-format
+msgid "%s hours ago"
+msgstr ""
+
+#: plugins/reco-functions/twitter_api/Creare_Twitter.php:71
+#, php-format
+msgid "%s day ago"
+msgstr ""
+
+#: plugins/reco-functions/twitter_api/Creare_Twitter.php:73
+#, php-format
+msgid "%s days ago"
+msgstr ""
+
+#: plugins/reco-functions/widgets/ads-125.php:7
+msgid "Display 125x125 grid ads."
+msgstr "عرض 125x125 اعلانات شبكية."
+
+#: plugins/reco-functions/widgets/ads-125.php:8
+msgid "(EP) 125x125 Ads"
+msgstr "(EP) 125x125 اعلان"
+
+#: plugins/reco-functions/widgets/ads-125.php:52
+#: plugins/reco-functions/widgets/ads-fluid.php:45
+#: plugins/reco-functions/widgets/featured-category.php:62
+#: plugins/reco-functions/widgets/flickr.php:48
+#: plugins/reco-functions/widgets/instagram.php:102
+#: plugins/reco-functions/widgets/posts-thumbs.php:97
+#: plugins/reco-functions/widgets/related-articles.php:60
+#: plugins/reco-functions/widgets/social.php:117
+#: plugins/reco-functions/widgets/tweets.php:67
+#: plugins/reco-functions/widgets/video.php:53
+msgid "Title:"
+msgstr "العنوان:"
+
+#: plugins/reco-functions/widgets/ads-125.php:56
+msgid "Copy and paste your ads code:"
+msgstr "انسخ و الصق كود الاعلان هنا:"
+
+#: plugins/reco-functions/widgets/ads-125.php:58
+msgid "Ads Block n&ordm; 1:"
+msgstr ""
+
+#: plugins/reco-functions/widgets/ads-125.php:62
+msgid "Ads Block n&ordm; 2:"
+msgstr ""
+
+#: plugins/reco-functions/widgets/ads-125.php:66
+msgid "Ads Block n&ordm; 3:"
+msgstr ""
+
+#: plugins/reco-functions/widgets/ads-125.php:70
+msgid "Ads Block n&ordm; 4:"
+msgstr ""
+
+#: plugins/reco-functions/widgets/ads-fluid.php:7
+msgid ""
+"Display a fluid ads. Note: the max ads width is 300px and height is "
+"unlimited."
+msgstr "عرض fluid ads. ملاحظة: اقصى عرض 300px والارتفاع غير محدود."
+
+#: plugins/reco-functions/widgets/ads-fluid.php:8
+msgid "(EP) Fluid Ads"
+msgstr ""
+
+#: plugins/reco-functions/widgets/ads-fluid.php:50
+msgid "Width of advertise to show:"
+msgstr "ابعاد عرض الاعلان:"
+
+#: plugins/reco-functions/widgets/ads-fluid.php:53
+msgid "Only integer values are allowed:"
+msgstr "فقط اﻷعداد الصحيحة مسموح بها:"
+
+#: plugins/reco-functions/widgets/ads-fluid.php:56
+msgid "Align:"
+msgstr "محاذاة:"
+
+#: plugins/reco-functions/widgets/ads-fluid.php:64
+msgid "Ads Code:"
+msgstr "كود الاعلان:"
+
+#: plugins/reco-functions/widgets/featured-category.php:6
+msgid "Display posts from a certain category."
+msgstr "اعرض منشورات من فئة محددة."
+
+#: plugins/reco-functions/widgets/featured-category.php:7
+msgid "(EP) Posts by Category"
+msgstr "(EP) منشورات حسب الفئة"
+
+#: plugins/reco-functions/widgets/featured-category.php:67
+#: plugins/reco-functions/widgets/posts-thumbs.php:102
+#: plugins/reco-functions/widgets/related-articles.php:65
+msgid "Number of posts to show:"
+msgstr "عدد المنشورات للعرض:"
+
+#: plugins/reco-functions/widgets/featured-category.php:71
+msgid "Category:"
+msgstr "الفئات:"
+
+#: plugins/reco-functions/widgets/flickr.php:6
+msgid "Display recent photos from Flickr."
+msgstr "اعرض آخر الصور من Flicker."
+
+#: plugins/reco-functions/widgets/flickr.php:7
+msgid "(EP) Flickr Gallery"
+msgstr "(EP) Flickr معرض"
+
+#: plugins/reco-functions/widgets/flickr.php:17
+msgid "You must enter a valid Flickr id"
+msgstr "ادخل حساب Flickr صحيح"
+
+#: plugins/reco-functions/widgets/flickr.php:21
+#: plugins/reco-functions/widgets/instagram.php:25
+#: themes/reco/functions/theme-functions.php:342
+msgid "Loading..."
+msgstr "تحميل..."
+
+#: plugins/reco-functions/widgets/flickr.php:53
+#: plugins/reco-functions/widgets/instagram.php:107
+msgid "Number of photos to show:"
+msgstr "عدد الصور للعرض:"
+
+#: plugins/reco-functions/widgets/flickr.php:58
+msgid "Flickr id:"
+msgstr "Flickr حساب:"
+
+#: plugins/reco-functions/widgets/flickr.php:60
+msgid "You can find your Flickr id on:"
+msgstr "يمكن ان تجد حسابك Flickr في:"
+
+#: plugins/reco-functions/widgets/instagram.php:6
+msgid "Display recent photos from your Instagram account."
+msgstr "اعرض اخر الصور من حسابك في Instagram."
+
+#: plugins/reco-functions/widgets/instagram.php:7
+msgid "(EP) Instagram Gallery"
+msgstr "(EP) Instagram معرض"
+
+#: plugins/reco-functions/widgets/instagram.php:18
+msgid "You must enter a valid Instagram Access Token"
+msgstr "ادخل حساب Instagram صحيح"
+
+#: plugins/reco-functions/widgets/instagram.php:112
+msgid "Instagram User ID:"
+msgstr "Instagram معرف الحساب:"
+
+#: plugins/reco-functions/widgets/instagram.php:114
+msgid "e.g. estudiopatagon"
+msgstr ""
+
+#: plugins/reco-functions/widgets/instagram.php:118
+msgid "Open in:"
+msgstr "افتح في:"
+
+#: plugins/reco-functions/widgets/instagram.php:120
+msgid "External link (Instagram page)."
+msgstr "رابط خارجي (Instagram صفحة)."
+
+#: plugins/reco-functions/widgets/instagram.php:121
+msgid "Lightbox"
+msgstr ""
+
+#: plugins/reco-functions/widgets/instagram.php:124
+msgid ""
+"When images are clicked should redirect to your Instagram page or just open "
+"on a lightbox."
+msgstr ""
+"عند الضغط على الصورة يتم اعادة التوجيه إلى Instagram او يفتح صفحة مستقلة ."
+
+#: plugins/reco-functions/widgets/instagram.php:128
+msgid "Instagram Access Token:"
+msgstr "Instagram تصريح الوصول:"
+
+#: plugins/reco-functions/widgets/instagram.php:130
+msgid ""
+"You can follow <a href=\"https://instagram.pixelunion.net/\" target=\"_blank"
+"\" rel=\"nofollow\">this guide</a> to create your own access token.<br><br>e."
+"g: <b>18432875969.f88701c.66a2ebcac14b41b78e81a5b99e48b651</b>"
+msgstr ""
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:6
+msgid "Display Random or Recent posts with a small image."
+msgstr "اعرض المنشورات اﻷخيرة او عشوائيا مع الصور الصغيرة "
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:7
+msgid "(EP) Recent Posts with image"
+msgstr "(EP) المنشورات اﻷخيرة بالصور"
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:106
+msgid "Mode:"
+msgstr "وضع:"
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:108
+msgid "Recent Posts"
+msgstr "المنشورات اﻷخيرة"
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:109
+msgid "Random Posts"
+msgstr "منشورات عشوائية"
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:111
+msgid "Post views"
+msgstr "مشاهدات المنشور"
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:116
+msgid "Date:"
+msgstr "التاريخ:"
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:118
+msgid "All Time"
+msgstr "كل الوقت"
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:119
+msgid "Past Year"
+msgstr ""
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:120
+msgid "Past Month"
+msgstr "الشهر الماضي"
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:121
+msgid "Past Week"
+msgstr "الاسبوع الماضي"
+
+#: plugins/reco-functions/widgets/related-articles.php:6
+msgid "Display related articles from the current post."
+msgstr "اعرض مقالات مرتبطة بهذا المنشور."
+
+#: plugins/reco-functions/widgets/related-articles.php:7
+msgid "(EP) Related Articles"
+msgstr "(EP)مقالات مرتبطة"
+
+#: plugins/reco-functions/widgets/social.php:6
+msgid "Display your social profiles."
+msgstr "اعرض ملفات التواصل الاجتماعي."
+
+#: plugins/reco-functions/widgets/social.php:7
+msgid "(EP) Social"
+msgstr "(EP) التواصل الاجتماعي"
+
+#: plugins/reco-functions/widgets/social.php:35
+msgid "Twitter"
+msgstr "تويتر"
+
+#: plugins/reco-functions/widgets/social.php:35
+#: plugins/reco-functions/widgets/social.php:38
+#: plugins/reco-functions/widgets/social.php:65
+#: plugins/reco-functions/widgets/social.php:68
+msgid "Follow me!"
+msgstr "تابعني!"
+
+#: plugins/reco-functions/widgets/social.php:38
+msgid "Facebook"
+msgstr "فيسبوك"
+
+#: plugins/reco-functions/widgets/social.php:41
+msgid "Instagram"
+msgstr "إنستجرام"
+
+#: plugins/reco-functions/widgets/social.php:41
+msgid "Our photos!"
+msgstr "صورنا!"
+
+#: plugins/reco-functions/widgets/social.php:44
+msgid "Linkedin"
+msgstr "لينكدان"
+
+#: plugins/reco-functions/widgets/social.php:44
+#: plugins/reco-functions/widgets/social.php:53
+msgid "Visit me!"
+msgstr "قم بزيارتي!"
+
+#: plugins/reco-functions/widgets/social.php:47
+msgid "Pinterest"
+msgstr ""
+
+#: plugins/reco-functions/widgets/social.php:47
+msgid "Pin it!"
+msgstr ""
+
+#: plugins/reco-functions/widgets/social.php:50
+msgid "Dribbble"
+msgstr ""
+
+#: plugins/reco-functions/widgets/social.php:50
+msgid "Our work!"
+msgstr "أعمالنا!"
+
+#: plugins/reco-functions/widgets/social.php:53
+msgid "Tumblr"
+msgstr ""
+
+#: plugins/reco-functions/widgets/social.php:56
+msgid "Youtube"
+msgstr "يوتيوب"
+
+#: plugins/reco-functions/widgets/social.php:56
+#: plugins/reco-functions/widgets/social.php:62
+msgid "Check my videos!"
+msgstr "شاهد فيديوهاتي!"
+
+#: plugins/reco-functions/widgets/social.php:59
+msgid "Flickr"
+msgstr ""
+
+#: plugins/reco-functions/widgets/social.php:59
+msgid "See more photos!"
+msgstr "اعرض المزيد من الصور!"
+
+#: plugins/reco-functions/widgets/social.php:62
+msgid "Twitch"
+msgstr ""
+
+#: plugins/reco-functions/widgets/social.php:65
+msgid "VKontakte"
+msgstr ""
+
+#: plugins/reco-functions/widgets/social.php:68
+msgid "Telegram"
+msgstr "تليجرام"
+
+#: plugins/reco-functions/widgets/social.php:71
+msgid "RSS"
+msgstr "الخلاصات"
+
+#: plugins/reco-functions/widgets/social.php:71
+msgid "Get our latest news!"
+msgstr "احصل على آخر اﻷخبار!"
+
+#: plugins/reco-functions/widgets/social.php:121
+msgid "Don't forget to fill your social profiles"
+msgstr "لاتنسى تعبئة بيانات التواصل الاجتماعي"
+
+#: plugins/reco-functions/widgets/social.php:121
+msgid "here"
+msgstr "هنا"
+
+#: plugins/reco-functions/widgets/tweets.php:6
+msgid "Display recent tweets."
+msgstr "اعرض التغريدات اﻵخيرة"
+
+#: plugins/reco-functions/widgets/tweets.php:7
+msgid "(EP) Recent Tweets"
+msgstr "(EP) التغريدات اﻵخيرة"
+
+#: plugins/reco-functions/widgets/tweets.php:72
+msgid "Number of tweets to show:"
+msgstr "عدد التغريدات التي تظهر:"
+
+#: plugins/reco-functions/widgets/tweets.php:77
+msgid "Twitter id:"
+msgstr "حساب تويتر:"
+
+#: plugins/reco-functions/widgets/tweets.php:83
+msgid "Exclude Replies"
+msgstr ""
+
+#: plugins/reco-functions/widgets/video.php:6
+msgid "Display a Youtube or Vimeo video."
+msgstr "عرض فيديو Youtube أو Vimeo."
+
+#: plugins/reco-functions/widgets/video.php:7
+msgid "(EP) Video"
+msgstr "(EP) فيديو"
+
+#: plugins/reco-functions/widgets/video.php:58
+msgid "Type:"
+msgstr "نوع:"
+
+#: plugins/reco-functions/widgets/video.php:65
+msgid "URL:"
+msgstr "رابط:"
+
+#: plugins/reco-functions/widgets/video.php:69
+msgid "Height:"
+msgstr "ارتفاع:"
+
+#: themes/reco/404.php:24 themes/reco/amp/404.php:24
+msgid "404"
+msgstr "404"
+
+#: themes/reco/404.php:24 themes/reco/amp/404.php:24
+msgid "Page not found"
+msgstr "لم يتم العثور على الصفحة"
+
+#: themes/reco/404.php:27 themes/reco/amp/404.php:27
+#: themes/reco/amp/author.php:44
+#: themes/reco/amp/partials/home-blocks/classic-posts.php:109
+#: themes/reco/amp/partials/home-blocks/grid-posts.php:122
+#: themes/reco/author.php:44
+#: themes/reco/partials/home-blocks/classic-posts.php:113
+#: themes/reco/partials/home-blocks/grid-posts.php:127
+#: themes/reco/partials/home-blocks/grid-sidebar.php:118
+msgid "Something's wrong here..."
+msgstr "حدث خطأ ما..."
+
+#: themes/reco/404.php:28 themes/reco/amp/404.php:28
+msgid "We can't find the page you're looking."
+msgstr "لم نعثر على الصفحة التي تبحث عنها"
+
+#: themes/reco/404.php:31 themes/reco/amp/404.php:31
+#: themes/reco/amp/author.php:48
+#: themes/reco/amp/partials/home-blocks/classic-posts.php:113
+#: themes/reco/amp/partials/home-blocks/grid-posts.php:126
+#: themes/reco/author.php:48
+#: themes/reco/partials/home-blocks/classic-posts.php:117
+#: themes/reco/partials/home-blocks/grid-posts.php:131
+#: themes/reco/partials/home-blocks/grid-sidebar.php:122
+msgid "Go back to home"
+msgstr "عد إلى الصفحة الرئيسية"
+
+#: themes/reco/amp/author.php:12 themes/reco/amp/partials/counter-text.php:35
+#: themes/reco/author.php:12 themes/reco/partials/counter-text.php:37
+msgid "We found"
+msgstr "وجدنا"
+
+#: themes/reco/amp/author.php:12 themes/reco/author.php:12
+msgid "article by this author..."
+msgid_plural "articles by this author..."
+msgstr[0] "مقال لهذا الكاتب..."
+msgstr[1] "مقال لهذا الكاتب..."
+msgstr[2] "مقال لهذا الكاتب..."
+msgstr[3] "مقالات لهذا الكاتب..."
+msgstr[4] "مقالات لهذا الكاتب..."
+msgstr[5] "مقالات لهذا الكاتب..."
+
+#: themes/reco/amp/author.php:45 themes/reco/author.php:45
+msgid "We can't find any result for this author."
+msgstr "لم نعثر على نتائج للكاتب"
+
+#: themes/reco/amp/page.php:82 themes/reco/amp/single.php:137
+#: themes/reco/partials/single/fullcover.php:31
+#: themes/reco/partials/single/standard.php:44
+msgid "Go to comments"
+msgstr "اذهب الى التعليقات"
+
+#: themes/reco/amp/page.php:90 themes/reco/amp/single.php:144
+#: themes/reco/page.php:88 themes/reco/single.php:153
+msgid "Share Article:"
+msgstr "شارك المقالة:"
+
+#: themes/reco/amp/page.php:101 themes/reco/amp/single.php:162
+#: themes/reco/page.php:103 themes/reco/single.php:175
+msgid "Pages"
+msgstr "الصفحات"
+
+#: themes/reco/amp/page.php:107 themes/reco/amp/single.php:168
+#: themes/reco/functions/theme-functions.php:339 themes/reco/page.php:109
+#: themes/reco/single.php:181
+msgid "Next"
+msgstr "التالي"
+
+#: themes/reco/amp/page.php:108 themes/reco/amp/single.php:169
+#: themes/reco/functions/theme-functions.php:334 themes/reco/page.php:110
+#: themes/reco/single.php:182
+msgid "Previous"
+msgstr "السابق"
+
+#: themes/reco/amp/partials/counter-text.php:9
+#: themes/reco/partials/counter-text.php:11
+#, php-format
+msgid "Search results for: \"%s\""
+msgstr "نتائج البحث عن: \"%s\""
+
+#: themes/reco/amp/partials/counter-text.php:29
+#: themes/reco/partials/counter-text.php:31
+msgid "Hello! We have"
+msgstr "مرحبا! لدينا"
+
+#: themes/reco/amp/partials/counter-text.php:29
+#: themes/reco/amp/partials/counter-text.php:35
+#: themes/reco/partials/counter-text.php:31
+#: themes/reco/partials/counter-text.php:37
+msgid "resource for you..."
+msgid_plural "resources for you..."
+msgstr[0] "مقال لك"
+msgstr[1] "مقال لك"
+msgstr[2] "مقال لك"
+msgstr[3] "مقالات لك"
+msgstr[4] "مقالات لك"
+msgstr[5] "مقالات لك"
+
+#: themes/reco/amp/partials/filters.php:25 themes/reco/partials/filters.php:25
+msgid "Select Author"
+msgstr "اختر كاتب"
+
+#: themes/reco/amp/partials/filters.php:35 themes/reco/partials/filters.php:35
+msgid "Select Category"
+msgstr "اختر فئة"
+
+#: themes/reco/amp/partials/footer.php:24 themes/reco/partials/footer.php:28
+msgid "Subscribe to"
+msgstr "اشترك"
+
+#: themes/reco/amp/partials/footer.php:29 themes/reco/partials/footer.php:33
+msgid "Get the latest posts delivered right to your email."
+msgstr "أحصل على آخر المنشورات في بريدك الإلكتروني."
+
+#: themes/reco/amp/partials/footer.php:35 themes/reco/partials/footer.php:39
+msgid "Enter your email address"
+msgstr "اضف بريدك الالكتروني"
+
+#: themes/reco/amp/partials/footer.php:37 themes/reco/partials/footer.php:41
+msgid "Right arrow"
+msgstr "سهم يمين"
+
+#: themes/reco/amp/partials/footer.php:90 themes/reco/partials/footer.php:97
+msgid "Back to top"
+msgstr "اذهب الى الاعلى"
+
+#: themes/reco/amp/partials/header.php:189 themes/reco/partials/header.php:190
+#, php-format
+msgid "Press %s to close"
+msgstr "اضغط %s للإغلاق"
+
+#: themes/reco/amp/partials/home-blocks/classic-posts.php:110
+#: themes/reco/amp/partials/home-blocks/grid-posts.php:123
+#: themes/reco/partials/home-blocks/classic-posts.php:114
+#: themes/reco/partials/home-blocks/grid-posts.php:128
+#: themes/reco/partials/home-blocks/grid-sidebar.php:119
+msgid "We can't find any result for your search term."
+msgstr "لم نعثر على نتائج البحث"
+
+#: themes/reco/amp/single.php:116 themes/reco/single.php:125
+msgid "Published in:"
+msgstr "نشرت في:"
+
+#: themes/reco/amp/single.php:156 themes/reco/single.php:169
+msgid "Tags:"
+msgstr "وسوم:"
+
+#: themes/reco/amp/single.php:202 themes/reco/single.php:217
+msgid "Left Arrow"
+msgstr "سهم يسار"
+
+#: themes/reco/amp/single.php:225 themes/reco/single.php:242
+msgid "Right Arrow"
+msgstr "سهم يمين"
+
+#: themes/reco/comments.php:31
+msgid "on"
+msgstr ""
+
+#: themes/reco/comments.php:35
+msgid "Your comment is awaiting moderation."
+msgstr "تعليقك ينتظر موافقة المدير"
+
+#: themes/reco/comments.php:51
+#, php-format
+msgid "One Comment"
+msgid_plural "%1$s Comments"
+msgstr[0] "كن أول من يترك تعليق"
+msgstr[1] "تعليق واحد"
+msgstr[2] "تعليقان"
+msgstr[3] "%1$s تعليق"
+msgstr[4] "%1$s تعليق"
+msgstr[5] "%1$s تعليق"
+
+#: themes/reco/comments.php:64
+msgid "Older Comments"
+msgstr "تعليقات قديمة"
+
+#: themes/reco/comments.php:65
+msgid "Newer Comments"
+msgstr "تعليقات جديدة"
+
+#: themes/reco/comments.php:72
+msgid "Comments are closed."
+msgstr "التعلقات مغلقة"
+
+#: themes/reco/comments.php:81
+msgid "Name"
+msgstr "اﻷسم"
+
+#: themes/reco/comments.php:82
+msgid "Email"
+msgstr "البريد الالكتروني"
+
+#: themes/reco/comments.php:83 themes/reco/partials/author-box.php:38
+msgid "Website"
+msgstr "الموقع"
+
+#: themes/reco/comments.php:88
+#: themes/reco/partials/loops/classic-article.php:62
+#: themes/reco/partials/single/fullcover.php:35
+#: themes/reco/partials/single/standard.php:48
+msgid "Comment"
+msgid_plural "Comments"
+msgstr[0] "تعليق"
+msgstr[1] "تعليق"
+msgstr[2] "تعليق"
+msgstr[3] "تعليقات"
+msgstr[4] "تعليقات"
+msgstr[5] "تعليقات"
+
+#: themes/reco/comments.php:89
+msgid "Log In"
+msgstr "تسجيل الدخول"
+
+#: themes/reco/functions.php:127
+msgid "Header"
+msgstr "الرأس"
+
+#: themes/reco/functions/core.php:70
+msgid "Image"
+msgstr "صورة"
+
+#: themes/reco/functions/core.php:71
+#: themes/reco/partials/loops/classic-article.php:78
+#: themes/reco/partials/loops/classic-article.php:80
+#: themes/reco/partials/loops/grid-article.php:139
+#: themes/reco/partials/loops/grid-article.php:141
+#: themes/reco/partials/single/fullcover.php:49
+#: themes/reco/partials/single/fullcover.php:51
+#: themes/reco/partials/single/standard.php:62
+#: themes/reco/partials/single/standard.php:64
+msgid "Downloads"
+msgstr "تنزيلات"
+
+#: themes/reco/functions/core.php:86
+msgid "Disabled"
+msgstr "معطل"
+
+#: themes/reco/functions/enqueue-scripts.php:186
+msgctxt "Poppins font: on or off"
+msgid "on"
+msgstr ""
+
+#: themes/reco/functions/enqueue-scripts.php:191
+msgctxt "Roboto font: on or off"
+msgid "on"
+msgstr ""
+
+#: themes/reco/functions/sidebars.php:12
+msgid "Article Sidebar"
+msgstr "شريط جانبي للمقالات"
+
+#: themes/reco/functions/sidebars.php:14
+msgid "Right sidebar inside single posts."
+msgstr "شريط جانبي يمين داخل المنشورات المفردة"
+
+#: themes/reco/functions/sidebars.php:24
+msgid "Home Sidebar"
+msgstr "شريط جانبي للصفحة الرئيسية"
+
+#: themes/reco/functions/sidebars.php:26
+msgid "Sidebar for home, archives and results"
+msgstr "شريط جانبي للصفحة الرئيسية ، الارشيف وانلتائج"
+
+#: themes/reco/functions/sidebars.php:36
+msgid "Woocommerce Sidebar"
+msgstr "Woocommerce شريط جانبي"
+
+#: themes/reco/functions/sidebars.php:38
+msgid "Sidebar for shop and products"
+msgstr "شريط جانبي للتسوق والمنتجات"
+
+#: themes/reco/functions/sidebars.php:48
+msgid "Footer"
+msgstr "اسفل"
+
+#: themes/reco/functions/sidebars.php:50
+msgid "Footer Sidebar"
+msgstr "شريط جانبي بالاسفل"
+
+#: themes/reco/functions/theme-functions.php:158
+msgid "EP Article Thumb"
+msgstr "EP صورة المقال"
+
+#: themes/reco/functions/theme-functions.php:336
+msgid "Page"
+msgstr "صفحة"
+
+#: themes/reco/functions/theme-functions.php:337
+msgid "of"
+msgstr "من"
+
+#: themes/reco/functions/theme-functions.php:342
+#: themes/reco/functions/theme-functions.php:344
+msgid "Load More"
+msgstr "تحميل المزيد"
+
+#: themes/reco/functions/theme-functions.php:342
+#: themes/reco/functions/theme-functions.php:346
+msgid "No more posts"
+msgstr "لايوجد المزيد من المنشورات"
+
+#: themes/reco/functions/theme-functions.php:418
+#, php-format
+msgid "Published Date: %s / Modified Date: %s"
+msgstr "تاريخ النشر:%s / تاريخ التعديل:%s"
+
+#: themes/reco/page.php:128 themes/reco/single.php:260
+#: themes/reco/single.php:270
+msgid "Comments"
+msgstr "التعليقات"
+
+#: themes/reco/page.php:131 themes/reco/single.php:263
+msgid "Please enable JavaScript to view the"
+msgstr "رجاءً قم بتفعيل الجافا سكربت حتى تشاهد"
+
+#: themes/reco/page.php:131 themes/reco/single.php:263
+msgid "comments powered by Disqus."
+msgstr "التعليقات بواسطة Disqus."
+
+#: themes/reco/partials/author-box.php:41
+msgid "Follow me on Twitter"
+msgstr "تابعني على تويتر"
+
+#: themes/reco/partials/author-box.php:44
+msgid "Follow me on Facebook"
+msgstr "تابعني على الفيسبوك"
+
+#: themes/reco/partials/loops/classic-article.php:96
+msgid "Continue reading"
+msgstr "أكمل القراءة"
+
+#: themes/reco/partials/loops/grid-article.php:200
+msgid "Resources"
+msgstr "مقالات"
+
+#: themes/reco/searchform.php:2
+msgid "Search in resources..."
+msgstr "ابحث هنا..."
+
+#: themes/reco/searchform.php:9
+msgid "Submit"
+msgstr "تأكيد"

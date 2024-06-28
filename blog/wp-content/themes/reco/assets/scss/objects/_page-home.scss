@@ -1,0 +1,14 @@
+/* @group Home */
+
+#home .content{ margin-top: 0; border-radius: 0; }
+#home .module-wrapper, #archives .module-wrapper{
+    &.no-counter{
+        margin-top: $section-padding;
+    }
+    &.no-filters .content{
+        border-top-right-radius: 7px;
+        border-top-left-radius: 7px;
+    }
+}
+
+/* @end */

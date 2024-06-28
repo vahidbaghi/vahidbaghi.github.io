@@ -1,0 +1,756 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Reco\n"
+"POT-Creation-Date: 2020-12-20 21:36-0300\n"
+"PO-Revision-Date: 2020-12-20 21:42-0300\n"
+"Last-Translator: \n"
+"Language-Team: Estudio Patagon\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-Basepath: ../../..\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e;esc_attr__;esc_attr_e;"
+"_n:1,2\n"
+"X-Poedit-SearchPath-0: themes/reco\n"
+"X-Poedit-SearchPath-1: plugins/reco-functions/widgets\n"
+"X-Poedit-SearchPathExcluded-0: themes/reco/functions/plugins\n"
+
+#: plugins/reco-functions/twitter_api/Creare_Twitter.php:57
+msgid "Less than 1 minute ago"
+msgstr "Il y a moins d'une minute"
+
+#: plugins/reco-functions/twitter_api/Creare_Twitter.php:59
+#, php-format
+msgid "%s minute ago"
+msgstr "Il y a %s minute"
+
+#: plugins/reco-functions/twitter_api/Creare_Twitter.php:61
+#, php-format
+msgid "%s minutes ago"
+msgstr "Il y a %s minutes"
+
+#: plugins/reco-functions/twitter_api/Creare_Twitter.php:65
+#, php-format
+msgid "%s hour ago"
+msgstr "Il y a %s heure"
+
+#: plugins/reco-functions/twitter_api/Creare_Twitter.php:67
+#, php-format
+msgid "%s hours ago"
+msgstr "Il y a %s heures"
+
+#: plugins/reco-functions/twitter_api/Creare_Twitter.php:71
+#, php-format
+msgid "%s day ago"
+msgstr "Il y a %s jour"
+
+#: plugins/reco-functions/twitter_api/Creare_Twitter.php:73
+#, php-format
+msgid "%s days ago"
+msgstr "Il y a %s jours"
+
+#: plugins/reco-functions/widgets/ads-125.php:7
+msgid "Display 125x125 grid ads."
+msgstr "Afficher les annonces Grid 125x125."
+
+#: plugins/reco-functions/widgets/ads-125.php:8
+msgid "(EP) 125x125 Ads"
+msgstr "(EP) 125x125 ads"
+
+#: plugins/reco-functions/widgets/ads-125.php:52
+#: plugins/reco-functions/widgets/ads-fluid.php:45
+#: plugins/reco-functions/widgets/featured-category.php:62
+#: plugins/reco-functions/widgets/flickr.php:48
+#: plugins/reco-functions/widgets/instagram.php:102
+#: plugins/reco-functions/widgets/posts-thumbs.php:97
+#: plugins/reco-functions/widgets/related-articles.php:60
+#: plugins/reco-functions/widgets/social.php:117
+#: plugins/reco-functions/widgets/tweets.php:67
+#: plugins/reco-functions/widgets/video.php:53
+msgid "Title:"
+msgstr "Titre:"
+
+#: plugins/reco-functions/widgets/ads-125.php:56
+msgid "Copy and paste your ads code:"
+msgstr "Copiez et collez votre code ADS:"
+
+#: plugins/reco-functions/widgets/ads-125.php:58
+msgid "Ads Block n&ordm; 1:"
+msgstr "Ads Block n&ordm; 1:"
+
+#: plugins/reco-functions/widgets/ads-125.php:62
+msgid "Ads Block n&ordm; 2:"
+msgstr "Ads Block n&ordm; 2:"
+
+#: plugins/reco-functions/widgets/ads-125.php:66
+msgid "Ads Block n&ordm; 3:"
+msgstr "Ads Block n&ordm; 3:"
+
+#: plugins/reco-functions/widgets/ads-125.php:70
+msgid "Ads Block n&ordm; 4:"
+msgstr "Ads Block n&ordm; 4:"
+
+#: plugins/reco-functions/widgets/ads-fluid.php:7
+msgid ""
+"Display a fluid ads. Note: the max ads width is 300px and height is "
+"unlimited."
+msgstr ""
+"Afficher une annonce Responsive. Note: La largeur est limitée à 300px, la "
+"hauteur est illimitée."
+
+#: plugins/reco-functions/widgets/ads-fluid.php:8
+msgid "(EP) Fluid Ads"
+msgstr "(EP) Annonces responsives"
+
+#: plugins/reco-functions/widgets/ads-fluid.php:50
+msgid "Width of advertise to show:"
+msgstr "Largeur de la publicité à afficher :"
+
+#: plugins/reco-functions/widgets/ads-fluid.php:53
+msgid "Only integer values are allowed:"
+msgstr "Seules les valeurs entières sont autorisées:"
+
+#: plugins/reco-functions/widgets/ads-fluid.php:56
+msgid "Align:"
+msgstr "Alignez :"
+
+#: plugins/reco-functions/widgets/ads-fluid.php:64
+msgid "Ads Code:"
+msgstr "Code Adsense:"
+
+#: plugins/reco-functions/widgets/featured-category.php:6
+msgid "Display posts from a certain category."
+msgstr "Afficher les messages d'une certaine catégorie."
+
+#: plugins/reco-functions/widgets/featured-category.php:7
+msgid "(EP) Posts by Category"
+msgstr "(EP) Articles par catégorie"
+
+#: plugins/reco-functions/widgets/featured-category.php:67
+#: plugins/reco-functions/widgets/posts-thumbs.php:102
+#: plugins/reco-functions/widgets/related-articles.php:65
+msgid "Number of posts to show:"
+msgstr "Nombre d'articles à afficher :"
+
+#: plugins/reco-functions/widgets/featured-category.php:71
+msgid "Category:"
+msgstr "Catégorie:"
+
+#: plugins/reco-functions/widgets/flickr.php:6
+msgid "Display recent photos from Flickr."
+msgstr "Afficher les photos récentes de Flickr."
+
+#: plugins/reco-functions/widgets/flickr.php:7
+msgid "(EP) Flickr Gallery"
+msgstr "(EP) Flickr Gallery"
+
+#: plugins/reco-functions/widgets/flickr.php:17
+msgid "You must enter a valid Flickr id"
+msgstr "Vous devez entrer un identifiant Flickr valide"
+
+#: plugins/reco-functions/widgets/flickr.php:21
+#: plugins/reco-functions/widgets/instagram.php:25
+#: themes/reco/functions/theme-functions.php:342
+msgid "Loading..."
+msgstr "Chargement..."
+
+#: plugins/reco-functions/widgets/flickr.php:53
+#: plugins/reco-functions/widgets/instagram.php:107
+msgid "Number of photos to show:"
+msgstr "Nombre de photos à afficher :"
+
+#: plugins/reco-functions/widgets/flickr.php:58
+msgid "Flickr id:"
+msgstr "Flickr id:"
+
+#: plugins/reco-functions/widgets/flickr.php:60
+msgid "You can find your Flickr id on:"
+msgstr "Vous pouvez trouver votre identifiant Flickr sur :"
+
+#: plugins/reco-functions/widgets/instagram.php:6
+msgid "Display recent photos from your Instagram account."
+msgstr "Afficher les photos récentes de Flickr."
+
+#: plugins/reco-functions/widgets/instagram.php:7
+msgid "(EP) Instagram Gallery"
+msgstr "(EP) Instagram Gallery"
+
+#: plugins/reco-functions/widgets/instagram.php:18
+msgid "You must enter a valid Instagram Access Token"
+msgstr ""
+
+#: plugins/reco-functions/widgets/instagram.php:112
+msgid "Instagram User ID:"
+msgstr ""
+
+#: plugins/reco-functions/widgets/instagram.php:114
+msgid "e.g. estudiopatagon"
+msgstr ""
+
+#: plugins/reco-functions/widgets/instagram.php:118
+msgid "Open in:"
+msgstr ""
+
+#: plugins/reco-functions/widgets/instagram.php:120
+msgid "External link (Instagram page)."
+msgstr ""
+
+#: plugins/reco-functions/widgets/instagram.php:121
+msgid "Lightbox"
+msgstr ""
+
+#: plugins/reco-functions/widgets/instagram.php:124
+msgid ""
+"When images are clicked should redirect to your Instagram page or just open "
+"on a lightbox."
+msgstr ""
+
+#: plugins/reco-functions/widgets/instagram.php:128
+msgid "Instagram Access Token:"
+msgstr ""
+
+#: plugins/reco-functions/widgets/instagram.php:130
+msgid ""
+"You can follow <a href=\"https://instagram.pixelunion.net/\" target=\"_blank"
+"\" rel=\"nofollow\">this guide</a> to create your own access token.<br><br>e."
+"g: <b>18432875969.f88701c.66a2ebcac14b41b78e81a5b99e48b651</b>"
+msgstr ""
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:6
+msgid "Display Random or Recent posts with a small image."
+msgstr "Afficher des messages aléatoires ou récents avec une petite image."
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:7
+msgid "(EP) Recent Posts with image"
+msgstr "(EP) Articles récents avec image"
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:106
+msgid "Mode:"
+msgstr "Mode:"
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:108
+msgid "Recent Posts"
+msgstr "Articles récents"
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:109
+msgid "Random Posts"
+msgstr "Articles au hasard"
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:111
+msgid "Post views"
+msgstr ""
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:116
+msgid "Date:"
+msgstr ""
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:118
+msgid "All Time"
+msgstr ""
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:119
+msgid "Past Year"
+msgstr ""
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:120
+msgid "Past Month"
+msgstr ""
+
+#: plugins/reco-functions/widgets/posts-thumbs.php:121
+msgid "Past Week"
+msgstr ""
+
+#: plugins/reco-functions/widgets/related-articles.php:6
+msgid "Display related articles from the current post."
+msgstr "Afficher les articles associés a l'article en cours."
+
+#: plugins/reco-functions/widgets/related-articles.php:7
+msgid "(EP) Related Articles"
+msgstr "(EP) Articles du même style"
+
+#: plugins/reco-functions/widgets/social.php:6
+msgid "Display your social profiles."
+msgstr "Affichez vos profils sociaux."
+
+#: plugins/reco-functions/widgets/social.php:7
+msgid "(EP) Social"
+msgstr "(EP) Social"
+
+#: plugins/reco-functions/widgets/social.php:35
+msgid "Twitter"
+msgstr "Twitter"
+
+#: plugins/reco-functions/widgets/social.php:35
+#: plugins/reco-functions/widgets/social.php:38
+#: plugins/reco-functions/widgets/social.php:65
+#: plugins/reco-functions/widgets/social.php:68
+msgid "Follow me!"
+msgstr "Suivez-nous!"
+
+#: plugins/reco-functions/widgets/social.php:38
+msgid "Facebook"
+msgstr "Facebook"
+
+#: plugins/reco-functions/widgets/social.php:41
+msgid "Instagram"
+msgstr "Instagram"
+
+#: plugins/reco-functions/widgets/social.php:41
+msgid "Our photos!"
+msgstr "Nos photos !"
+
+#: plugins/reco-functions/widgets/social.php:44
+msgid "Linkedin"
+msgstr "Linkedin"
+
+#: plugins/reco-functions/widgets/social.php:44
+#: plugins/reco-functions/widgets/social.php:53
+msgid "Visit me!"
+msgstr "Rendez-nous visite !"
+
+#: plugins/reco-functions/widgets/social.php:47
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#: plugins/reco-functions/widgets/social.php:47
+msgid "Pin it!"
+msgstr "Pin it!"
+
+#: plugins/reco-functions/widgets/social.php:50
+msgid "Dribbble"
+msgstr "Dribbble"
+
+#: plugins/reco-functions/widgets/social.php:50
+msgid "Our work!"
+msgstr "Notre travail !"
+
+#: plugins/reco-functions/widgets/social.php:53
+msgid "Tumblr"
+msgstr "Tumblr"
+
+#: plugins/reco-functions/widgets/social.php:56
+msgid "Youtube"
+msgstr "Youtube"
+
+#: plugins/reco-functions/widgets/social.php:56
+#: plugins/reco-functions/widgets/social.php:62
+msgid "Check my videos!"
+msgstr "Regardez nos vidéos!"
+
+#: plugins/reco-functions/widgets/social.php:59
+msgid "Flickr"
+msgstr "Flickr"
+
+#: plugins/reco-functions/widgets/social.php:59
+msgid "See more photos!"
+msgstr "Voir plus de photos!"
+
+#: plugins/reco-functions/widgets/social.php:62
+msgid "Twitch"
+msgstr "Twitch"
+
+#: plugins/reco-functions/widgets/social.php:65
+msgid "VKontakte"
+msgstr "VKontakte"
+
+#: plugins/reco-functions/widgets/social.php:68
+msgid "Telegram"
+msgstr "Telegram"
+
+#: plugins/reco-functions/widgets/social.php:71
+msgid "RSS"
+msgstr "RSS"
+
+#: plugins/reco-functions/widgets/social.php:71
+msgid "Get our latest news!"
+msgstr "Recevez nos dernières actualités!"
+
+#: plugins/reco-functions/widgets/social.php:121
+msgid "Don't forget to fill your social profiles"
+msgstr "N'oubliez pas de remplir vos profils sociaux"
+
+#: plugins/reco-functions/widgets/social.php:121
+msgid "here"
+msgstr "ici"
+
+#: plugins/reco-functions/widgets/tweets.php:6
+msgid "Display recent tweets."
+msgstr "Afficher les tweets récents."
+
+#: plugins/reco-functions/widgets/tweets.php:7
+msgid "(EP) Recent Tweets"
+msgstr "(EP) Tweets récents"
+
+#: plugins/reco-functions/widgets/tweets.php:72
+msgid "Number of tweets to show:"
+msgstr "Nombre de Tweets à afficher:"
+
+#: plugins/reco-functions/widgets/tweets.php:77
+msgid "Twitter id:"
+msgstr "Twitter id:"
+
+#: plugins/reco-functions/widgets/tweets.php:83
+msgid "Exclude Replies"
+msgstr ""
+
+#: plugins/reco-functions/widgets/video.php:6
+msgid "Display a Youtube or Vimeo video."
+msgstr "Afficher une vidéo Youtube ou Vimeo."
+
+#: plugins/reco-functions/widgets/video.php:7
+msgid "(EP) Video"
+msgstr "(EP) Video"
+
+#: plugins/reco-functions/widgets/video.php:58
+msgid "Type:"
+msgstr "Type:"
+
+#: plugins/reco-functions/widgets/video.php:65
+msgid "URL:"
+msgstr "URL:"
+
+#: plugins/reco-functions/widgets/video.php:69
+msgid "Height:"
+msgstr "Hauteur :"
+
+#: themes/reco/404.php:24 themes/reco/amp/404.php:24
+msgid "404"
+msgstr "404"
+
+#: themes/reco/404.php:24 themes/reco/amp/404.php:24
+msgid "Page not found"
+msgstr "Page non trouvée"
+
+#: themes/reco/404.php:27 themes/reco/amp/404.php:27
+#: themes/reco/amp/author.php:44
+#: themes/reco/amp/partials/home-blocks/classic-posts.php:109
+#: themes/reco/amp/partials/home-blocks/grid-posts.php:122
+#: themes/reco/author.php:44
+#: themes/reco/partials/home-blocks/classic-posts.php:113
+#: themes/reco/partials/home-blocks/grid-posts.php:127
+#: themes/reco/partials/home-blocks/grid-sidebar.php:118
+msgid "Something's wrong here..."
+msgstr "Quelque chose ne va pas ici...."
+
+#: themes/reco/404.php:28 themes/reco/amp/404.php:28
+msgid "We can't find the page you're looking."
+msgstr "Nous ne trouvons pas la page que vous cherchez."
+
+#: themes/reco/404.php:31 themes/reco/amp/404.php:31
+#: themes/reco/amp/author.php:48
+#: themes/reco/amp/partials/home-blocks/classic-posts.php:113
+#: themes/reco/amp/partials/home-blocks/grid-posts.php:126
+#: themes/reco/author.php:48
+#: themes/reco/partials/home-blocks/classic-posts.php:117
+#: themes/reco/partials/home-blocks/grid-posts.php:131
+#: themes/reco/partials/home-blocks/grid-sidebar.php:122
+msgid "Go back to home"
+msgstr "Retournez à l'accueil"
+
+#: themes/reco/amp/author.php:12 themes/reco/amp/partials/counter-text.php:35
+#: themes/reco/author.php:12 themes/reco/partials/counter-text.php:37
+msgid "We found"
+msgstr "Nous avons trouvé"
+
+#: themes/reco/amp/author.php:12 themes/reco/author.php:12
+msgid "article by this author..."
+msgid_plural "articles by this author..."
+msgstr[0] "article pour cet auteur..."
+msgstr[1] "articles pour cet auteur..."
+
+#: themes/reco/amp/author.php:45 themes/reco/author.php:45
+msgid "We can't find any result for this author."
+msgstr "Nous ne trouvons aucun résultat pour cet auteur."
+
+#: themes/reco/amp/page.php:82 themes/reco/amp/single.php:137
+#: themes/reco/partials/single/fullcover.php:31
+#: themes/reco/partials/single/standard.php:44
+msgid "Go to comments"
+msgstr "Aller aux commentaires"
+
+#: themes/reco/amp/page.php:90 themes/reco/amp/single.php:144
+#: themes/reco/page.php:88 themes/reco/single.php:153
+msgid "Share Article:"
+msgstr "Partagez l'article:"
+
+#: themes/reco/amp/page.php:101 themes/reco/amp/single.php:162
+#: themes/reco/page.php:103 themes/reco/single.php:175
+msgid "Pages"
+msgstr "Pages"
+
+#: themes/reco/amp/page.php:107 themes/reco/amp/single.php:168
+#: themes/reco/functions/theme-functions.php:339 themes/reco/page.php:109
+#: themes/reco/single.php:181
+msgid "Next"
+msgstr "Suivant"
+
+#: themes/reco/amp/page.php:108 themes/reco/amp/single.php:169
+#: themes/reco/functions/theme-functions.php:334 themes/reco/page.php:110
+#: themes/reco/single.php:182
+msgid "Previous"
+msgstr "Précédent"
+
+#: themes/reco/amp/partials/counter-text.php:9
+#: themes/reco/partials/counter-text.php:11
+#, php-format
+msgid "Search results for: \"%s\""
+msgstr "Résultats de la recherche pour: \"%s\""
+
+#: themes/reco/amp/partials/counter-text.php:29
+#: themes/reco/partials/counter-text.php:31
+msgid "Hello! We have"
+msgstr "Bonjour ! Nous avons"
+
+#: themes/reco/amp/partials/counter-text.php:29
+#: themes/reco/amp/partials/counter-text.php:35
+#: themes/reco/partials/counter-text.php:31
+#: themes/reco/partials/counter-text.php:37
+msgid "resource for you..."
+msgid_plural "resources for you..."
+msgstr[0] "article pour vous..."
+msgstr[1] "articles pour vous..."
+
+#: themes/reco/amp/partials/filters.php:25 themes/reco/partials/filters.php:25
+msgid "Select Author"
+msgstr "Auteur"
+
+#: themes/reco/amp/partials/filters.php:35 themes/reco/partials/filters.php:35
+msgid "Select Category"
+msgstr "Selectionnez une catégorie"
+
+#: themes/reco/amp/partials/footer.php:24 themes/reco/partials/footer.php:28
+msgid "Subscribe to"
+msgstr "S'abonner à"
+
+#: themes/reco/amp/partials/footer.php:29 themes/reco/partials/footer.php:33
+msgid "Get the latest posts delivered right to your email."
+msgstr "Recevez les derniers articles directement dans votre boite email."
+
+#: themes/reco/amp/partials/footer.php:35 themes/reco/partials/footer.php:39
+msgid "Enter your email address"
+msgstr "Entrez votre adresse email"
+
+#: themes/reco/amp/partials/footer.php:37 themes/reco/partials/footer.php:41
+msgid "Right arrow"
+msgstr "Flèche droite"
+
+#: themes/reco/amp/partials/footer.php:90 themes/reco/partials/footer.php:97
+msgid "Back to top"
+msgstr "Retournez en haut"
+
+#: themes/reco/amp/partials/header.php:189 themes/reco/partials/header.php:190
+#, php-format
+msgid "Press %s to close"
+msgstr "Pppuyez sur %s pour fermer"
+
+#: themes/reco/amp/partials/home-blocks/classic-posts.php:110
+#: themes/reco/amp/partials/home-blocks/grid-posts.php:123
+#: themes/reco/partials/home-blocks/classic-posts.php:114
+#: themes/reco/partials/home-blocks/grid-posts.php:128
+#: themes/reco/partials/home-blocks/grid-sidebar.php:119
+msgid "We can't find any result for your search term."
+msgstr "Nous ne trouvons aucun résultat pour votre recherche."
+
+#: themes/reco/amp/single.php:116 themes/reco/single.php:125
+msgid "Published in:"
+msgstr "Publié dans:"
+
+#: themes/reco/amp/single.php:156 themes/reco/single.php:169
+msgid "Tags:"
+msgstr "Tags:"
+
+#: themes/reco/amp/single.php:202 themes/reco/single.php:217
+msgid "Left Arrow"
+msgstr "Flèche gauche"
+
+#: themes/reco/amp/single.php:225 themes/reco/single.php:242
+msgid "Right Arrow"
+msgstr "Flèche Droite"
+
+#: themes/reco/comments.php:31
+msgid "on"
+msgstr "le"
+
+#: themes/reco/comments.php:35
+msgid "Your comment is awaiting moderation."
+msgstr "Votre commentaire est en attente de modération."
+
+#: themes/reco/comments.php:51
+#, php-format
+msgid "One Comment"
+msgid_plural "%1$s Comments"
+msgstr[0] "1 Commentaire"
+msgstr[1] "%1$s Commentaires"
+
+#: themes/reco/comments.php:64
+msgid "Older Comments"
+msgstr "Commentaires plus anciens"
+
+#: themes/reco/comments.php:65
+msgid "Newer Comments"
+msgstr "Commentaires plus récents"
+
+#: themes/reco/comments.php:72
+msgid "Comments are closed."
+msgstr "Les commentaires sont fermés."
+
+#: themes/reco/comments.php:81
+msgid "Name"
+msgstr "Nom"
+
+#: themes/reco/comments.php:82
+msgid "Email"
+msgstr "Email"
+
+#: themes/reco/comments.php:83 themes/reco/partials/author-box.php:38
+msgid "Website"
+msgstr "Site web"
+
+#: themes/reco/comments.php:88
+#: themes/reco/partials/loops/classic-article.php:62
+#: themes/reco/partials/single/fullcover.php:35
+#: themes/reco/partials/single/standard.php:48
+msgid "Comment"
+msgid_plural "Comments"
+msgstr[0] "Commentaire"
+msgstr[1] "Commentaires"
+
+#: themes/reco/comments.php:89
+msgid "Log In"
+msgstr "Connectez-vous"
+
+#: themes/reco/functions.php:127
+msgid "Header"
+msgstr "En-tête"
+
+#: themes/reco/functions/core.php:70
+msgid "Image"
+msgstr "Image"
+
+#: themes/reco/functions/core.php:71
+#: themes/reco/partials/loops/classic-article.php:78
+#: themes/reco/partials/loops/classic-article.php:80
+#: themes/reco/partials/loops/grid-article.php:139
+#: themes/reco/partials/loops/grid-article.php:141
+#: themes/reco/partials/single/fullcover.php:49
+#: themes/reco/partials/single/fullcover.php:51
+#: themes/reco/partials/single/standard.php:62
+#: themes/reco/partials/single/standard.php:64
+msgid "Downloads"
+msgstr "Téléchargements"
+
+#: themes/reco/functions/core.php:86
+msgid "Disabled"
+msgstr "Désactivé"
+
+#: themes/reco/functions/enqueue-scripts.php:186
+msgctxt "Poppins font: on or off"
+msgid "on"
+msgstr "on"
+
+#: themes/reco/functions/enqueue-scripts.php:191
+msgctxt "Roboto font: on or off"
+msgid "on"
+msgstr "on"
+
+#: themes/reco/functions/sidebars.php:12
+msgid "Article Sidebar"
+msgstr "Article Sidebar"
+
+#: themes/reco/functions/sidebars.php:14
+msgid "Right sidebar inside single posts."
+msgstr "Barre latérale droite à l'intérieur des articles simples."
+
+#: themes/reco/functions/sidebars.php:24
+msgid "Home Sidebar"
+msgstr "Home Sidebar"
+
+#: themes/reco/functions/sidebars.php:26
+msgid "Sidebar for home, archives and results"
+msgstr "SIDABAR pour accueil, archives et résultats de recherche"
+
+#: themes/reco/functions/sidebars.php:36
+msgid "Woocommerce Sidebar"
+msgstr ""
+
+#: themes/reco/functions/sidebars.php:38
+msgid "Sidebar for shop and products"
+msgstr ""
+
+#: themes/reco/functions/sidebars.php:48
+msgid "Footer"
+msgstr "Pied de page"
+
+#: themes/reco/functions/sidebars.php:50
+msgid "Footer Sidebar"
+msgstr "Sidebar du pied de page"
+
+#: themes/reco/functions/theme-functions.php:158
+msgid "EP Article Thumb"
+msgstr "Miniature de l'image"
+
+#: themes/reco/functions/theme-functions.php:336
+msgid "Page"
+msgstr "Page"
+
+#: themes/reco/functions/theme-functions.php:337
+msgid "of"
+msgstr "de"
+
+#: themes/reco/functions/theme-functions.php:342
+#: themes/reco/functions/theme-functions.php:344
+msgid "Load More"
+msgstr ""
+
+#: themes/reco/functions/theme-functions.php:342
+#: themes/reco/functions/theme-functions.php:346
+msgid "No more posts"
+msgstr ""
+
+#: themes/reco/functions/theme-functions.php:418
+#, php-format
+msgid "Published Date: %s / Modified Date: %s"
+msgstr "Date de publication: %s / Date de modification: %s"
+
+#: themes/reco/page.php:128 themes/reco/single.php:260
+#: themes/reco/single.php:270
+msgid "Comments"
+msgstr "Commentaires"
+
+#: themes/reco/page.php:131 themes/reco/single.php:263
+msgid "Please enable JavaScript to view the"
+msgstr "Veuillez activer JavaScript pour afficher"
+
+#: themes/reco/page.php:131 themes/reco/single.php:263
+msgid "comments powered by Disqus."
+msgstr "commentaires propulsés par Disqus."
+
+#: themes/reco/partials/author-box.php:41
+msgid "Follow me on Twitter"
+msgstr "Suivez-nous sur Twitter"
+
+#: themes/reco/partials/author-box.php:44
+msgid "Follow me on Facebook"
+msgstr "Suivez-nous sur Facebook"
+
+#: themes/reco/partials/loops/classic-article.php:96
+msgid "Continue reading"
+msgstr "Lire la suite"
+
+#: themes/reco/partials/loops/grid-article.php:200
+msgid "Resources"
+msgstr "Articles"
+
+#: themes/reco/searchform.php:2
+msgid "Search in resources..."
+msgstr "Rechercher dans les articles..."
+
+#: themes/reco/searchform.php:9
+msgid "Submit"
+msgstr "Envoyer"
+
+#~ msgid "You must add some module before publish this page"
+#~ msgstr "Vous devez ajouter un module avant de publier cette page"

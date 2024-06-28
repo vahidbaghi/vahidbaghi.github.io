@@ -1,0 +1,16 @@
+/* @group Author and Tags page */
+
+#archives .content{ overflow: inherit; margin-top: 0px; border-radius: 0; }
+.author #archives .content{
+	margin-top: 20px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+#archives #author{
+	margin-top: 40px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+}
+#archives .tag-description{ color: #fff; }
+
+/* @end */

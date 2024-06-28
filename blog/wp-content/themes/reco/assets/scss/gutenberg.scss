@@ -1,0 +1,52 @@
+@import "settings";
+@import "generic/functions";
+@import "base/editor";
+// @import "base/titles";
+
+$editor-base-unit: 26px;
+
+// Only on backend
+.editor-block-list__layout, .block-editor-block-list__layout{
+    @extend div.text;
+    font-family: $font-family;
+
+    // Elements spacing
+
+    h1, h2, h3, h4, h5, h6, p, ul, ol{
+        padding-top: 0;
+        margin-bottom: 0;
+    }
+    
+    ul, ol{
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 15px;
+    }
+
+}
+
+.editor-post-title__block {
+	margin-top: 0 !important;
+    max-width: $editor-width - 30px;
+    // margin-bottom: 30px;
+    .editor-post-title__input {
+        font-family: $title-font-family;
+        font-size: $title-font-size;
+        line-height: 1.6;
+        letter-spacing: 0.6px;
+        font-size: 40px;
+        font-weight: bold;        
+        line-height: 1.2;  
+        padding: 0;    
+    }
+    &:after{
+        display: block;
+        content: '';
+        width: 30px;
+        height: 4px;
+        background: $yellow;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+	
+}

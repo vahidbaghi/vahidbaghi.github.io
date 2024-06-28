@@ -1,0 +1,20 @@
+/* @group 404 Page */
+
+#page-404{
+	div.not-found{
+		background: $yellow;
+		color: #fff;
+		box-shadow: inset 0px 0px 150px 0px rgba(222,57,74,0.15);
+		text-align: center;
+		margin-bottom: 30px;
+        margin-top: -10px;
+        border-radius: $border-radius;
+		.title{ color: #fff; margin: 0; }
+		.title strong{ font-size: 150%; }
+		i.fa{ font-size: 120px; margin: 0px 0px 20px; }
+	}
+	div.text .title{ padding-bottom: 5px; }
+	div.buttons{ margin-top: 10px; text-align: center; }
+}
+
+/* @end */

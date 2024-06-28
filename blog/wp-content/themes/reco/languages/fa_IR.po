@@ -1,0 +1,1845 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Reco | PTheme.ir\n"
+"POT-Creation-Date: 2020-09-21 21:36+0330\n"
+"PO-Revision-Date: 2020-09-21 21:37+0330\n"
+"Last-Translator: \n"
+"Language-Team: Estudio Patagon | Mohammad Ghasemi7\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e;esc_attr__;esc_attr_e;_n\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: 404.php:24 amp/404.php:24
+msgid "404"
+msgstr "۴۰۴"
+
+#: 404.php:24 amp/404.php:24
+msgid "Page not found"
+msgstr "صفحه مورد نظر پیدا نشد"
+
+#: 404.php:27 amp/404.php:27 amp/author.php:44
+#: amp/partials/home-blocks/classic-posts.php:105
+#: amp/partials/home-blocks/grid-posts.php:118 author.php:44
+#: partials/home-blocks/classic-posts.php:105
+#: partials/home-blocks/grid-posts.php:118
+#: partials/home-blocks/grid-sidebar.php:110
+msgid "Something's wrong here..."
+msgstr "مشکلی پیش آمده است..."
+
+#: 404.php:28 amp/404.php:28
+msgid "We can't find the page you're looking."
+msgstr "متاسفیم, صفحه ای که در جستجوی آن هستید موجود نمی باشد."
+
+#: 404.php:31 amp/404.php:31 amp/author.php:48
+#: amp/partials/home-blocks/classic-posts.php:109
+#: amp/partials/home-blocks/grid-posts.php:122 author.php:48
+#: partials/home-blocks/classic-posts.php:109
+#: partials/home-blocks/grid-posts.php:122
+#: partials/home-blocks/grid-sidebar.php:114
+msgid "Go back to home"
+msgstr "بازگشت به صفحه اصلی"
+
+#: amp/author.php:12 amp/partials/counter-text.php:35 author.php:12
+#: partials/counter-text.php:34
+msgid "We found"
+msgstr "ما "
+
+#: amp/author.php:12 author.php:12
+msgid "article by this author..."
+msgstr "مقاله نوشته شده توسط این نویسنده داریم..."
+
+#: amp/author.php:45 author.php:45
+msgid "We can't find any result for this author."
+msgstr "هیچ نتیجه ای برای این نویسنده پیدا نشد."
+
+#: amp/page.php:83 amp/single.php:138 page.php:88 single.php:153
+msgid "Share Article:"
+msgstr "اشتراک گذاری مقاله:"
+
+#: amp/page.php:94 amp/single.php:156 page.php:103 single.php:175
+msgid "Pages"
+msgstr "صفحات"
+
+#: amp/page.php:100 amp/single.php:162 functions/merlin/merlin-config.php:48
+#: functions/reco-functions.php:313 functions/theme-functions.php:339
+#: page.php:109 single.php:181
+msgid "Next"
+msgstr "بعدي"
+
+#: amp/page.php:101 amp/single.php:163 functions/reco-functions.php:308
+#: functions/theme-functions.php:334 page.php:110 single.php:182
+msgid "Previous"
+msgstr "قبلي"
+
+#: amp/partials/counter-text.php:9 partials/counter-text.php:8
+#, php-format
+msgid "Search results for: \"%s\""
+msgstr "نتایج جستجو برای : \"%s\""
+
+#: amp/partials/counter-text.php:29 partials/counter-text.php:28
+msgid "Hello! We have"
+msgstr "سلام! ما "
+
+#: amp/partials/counter-text.php:29 amp/partials/counter-text.php:35
+#: partials/counter-text.php:28 partials/counter-text.php:34
+msgid "resource for you..."
+msgstr "مقاله کاربردی برای شما داریم..."
+
+#: amp/partials/filters.php:25 partials/filters.php:25
+msgid "Select Author"
+msgstr "نویسنده را انتخاب کنید"
+
+#: amp/partials/filters.php:35 partials/filters.php:35
+msgid "Select Category"
+msgstr "دسته ای را انتخاب کنید"
+
+#: amp/partials/footer.php:24 partials/footer.php:28
+msgid "Subscribe to"
+msgstr "اشتراک در"
+
+#: amp/partials/footer.php:29 partials/footer.php:33
+msgid "Get the latest posts delivered right to your email."
+msgstr "آخرین نوشته های سایت را در ایمیل خود دریافت کنید."
+
+#: amp/partials/footer.php:35 partials/footer.php:39
+msgid "Enter your email address"
+msgstr "آدرس ایمیل خود را وارد کنید"
+
+#: amp/partials/footer.php:37 partials/footer.php:41
+msgid "Right arrow"
+msgstr "پیکان راست"
+
+#: amp/partials/footer.php:90 partials/footer.php:97
+msgid "Back to top"
+msgstr "بازگشت به بالا"
+
+#: amp/partials/header.php:189 partials/header.php:190
+#, php-format
+msgid "Press %s to close"
+msgstr "برای بستن %s را فشار دهید"
+
+#: amp/partials/home-blocks/classic-posts.php:106
+#: amp/partials/home-blocks/grid-posts.php:119
+#: partials/home-blocks/classic-posts.php:106
+#: partials/home-blocks/grid-posts.php:119
+#: partials/home-blocks/grid-sidebar.php:111
+msgid "We can't find any result for your search term."
+msgstr "ما نمیتوانیم نتیجه ای برای جستجوی شما پیدا کنیم."
+
+#: amp/single.php:116 single.php:125
+msgid "Published in:"
+msgstr "منتشر شده در :"
+
+#: amp/single.php:150 single.php:169
+msgid "Tags:"
+msgstr "برچسب ها:"
+
+#: amp/single.php:198 single.php:219
+msgid "Left Arrow"
+msgstr "پیکان چپ"
+
+#: amp/single.php:223 single.php:246
+msgid "Right Arrow"
+msgstr "پیکان راست"
+
+#: comments.php:31
+msgid "on"
+msgstr "در"
+
+#: comments.php:35
+msgid "Your comment is awaiting moderation."
+msgstr "دیدگاه شما در انتظار بررسی است."
+
+#: comments.php:51
+msgid "One Comment"
+msgstr "یک دیدگاه"
+
+#: comments.php:64
+msgid "Older Comments"
+msgstr "دیدگاه های قدیمی تر"
+
+#: comments.php:65
+msgid "Newer Comments"
+msgstr "دیدگاه های جدیدتر"
+
+#: comments.php:72
+msgid "Comments are closed."
+msgstr "دیدگاه ها بسته هستند."
+
+#: comments.php:81 woocommerce/single-product-reviews.php:91
+msgid "Name"
+msgstr "نام"
+
+#: comments.php:82 woocommerce/single-product-reviews.php:97
+msgid "Email"
+msgstr "ایمیل"
+
+#: comments.php:83 partials/author-box.php:38
+msgid "Website"
+msgstr "وبسایت"
+
+#: comments.php:88
+msgid "Comment"
+msgstr "دیدگاه"
+
+#: comments.php:89
+msgid "Log In"
+msgstr "ورود"
+
+#: functions.php:127
+msgid "Header"
+msgstr "هدر"
+
+#: functions/core.php:70
+msgid "Image"
+msgstr "تصویر"
+
+#: functions/core.php:71 partials/loops/classic-article.php:78
+#: partials/loops/classic-article.php:80 partials/loops/grid-article.php:139
+#: partials/loops/grid-article.php:141 partials/single/fullcover.php:49
+#: partials/single/fullcover.php:51 partials/single/standard.php:62
+#: partials/single/standard.php:64 woocommerce/order/order-downloads.php:25
+msgid "Downloads"
+msgstr "دانلودها"
+
+#: functions/core.php:86
+msgid "Disabled"
+msgstr "غیرفعال شد"
+
+#: functions/merlin/class-merlin.php:467
+msgid "Something went wrong. Please refresh the page and try again!"
+msgstr "مشکلی پیش آمد. لطفا صفحه را مجددا بارگزاری کرده و دوباره تلاش کنید!"
+
+#: functions/merlin/class-merlin.php:613
+msgid "Please define default parameters in the form of an array."
+msgstr "لطفا پارامترهای پیش فرض را به صورت یک آرایه تعریف کنید."
+
+#: functions/merlin/class-merlin.php:618
+msgid "Please define an SVG icon filename."
+msgstr "لطفاً یک نام برای آیکن SVG تعریف کنید."
+
+#: functions/merlin/class-merlin.php:727
+msgid "Welcome"
+msgstr "خوش آمدید"
+
+#: functions/merlin/class-merlin.php:734
+msgid "Child"
+msgstr "پوسته فرزند"
+
+#: functions/merlin/class-merlin.php:740
+msgid "License"
+msgstr "لایسنس"
+
+#: functions/merlin/class-merlin.php:748
+msgid "Plugins"
+msgstr "افزونه ها"
+
+#: functions/merlin/class-merlin.php:756 functions/merlin/class-merlin.php:1981
+msgid "Content"
+msgstr "محتویات"
+
+#: functions/merlin/class-merlin.php:762
+msgid "Ready"
+msgstr "آماده"
+
+#: functions/merlin/class-merlin.php:867
+msgid "The welcome step has been displayed"
+msgstr "مرحله خوشامدگویی نمایش داده شده است"
+
+#: functions/merlin/class-merlin.php:975
+msgid "The license activation step has been displayed"
+msgstr "مرحله فعالسازی لایسنس نمایش داده شده است"
+
+#: functions/merlin/class-merlin.php:1045
+msgid "The child theme installation step has been displayed"
+msgstr "مرحله نصب پوسته فرزند نمایش داده شده است"
+
+#: functions/merlin/class-merlin.php:1132
+#: functions/plugins/class-tgm-plugin-activation.php:2358
+msgid "Required"
+msgstr "مورد نیاز"
+
+#: functions/merlin/class-merlin.php:1133
+msgid "req"
+msgstr "لازم"
+
+#: functions/merlin/class-merlin.php:1173
+msgid "The plugin installation step has been displayed"
+msgstr "مرحله نصب افزونه ها نمایش داده شده است"
+
+#: functions/merlin/class-merlin.php:1219
+msgid "Select Demo"
+msgstr "دمو را انتخاب کنید"
+
+#: functions/merlin/class-merlin.php:1257
+msgid "The content import step has been displayed"
+msgstr "مرحله درون ریزی محتوا نمایش داده شده است"
+
+#: functions/merlin/class-merlin.php:1337
+msgid "The final step has been displayed"
+msgstr "مرحله آخر نمایش داده شده است"
+
+#: functions/merlin/class-merlin.php:1420
+msgid "The existing child theme was activated"
+msgstr "پوسته فرزند موجود فعال شد"
+
+#: functions/merlin/class-merlin.php:1437
+msgid "The newly generated child theme was activated"
+msgstr "پوسته فرزند تازه تولید شده فعال شد"
+
+#: functions/merlin/class-merlin.php:1458
+msgid "Yikes! The theme activation failed. Please try again or contact support."
+msgstr ""
+"فعال سازی قالب انجام نشد. لطفا دوباره امتحان کنید یا با پشتیبانی تماس بگیرید."
+
+#: functions/merlin/class-merlin.php:1467
+msgid "Please add your license key before attempting to activate one."
+msgstr "لطفاً قبل از تلاش برای فعال کردن، کلید مجوز خود را اضافه کنید."
+
+#: functions/merlin/class-merlin.php:1476
+msgid ""
+"Please add your Envato Username this will ensure <b>only you</b> can use the "
+"license."
+msgstr ""
+"لطفاً نام کاربری انیوتو خود را اضافه کنید ، به شما اطمینان می دهد که فقط شما "
+"می توانید از لایسنس استفاده کنید."
+
+#: functions/merlin/class-merlin.php:1491
+msgid "The license activation was performed with the following results"
+msgstr "فعال سازی مجوز با نتایج زیر انجام شد"
+
+#: functions/merlin/class-merlin.php:1622
+msgid "The child theme functions.php content was generated"
+msgstr "فایل functions.php پوسته فرزند ایجاد شده است"
+
+#: functions/merlin/class-merlin.php:1653
+msgid "The child theme style.css content was generated"
+msgstr "فایل style.css پوسته فرزند ایجاد شده است"
+
+#: functions/merlin/class-merlin.php:1687
+msgid ""
+"The child theme screenshot was copied to the child theme, with the following "
+"result"
+msgstr "به دلیل این نتایج ، تصویر پوسته فرزند کپی شده است"
+
+#: functions/merlin/class-merlin.php:1689
+msgid "The child theme screenshot was not generated, because of these results"
+msgstr "به دلیل این نتایج ، تصویر پوسته فرزند ایجاد نشده است"
+
+#: functions/merlin/class-merlin.php:1718
+msgid "Activating"
+msgstr "در حال فعالسازی"
+
+#: functions/merlin/class-merlin.php:1734
+msgid "Updating"
+msgstr "درحال بروزرسانی"
+
+#: functions/merlin/class-merlin.php:1750 functions/merlin/class-merlin.php:1766
+#: functions/merlin/class-merlin.php:1984 functions/merlin/class-merlin.php:1997
+#: functions/merlin/class-merlin.php:2010 functions/merlin/class-merlin.php:2023
+#: functions/merlin/class-merlin.php:2036 functions/merlin/class-merlin.php:2049
+#: functions/merlin/class-merlin.php:2092
+msgid "Installing"
+msgstr "درحال نصب"
+
+#: functions/merlin/class-merlin.php:1758
+msgid "A plugin with the following data will be processed"
+msgstr "افزونه ای با داده های زیر پردازش خواهد شد"
+
+#: functions/merlin/class-merlin.php:1770
+msgid "A plugin with the following data was processed"
+msgstr "افزونه ای با داده های زیر پردازش شد"
+
+#: functions/merlin/class-merlin.php:1779 functions/merlin/class-merlin.php:1985
+#: functions/merlin/class-merlin.php:1998 functions/merlin/class-merlin.php:2011
+#: functions/merlin/class-merlin.php:2024 functions/merlin/class-merlin.php:2037
+#: functions/merlin/class-merlin.php:2050
+msgid "Success"
+msgstr "موفقیت"
+
+#: functions/merlin/class-merlin.php:1802
+msgid ""
+"The content importer AJAX call failed to start, because of incorrect data"
+msgstr "درون ریزی اطلاعات AJAX شروع نشد زیرا اطلاعات نادرست اند"
+
+#: functions/merlin/class-merlin.php:1807
+msgid "Invalid content!"
+msgstr "محتوا نامعتبر است!"
+
+#: functions/merlin/class-merlin.php:1818
+msgid "The content import AJAX call will be executed with this import data"
+msgstr "درون ریزی اطلاعات AJAX ، اجرای درون ریزی محتوا با این داده ها"
+
+#: functions/merlin/class-merlin.php:1860
+msgid "The content import AJAX call failed with this passed data"
+msgstr "درون ریزی اطلاعات AJAX ، درون ریزی محتوا با این داده ها انجام نشد"
+
+#: functions/merlin/class-merlin.php:1871
+msgid "Error"
+msgstr "اخطار"
+
+#: functions/merlin/class-merlin.php:1885
+msgid ""
+"The content importer AJAX call for retrieving total content import items "
+"failed to start, because of incorrect data."
+msgstr ""
+"بخاطر داده های نادرست ، درخواست وارد کننده محتوا AJAX را برای بازیابی کل "
+"موارد درون ریز کننده محتوا انجام نشد."
+
+#: functions/merlin/class-merlin.php:1890
+msgid "Invalid data!"
+msgstr "داده ها نامعتبر است!"
+
+#: functions/merlin/class-merlin.php:1982
+msgid "Demo content data."
+msgstr "محتوای دمو انگلیسی."
+
+#: functions/merlin/class-merlin.php:1983 functions/merlin/class-merlin.php:1996
+#: functions/merlin/class-merlin.php:2009 functions/merlin/class-merlin.php:2022
+#: functions/merlin/class-merlin.php:2035 functions/merlin/class-merlin.php:2048
+msgid "Pending"
+msgstr "در انتظار"
+
+#: functions/merlin/class-merlin.php:1994
+msgid "Widgets"
+msgstr "ابزارک ها"
+
+#: functions/merlin/class-merlin.php:1995
+msgid "Sample widgets data."
+msgstr "نمونه داده های ابزارک ها."
+
+#: functions/merlin/class-merlin.php:2007
+msgid "Revolution Slider"
+msgstr "اسلایدر رولوشن"
+
+#: functions/merlin/class-merlin.php:2008
+msgid "Sample Revolution sliders data."
+msgstr "نمونه داده های رولوشن اسلایدر."
+
+#: functions/merlin/class-merlin.php:2020
+msgid "Options"
+msgstr "تنظیمات "
+
+#: functions/merlin/class-merlin.php:2021
+msgid "Sample theme options data."
+msgstr "نمونه داده های تنظیمات قالب."
+
+#: functions/merlin/class-merlin.php:2033
+msgid "Redux Options"
+msgstr "تنظیمات ردئوکس"
+
+#: functions/merlin/class-merlin.php:2034
+msgid "Redux framework options."
+msgstr "تنظیمات فریمورک ردئوکس."
+
+#: functions/merlin/class-merlin.php:2046
+msgid "After import setup"
+msgstr "بعد از اجرای درون ریزی"
+
+#: functions/merlin/class-merlin.php:2047
+msgid "After import setup."
+msgstr "بعد از اجرای درون ریزی."
+
+#: functions/merlin/class-merlin.php:2076
+msgid "The revolution slider import was executed"
+msgstr "درون ریزی روولوشن اسلایدر اجرا شد"
+
+#: functions/merlin/class-merlin.php:2113
+msgid "The home page was set"
+msgstr "صفحه اصلی تنظیم شد"
+
+#: functions/merlin/class-merlin.php:2123
+msgid "The blog page was set"
+msgstr "صفحه وبلاگ تنظیم شد"
+
+#: functions/merlin/class-merlin.php:2138
+msgid "The Hello world post status was set to draft"
+msgstr "وضعیت نوشته سلام دنیا برای پیش نویس تنظیم شده است"
+
+#: functions/merlin/class-merlin.php:2162
+msgid ""
+"This predefined demo import does not have the name parameter: import_file_name"
+msgstr ""
+"درون ریزی نسخه ی نمایشی از پیش تعریف شده دارای پارامتر نام نیست: "
+"import_file_name"
+
+#: functions/merlin/includes/class-merlin-customizer-importer.php:30
+msgid "The customizer import has finished successfully"
+msgstr "درون ریزی تنظیمات سفارشی سازی تکمیل شد"
+
+#: functions/merlin/includes/class-merlin-customizer-importer.php:57
+#, php-format
+msgid "Error: The customizer import file is missing! File path: %s"
+msgstr "فایل درون ریزی سفارشی سازی گم شده است! مسیر فایل: %s"
+
+#: functions/merlin/includes/class-merlin-customizer-importer.php:70
+msgid ""
+"Error: The customizer import file does not have any content in it. Please "
+"make sure to use the correct customizer import file."
+msgstr ""
+"خطا: پرونده درون ریزی سفارشی سازی هیچ محتوایی ندارد. لطفاً از سلامت فایل درون "
+"ریزی سفارشی سازی مطمئن شوید."
+
+#: functions/merlin/includes/class-merlin-customizer-importer.php:80
+msgid ""
+"Error: The customizer import file is not in a correct format. Please make "
+"sure to use the correct customizer import file."
+msgstr ""
+"فایل درون ریزی سفارشی سازی در فرمت صحیح نیست. لطفا مطمئن شوید که از فایل برون "
+"ریزی شده سفارشی سازی صحیح استفاده کنید."
+
+#: functions/merlin/includes/class-merlin-customizer-importer.php:86
+msgid ""
+"Error: The customizer import file is not suitable for current theme. You can "
+"only import customizer settings for the same theme or a child theme."
+msgstr ""
+"فایل درون ریزی سفارشی سازی برای قالب فعلی مناسب نیست. شما فقط می توانید "
+"تنظیمات سفارشی سازی را برای همان قالب یا چالید تم وارد کنید."
+
+#: functions/merlin/includes/class-merlin-downloader.php:49
+msgid "The file was not able to save to disk, while trying to download it"
+msgstr "در حالی که سعی در بارگیری آن وجود داشت ، این پرونده در دیسک ذخیره نشد"
+
+#: functions/merlin/includes/class-merlin-downloader.php:66
+msgid "Missing URL for downloading a file!"
+msgstr "آدرس برای بارگیری فایل وجود ندارد!"
+
+#: functions/merlin/includes/class-merlin-downloader.php:84
+#, php-format
+msgid ""
+"An error occurred while fetching file from: %1$s%2$s%3$s!%4$sReason: %5$s - "
+"%6$s."
+msgstr ""
+"هنگام واکشی پرونده از خطایی روی داد: %1$s%2$s%3$s!%4$s دلیل: %5$s - %6$s."
+
+#: functions/merlin/includes/class-merlin-redux-importer.php:32
+msgid "The Redux Framework data was imported"
+msgstr "تنظیمات فریمورک ردئوکس درون ریزی شده است"
+
+#: functions/merlin/includes/class-merlin-widget-importer.php:72
+msgid "Error: Widget import file could not be found."
+msgstr "خطا: فایل درون ریزی ابزارک ها یافت نشد."
+
+#: functions/merlin/includes/class-merlin-widget-importer.php:83
+msgid "Error: Widget import file does not have any content in it."
+msgstr "خطا: پرونده درون ریزی ابزارک هیچ محتوایی ندارد."
+
+#: functions/merlin/includes/class-merlin-widget-importer.php:105
+msgid ""
+"Error: Widget import data could not be read. Please try a different file."
+msgstr ""
+"اطلاعات درون ریزی ابزارک را نمی توان خواند. لطفا یک فایل دیگر را امتحان کنید."
+
+#: functions/merlin/includes/class-merlin-widget-importer.php:144
+msgid "Sidebar does not exist in theme (moving widget to Inactive)"
+msgstr "سایدبار در قالب وجود ندارد (انتقال ابزارک به قسمت غیرفعال شده ها)"
+
+#: functions/merlin/includes/class-merlin-widget-importer.php:165
+msgid "Site does not support widget"
+msgstr "سایت ابزارک را پشتیبانی نمی کند"
+
+#: functions/merlin/includes/class-merlin-widget-importer.php:198
+msgid "Widget already exists"
+msgstr "ابزارک در حال حاضر وجود دارد"
+
+#: functions/merlin/includes/class-merlin-widget-importer.php:256
+msgid "Imported"
+msgstr "درون ریزی شده"
+
+#: functions/merlin/includes/class-merlin-widget-importer.php:260
+msgid "Imported to Inactive"
+msgstr "درون ریزی شده در غیر فعال ها"
+
+#: functions/merlin/includes/class-merlin-widget-importer.php:266
+msgid "No Title"
+msgstr "بدون عنوان"
+
+#: functions/merlin/includes/class-merlin-widget-importer.php:328
+msgid "No results for widget import!"
+msgstr "هیچ نتیجه ای برای درون ریزی ابزارک وجود ندارد!"
+
+#: functions/merlin/merlin-config.php:40
+msgid "Theme Setup"
+msgstr "راه اندازی قالب"
+
+#: functions/merlin/merlin-config.php:43
+#, php-format
+msgid "%1$s%2$s Themes &lsaquo; Theme Setup: %3$s%4$s"
+msgstr "%1$s%2$s پوسته ها &lsaquo; راه اندازی قالب: %3$s%4$s"
+
+#: functions/merlin/merlin-config.php:44
+msgid "Return to the dashboard"
+msgstr "بازگشت به پیشخوان"
+
+#: functions/merlin/merlin-config.php:45
+msgid "Disable this wizard"
+msgstr "غیرفعال کردن راه اندازی سریع"
+
+#: functions/merlin/merlin-config.php:47
+msgid "Skip"
+msgstr "گذشتن"
+
+#: functions/merlin/merlin-config.php:49
+msgid "Start"
+msgstr "شروع"
+
+#: functions/merlin/merlin-config.php:50
+msgid "Cancel"
+msgstr "لغو"
+
+#: functions/merlin/merlin-config.php:51 functions/merlin/merlin-config.php:52
+#: functions/merlin/merlin-config.php:53
+#: functions/plugins/class-tgm-plugin-activation.php:2802
+msgid "Install"
+msgstr "نصب"
+
+#: functions/merlin/merlin-config.php:54
+msgid "Import"
+msgstr "درون ریزی"
+
+#: functions/merlin/merlin-config.php:55
+#: functions/plugins/class-tgm-plugin-activation.php:2811
+msgid "Activate"
+msgstr "فعالسازی"
+
+#: functions/merlin/merlin-config.php:56
+msgid "Later"
+msgstr "بعدا"
+
+#: functions/merlin/merlin-config.php:59
+#, php-format
+msgid "Activate %s"
+msgstr "فعالسازی %s (لازم نیست)"
+
+#: functions/merlin/merlin-config.php:61
+#, php-format
+msgid "%s is Activated"
+msgstr "%s فعال شده است"
+
+#: functions/merlin/merlin-config.php:63
+msgid "Enter your license key to enable one click updates and theme support."
+msgstr "برای فعالسازی بروزرسانی خودکار لایسنس خود را وارد کنید. (نیاز نیست)"
+
+#: functions/merlin/merlin-config.php:64
+msgid "License key"
+msgstr "کد لایسنس شما"
+
+#: functions/merlin/merlin-config.php:65
+msgid "The theme is already registered, so you can go to the next step!"
+msgstr "لایسنس این قالب فعال شده است, به مرحله بعد بروید!"
+
+#: functions/merlin/merlin-config.php:66
+msgid "Your theme is activated! Remote updates and theme support are enabled."
+msgstr "قالب شما فعال است! بروزرسانی خودکار و پشتیبانی فعال شده است."
+
+#: functions/merlin/merlin-config.php:67
+msgid "Need help?"
+msgstr "کمک میخواهید؟"
+
+#: functions/merlin/merlin-config.php:70
+#, php-format
+msgid "Welcome to %s"
+msgstr "خوشامدید به  %s"
+
+#: functions/merlin/merlin-config.php:71
+msgid "Hi. Welcome back"
+msgstr "سلام. خوش آمدید"
+
+#: functions/merlin/merlin-config.php:72
+msgid ""
+"This wizard will set up your theme, install plugins, and import content. It "
+"is optional & should take only a few minutes."
+msgstr ""
+"در این مراحل قالب شما را تنظیم می شود ، افزونه ها را نصب می کند و محتوا را "
+"درون ریزی می کند. کلیه موارد اختیاری است و فقط باید چند دقیقه طول بکشد."
+
+#: functions/merlin/merlin-config.php:73
+msgid ""
+"You may have already run this theme setup wizard. If you would like to "
+"proceed anyway, click on the \"Start\" button below."
+msgstr ""
+"شما ممکن است قبلاً این قسمت را جهت تنظیم قالب اجرا کرده باشید. اگر دوست دارید "
+"به هر حال ادامه دهید ، روی دکمه \"شروع\" در زیر کلیک کنید."
+
+#: functions/merlin/merlin-config.php:75
+msgid "Install Child Theme"
+msgstr "نصب پوسته فرزند"
+
+#: functions/merlin/merlin-config.php:76
+msgid "You're good to go!"
+msgstr "شما آماده اید تا شروع کنیم!"
+
+#: functions/merlin/merlin-config.php:77
+msgid ""
+"Let's build & activate a child theme so you may easily make theme changes."
+msgstr ""
+"اجازه دهید پوسته فرزند نصب و فعال شود تا براحتی بتوانید در کدهای قالب تغییر "
+"ایجاد کنید."
+
+#: functions/merlin/merlin-config.php:78
+msgid ""
+"Your child theme has already been installed and is now activated, if it "
+"wasn't already."
+msgstr "پوسته فرزند برای شما نصب و فعال شده می باشد."
+
+#: functions/merlin/merlin-config.php:79
+msgid "Learn about child themes"
+msgstr "اطلاعات بیشتر درباره پوسته فرزند"
+
+#: functions/merlin/merlin-config.php:80
+msgid ""
+"Awesome. Your child theme has already been installed and is now activated."
+msgstr "هورااااا, پوسته فرزند برای شما نصب و فعال شده می باشد."
+
+#: functions/merlin/merlin-config.php:81
+msgid "Awesome. Your child theme has been created and is now activated."
+msgstr "هورااااا, پوسته فرزند برای شما ساخته و اکنون فعال می باشد."
+
+#: functions/merlin/merlin-config.php:83
+#: functions/plugins/class-tgm-plugin-activation.php:335
+msgid "Install Plugins"
+msgstr "نصب افزونه ها"
+
+#: functions/merlin/merlin-config.php:84
+msgid "You're up to speed!"
+msgstr "سرعت را بالا ببرید!"
+
+#: functions/merlin/merlin-config.php:85
+msgid ""
+"Let's install some essential WordPress plugins to get your site up to speed."
+msgstr "اجازه دهید برخی از افزونه ها برای افزایش سرعت سایت شما نصب شوند."
+
+#: functions/merlin/merlin-config.php:86
+msgid ""
+"The required WordPress plugins are all installed and up to date. Press \"Next"
+"\" to continue the setup wizard."
+msgstr ""
+"همه افزونه های مورد نیاز نصب و بروز شدند. برای ادامه نصب رو دکمه بعدی کلیک "
+"کنید."
+
+#: functions/merlin/merlin-config.php:87 functions/merlin/merlin-config.php:91
+msgid "Advanced"
+msgstr "برای سبک های سفاشی لطفا از فیلد سی اس اس زیر استفاده  کنید "
+
+#: functions/merlin/merlin-config.php:89
+msgid "Import Content"
+msgstr "درون ریزی محتوا"
+
+#: functions/merlin/merlin-config.php:90
+msgid ""
+"Let's import content to your website, to help you get familiar with the theme."
+msgstr ""
+"اجازه دهید محتوا دمو را به وب سایت شما وارد کنیم ، برای کمک بیشتر به شما برای "
+"آشنایی با کارکرد قالب."
+
+#: functions/merlin/merlin-config.php:93
+msgid "All done. Have fun!"
+msgstr "همه موارد با موفقیت به اتمام رسید!"
+
+#: functions/merlin/merlin-config.php:96
+msgid "Your theme has been all set up. Enjoy your new theme by EstudioPatagon"
+msgstr ""
+"قالب شما بخوبی نصب شده است. از قالب جدید خود که توسط محمد قاسمی در راستچین "
+"ارایه شده لذت ببرید."
+
+#: functions/merlin/merlin-config.php:97
+msgid "Extras"
+msgstr "مورا بیشتر"
+
+#: functions/merlin/merlin-config.php:98
+msgid "Go to the dashboard"
+msgstr "بازگشت به پیشخوان"
+
+#: functions/merlin/merlin-config.php:99
+msgid "Explore WordPress"
+msgstr "محیط وردپرس"
+
+#: functions/merlin/merlin-config.php:100
+msgid "Get Theme Support"
+msgstr "دریافت پشتیبانی"
+
+#: functions/merlin/merlin-config.php:101
+msgid "Start Customizing"
+msgstr "شروع سفارشی سازی"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/Importer.php:55
+msgid ""
+"The XMLReader class is missing! Please install the XMLReader PHP extension on "
+"your server"
+msgstr ""
+"کلاس XMLReader وجود ندارد! لطفا ماژول XMLReader PHP را روی سرور خود نصب کنید"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/Importer.php:68
+msgid "Could not open the XML file for parsing!"
+msgstr "نمیتوان فایل XML را برای تجزیه باز کرد!"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/Importer.php:248
+msgid "Content import start error: "
+msgstr "خطا شروع درونریزی محتوا: "
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/Importer.php:280
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:173
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:291
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:364
+#, php-format
+msgid ""
+"This WXR file (version %s) is newer than the importer (version %s) and may "
+"not be supported. Please consider updating."
+msgstr ""
+"این فایل WXR (نسخه %s) تازه تر از وارد کننده (نسخه %s) است و ممکن است "
+"پشتیبانی نشود. لطفا بروزرسانی کنید."
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/Importer.php:504
+msgid "New AJAX call!"
+msgstr "فراخوانی جدید AJAX!"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:135
+msgid "Could not open the file for parsing"
+msgstr "فایل را برای تجزیه و تحلیل باز نشد"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:514
+msgid "The file does not exist, please try again."
+msgstr "فایل وجود ندارد . دوباره سعی کنید."
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:577
+msgid "Invalid author mapping"
+msgstr "نقشه برداری نویسنده نامعتبر"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:678
+msgid "Cannot import auto-draft posts"
+msgstr "نمیتوانم نوشته های پیش نویس خودکار را درون ریزی کنم"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:770
+#, php-format
+msgid "Failed to import \"%s\": Invalid post type %s"
+msgstr "درون ریزی \"%s\" موفق نشد: نوع نوشته %s نامعتبر است"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:780
+#, php-format
+msgid "%s \"%s\" already exists."
+msgstr "%s \"%s\" در حال حاضر وجود دارد."
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:858
+#, php-format
+msgid "Skipping attachment \"%s\", fetching attachments disabled"
+msgstr "گذشتن از پیوستها \"%s\"، گرفتن فایلهای پیوست غیر فعال شده است"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:872
+#, php-format
+msgid "Failed to import \"%s\" (%s)"
+msgstr "درون ریزی \"%s\" (%s) شکست خورد"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:904
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1822
+#, php-format
+msgid "Imported \"%s\" (%s)"
+msgstr "درونریزی کاربر  \"%s\" (%s)"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:909
+#, php-format
+msgid "Post %d remapped to %d"
+msgstr "نوشته %d  دوباره به %d  منتقل شد"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:949
+#, php-format
+msgid "Failed to import term: %s - %s"
+msgstr "درون ریزی term شکست خورد: %s - %s"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1094
+msgid "Invalid file type"
+msgstr "نوع فایل نامعتبر است"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1593
+#, php-format
+msgid "Failed to import user \"%s\""
+msgstr "درونریزی کاربر  \"%s\" شکست خورد"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1614
+#, php-format
+msgid "Imported user \"%s\""
+msgstr "درونریزی کاربر  \"%s\""
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1618
+#, php-format
+msgid "User %d remapped to %d"
+msgstr "%d کاربر به %d بازمیگردد"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1783
+#, php-format
+msgid "Failed to import %s %s"
+msgstr "درون ریزی شکست خورد %s% s"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1827
+#, php-format
+msgid "Term %d remapped to %d"
+msgstr "مدت%d  دوباره به %d  منتقل شد"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1886
+#, php-format
+msgid "Failed to add metakey: %s, metavalue: %s to term_id: %d"
+msgstr "خطا در افزودن metakey: %s, metavalue: %s to term_id: %d"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1895
+#, php-format
+msgid "Meta for term_id %d : %s => %s ; successfully added!"
+msgstr "متا برای term_id %d : %s => %s ; با موفقیت اضافه شد!"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1947
+#, php-format
+msgid "Remote server returned %1$d %2$s for %3$s"
+msgstr "سرور از راه دور بازگشت %1$d %2$s برای %3$s"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1969
+msgid "Zero size file downloaded"
+msgstr "فایل به حجم 0 دانلود شد"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:1975
+#, php-format
+msgid "Remote file is too large, limit is %s"
+msgstr "محدودیت آپلود فایل %s"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2000
+#, php-format
+msgid "Running post-processing for post %d"
+msgstr "پردازش برای نوشته %d انجام می شود"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2013
+#, php-format
+msgid "Could not find the post parent for \"%s\" (post #%d)"
+msgstr "والد نوشته برای \"%s\" (post #%d) یافت نشد"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2018
+#, php-format
+msgid "Post %d was imported with parent %d, but could not be found"
+msgstr "نوشته %d با والد %d وارد شد، اما نمیتوان آن را یافت"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2032
+#, php-format
+msgid "Could not find the author for \"%s\" (post #%d)"
+msgstr "نویسنده برای \"%s\" (نوشته #%d) یافت نشد"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2037
+#, php-format
+msgid "Post %d was imported with author \"%s\", but could not be found"
+msgstr "نوشته %d با نویسنده  \"%s\" وارد شد اما نمیتوان یافت"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2063
+#, php-format
+msgid "Post %d was marked for post-processing, but none was required."
+msgstr "نوشته %d برای پردازش مشخص شد، اما هیچ موردی مورد نیاز نبود."
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2074
+#, php-format
+msgid "Could not update \"%s\" (post #%d) with mapped data"
+msgstr "\"%s\" (نوشته #%d) با داده های نقشه برداری بروزرسانی نشد"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2119
+#, php-format
+msgid "Could not find the menu object for \"%s\" (post #%d)"
+msgstr "شیء منو برای \"%s\" (نوشته #%d)یافت نشد"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2124
+#, php-format
+msgid ""
+"Post %d was imported with object \"%d\" of type \"%s\", but could not be found"
+msgstr "نوشته %d با شی \"%d\" از نوع \"%s\" وارد شد، اما نمی توان یافت"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2146
+#, php-format
+msgid "Could not find the comment parent for comment #%d"
+msgstr "والد دیدگاه را نمیتوان پیدا کرد #%d"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2150
+#, php-format
+msgid "Comment %d was imported with parent %d, but could not be found"
+msgstr "دیدگاه %d با والد %d وارد شد، اما نمیتوان آن را یافت"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2164
+#, php-format
+msgid "Could not find the author for comment #%d"
+msgstr "نویسنده برای دیدگاه  #%d یافت نشد"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2168
+#, php-format
+msgid "Comment %d was imported with author %d, but could not be found"
+msgstr "دیدگاه %d با نویسنده %d وارد شد، اما نمیتوان آن را یافت"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2185
+#, php-format
+msgid "Could not update comment #%d with mapped data"
+msgstr "نمیتوانید دیدگاه #%d را با داده های نقشه بندی بروزرسانی کنید"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2216
+#, php-format
+msgid "Faulty term_id provided in terms-to-be-remapped array %s"
+msgstr "term_id خطا در مجموعه آرشیو برای استفاده مجدد ارائه شده است %s"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2226
+#, php-format
+msgid "No taxonomy provided in terms-to-be-remapped array for term #%d"
+msgstr "هیچ طبقه بندی در آرایه برای انتقال مجدد برای مدت ارائه نشده است #%d"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2236
+#, php-format
+msgid "No parent_slug identified in remapping-array for term: %d"
+msgstr "بدون parent_slug شناخته شده در remapping-array برای اصطلاح: %d"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2244
+#, php-format
+msgid "The term(%d)\"s parent_slug (%s) is not found in the remapping-array."
+msgstr "اصطلاح (%d)\" parent_slug (%s) درremapping-array یافت نشد."
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2258
+#, php-format
+msgid "No data returned by get_term_by for term_id #%d"
+msgstr "هیچ داده ای توسط get_term_by برای  term_id #%d بازگردانده نشده است"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2277
+#, php-format
+msgid "Could not update \"%s\" (term #%d) with mapped data"
+msgstr "با داده های نقشه \"%s\" ( اصطلاح #%d) به روز نشد"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2287
+#, php-format
+msgid "Term %d was successfully updated with parent %d"
+msgstr "اصطلاح %d با موفقیت با والد %d به روز شد"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2322
+msgid "Starting remapping of featured images"
+msgstr "شروع بازخوانی تصاویر شاخص"
+
+#: functions/merlin/vendor/proteusthemes/wp-content-importer-v2/src/WXRImporter.php:2331
+#, php-format
+msgid "Remapping featured image ID %d to new ID %d for post ID %d"
+msgstr "با حذف تصویر شاخص %d به شناسه جدید %d برای شناسه مطلب %d"
+
+#: functions/plugins/class-tgm-plugin-activation.php:334
+msgid "Install Required Plugins"
+msgstr "نصب افزونه های مورد نیاز"
+
+#: functions/plugins/class-tgm-plugin-activation.php:337
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr "درحال نصب افزونه ها : %s"
+
+#: functions/plugins/class-tgm-plugin-activation.php:339
+#, php-format
+msgid "Updating Plugin: %s"
+msgstr "درحال بروزرسانی افزونه: %s"
+
+#: functions/plugins/class-tgm-plugin-activation.php:340
+msgid "Something went wrong with the plugin API."
+msgstr "یک اشتباهی در API های افزونه رخ داده است."
+
+#: functions/plugins/class-tgm-plugin-activation.php:392
+msgid "Return to Required Plugins Installer"
+msgstr "بازگشت به نصب کننده افزونه های مورد نیاز"
+
+#: functions/plugins/class-tgm-plugin-activation.php:393
+#: functions/plugins/class-tgm-plugin-activation.php:912
+#: functions/plugins/class-tgm-plugin-activation.php:2618
+#: functions/plugins/class-tgm-plugin-activation.php:3665
+msgid "Return to the Dashboard"
+msgstr "بازگشت به پیشخوان"
+
+#: functions/plugins/class-tgm-plugin-activation.php:394
+#: functions/plugins/class-tgm-plugin-activation.php:3244
+msgid "Plugin activated successfully."
+msgstr "افزونه با موفقیت فعال شد."
+
+#: functions/plugins/class-tgm-plugin-activation.php:395
+#: functions/plugins/class-tgm-plugin-activation.php:3037
+msgid "The following plugin was activated successfully:"
+msgstr "افزونه های زیر با موفقیت فعال شدند:"
+
+#: functions/plugins/class-tgm-plugin-activation.php:397
+#, php-format
+msgid "No action taken. Plugin %1$s was already active."
+msgstr "هیچ اقدامی انجام نشد. افزونه %1$s از قبل فعال بوده است."
+
+#: functions/plugins/class-tgm-plugin-activation.php:399
+#, php-format
+msgid ""
+"Plugin not activated. A higher version of %s is needed for this theme. Please "
+"update the plugin."
+msgstr ""
+"افزونه فعال نشد.یک ورژن بالاتر از افزونه %s برای این پوسته نیاز است.لطفا "
+"افزونه را بروز کنید."
+
+#: functions/plugins/class-tgm-plugin-activation.php:401
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr "تمام افزونه ها با موفقیت نصب و فعال شدند. %1$s"
+
+#: functions/plugins/class-tgm-plugin-activation.php:402
+msgid "Dismiss this notice"
+msgstr "نادیده گرفتن این اطلاعیه"
+
+#: functions/plugins/class-tgm-plugin-activation.php:403
+msgid ""
+"There are one or more required or recommended plugins to install, update or "
+"activate."
+msgstr ""
+"یک یا چند افزونه مورد نظر یا توصیه شده برای نصب، بروزرسانی یا فعال بودن وجود "
+"دارد."
+
+#: functions/plugins/class-tgm-plugin-activation.php:404
+msgid "Please contact the administrator of this site for help."
+msgstr "لطفا برای راهنمایی ،با مدیر سایت تماس بگیرید."
+
+#: functions/plugins/class-tgm-plugin-activation.php:607
+msgid "This plugin needs to be updated to be compatible with your theme."
+msgstr "این افزونه باید به روز شود تا با قالب شما سازگار باشد."
+
+#: functions/plugins/class-tgm-plugin-activation.php:608
+msgid "Update Required"
+msgstr "نیازمند بروزرسانی"
+
+#: functions/plugins/class-tgm-plugin-activation.php:1019
+msgid ""
+"The remote plugin package does not contain a folder with the desired slug and "
+"renaming did not work."
+msgstr ""
+"بسته افزونه از راه دور حاوی پوشه ای با لوج دلخواه نیست و با تغییر نام کار نمی "
+"کند."
+
+#: functions/plugins/class-tgm-plugin-activation.php:1019
+#: functions/plugins/class-tgm-plugin-activation.php:1022
+msgid ""
+"Please contact the plugin provider and ask them to package their plugin "
+"according to the WordPress guidelines."
+msgstr ""
+"لطفا با ارائه دهنده افزونه تماس بگیرید و از آنها بخواهید افزونه خود را با "
+"توجه به دستورالعمل وردپرس بسته بندی کنند."
+
+#: functions/plugins/class-tgm-plugin-activation.php:1022
+msgid ""
+"The remote plugin package consists of more than one file, but the files are "
+"not packaged in a folder."
+msgstr ""
+"بسته افزونه از راه دور شامل بیش از یک فایل است، اما فایل ها در یک پوشه بسته "
+"بندی نشده اند."
+
+#: functions/plugins/class-tgm-plugin-activation.php:2067
+#, php-format
+msgid "TGMPA v%s"
+msgstr "TGMPA نسخه %s"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2361
+msgid "Recommended"
+msgstr "پیشنهاد شده"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2377
+msgid "WordPress Repository"
+msgstr "مخزن وردپرس"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2380
+msgid "External Source"
+msgstr "منبع خارجی"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2383
+msgid "Pre-Packaged"
+msgstr "پیش بسته بندی شده"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2400
+msgid "Not Installed"
+msgstr "نصب نشده"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2404
+msgid "Installed But Not Activated"
+msgstr "نصب شده ولی فعال نشده"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2406
+msgid "Active"
+msgstr "فعال"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2412
+msgid "Required Update not Available"
+msgstr "بروزرسانی مورد نیاز در دسترس نیست"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2415
+msgid "Requires Update"
+msgstr "نیازمند بروزرسانی"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2418
+msgid "Update recommended"
+msgstr "توصیه برای بروزرسانی"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2477
+#, php-format
+msgid "To Install <span class=\"count\">(%s)</span>"
+msgstr "برای نصب <span class=\"count\">(%s)</span>"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2481
+#, php-format
+msgid "Update Available <span class=\"count\">(%s)</span>"
+msgstr "بروزرسانی در دسترس است <span class=\"count\">(%s)</span>"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2485
+#, php-format
+msgid "To Activate <span class=\"count\">(%s)</span>"
+msgstr "برای فعالسازی <span class=\"count\">(%s)</span>"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2575
+msgid "Installed version:"
+msgstr "ورژن نصب شده:"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2583
+msgid "Minimum required version:"
+msgstr "پایین ترین ورژن مورد نیاز:"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2595
+msgid "Available version:"
+msgstr "نسخه موجود:"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2618
+msgid "No plugins to install, update or activate."
+msgstr "افزونه ای جهت نصب,فعالسازی و یا بروزرسانی وجود ندارد."
+
+#: functions/plugins/class-tgm-plugin-activation.php:2632
+msgid "Plugin"
+msgstr "افزونه"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2633
+msgid "Source"
+msgstr "منبع"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2634
+msgid "Type"
+msgstr "نوع"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2638
+msgid "Version"
+msgstr "ورژن"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2639
+msgid "Status"
+msgstr "وضعیت"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2688
+#, php-format
+msgid "Install %2$s"
+msgstr "نصب %2$s"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2693
+#, php-format
+msgid "Update %2$s"
+msgstr "بروزرسانی %2$s"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2699
+#, php-format
+msgid "Activate %2$s"
+msgstr "فعالسازی %2$s"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2769
+msgid "Upgrade message from the plugin author:"
+msgstr "پیام ارتقا برای نویسنده افزونه :"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2808
+msgid "Update"
+msgstr "بروزرسانی"
+
+#: functions/plugins/class-tgm-plugin-activation.php:2842
+msgid "No plugins were selected to be installed. No action taken."
+msgstr "هیچ افزونه ای برای نصب انتخاب نشده. اقدامی انجام نشد."
+
+#: functions/plugins/class-tgm-plugin-activation.php:2844
+msgid "No plugins were selected to be updated. No action taken."
+msgstr "هیچ افزونه ای برای بروزرسانی انتخاب نشده. اقدامی انجام نشد."
+
+#: functions/plugins/class-tgm-plugin-activation.php:2885
+msgid "No plugins are available to be installed at this time."
+msgstr "در این زمان هیچ افزونه ای برای نصب در دسترس نیست."
+
+#: functions/plugins/class-tgm-plugin-activation.php:2887
+msgid "No plugins are available to be updated at this time."
+msgstr "در این زمان هیچ افزونه ای برای بروزرسانی در دسترس نیست."
+
+#: functions/plugins/class-tgm-plugin-activation.php:2993
+msgid "No plugins were selected to be activated. No action taken."
+msgstr "هیچ افزونه ای برای فعالسازی انتخاب نشده. اقدامی انجام نشد."
+
+#: functions/plugins/class-tgm-plugin-activation.php:3019
+msgid "No plugins are available to be activated at this time."
+msgstr "هیچ افزونه ای در حال حاضر برای فعال سازی در دسترس نیست."
+
+#: functions/plugins/class-tgm-plugin-activation.php:3243
+msgid "Plugin activation failed."
+msgstr "فعال سازی افزونه ناموفق بود."
+
+#: functions/plugins/class-tgm-plugin-activation.php:3583
+#, php-format
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr "در حال بروزرسانی افزونه %1$s (%2$d/%3$d)"
+
+#: functions/plugins/class-tgm-plugin-activation.php:3586
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr "یک خطا هنگام نصب %1$s: <strong>%2$s</strong> رخ داد."
+
+#: functions/plugins/class-tgm-plugin-activation.php:3588
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr "نصب %1$s ناموفق بود."
+
+#: functions/plugins/class-tgm-plugin-activation.php:3592
+msgid ""
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
+msgstr ""
+"روند نصب و فعال سازی شروع شده است. این فرآیند ممکن است در برخی از میزبانها "
+"طول بکشد، بنابراین لطفا صبور باشید."
+
+#: functions/plugins/class-tgm-plugin-activation.php:3594
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr "%1$s با موفقیت نصب و فعال شد."
+
+#: functions/plugins/class-tgm-plugin-activation.php:3594
+#: functions/plugins/class-tgm-plugin-activation.php:3602
+msgid "Show Details"
+msgstr "نمایش جزییات"
+
+#: functions/plugins/class-tgm-plugin-activation.php:3594
+#: functions/plugins/class-tgm-plugin-activation.php:3602
+msgid "Hide Details"
+msgstr "مخفی کردن جزئیات"
+
+#: functions/plugins/class-tgm-plugin-activation.php:3595
+msgid "All installations and activations have been completed."
+msgstr "تمام نصب ها و فعال سازی ها تکمیل شده است."
+
+#: functions/plugins/class-tgm-plugin-activation.php:3597
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr "درحال نصب و فعالسازی افزونه %1$s (%2$d/%3$d)"
+
+#: functions/plugins/class-tgm-plugin-activation.php:3600
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr "نصب شروع شد ..."
+
+#: functions/plugins/class-tgm-plugin-activation.php:3602
+#, php-format
+msgid "%1$s installed successfully."
+msgstr "%1$s با موفقیت نصب شد."
+
+#: functions/plugins/class-tgm-plugin-activation.php:3603
+msgid "All installations have been completed."
+msgstr "تمام نصب ها تکمیل شد."
+
+#: functions/plugins/class-tgm-plugin-activation.php:3605
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr "درحال نصب افزونه %1$s (%2$d/%3$d)"
+
+#: functions/reco-functions.php:140 functions/theme-functions.php:158
+msgid "EP Article Thumb"
+msgstr "تصاویر مقالات"
+
+#: functions/reco-functions.php:310 functions/theme-functions.php:336
+msgid "Page"
+msgstr "صفحه"
+
+#: functions/reco-functions.php:311 functions/theme-functions.php:337
+msgid "of"
+msgstr "از"
+
+#: functions/reco-functions.php:316 functions/reco-functions.php:318
+#: functions/theme-functions.php:342 functions/theme-functions.php:344
+msgid "Load More"
+msgstr "بارگذاری بیشتر"
+
+#: functions/reco-functions.php:316 functions/theme-functions.php:342
+msgid "Loading..."
+msgstr "در حال بارگذاری ..."
+
+#: functions/reco-functions.php:316 functions/reco-functions.php:320
+#: functions/theme-functions.php:342 functions/theme-functions.php:346
+msgid "No more posts"
+msgstr "مطالب بیشتری موجود نیست"
+
+#: functions/sidebars.php:12
+msgid "Article Sidebar"
+msgstr "سایدبار مقاله"
+
+#: functions/sidebars.php:14
+msgid "Right sidebar inside single posts."
+msgstr "سایدبار سمت راست در تک نوشته."
+
+#: functions/sidebars.php:24
+msgid "Home Sidebar"
+msgstr "سایدبار صفحه اصلی"
+
+#: functions/sidebars.php:26
+msgid "Sidebar for home, archives and results"
+msgstr "سایدبار در صفحه اصلی, بایگانی و نتایج"
+
+#: functions/sidebars.php:36
+msgid "Woocommerce Sidebar"
+msgstr "سایدبار ووکامرس"
+
+#: functions/sidebars.php:38
+msgid "Sidebar for shop and products"
+msgstr "سایدبار فروشگاه و محصولات"
+
+#: functions/sidebars.php:48
+msgid "Footer"
+msgstr "فوتر"
+
+#: functions/sidebars.php:50
+msgid "Footer Sidebar"
+msgstr "سایدبار فوتر"
+
+#: page.php:128 single.php:264 single.php:274
+msgid "Comments"
+msgstr "ديدگاه"
+
+#: page.php:131 single.php:267
+msgid "Please enable JavaScript to view the"
+msgstr "برای مشاهده, کدهای جاوا اسکریپت را فعال کنید"
+
+#: page.php:131 single.php:267
+msgid "comments powered by Disqus."
+msgstr "نظرات توسط Disqus طراحی شده است."
+
+#: partials/author-box.php:41
+msgid "Follow me on Twitter"
+msgstr "من را در توئیتر دنبال کنید"
+
+#: partials/author-box.php:44
+msgid "Follow me on Facebook"
+msgstr "من را در فیسبوک دنبال کنید"
+
+#: partials/loops/classic-article.php:62 partials/single/fullcover.php:35
+#: partials/single/standard.php:48
+msgid "دیدگاه"
+msgstr ""
+
+#: partials/loops/classic-article.php:96
+msgid "Continue reading"
+msgstr "ادامه خواندن"
+
+#: partials/loops/grid-article.php:200
+msgid "Resources"
+msgstr "مقاله"
+
+#: partials/single/fullcover.php:31 partials/single/standard.php:44
+msgid "Go to comments"
+msgstr "برو به دیدگاه ها"
+
+#: searchform.php:2
+msgid "Search in resources..."
+msgstr "جستجو در مقالات..."
+
+#: searchform.php:9 woocommerce/single-product-reviews.php:81
+msgid "Submit"
+msgstr "تایید"
+
+#: woocommerce/cart/cart-totals.php:28
+msgid "Cart totals"
+msgstr "مجموع کل سبد خرید"
+
+#: woocommerce/cart/cart-totals.php:33 woocommerce/cart/cart-totals.php:34
+#: woocommerce/cart/cart.php:32 woocommerce/cart/cart.php:109
+msgid "Subtotal"
+msgstr "مجموع"
+
+#: woocommerce/cart/cart-totals.php:55 woocommerce/cart/cart-totals.php:56
+msgid "Shipping"
+msgstr "حمل و نقل"
+
+#: woocommerce/cart/cart-totals.php:71
+#, php-format
+msgid "(estimated for %s)"
+msgstr "(برآورد شده برای %s)"
+
+#: woocommerce/cart/cart-totals.php:92 woocommerce/cart/cart-totals.php:93
+msgid "Total"
+msgstr "مجموع"
+
+#: woocommerce/cart/cart.php:28 woocommerce/cart/cart.php:61
+msgid "Product"
+msgstr "محصول"
+
+#: woocommerce/cart/cart.php:30 woocommerce/cart/cart.php:81
+msgid "Price"
+msgstr "قیمت"
+
+#: woocommerce/cart/cart.php:31 woocommerce/cart/cart.php:87
+#: woocommerce/global/quantity-input.php:28
+msgid "Quantity"
+msgstr "تعداد"
+
+#: woocommerce/cart/cart.php:76
+msgid "Available on backorder"
+msgstr "پیشاپیش سفارش موجود می شود"
+
+#: woocommerce/cart/cart.php:122
+msgid "Remove this item"
+msgstr "حذف این آیتم"
+
+#: woocommerce/cart/cart.php:144
+msgid "Coupon:"
+msgstr "تخفیف:"
+
+#: woocommerce/cart/cart.php:144
+msgid "Coupon code"
+msgstr "کد تخفیف"
+
+#: woocommerce/cart/cart.php:144
+msgid "Apply coupon"
+msgstr "اعمال تخفیف"
+
+#: woocommerce/cart/cart.php:149
+msgid "Update cart"
+msgstr "بروزرسانی سبد"
+
+#: woocommerce/cart/proceed-to-checkout-button.php:27
+msgid "Proceed to checkout"
+msgstr "اقدام به پرداخت"
+
+#: woocommerce/checkout/payment.php:33
+msgid ""
+"Sorry, it seems that there are no available payment methods for your state. "
+"Please contact us if you require assistance or wish to make alternate "
+"arrangements."
+msgstr ""
+"متاسفانه به نظر می رسد در حال حاضر هیچ روش پرداختی برای استان شما موجود نمی "
+"باشد. در صورتیکه نیاز به کمک دارید با ما تماس بگیرید."
+
+#: woocommerce/checkout/payment.php:33
+msgid "Please fill in your details above to see available payment methods."
+msgstr ""
+"خواهشمندیم مشخصات خود را در بالا وارد کنید تا روش های موجود برای پرداخت را "
+"مشاهده کنید."
+
+#: woocommerce/checkout/payment.php:42
+#, php-format
+msgid ""
+"Since your browser does not support JavaScript, or it is disabled, please "
+"ensure you click the %1$sUpdate Totals%2$s button before placing your order. "
+"You may be charged more than the amount stated above if you fail to do so."
+msgstr ""
+"از آنجا که مرورگر شما جاوا اسکریپت را پشتیبانی نمی‌کند یا اینکه غیرفعال است، "
+"لطفاً اطمینان حاصل کنید که روی دکمه %1$s بروزرسانی مجموع %2$s کلیک نمایید قبل "
+"از اینکه سفارش خود را ثبت کنید. ممکن است مبلغ قابل پرداخت بیش از مبلغی که در "
+"بالا ذکر شده باشد."
+
+#: woocommerce/checkout/payment.php:44
+msgid "Update totals"
+msgstr "بروزرسانی مجموع"
+
+#: woocommerce/global/quantity-input.php:28
+#, php-format
+msgid "%s quantity"
+msgstr "تعداد %s"
+
+#: woocommerce/loop/orderby.php:24
+msgid "Shop order"
+msgstr "ترتیب فروشگاه"
+
+#: woocommerce/order/order-downloads.php:57
+msgid "&infin;"
+msgstr "&infin;"
+
+#: woocommerce/order/order-downloads.php:63
+msgid "Never"
+msgstr "هرگز"
+
+#: woocommerce/single-product-reviews.php:34
+#, php-format
+msgid "%1$s review for %2$s"
+msgstr "%1$s امتیاز برای %2$s"
+
+#: woocommerce/single-product-reviews.php:37
+msgid "Reviews"
+msgstr "امتیازات"
+
+#: woocommerce/single-product-reviews.php:64
+msgid "There are no reviews yet."
+msgstr "امتیازی ثبت نشده است."
+
+#: woocommerce/single-product-reviews.php:75
+msgid "Add a review"
+msgstr "امتیاز دادن"
+
+#: woocommerce/single-product-reviews.php:75
+#, php-format
+msgid "Be the first to review &ldquo;%s&rdquo;"
+msgstr "اولین نفری باشید که دیدگاهی را ارسال می کند برای &ldquo;%s&rdquo;"
+
+#: woocommerce/single-product-reviews.php:77
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr "یک پاسخ بگذارید برای %s"
+
+#: woocommerce/single-product-reviews.php:122
+#, php-format
+msgid "You must be %1$slogged in%2$s to post a review."
+msgstr "برای ارسال امتیاز باید %1$s وارد حساب خود شوید. %2$s"
+
+#: woocommerce/single-product-reviews.php:126
+msgid "Your rating"
+msgstr "امتیاز شما"
+
+#: woocommerce/single-product-reviews.php:127
+msgid "Rate&hellip;"
+msgstr "رتبه &hellip;"
+
+#: woocommerce/single-product-reviews.php:128
+msgid "Perfect"
+msgstr "عالی"
+
+#: woocommerce/single-product-reviews.php:129
+msgid "Good"
+msgstr "خوب"
+
+#: woocommerce/single-product-reviews.php:130
+msgid "Average"
+msgstr "متوسط"
+
+#: woocommerce/single-product-reviews.php:131
+msgid "Not that bad"
+msgstr "بد نیست"
+
+#: woocommerce/single-product-reviews.php:132
+msgid "Very poor"
+msgstr "خیلی ضعیف"
+
+#: woocommerce/single-product-reviews.php:136
+msgid "Your review"
+msgstr "دیدگاه شما"
+
+#: woocommerce/single-product-reviews.php:143
+msgid ""
+"Only logged in customers who have purchased this product may leave a review."
+msgstr ""
+"فقط مشتریانی که این محصول را خریداری کرده اند و وارد سیستم شده اند میتوانند "
+"برای این محصول دیدگاه ارسال کنند."
+
+#: woocommerce/single-product/related.php:27
+msgid "Related products"
+msgstr "محصولات مشابه"
+
+#: woocommerce/single-product/tabs/additional-information.php:25
+msgid "Additional information"
+msgstr "اطلاعات بیشتر"
+
+#: woocommerce/single-product/tabs/description.php:25
+msgid "Description"
+msgstr "توضیحات"
+
+#~ msgid "socket"
+#~ msgstr "سوکت"
+
+#~ msgid "Older Reviews"
+#~ msgstr "امتیازات قدیمی تر"
+
+#~ msgid "Newer Reviews"
+#~ msgstr "امتیازات جدیدتر"
+
+#, php-format
+#~ msgid "%1$s for %2$s item"
+#~ msgstr "%s برای %s مورد"
+
+#~ msgid "Go shop"
+#~ msgstr "رفتن به فروشگاه"
+
+#~ msgid "No order has been made yet."
+#~ msgstr "هیچ سفارشی در اینجا یافت نشد."
+
+#, php-format
+#~ msgid "Order #%1$s was placed on %2$s and is currently %3$s."
+#~ msgstr "سفارش #%1$s در تاریخ %2$s ثبت شده و هم اکنون %3$s است."
+
+#~ msgid "Order updates"
+#~ msgstr "بروزرسانی های سفارش"
+
+#~ msgid "l jS \\o\\f F Y, h:ia"
+#~ msgstr "l jS \\o\\f F Y, h:ia"
+
+#~ msgid "You must add some module before publish this page"
+#~ msgstr "قبل از انتشار این صفحه باید برخی از ماژول را اضافه کنید"
+
+#~ msgid "Display 125x125 grid ads."
+#~ msgstr "نمایش تبلیغات مشبک 125x125."
+
+#~ msgid "(EP) 125x125 Ads"
+#~ msgstr "تبلیغات 125x125"
+
+#~ msgid "Copy and paste your ads code:"
+#~ msgstr "کد تبلیغاتی خود را اینجا قرار دهید:"
+
+#~ msgid "Ads Block n&ordm; 1:"
+#~ msgstr "بلوک تبلیغاتی n&ordm; 1:"
+
+#~ msgid "Ads Block n&ordm; 2:"
+#~ msgstr "بلوک تبلیغاتی n&ordm; 2:"
+
+#~ msgid "Ads Block n&ordm; 3:"
+#~ msgstr "بلوک تبلیغاتی n&ordm; 3:"
+
+#~ msgid "Ads Block n&ordm; 4:"
+#~ msgstr "بلوک تبلیغاتی n&ordm; 4:"
+
+#~ msgid ""
+#~ "Display a fluid ads. Note: the max ads width is 280px and height is "
+#~ "unlimited."
+#~ msgstr ""
+#~ "نمایش تبلیغات شناور. توجه داشته باشید: عرض حداکثر تبلیغات 280px و ارتفاع "
+#~ "نامحدود است."
+
+#~ msgid "(EP) Fluid Ads"
+#~ msgstr "تبلیغات شناور"
+
+#~ msgid "Width of advertise to show:"
+#~ msgstr "عرض تبلیغ برای نشان دادن:"
+
+#~ msgid "Only integer values are allowed:"
+#~ msgstr "فقط مقادیر عدد صحیح مجاز هستند:"
+
+#~ msgid "Align:"
+#~ msgstr "ترازبندی:"
+
+#~ msgid "Ads Code:"
+#~ msgstr "کد تبلیغاتی:"
+
+#~ msgid "Display posts from a certain category."
+#~ msgstr "نمایش نوشته ها از یک دسته خاص."
+
+#~ msgid "(EP) Posts by Category"
+#~ msgstr "نوشته ها براساس دسته بندی ها"
+
+#~ msgid "Number of posts to show:"
+#~ msgstr "تعداد مطالب برای نمایش:"
+
+#~ msgid "Category:"
+#~ msgstr "دسته بندی(ها):"
+
+#~ msgid "Display recent photos from Flickr."
+#~ msgstr "نمایش عکس های اخیر از فلیکر."
+
+#~ msgid "(EP) Flickr Gallery"
+#~ msgstr "گالری فلیکر"
+
+#~ msgid "You must enter a valid Flickr id"
+#~ msgstr "شما باید شناسه معتبر فلیکر خود را وارد کنید"
+
+#~ msgid "Number of photos to show:"
+#~ msgstr "تعداد تصاویر قابل نمایش:"
+
+#~ msgid "Flickr id:"
+#~ msgstr "شناسه فلیکر:"
+
+#~ msgid "You can find your Flickr id on:"
+#~ msgstr "شما می توانید شناسه Flickr خود را در اینجا پیدا کنید:"
+
+#~ msgid "Display Random or Recent posts with a small image."
+#~ msgstr "نمایش نوشته های تصادفی یا جدید با یک تصویر کوچک."
+
+#~ msgid "(EP) Recent Posts with image"
+#~ msgstr "نوشته های جدید با یک تصویر"
+
+#~ msgid "Mode:"
+#~ msgstr "حالت :"
+
+#~ msgid "Recent Posts"
+#~ msgstr "نوشته های تازه"
+
+#~ msgid "Random Posts"
+#~ msgstr "نوشته های تصادفی"
+
+#~ msgid "Display related articles from the current post."
+#~ msgstr "نمایش مقالات مرتبط با نوشته فعلی."
+
+#~ msgid "(EP) Related Articles"
+#~ msgstr "نوشته های مشابه"
+
+#~ msgid "Display your social profiles."
+#~ msgstr "نمایش پروفایل های اجتماعی شما."
+
+#~ msgid "(EP) Social"
+#~ msgstr "شبکه های اجتماعی"
+
+#~ msgid "Twitter"
+#~ msgstr "توئیتر"
+
+#~ msgid "Follow me!"
+#~ msgstr "من را دنبال کنید!"
+
+#~ msgid "Facebook"
+#~ msgstr "فیسبوک"
+
+#~ msgid "Our photos!"
+#~ msgstr "عکس های ما!"
+
+#~ msgid "Pinterest"
+#~ msgstr "پینتریست"
+
+#~ msgid "Pin it!"
+#~ msgstr "سنجاق کردن!"
+
+#~ msgid "Dribbble"
+#~ msgstr "دریبببل"
+
+#~ msgid "Our work!"
+#~ msgstr "کارهای ما!"
+
+#~ msgid "Tumblr"
+#~ msgstr "تامبلر"
+
+#~ msgid "Visit me!"
+#~ msgstr "ملاقات من!"
+
+#~ msgid "Youtube"
+#~ msgstr "یوتیوب"
+
+#~ msgid "Check my videos!"
+#~ msgstr "ویدیوهای من را برسی کنید!"
+
+#~ msgid "Flickr"
+#~ msgstr "فلیکر"
+
+#~ msgid "RSS"
+#~ msgstr "خوراک"
+
+#~ msgid "Get our latest news!"
+#~ msgstr "آخرین اخبار ما را دریافت کنید!"
+
+#~ msgid "Don't forget to fill your social profiles"
+#~ msgstr "فراموش نکنید که پروفایل های اجتماعی خود را پر کنید"
+
+#~ msgid "here"
+#~ msgstr "اینجا"
+
+#~ msgid "Display recent tweets."
+#~ msgstr "نمایش توئیت های اخیر."
+
+#~ msgid "(EP) Recent Tweets"
+#~ msgstr "توئیت های اخیر"
+
+#~ msgid "Number of tweets to show:"
+#~ msgstr "تعداد توئیت های قابل نمایش:"
+
+#~ msgid "Twitter id:"
+#~ msgstr "شناسه توئیتر:"
+
+#~ msgid "Display a Youtube or Vimeo video."
+#~ msgstr "نمایش ویدیو از یوتیوب یا ویمو."
+
+#~ msgid "(EP) Video"
+#~ msgstr "ویدئو"
+
+#~ msgid "URL or ID:"
+#~ msgstr "شناسه‌ یا آدرس:"
+
+#~ msgid "Height:"
+#~ msgstr "ارتفاع :"
