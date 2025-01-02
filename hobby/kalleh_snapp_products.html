@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <title>نقشه محصولات</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv" crossorigin="anonymous">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+
+  <!-- Leaflet JS -->
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    #map {
+      width: 100%;
+      height: 80%;
+    }
+    /* Optional: Adjust the padding and margin as needed */
+    #search-box {
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    #product-list {
+      list-style: none;
+      padding: 0;
+    }
+    #product-list li {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .product-item {
+      margin-left: 20px;
+      font-size: smaller;
+    }
+    /* Added for better responsiveness */
+    @media (max-width: 768px) {
+      #map {
+        height: 60%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center my-4">نقشه محصولات</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <input type="text" id="search-box" class="form-control" placeholder="جستجوی محصول...">
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-8">
+        <div id="map"></div>
+      </div>
+      <div class="col-md-4">
+        <ul id="product-list" class="list-group"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script>
+    // Initialize the map
+    var map = L.map('map').setView([35.6892, 51.3890], 13); // Tehran
+
+    // Add a tile layer
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      subdomains: ['a', 'b', 'c']
+    }).addTo(map);
+
+    // Markers array to store markers
+    var markers = [];
+
+    // Function to add markers to the map
+    function addMarkers(supermarkets) {
+      // Clear existing markers
+      markers.forEach(function(marker) {
+        map.removeLayer(marker);
+      });
+      markers = [];
+
+      // Add new markers
+      supermarkets.forEach(function(supermarket) {
+        var marker = L.marker([supermarket.lat, supermarket.lng]).addTo(map)
+          .bindPopup(supermarket.supermarket_name);
+        markers.push(marker);
+      });
+    }
+
+    // Function to update the product list
+    function updateProductList(supermarkets) {
+      var productList = document.getElementById('product-list');
+      productList.innerHTML = '';
+
+      supermarkets.forEach(function(supermarket) {
+        var li = document.createElement('li');
+        li.classList.add('list-group-item');
+        li.innerHTML = `<b>${supermarket.supermarket_name}</b>`;
+
+        var ul = document.createElement('ul');
+        ul.classList.add('list-group', 'list-group-flush');
+        supermarket.products.forEach(function(product) {
+          var productItem = document.createElement('li');
+          productItem.classList.add('list-group-item', 'product-item');
+          productItem.textContent = product;
+          ul.appendChild(productItem);
+        });
+
+        li.appendChild(ul);
+
+        li.addEventListener('click', function(event) {
+          // Prevent event from bubbling up to the supermarket list item
+          if (event.target === li) {
+            map.setView([supermarket.lat, supermarket.lng], 15);
+            // Find the corresponding marker and open its popup
+            markers.forEach(function(marker) {
+              if (marker.getLatLng().lat === supermarket.lat && marker.getLatLng().lng === supermarket.lng) {
+                marker.openPopup();
+              }
+            });
+          }
+        });
+        productList.appendChild(li);
+      });
+    }
+
+    // Load supermarket data from JSON file
+    fetch('products.json')
+      .then(response => response.json())
+      .then(supermarkets => {
+        // Initial display of supermarkets and their products
+        addMarkers(supermarkets);
+        updateProductList(supermarkets);
+
+        // Search functionality
+        var searchBox = document.getElementById('search-box');
+        searchBox.addEventListener('input', function() {
+          var searchTerm = searchBox.value.toLowerCase();
+          var filteredSupermarkets = supermarkets.map(function(supermarket) {
+            var filteredProducts = supermarket.products.filter(function(product) {
+              return product.toLowerCase().includes(searchTerm);
+            });
+            return {
+              ...supermarket,
+              products: filteredProducts
+            };
+          }).filter(function(supermarket) {
+            return supermarket.products.length > 0;
+          });
+
+          addMarkers(filteredSupermarkets);
+          updateProductList(filteredSupermarkets);
+        });
+      })
+      .catch(error => console.error('Error loading products.json:', error));
+  </script>
+
+</body>
+</html>
