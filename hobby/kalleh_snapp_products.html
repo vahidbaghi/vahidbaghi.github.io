@@ -51,6 +51,16 @@
         height: 60%;
       }
     }
+	
+	@media (max-width: 768px) {
+  #map {
+    height: 300px; // ارتفاع ثابت به جای درصدی
+    margin-bottom: 20px;
+  }
+  .col-md-8, .col-md-4 {
+    width: 100%; // عرض کامل در موبایل
+  }
+}
   </style>
 </head>
 <body>
@@ -70,8 +80,9 @@
         <div id="map"></div>
       </div>
       <div class="col-md-4">
-        <ul id="product-list" class="list-group"></ul>
-      </div>
+		  <div class="accordion" id="product-list">
+		  </div>
+		</div>
     </div>
   </div>
 
@@ -109,40 +120,33 @@
 
     // Function to update the product list
     function updateProductList(supermarkets) {
-      var productList = document.getElementById('product-list');
-      productList.innerHTML = '';
+	  var productList = document.getElementById('product-list');
+	  productList.innerHTML = '';
 
-      supermarkets.forEach(function(supermarket) {
-        var li = document.createElement('li');
-        li.classList.add('list-group-item');
-        li.innerHTML = `<b>${supermarket.supermarket_name}</b>`;
-
-        var ul = document.createElement('ul');
-        ul.classList.add('list-group', 'list-group-flush');
-        supermarket.products.forEach(function(product) {
-          var productItem = document.createElement('li');
-          productItem.classList.add('list-group-item', 'product-item');
-          productItem.textContent = product;
-          ul.appendChild(productItem);
-        });
-
-        li.appendChild(ul);
-
-        li.addEventListener('click', function(event) {
-          // Prevent event from bubbling up to the supermarket list item
-          if (event.target === li) {
-            map.setView([supermarket.lat, supermarket.lng], 15);
-            // Find the corresponding marker and open its popup
-            markers.forEach(function(marker) {
-              if (marker.getLatLng().lat === supermarket.lat && marker.getLatLng().lng === supermarket.lng) {
-                marker.openPopup();
-              }
-            });
-          }
-        });
-        productList.appendChild(li);
-      });
-    }
+	  supermarkets.forEach(function(supermarket, index) {
+		var li = document.createElement('div');
+		li.classList.add('accordion-item');
+		
+		li.innerHTML = `
+		  <h2 class="accordion-header">
+			<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}">
+			  ${supermarket.supermarket_name}
+			</button>
+		  </h2>
+		  <div id="collapse${index}" class="accordion-collapse collapse">
+			<div class="accordion-body">
+			  <ul class="list-group list-group-flush">
+				${supermarket.products.map(product => 
+				  `<li class="list-group-item product-item">${product}</li>`
+				).join('')}
+			  </ul>
+			</div>
+		  </div>
+		`;
+		
+		productList.appendChild(li);
+	  });
+	}
 
     // Load supermarket data from JSON file
     fetch('https://vahidbaghi.ir/hobby/kalleh_snapp_products.json')
