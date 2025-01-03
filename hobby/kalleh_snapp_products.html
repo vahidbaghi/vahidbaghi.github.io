@@ -118,7 +118,49 @@
 		direction: rtl;
 	}
 	
-	
+	.custom-autocomplete {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.custom-autocomplete .ui-menu-item {
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.custom-autocomplete .ui-menu-item:hover {
+  background-color: #f5f5f5;
+}
+
+.alert-custom {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 25px;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16);
+  z-index: 1000;
+  animation: slideIn 0.3s ease-out;
+}
+
+.alert-custom.error {
+  background-color: #ff4444;
+  color: white;
+}
+
+.alert-custom.success {
+  background-color: #00C851;
+  color: white;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
 
   </style>
 </head>
@@ -128,8 +170,6 @@
   <div class="row">
   <div class="col-12">
     <div class="alert alert-info" role="alert">
-      <p>دیتا به زودی تکمیل‌تر خواهد شد.</p>
-      <hr>
       <p class="mb-0">آخرین آپدیت : ۱۴ دی ۱۴۰۳</p>
     </div>
   </div>
@@ -244,6 +284,7 @@
     const cities = {
         "تهران": "tehran",
         "مشهد": "mashhad",
+        "کرج": "karaj",
         "اصفهان": "esfahan",
         "شیراز": "shiraz",
         "تبریز": "tabriz",
@@ -259,56 +300,178 @@
         "گرگان": "gorgan",
         "ساری": "sari",
         "کرمانشاه": "kermanshah",
+        "زنجان": "zanjan",
         "اسلامشهر": "eslamshahr",
         "اراک": "arak",
         "بوشهر": "boshehr",
         "بندرعباس": "bandarabbas",
         "بجنورد": "bojnord",
+        "خرم آباد": "khorramabad",
         "نیشابور": "nishapur",
+        "یاسوج": "yasuj",
+        "بیرجند": "birjand",
         "شاهین شهر": "shahinshahr",
+        "کاشان": "kashan",
         "لاهیجان": "lahijan",
+        "سمنان": "semnan",
         "بابل": "babol",
+        "سنندج": "sanandij",
         "پاکدشت": "pakdasht",
         "دزفول": "dezful",
+        "مرودشت": "marvdasht",
+        "ایلام": "ilam",
+        "قائم شهر": "qaem shahr",
+        "نجف آباد": "najafabad",
         "پردیس": "pardis",
+        "سبزوار": "sabzevar",
+        "گنبد کاووس": "gonbad kavus",
+        "ورامین": "varamin",
         "بابلسر": "babolsar",
         "شاهرود": "shahroud",
+        "زاهدان": "zahedan",
+        "آبادان": "abadan",
+        "آمل": "amol",
         "شهریار": "shahriar",
+        "شهرکرد": "shahrekord",
         "اندیشه": "andisheh",
+        "کیش": "kish",
+        "تربت حیدریه": "torbat heydariyeh",
         "ری": "ray",
         "پرند": "parand",
+        "خمینی شهر": "khomeynisahr",
         "رباط کریم": "robatkarim",
+        "شهر قدس": "shahr qods",
         "بندر انزلی": "bandareanzali",
+        "قرچک": "qarchak",
+        "مراغه": "maragheh",
+        "اندیمشک": "andimeshk",
         "ساوه": "saveh",
+        "سپاهان شهر": "sepahan shahr",
         "بروجرد": "borujerd",
+        "هشتگرد": "hashtgerd",
         "لواسان": "lavasan",
         "صدرا": "sadra",
+        "سیرجان": "sirjan",
+        "لنگرود": "langarud",
         "بهارستان": "baharestan",
+        "قوچان": "quchan",
+        "محمود آباد": "mahmudabad",
+        "نسیم شهر": "nasimshahr",
+        "فولادشهر": "fooladshahr",
+        "رفسنجان": "rafsanjan",
+        "کازرون": "kazerun",
+        "سهند": "sahand",
         "مارلیک": "marlik",
         "دماوند": "damavand",
+        "مرند": "marand",
+        "رودهن": "roudehen",
         "ملارد": "malard",
+        "نوشهر": "noshahr",
+        "نور": "noor",
+        "بومهن": "bumahen",
+        "رامسر": "ramsar",
+        "خوی": "khoy",
+        "سلمان شهر": "salman shahr",
         "گرمددره": "garmdarreh",
+        "چالوس": "chalos",
         "تنکابن": "tonekabon",
+        "جیرفت": "jiroft",
+        "جزیره قشم": "qeshmisland",
+        "طرقبه": "torghabeh",
+        "ملایر": "malayer",
+        "زرین شهر": "zarinshahr",
+        "داراب": "darab",
+        "فلاورجان": "falavarjan",
+        "خرمشهر": "khorramshahr",
+        "فریدون کنار": "fereydunkenar",
+        "سرخرود": "sorkhrud",
+        "چهارمحال و بختیاری": "chaharmahal and bakhtiari province",
+        "درود": "dorud",
+        "بهشهر": "behshahr",
+        "چابهار": "chabahar",
+        "میاندوآب": "miandoab",
+        "باقرشهر": "baghershahr",
+        "شوشتر": "shoshtar",
+        "مبارکه": "mobarakeh",
+        "شهرضا": "shahreza",
+        "زابل": "zabol",
+        "نکا": "neka",
+        "رویان": "royan",
+        "گرمسار": "garmsar",
+        "بروجن": "boroujen",
+        "آستانه اشرفیه": "astaneh-ye ashrafiyeh",
+        "لار": "lar",
+        "تربت جام": "torbat-e jam",
+        "رودسر": "rudsar",
         "فومن": "fuman",
+        "لرستان": "lorestan",
+        "کلارآباد": "kelarabad",
+        "صومعه سرا": "sowme'eh sara",
+        "اسکو": "osku",
+        "میبد": "meybod",
+        "سنگر": "sangar",
+        "نقده": "naqadeh",
+        "کردکوی": "kordkuy",
+        "آران و بیدگل": "aran va bidgol",
+        "جاجرود": "jajrud",
         "خمین": "khomein",
-        "شمشک": "shemshak"
+        "آستارا": "آستارا",
+        "فشم": "fasham",
+        "ویلاشهر": "vilashahr",
+        "شیرگاه": "shirgah",
+        "ایزدشهر": "izadshahr",
+        "طبس": "tabas",
+        "علی آباد کتول": "aliabad-e-katul",
+        "نطنز": "natanz",
+        "شمشک": "shemshak",
+        "فسا": "fasa",
+        "تفت": "taft",
+        "سراب": "sarab",
+        "ماسال": "masal",
+        "بم": "bam",
+        "رامهرمز": "ramhormoz",
+        "آبیک": "abyek",
+        "کوهدشت": "kuhdasht",
+        "اردکان": "ardakan",
+        "کنگاور": "kangavar",
+        "تفرش": "tafresh",
+        "نی ریز": "neyriz",
+        "خشت سر": "kheshtsar",
+        "عباس آباد": "abbasabad",
+		"کل ایران": "iran"
     };
 
     // Autocomplete for city selection
-    $(function() {
-      $("#city-selector").autocomplete({
-        source: Object.keys(cities) // Use Persian city names for autocomplete
-      });
-    });
+    $("#city-selector").autocomplete({
+		  source: Object.keys(cities),
+		  appendTo: ".city-search-container",
+		  position: { my: "right top", at: "right bottom" },
+		  classes: {
+			"ui-autocomplete": "custom-autocomplete"
+		  }
+		});
+
+	function showCustomAlert(message, type = 'error') {
+		  const alert = document.createElement('div');
+		  alert.className = `alert-custom ${type}`;
+		  alert.textContent = message;
+		  document.body.appendChild(alert);
+		  
+		  setTimeout(() => {
+			alert.style.animation = 'slideIn 0.3s ease-out reverse';
+			setTimeout(() => alert.remove(), 300);
+		  }, 3000);
+		}
+
 
     // Load data on button click
     $("#load-button").click(function() {
 		  var selectedCityPersian = $("#city-selector").val();
 		  if (!selectedCityPersian) {
-			alert("لطفا یک شهر انتخاب کنید");
+			showCustomAlert("لطفا یک شهر انتخاب کنید");
 			return;
 		  }
-		  
+
 		  if (cities[selectedCityPersian]) {
 			var selectedCityEnglish = cities[selectedCityPersian];
 			var fileName = selectedCityEnglish + "_products.json";
@@ -322,17 +485,24 @@
 				return response.json();
 			  })
 			  .then(supermarkets => {
-				addMarkers(supermarkets);
-				updateProductList(supermarkets);
+				if (supermarkets.length === 0) {
+				  // JSON file is empty
+				  showCustomAlert('متاسفانه اطلاعات برای شهر ' + selectedCityPersian + ' در دسترس نمی‌باشد.');
+				} else {
+				  addMarkers(supermarkets);
+				  updateProductList(supermarkets);
+				}
 			  })
 			  .catch(error => {
 				console.error('Error loading ' + fileName + ':', error);
-				alert('متاسفانه اطلاعات برای شهر ' + selectedCityPersian + ' در دسترس نمی‌باشد.');
+				showCustomAlert('متاسفانه اطلاعات برای شهر ' + selectedCityPersian + ' در دسترس نمی‌باشد.');
 			  });
 		  } else {
-			alert("شهر مورد نظر در لیست شهرهای موجود نمی‌باشد. لطفا یک شهر دیگر انتخاب کنید.");
+			showCustomAlert("شهر مورد نظر در لیست شهرهای موجود نمی‌باشد. لطفا یک شهر دیگر انتخاب کنید.");
 		  }
 		});
+
+
 
     // Search functionality
     var searchBox = document.getElementById('search-box');
