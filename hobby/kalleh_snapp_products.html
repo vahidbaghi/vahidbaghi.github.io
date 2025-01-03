@@ -118,40 +118,7 @@
 		direction: rtl;
 	}
 	
-	#map {
-  width: 100%;
-  height: 500px;
-  margin-top: 20px;
-}
-
-#city-selector {
-  width: 100%;
-}
-
-#load-button {
-  white-space: nowrap;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 5px;
-}
-
-@media (max-width: 768px) {
-  #map {
-    height: 300px;
-    margin-bottom: 20px;
-  }
-  
-  .d-flex {
-    flex-direction: column;
-  }
-  
-  #load-button {
-    width: 100%;
-    margin-top: 10px;
-  }
-}
+	
 
   </style>
 </head>
@@ -169,7 +136,7 @@
 			<h5 class="text-center">شهر مورد نظر خود را انتخاب کنید</h5>
 			<div class="d-flex gap-2">
 			  <input type="text" id="city-selector" class="form-control" placeholder="انتخاب شهر...">
-			  <button id="load-button" class="btn">بارگذاری</button>
+			  <button id="load-button" class="btn">بارگذاری شهر</button>
 			</div>
 		  </div>
 		  <div class="col-12 col-md-6 mb-3">
@@ -324,26 +291,36 @@
 
     // Load data on button click
     $("#load-button").click(function() {
-      var selectedCityPersian = $("#city-selector").val();
-      if (cities[selectedCityPersian]) {
-        var selectedCityEnglish = cities[selectedCityPersian];
-        var fileName = selectedCityEnglish + "_products.json";
-        var filePath = "kalleh_products/" + fileName;
+		  var selectedCityPersian = $("#city-selector").val();
+		  if (!selectedCityPersian) {
+			alert("لطفا یک شهر انتخاب کنید");
+			return;
+		  }
+		  
+		  if (cities[selectedCityPersian]) {
+			var selectedCityEnglish = cities[selectedCityPersian];
+			var fileName = selectedCityEnglish + "_products.json";
+			var filePath = "kalleh_products/" + fileName;
 
-        fetch(filePath)
-          .then(response => response.json())
-          .then(supermarkets => {
-            addMarkers(supermarkets);
-            updateProductList(supermarkets);
-          })
-          .catch(error => {
-            console.error('Error loading ' + fileName + ':', error);
-            alert('Error loading data for ' + selectedCityPersian + '. Please check the console for details.');
-          });
-      } else {
-        alert("Please select a valid city from the list.");
-      }
-    });
+			fetch(filePath)
+			  .then(response => {
+				if (!response.ok) {
+				  throw new Error('Network response was not ok');
+				}
+				return response.json();
+			  })
+			  .then(supermarkets => {
+				addMarkers(supermarkets);
+				updateProductList(supermarkets);
+			  })
+			  .catch(error => {
+				console.error('Error loading ' + fileName + ':', error);
+				alert('متاسفانه اطلاعات برای شهر ' + selectedCityPersian + ' در دسترس نمی‌باشد.');
+			  });
+		  } else {
+			alert("شهر مورد نظر در لیست شهرهای موجود نمی‌باشد. لطفا یک شهر دیگر انتخاب کنید.");
+		  }
+		});
 
     // Search functionality
     var searchBox = document.getElementById('search-box');
@@ -377,22 +354,6 @@
             .catch(error => console.error('Error loading products.json:', error));
     });
   </script>
-  <script type="text/javascript">
-    (function() {
-        try {
-            (function(c, l, a, r, i, t, y) {
-                c[a] = c[a] || function() { (c[a].q = c[a].q || []).push(arguments); };
-                t = l.createElement(r); 
-                t.async = 1; 
-                t.src = "https://www.clarity.ms/tag/" + i;
-                y = l.getElementsByTagName(r)[0]; 
-                y.parentNode.insertBefore(t, y);
-            })(window, document, "clarity", "script", "po012xeaq9");
-        } catch (error) {
-            console.error(error);
-        }
-    })();
-</script>
 
 </body>
 </html>
