@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+   <title>وبلاگ وحید باقی</title>
+   <style>
+       body {
+           font-family: Vazirmatn, sans-serif;
+           line-height: 1.6;
+           max-width: 900px;
+           margin: 0 auto;
+           padding: 20px;
+           background-color: #f7f7f7;
+       }
+
+.notebook-container {
+       background: white;
+       border: 1px solid #e1e4e8;
+       border-radius: 4px;
+       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+   }
+
+   .header {
+       padding: 20px;
+       border-bottom: 1px solid #e1e4e8;
+       background-color: #f6f8fa;
+   }
+
+   .post-title {
+       font-size: 2em;
+       margin: 0;
+       color: #24292e;
+   }
+
+   .post-meta {
+       color: #586069;
+       font-size: 0.9em;
+       margin-top: 10px;
+   }
+
+   .featured-image {
+       width: 100%;
+       max-height: 400px;
+       object-fit: cover;
+   }
+
+   .content {
+       padding: 20px;
+   }
+
+   .cell {
+       margin: 20px 0;
+       padding: 10px;
+       border-radius: 3px;
+       background-color: #f8f9fa;
+       text-align: right;
+   }
+
+   code {
+       background-color: #f6f8fa;
+       padding: 2px 5px;
+       border-radius: 3px;
+       font-family: Monaco, Consolas, monospace;
+   }
+
+   .link-center {
+       text-align: center;
+   }
+   
+   /* تغییرات مربوط به تصاویر */
+   .wp-block-image {
+       text-align: center; /* وسط چین کردن تصاویر */
+   }
+
+   .wp-block-image img {
+       max-width: 100%; /* جلوگیری از بیرون زدگی تصاویر از کادر */
+       height: auto; /* تنظیم خودکار ارتفاع برای حفظ نسبت ابعاد */
+       display: block; /* حذف فضای اضافی زیر تصویر */
+       margin-left: auto;
+       margin-right: auto;
+   }
+   .has-text-align-center{
+    text-align: center;
+   }
+   
+   .cell pre {
+  word-break: break-all;
+  overflow-wrap: break-word; /* اضافه شده */
+  overflow-x: auto; /* اضافه شده */
+}
+
+
+ 
+   </style>
+</head>
+<body>
+   <div class="notebook-container">
+       <article class="main-article post-594 post type-post status-publish format-standard has-post-thumbnail hentry category-1 category-40">       
+       <header class="header">
+           <h1 class="post-title">۲. چالش دانیلا با تابع ReLU!</h1>
+           <div class="post-meta">
+               <span class="date">۱۴۰۱/۱۰/۰۸</span>
+           </div>
+       </header>
+
+<section class="content">
+           <div class="cell">
+               <p>دانیلا می‌دونه که اگر تابع فعال‌سازی (activation function) بعضی از لایه های مدلش رو به ReLU تغییر بده، می‌تونه باعث بهبود مدلش بشه. متاسفانه تیمی که دانیلا داخلش کار می‌کنه در برابر تغییرات مقاومت نشون میدن! بنابراین بهترین کاری که می‌تونه انجام بده اینه که یه لیستی از مزایای تابع ReLU آماده کنه و به تیم ارائه بده تا نظرشون رو تغییر بده. اون یه پیش‌نویسی رو از قبل آماده کرده و نمی‌دونه کدومش بهتره و نیاز به کمک شما داره!</p>
+           </div>
+           <div class="cell">
+               <p>کدوم یکی از عبارت های زیر مزایای تابع ReLU رو نشون میده؟</p>
+           </div>
+           <div class="cell">
+               <ul class="wp-block-list">
+                <li>تابع ReLU در اطراف مقادیر حدی (اکستریم) اشباع میشه که به عملیات پس‌انتشار (backpropagation) اجازه میده سریعتر همگرا بشه و به یادگیری شبکه کمک می‌کنه.</li>
+                <li>تابع ReLU نمایش پراکندگی (representational sparsity) بهتری نسبت به توابع فعال‌سازی sigmoid و tanh داره چون خروجی تابع برای مقادیر کوچکتر یا مساوی صفر دقیقا صفره.</li>
+                <li>تابع ReLU پیاده سازی ساده‌ای داره</li>
+                <li>زمانی که شبکه های عصبی تا جای ممکن رفتار خطی داشته باشند، ساده‌تر می‌تونن خودشون رو بهینه (optimize) کنند. تابع ReLU که عمدتا به صورت یک تابع خطی عمل میکنه می‌تونه در بهینه کردن شبکه های عصبی به ما کمک کنه.</li>
+            </ul>
+           </div>
+           <div class="cell">
+            <p></p>
+           </div>
+           <div class="cell">
+            <p>پاسخ کوتاه : گزینه ۲ و ۳ و ۴</p>
+           </div>
+           <div class="cell">
+             <p>پاسخ بلند : اول بیاید یه یادآوری از تابع ReLU داشته باشیم. اگر ورودی این تابع مقداری کمتر از ۰ (صفر) باشه خروجی تابع ۰ (صفر) میشه و در غیر این صورت همون مقداری که به عنوان ورودی گرفته رو به خروجی انتقال میده :</p>
+           </div>
+           <div class="cell">
+            <pre class="has-text-align-center">f(x) = max(x,0)</pre>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/31-1.png" alt=""></figure>
+               </div>
+           </div>
+           <div class="cell">
+            <p>بیاید گزینه اول رو بررسی کنیم. ابتدا می‌خوام اصطلاحاتی که در این گزینه وجود داره رو تعریف کنم.</p>
+           </div>
+           <div class="cell">
+            <p><strong>مقادیر اکستریم :</strong> به زبون آدمیزاد یعنی کوچکترین و بزرگترین مقدار تابع! برای ReLU کوچکترین مقدار صفره و بزرگترین مقدار نداره! یعنی کران بالا نداره! برای تابع sigmoid کوچکترین و بزرگترین مقدار ۰ و ۱ است. برای tanh کوچکترین و بزرگترین مقدار ۱- و ۱ است.</p>
+           </div>
+           <div class="cell">
+            <p><strong>اشباع شدن :</strong> وقتی می‌گیم خروجی یه تابع اشباع (saturate) میشه به زبون آدمیزاد یعنی منحنی تابع موازی محور x ها میشه! مثلا منحنی تابع sigmoid رو در نظر بگیرید :</p>
+           </div>
+           <div class="cell">
+            <div class="wp-block-image">
+                <figure class="aligncenter"><img decoding="async" src="images/31-2.png" alt=""></figure>
+            </div>
+           </div>
+           <div class="cell">
+            <p>اگر ورودی تابع یه عدد منفی یا مثبت بزرگ باشه، خروجی تابع sigmoid اشباع (saturate) میشه! اما تابع ReLU برای مقادیر منفی اشتباع میشه ولی برای مقادیر مثبت اشباع نمیشه. چون کران بالا نداره. یعنی هیچ وقت منحنی تابع ReLU برای مقادیر مثبت موازی محور x ها نمیشه!</p>
+           </div>
+           <div class="cell">
+            <p>پس چی شد؟ گزینه اول داره میگه تابع ReLU در اطراف مقادیر حدی (اکستریم) اشباع میشه که غلطه! فقط برای مقادیر منفی اشباع میشه! همین کافیه که این گزینه رو رد کنیم ولی بیاید ادامه رو هم بررسی کنیم. در ادامه میگه این قضیه باعث میشه عملیات پس‌انتشار سریعتر همگرا بشه! داستان دقیقا برعکسه! Saturation برای شبکه های عصبی یه قضیه مشکل سازه! باعث مشکلاتی نظیر <a rel="noreferrer noopener" href="https://machinelearningmastery.com/how-to-fix-vanishing-gradients-using-the-rectified-linear-activation-function/" target="_blank">محوشدگی گرادیان (Vanishing Gradient)</a> و <a rel="noreferrer noopener" href="https://arxiv.org/abs/1903.06733" target="_blank">Dying ReLU</a> میشه!</p>
+           </div>
+           <div class="cell">
+            <p>مشکل محوشدگی گرادیان چیه؟ <a href="http://cafetadris.com/blog/محوشدگی-گرادیان-vanishing-gradient/" target="_blank" rel="noreferrer noopener">این لینک</a> خیلی خوب توضیح داده که به صورت خلاصه میشه :</p>
+           </div>
+           <div class="cell">
+            <blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+                <h3 class="wp-block-heading">چرا مشکل محوشدگی گرادیان (Vanishing Gradient) اتفاق می‌افتد؟</h3>
+                <p>برخی توابع فعال‌ساز، مانند تابع سیگموید (Sigmoid)، مقادیر ورودی با مقیاس بزرگ را در یک بازه‌ی کوچک میان صفر و 1 قرار می‌دهند؛ بنابراین زمانی‌که یک تغییر بسیار بزرگ در مقدار ورودی تابع اتفاق می‌افتد، خروجی تابع تنها مقدار کمی تغییر می‌کند؛ این یعنی مقدار مشتق آن خیلی کوچک می‌شود.</p>
+                <figure class="wp-block-image size-full"><img decoding="async" src="images/31-3.png" alt="" class="wp-image-719"></figure>
+                <p>برای مثال، در شکل بالا تابع سیگموید را به‌همراه مشتق آن مشاهده می‌کنیم. همان‌طور که می‌بینیم زمانی‌که مقدار ورودی تابع بزرگ یا کوچک می‌شود، مقدار مشتق آن به صفر نزدیک می‌شود.</p>
+            </blockquote>
+           </div>
+           <div class="cell">
+            <p>پس گزینه اول کلا غلطه! حالا بریم سراغ گزینه دوم. داره در مورد مفهومی به نامrepresentational sparsity صحبت می‌کنه. خب این یعنی چی؟ یکی از مزایای تابع ReLU اینه که خروجیش برای مقادیر منفی دقیقا صفره. در صورتی که sigmoid و tanh در فرآیند learing تقریبی از صفر رو نمایش می‌دن. یعنی خروجیشون خیلی نزدیک به صفره ولی واقعا صفر نیست!</p>
+           </div>
+           <div class="cell">
+            <p>بنابراین زمانی که از تابع ReLU در لایه های میانی (hidden layer) استفاده می‌کنیم باعث میشه بعضی از نورون ها مقدارشون صفر بشه! یعنی یه چیزی مثل تصویر زیر میشه :</p>
+           </div>
+           <div class="cell">
+            <p> </p>
+           </div>
+           <div class="cell">
+            <figure class="wp-block-image size-full"><img loading="lazy" decoding="async" src="images/31-4.jpg" alt="" class="wp-image-722"></figure>
+           </div>
+           <div class="cell">
+            <p>در واقع برخی از نورون ها غیر فعال میشن چون وزنشون صفره! این باعث میشه مدل ساده‌تری داشته باشیم و هزینه محاسباتی هم کمتر بشه و احتمال <a rel="noreferrer noopener" href="http://cafetadris.com/blog/بیش-برازش-overfitting/" target="_blank">overfitting </a>هم کمتر بشه! اگر بخوام به زبان کوچه بازاری بگم، اینکه همه نورون ها در فرآیند learning همکاری داشته باشن می‌دونید مثل چی می‌مونه؟ مثل شخصی می‌مونه که همه کاره و هیچ کاره است! کسی که از هر کاری یه ذره بلده (دریایی به عمق یک سانتی‌متر) بهتره یا کسی که توی یه کار تخصص داره؟ در مورد نورون ها هم همینه. اصلا یه تکنیکی در شبکه های عصبی وجود داره به نام <a rel="noreferrer noopener" href="https://howsam.org/dropout-neural-network/" target="_blank">Dropout </a>که ما عامدانه یکسری نورون ها رو به صورت رندوم حذف می‌کنیم! در واقع ReLU یه جور Dropout طبیعی داره.</p>
+           </div>
+           <div class="cell">
+            <p>اما این قضیه در تابع ReLU یک شمشیر دو لبه است. یعنی می‌تونه باعث مشکل dying ReLU (<a rel="noreferrer noopener" href="https://towardsdatascience.com/neural-network-the-dead-neuron-eaa92e575748" target="_blank">این مقاله</a> رو هم در موردش بخونید) بشه. یه دفعه می‌بینی فرار مغز ها زیاد شد و کلا ۴ تا نورون نخاله توی شبکه موندن و شبکه به فاک رفت! خب این راه حل داره. می‌تونیم <a rel="noreferrer noopener" href="https://machinelearningmastery.com/understand-the-dynamics-of-learning-rate-on-deep-learning-neural-networks/" target="_blank">learning rate</a> رو کوچیکتر در نظر بگیریم که یه دفعه یه وزن منفی بزرگ نداشته باشیم که کلی از نورون ها صفر بشن یا می‌تونیم از تابع Leaky ReLU استفاده کنیم. پس گزینه دوم با اینکه کلی اما و اگر داشت ولی درسته!</p>
+           </div>
+           <div class="cell">
+            <p>گزینه سوم هم درسته. چون پیاده سازی ReLU بر خلاف sigmoid و tanh که هزینه محاسباتی (به توان رسوندن) بیشتری دارند، خیلی ساده تره.</p>
+           </div>
+           <div class="cell">
+            <p>در مورد گزینه چهارم، اول توضیحات زیر رو از <a rel="noreferrer noopener" href="http://cafetadris.com/blog/توابع-فعالساز-activation-functions/" target="_blank">این لینک</a> بخونید :</p>
+           </div>
+           <div class="cell">
+            <blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+                <p>اگر از توابع فعالساز (<a rel="noreferrer noopener" href="https://medium.com/@snaily16/what-why-and-which-activation-functions-b2bf748c0441" target="_blank">Activation Functions</a>) استفاده نکنیم، وزن‌ها و مقدار بایاس فقط یک معادله‌ی خطی را ایجاد می‌کنند. درست است که معادله‌ی خطی خیلی راحت‌تر حل‌شدنی است، اما برای حل مسائل پیچیده نمی‌تواند کمکی به ما کند؛ درواقع معادلات خطی در یادگیری الگوهای پیچیده‌ی داده‌ی خیلی محدود هستند و یک شبکه‌ی عصبی بدون تابع فعال‌ساز فقط یک مدل رگرسیون خطی (Linear Regression Model) است. به‌طور کلی، شبکه‌های عصبی از توابع فعالساز استفاده می‌کنند تا بتوانند به شبکه در یادگیری داده‌های پیچیده کمک و پیش‌بینی قابل‌قبولی را در خروجی ارائه کنند.</p>
+            </blockquote>
+           </div>
+           <div class="cell">
+            <p>پس اگر توابع ما خطی باشند شبکه عصبی خیلی ساده‌تر می‌تونه optimize بشه ولی این به این معنی نیست که می‌تونه یک مدل خوبی هم بسازه! اما نکته اینه که تابع ReLU یک تابع خطی نیست! در واقع یک <a rel="noreferrer noopener" href="https://fa.wikipedia.org/wiki/تابع_تکه‌ای_خطی" target="_blank">تابع تکه‌ای خطی</a> (piecewise linear function) محسوب میشه که تعریف به زبان خیلی ساده میشه :</p>
+           </div>
+           <div class="cell">
+            <blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+                <p>تابعی پیوسته بر [a,b] که نمودار آن از تعدادی متناهی قطعه‌خط تشکیل شده است</p>
+                <cite>https://lamtakam.com/dictionaries/farhangestan/8561/%D8%AA%D8%A7%D8%A8%D8%B9+%D8%AA%DA%A9%D9%87+%D8%A7%DB%8C+%D8%AE%D8%B7%DB%8C</cite>
+            </blockquote>
+           </div>
+           <div class="cell">
+            <p>خب این باعث میشه ReLU ویژگی های مدل های خطی رو داشته باشه و در عین حال خطی نباشه. توصیه می‌کنم حتما ویدئو زیر رو ببینید که زندگیتون رو در زمینه درک توابع فعال‌سازی متحول میکنه! </p>
+           </div>
+           <div class="cell">
+             <pre class="has-text-align-center"><a href="https://www.youtube.com/watch?v=Ijqkc7OLenI">https://www.youtube.com/watch?v=Ijqkc7OLenI</a></pre>
+           </div>
+           <div class="cell">
+             <p>پس در نتیجه گزینه های ۲ و ۳ و ۴ صحیح هستند!</p>
+           </div>
+      
+       </section>
+   </article>
+   </div>
+</body>
+</html>
+

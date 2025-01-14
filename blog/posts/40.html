@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+   <title>وبلاگ وحید باقی</title>
+   <style>
+       body {
+           font-family: Vazirmatn, sans-serif;
+           line-height: 1.6;
+           max-width: 900px;
+           margin: 0 auto;
+           padding: 20px;
+           background-color: #f7f7f7;
+       }
+
+.notebook-container {
+       background: white;
+       border: 1px solid #e1e4e8;
+       border-radius: 4px;
+       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+   }
+
+   .header {
+       padding: 20px;
+       border-bottom: 1px solid #e1e4e8;
+       background-color: #f6f8fa;
+   }
+
+   .post-title {
+       font-size: 2em;
+       margin: 0;
+       color: #24292e;
+   }
+
+   .post-meta {
+       color: #586069;
+       font-size: 0.9em;
+       margin-top: 10px;
+   }
+
+   .featured-image {
+       width: 100%;
+       max-height: 400px;
+       object-fit: cover;
+   }
+
+   .content {
+       padding: 20px;
+   }
+
+   .cell {
+       margin: 20px 0;
+       padding: 10px;
+       border-radius: 3px;
+       background-color: #f8f9fa;
+       text-align: right;
+   }
+
+   code {
+       background-color: #f6f8fa;
+       padding: 2px 5px;
+       border-radius: 3px;
+       font-family: Monaco, Consolas, monospace;
+   }
+
+   .link-center {
+       text-align: center;
+   }
+   
+   /* تغییرات مربوط به تصاویر */
+   .wp-block-image {
+       text-align: center; /* وسط چین کردن تصاویر */
+   }
+
+   .wp-block-image img {
+       max-width: 100%; /* جلوگیری از بیرون زدگی تصاویر از کادر */
+       height: auto; /* تنظیم خودکار ارتفاع برای حفظ نسبت ابعاد */
+       display: block; /* حذف فضای اضافی زیر تصویر */
+       margin-left: auto;
+       margin-right: auto;
+   }
+   .has-text-align-center{
+    text-align: center;
+   }
+   
+   .cell pre {
+  word-break: break-all;
+  overflow-wrap: break-word; /* اضافه شده */
+  overflow-x: auto; /* اضافه شده */
+}
+
+
+ 
+   </style>
+</head>
+<body>
+   <div class="notebook-container">
+       <article class="main-article post-594 post type-post status-publish format-standard has-post-thumbnail hentry category-1 category-40">       
+       <header class="header">
+           <h1 class="post-title">کاراکتر های پرتکرار زبان های برنامه‌نویسی مختلف چیه؟</h1>
+           <div class="post-meta">
+               <span class="date">۱۴۰۲/۰۸/۱۰</span>
+           </div>
+       </header>
+
+<section class="content">
+           <div class="cell">
+               <p>من چند وقت پیش چند تا از دکمه های کیبورد لپ تاپم خراب شده بود و کلید های مهمی هم بودند و عملا کد نویسیم رو مختل کرده بود. البته بلافاصله یه کیبورد گرفتم ولی همون لحظه این سوال برام پیش اومد که پر تکرار ترین کاراکتر های کیبورد برای زبان های برنامه نویسی مختلف چیه؟</p>
+           </div>
+           <div class="cell">
+               <p>در مرحله اول باید منبع خوبی از سورس کد پیدا میکردم که به دیتاست زیر رسیدم :</p>
+           </div>
+           <div class="cell">
+              <pre class="has-text-align-center"><a href="https://huggingface.co/datasets/bigcode/the-stack">https://huggingface.co/datasets/bigcode/the-stack</a></pre>
+           </div>
+           <div class="cell">
+              <p>این دیتاست حجم عظیمی از کد های زبان های برنامه نویی مختلف رو داره :</p>
+           </div>
+            <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/40-2.png" alt=""></figure>
+               </div>
+           </div>
+            <div class="cell">
+               <p class="has-large-font-size"><mark style="background-color:#fcb900" class="has-inline-color has-black-color"><strong>کاری که انجام دادم صرفا یه پردازش کاراکتر به کاراکتر ساد</strong></mark><mark style="background-color:#fcb900" class="has-inline-color"><strong>ه است</strong></mark></p>
+           </div>
+           <div class="cell">
+               <p>یه اسکریپت پایتون نوشتم که تعداد تکرار هر کاراکتر رو در کد ها بشمره. از هر زبان برنامه نویسی فقط 1 میلیون فایل رو انتخاب کردم و به نظرم تعدادش مناسبه و حتی زیاد هم هست!</p>
+           </div>
+           <div class="cell">
+               <p>این عکس رو برای زبان های مختلف به ترتیب مینویسم. توی این تصاویر tab و space با هم ادغام شده و دکمه shift هم برای تایپ کاراکتر های خاص و حروف بزرگ استفاده میشه. تصاویر زیر داره حروف پر تکرار رو نشون میده و دکمه هایی که سبز نیستند به این معنی نیست که استفاده نمیشدند.</p>
+           </div>
+           <div class="cell">
+               <p><strong>پایتون</strong></p>
+           </div>
+           <div class="cell">
+               <p>ترتیب کاراکتر های پر تکرار : etsarionl</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/40-3.png" alt=""></figure>
+               </div>
+           </div>
+           <div class="cell">
+               <p><strong>سی پلاس پلاس</strong></p>
+           </div>
+            <div class="cell">
+               <p>ترتیب کاراکتر های پر تکرار : etirnaos</p>
+           </div>
+           <div class="cell">
+                <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/40-4.png" alt=""></figure>
+               </div>
+           </div>
+           <div class="cell">
+               <p><strong>سی</strong></p>
+           </div>
+           <div class="cell">
+              <p>ترتیب کاراکتر های پر تکرار : etinr_a</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/40-5.png" alt=""></figure>
+               </div>
+           </div>
+           <div class="cell">
+               <p><strong>جاوا اسکریپت</strong></p>
+           </div>
+            <div class="cell">
+                <p>ترتیب کاراکتر های پر تکرار : etnraiosl</p>
+           </div>
+           <div class="cell">
+                <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/40-6.png" alt=""></figure>
+               </div>
+           </div>
+           <div class="cell">
+               <p><strong>سی شارپ</strong></p>
+           </div>
+            <div class="cell">
+                <p>ترتیب کاراکتر های پر تکرار : etrainos</p>
+           </div>
+            <div class="cell">
+                <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/40-7.png" alt=""></figure>
+               </div>
+           </div>
+            <div class="cell">
+                <p><strong>گولنگ</strong></p>
+           </div>
+           <div class="cell">
+               <p>ترتیب کاراکتر های پر تکرار : etrnioas</p>
+           </div>
+           <div class="cell">
+                <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/40-8.png" alt=""></figure>
+               </div>
+           </div>
+           <div class="cell">
+               <p><strong>جاوا</strong></p>
+           </div>
+           <div class="cell">
+              <p>ترتیب کاراکتر های پر تکرار : etiranos</p>
+           </div>
+           <div class="cell">
+                <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/40-9.png" alt=""></figure>
+               </div>
+           </div>
+           <div class="cell">
+               <p><strong>پی اچ پی</strong></p>
+           </div>
+           <div class="cell">
+               <p>ترتیب کاراکتر های پر تکرار : etarisonl</p>
+           </div>
+           <div class="cell">
+                <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/40-10.png" alt=""></figure>
+               </div>
+           </div>
+           <div class="cell">
+               <p><strong>روبی</strong></p>
+           </div>
+            <div class="cell">
+                <p>ترتیب کاراکتر های پر تکرار : etrsanio</p>
+           </div>
+           <div class="cell">
+                 <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/40-11.png" alt=""></figure>
+               </div>
+           </div>
+            <div class="cell">
+               <p><strong>راست</strong></p>
+           </div>
+           <div class="cell">
+                <p>ترتیب کاراکتر های پر تکرار : etrsanio</p>
+           </div>
+            <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/40-12.png" alt=""></figure>
+               </div>
+           </div>
+       </section>
+   </article>
+
+
+ 
+   </div>
+</body>
+</html>
+

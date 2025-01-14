@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+   <title>وبلاگ وحید باقی</title>
+   <style>
+       body {
+           font-family: Vazirmatn, sans-serif;
+           line-height: 1.6;
+           max-width: 900px;
+           margin: 0 auto;
+           padding: 20px;
+           background-color: #f7f7f7;
+       }
+
+       .notebook-container {
+           background: white;
+           border: 1px solid #e1e4e8;
+           border-radius: 4px;
+           box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+       }
+
+       .header {
+           padding: 20px;
+           border-bottom: 1px solid #e1e4e8;
+           background-color: #f6f8fa;
+       }
+
+       .post-title {
+           font-size: 2em;
+           margin: 0;
+           color: #24292e;
+       }
+
+       .post-meta {
+           color: #586069;
+           font-size: 0.9em;
+           margin-top: 10px;
+       }
+
+       .featured-image {
+           width: 100%;
+           max-height: 400px;
+           object-fit: cover;
+       }
+
+       .content {
+           padding: 20px;
+       }
+
+       .cell {
+           margin: 20px 0;
+           padding: 10px;
+           border-radius: 3px;
+           background-color: #f8f9fa;
+           text-align: right;
+       }
+
+       code {
+           background-color: #f6f8fa;
+           padding: 2px 5px;
+           border-radius: 3px;
+           font-family: Monaco, Consolas, monospace;
+       }
+
+       .link-center {
+           text-align: center;
+       }
+       
+       /* تغییرات مربوط به تصاویر */
+       .wp-block-image {
+           text-align: center; /* وسط چین کردن تصاویر */
+       }
+
+       .wp-block-image img {
+           max-width: 100%; /* جلوگیری از بیرون زدگی تصاویر از کادر */
+           height: auto; /* تنظیم خودکار ارتفاع برای حفظ نسبت ابعاد */
+           display: block; /* حذف فضای اضافی زیر تصویر */
+           margin-left: auto;
+           margin-right: auto;
+       }
+	   .has-text-align-center{
+			text-align: center;
+	   }
+	   
+	   .cell pre {
+		word-break: break-all;
+		overflow-wrap: break-word; /* اضافه شده */
+		overflow-x: auto; /* اضافه شده */
+	}
+   </style>
+</head>
+<body>
+   <div class="notebook-container">
+       <article class="main-article post-575 post type-post status-publish format-standard has-post-thumbnail hentry category-1">		   
+		   <header class="header">
+           <h1 class="post-title">سفر به دنیای شماره پلاک خودرو ها!</h1>
+           <div class="post-meta">
+               <span class="date">۱۴۰۰/۰۷/۲۲</span>
+           </div>
+       </header>
+
+           <section class="content">
+               <div class="cell">
+                   <p>در این مقاله قصد دارم یکسری تحلیل آماری بر روی شماره پلاک خودرو های ایران انجام بدم که صرفا حالت فان داره و کاربرد خاصی نداره. این رو همین اول گفتم که انتظار یه چیز خارق العاده نداشته باشید. صرفا یه بازی با اعداده!!خیلی سریع میرم سراغ اصل مطلب. در تصویر زیر نمونه‌ای از یک پلاک خودرو را مشاهده می‌کنید :</p>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/7-1.png" alt=""></figure>
+                   </div>
+               </div>
+
+               <div class="cell">
+                   <p>همونطور که می‌بینید به ترتیب از چپ به راست یک عدد ۲ رقمی، یکی از حروف الفبا، یک عدد ۳ رقمی و در نهایت یک عدد ۲ رقمی دیگه رو داریم. اول بیاید ببینیم کلا چند تا حالت برای شماره پلاک خودرو میتونیم داشته باشیم؟ برای انجام این کار از <a href="https://blog.faradars.org/permutations-combinations/">جایگشت </a>استفاده می‌کنیم.برای ۲ رقم اول ما می‌تونیم ۹۰ حالت مختلف رو داشته باشیم :</p>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/7-2.png" alt=""></figure>
+                   </div>
+               </div>
+
+               <div class="cell">
+                   <p>چه جوری اینجوری شد؟ کلا ۱۰ تا رقم داریم. در جایگاه اول نمی‌تونه صفر قرار بگیره. پس ۹ حالت رو داریم. اما در جایگاه دوم همه اعداد میتونن قرار بگیرن. به همین ترتیب، برای دو رقم آخر هم می‌تونیم ۹۰ حالت مختلف رو داشته باشیم. برای ۳ رقم بعدی هم به همین شکل می‌تونیم تعداد تمام حالت های ممکن رو پیدا کنیم :</p>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/7-3.png" alt=""></figure>
+                   </div>
+               </div>
+
+               <div class="cell">
+                   <p>تعداد حروف الفبای فارسی ۳۲ تاست. اما برای شماره پلاک خودرو ها از تمام این ۳۲ حرف استفاده نمیشه. حروفی که برای شماره پلاک خودرو ها استفاده میشه در جدول زیر نشون داده شده :</p>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/7-4.png" alt=""></figure>
+                   </div>
+               </div>
+
+               <div class="cell">
+                   <p>تعداد کل حروفی که در جدول بالا قرار داده شده ۲۶ تاست که ۲ تا از اونها حروف انگلیسی هستند.حالا میخوایم ببینم با این اوصاف کلا چند تا شماره پلاک می‌تونیم داشته باشیم؟ اگر تمام ۲۶ حرف الفبا رو در نظر بگیرم میتونیم ۱۸۹,۵۴۰,۰۰۰ پلاک مختلف داشته باشیم :</p>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/7-5.png" alt=""></figure>
+                   </div>
+               </div>
+
+               <div class="cell">
+                   <p>اگر حروف انگلیسی رو حذف کنیم، می‌تونیم ۱۷۴,۹۶۰,۰۰۰ شماره پلاک مختلف داشته باشیم :</p>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/7-6.png" alt=""></figure>
+                   </div>
+               </div>
+
+               <div class="cell">
+                   <p>اگر تمام حروف الفبای فارسی (۳۲ حرف) رو در نظر بگیریم، می‌تونیم ۲۳۳,۲۸۰,۰۰۰ شماره پلاک مختلف داشته باشیم :</p>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/7-7.png" alt=""></figure>
+                   </div>
+               </div>
+
+               <div class="cell">
+                   <p>نکته ای که در اینجا وجود داره اینه که به ازای هر یک از حروف الفبا، ما می‌تونیم ۷,۲۹۰,۰۰۰ شماره پلاک داشته باشیم :</p>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/7-8.png" alt=""></figure>
+                   </div>
+               </div>
+
+               <div class="cell">
+                   <p>اما در واقعیت ما واقعا ۷ میلیون ماشین پلیس، ارتش، دولتی و … نداریم. از طرفی، این پلاک ها چیزایی نیستند که مردم عادی بتونن بگیرن. پس من میام پلاک های خاص رو حذف می‌کنم. بنابراین اگر فقط پلاک های شخصی رو در نظر بگیریم، می‌تونیم ۹۴,۷۷۰,۰۰۰ شماره پلاک شخصی داشته باشیم :</p>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/7-9.png" alt=""></figure>
+                   </div>
+               </div>
+
+               <div class="cell">
+                   <p>حالا به کمک جدول زیر می‌خوام بررسی کنم که ظرفیت پلاک هر استان چقدره؟</p>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/7-10.png" alt=""></figure>
+                   </div>
+               </div>
+
+               <div class="cell">
+                   <p>تعداد شماره پلاک هایی به ازای هر کد منطقه می‌تونیم داشته باشیم ۱,۰۵۳,۰۰۰ عدد است :</p>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/7-11.png" alt=""></figure>
+                   </div>
+               </div>
+
+               <div class="cell">
+                   <p>پس اگر یه استانی ۴ تا کد منطقه داشته باشه، یعنی می‌تونیم ۴,۲۱۲,۰۰۰ شماره پلاک در اون استان داشته باشیم. نمودار زیر تعداد ظرفیت شماره پلاک هر استان را نشان می‌دهد :</p>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/7-12.png" alt=""></figure>
+                   </div>
+               </div>
+
+               <div class="cell">
+                   <p>اگر <a href="https://www.amar.org.ir/سرشماری-عمومی-نفوس-و-مسکن/نتایج-سرشماری">جمعیت هر استان</a> را به ظرفیت شماره پلاک اون استان تقسیم کنیم و نمودار آن را رسم کنیم نتیجه به صورت زیر خواهد بود :
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/7-13.png" alt=""></figure>
+                   </div>
+               </div>
+
+               <div class="cell">
+                   <p>مثلا جمعیت استان خراسان رضوی ۶,۴۳۴,۵۰۱ نفر است. ظرفیت شماره پلاک این استان هم ۵,۲۶۵,۰۰۰ عدد است. اگر ۶,۴۳۴,۵۰۱ را بر ۵,۲۶۵,۰۰۰ تقسیم کنیم، نتیجه ۱.۲ می‌شود.حالا میخوام بررسی کنم آیا رابطه‌ای بین جمعیت استان و تعداد پلاک اختصاص یافته به اون وجود داره یا نه؟ برای این کار از روش <a href="https://en.wikipedia.org/wiki/Ordinary_least_squares">OLS </a></pre> <a href="https://blog.faradars.org/simple-linear-regression/">رگرسیون خطی</a></pre> استفاده میکنم. در رگرسیون ما یک متغیر وابسته و یک متغیر مستقل داریم. در نقل قول زیر که از <a href="https://amarpishro.com/statistics-training/linear-regression/">این لینک</a> گرفته شده است تفاوت متغیر وابسته و مستقل بیان شده است :به عنوان مثال در حوادث مربوط به رانندگی در جاده‌ها، عوامل وضعیت هوا، کیفیت جاده، وضعیت راننده، استحکام خودرو و زمان تصادف که متغیرهای پیشگو (مستقل) هستند، بر میزان خسارت که متغیر پاسخ (وابسته) است تاثیر می‌گذارند. نتیجه رگرسیون، معادله‌ای است که بهترین پیشگویی یک متغیر وابسته را از روی چند متغیر مستقل نشان می‌دهد.در این مسئله، <strong>جمعیت استان ها</strong> را متغیر مستقل و <strong>تعداد شماره پلاک ها</strong> را متغیر وابسته در نظر گرفتم. برای پیاده‌سازی روش OLS از کتابخانه statsmodels در پایتون استفاده کردم که نتایج آن به صورت زیر است :</p>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/7-14.png" alt=""></figure>
+                   </div>
+               </div>
+
+               <div class="cell">
+                   <p>برای اینکه درک بهتری داشته باشیم، نمودار Scatter آن را هم رسم کردم که در تصویر زیر نشان داده شده است:</p>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/7-15.png" alt=""></figure>
+                   </div>
+               </div>
+
+               <div class="cell">
+                   <p>معادله خط بالا به صورت زیر است :</p>
+               </div>
+
+               <div class="cell">
+                   <pre class="has-text-align-center">y = 0.8175*x + 813400</pre>
+               </div>
+
+               <div class="cell">
+                   <p>که y متغیر وابسته (<strong>تعداد شماره پلاک ها</strong>) و x متغیر مستقل (<strong>جمعیت استان ها</strong>) است. برای مثال اگر جمعیت یه ۱۰۰ میلیون نفر برسد، این رابطه پیش‌بینی می‌کند که ۸۲,۵۶۳,۴۰۰ شماره پلاک خواهیم داشت.حالا سوالی که اینجا پیش میاد اینه که چند سال طول میکشه که این تعداد شماره پلاک تخصیص داده بشه؟ اول باید ببینیم آمار سالانه تولید خودرو چقدره؟ بر اساس جداولی که در <a href="https://bama.ir/news/offer/آمار-تولید-خودرو-سال-1397">این لینک</a> وجود داره، میشه گفت که به صورت میانگین، روزانه ۲۵۰۰ خودرو در کل کشور تولید میشه. نمودار زیر نشون میده بر اساس ظرفیت شماره پلاک هر استان، چند سال طول میکشه تا تمام ظرفیت تخصیص داده بشه :</p>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/7-16.png" alt=""></figure>
+                   </div>
+               </div>
+
+               <div class="cell">
+                   <p>برای مثال، اگر روزانه ۲۵۰۰ خودرو پلاک بشه، ۱۳ سال طول میکشه تا ظرفیت شماره پلاک های استان تهران به اتمام برسه. البته نکته ای که در اینجا وجود داره اینه که این ۲۵۰۰ خودرو که در روز تولید میشه برای یک استان نیست و برای کل کشوره. پس برای اینکه نمودار دقیق تری داشته باشیم، این ۲۵۰۰ تا رو بین استان های مختلف تقسیم میکنم. مثلا اگر تهران ۱۷ درصد جمعیت کشور رو تشکیل میده، من میام فقط ۱۷ درصد ۲۵۰۰ (که میشه ۴۲۵) رو برای تهران در نظر میگیرم :</p>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/7-17.png" alt=""></figure>
+                   </div>
+               </div>
+
+               <div class="cell">
+                   <p>مثلا اگر روزانه ۴۲۵ خودرو در تهران تولید بشه، ۸۱ سال طول میکشه ظرفیت شماره پلاک هاش تموم بشه.این داستان ادامه دارد …</p>
+               </div>
+           </section>
+       </article>
+   </div>
+</body>
+</html>

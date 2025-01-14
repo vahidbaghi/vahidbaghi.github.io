@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+   <title>وبلاگ وحید باقی</title>
+   <style>
+       body {
+           font-family: Vazirmatn, sans-serif;
+           line-height: 1.6;
+           max-width: 900px;
+           margin: 0 auto;
+           padding: 20px;
+           background-color: #f7f7f7;
+       }
+
+.notebook-container {
+       background: white;
+       border: 1px solid #e1e4e8;
+       border-radius: 4px;
+       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+   }
+
+   .header {
+       padding: 20px;
+       border-bottom: 1px solid #e1e4e8;
+       background-color: #f6f8fa;
+   }
+
+   .post-title {
+       font-size: 2em;
+       margin: 0;
+       color: #24292e;
+   }
+
+   .post-meta {
+       color: #586069;
+       font-size: 0.9em;
+       margin-top: 10px;
+   }
+
+   .featured-image {
+       width: 100%;
+       max-height: 400px;
+       object-fit: cover;
+   }
+
+   .content {
+       padding: 20px;
+   }
+
+   .cell {
+       margin: 20px 0;
+       padding: 10px;
+       border-radius: 3px;
+       background-color: #f8f9fa;
+       text-align: right;
+   }
+
+   code {
+       background-color: #f6f8fa;
+       padding: 2px 5px;
+       border-radius: 3px;
+       font-family: Monaco, Consolas, monospace;
+   }
+
+   .link-center {
+       text-align: center;
+   }
+   
+   /* تغییرات مربوط به تصاویر */
+   .wp-block-image {
+       text-align: center; /* وسط چین کردن تصاویر */
+   }
+
+   .wp-block-image img {
+       max-width: 100%; /* جلوگیری از بیرون زدگی تصاویر از کادر */
+       height: auto; /* تنظیم خودکار ارتفاع برای حفظ نسبت ابعاد */
+       display: block; /* حذف فضای اضافی زیر تصویر */
+       margin-left: auto;
+       margin-right: auto;
+   }
+   .has-text-align-center{
+    text-align: center;
+   }
+   
+   .cell pre {
+  word-break: break-all;
+  overflow-wrap: break-word; /* اضافه شده */
+  overflow-x: auto; /* اضافه شده */
+}
+
+
+ 
+   </style>
+</head>
+<body>
+   <div class="notebook-container">
+       <article class="main-article post-594 post type-post status-publish format-standard has-post-thumbnail hentry category-1 category-40">       
+       <header class="header">
+           <h1 class="post-title">تگ های EXIF و بحران حریم خصوصی!</h1>
+           <div class="post-meta">
+               <span class="date">۱۰/۰۶/۱۴۰۱</span>
+           </div>
+       </header>
+
+<section class="content">
+           <div class="cell">
+               <p>اول ببینیم EXIF یعنی چی؟</p>
+           </div>
+           <div class="cell">
+               <blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p>کلمه EXIF مخفف عبارت «Exchangeable Image File» به معنای «فایل تصویری قابل تبادل» است. هر تصویری که با دوربین دیجیتال یا دوربین تلفن همراه خود می‌گیرید، به عنوان یک فایل (که عموما پسوند JPG دارد) در حافظه‌ی دستگاه شما ثبت می‌شود. این تصاویر، در کنار خود تصویر اصلی، اطلاعات زیاد دیگری را نیز ذخیره می‌کنند. این اطلاعات شامل تاریخ، زمان، تنظیمات دوربین و حتی گاهی اوقات اطلاعات مربوط به کپی رایت می‌شود. همچنین با استفاده از نرم‌افزارهای پردازش تصویر، قادر به اضافه کردن اطلاعات بیشتری به EXIF خواهید بود.<br>منبع : <a href="https://blog.faradars.org/exif-data-on-image-files">https://blog.faradars.org/exif-data-on-image-files</a></p></blockquote>
+           </div>
+           <div class="cell">
+               <p>داستان از توییت زیر شروع شد :</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/28-1.png" alt=""></figure>
+               </div>
+           </div>
+           <div class="cell">
+               <p>واکنش من؟!</p>
+           </div>
+           <div class="cell">
+                <div class="wp-block-image">
+                    <figure class="aligncenter"><img decoding="async" src="images/28-2.png" alt=""></figure>
+                </div>
+           </div>
+           <div class="cell">
+               <p>من تعداد ۴۸۱۰۶ تصویر رو از کامنت های دیجی‌کالا جمع‌آوری کردم تا بررسی کنم این موضوع تا چه حد صحت داره و چند درصد از تصاویر EXIF دارند. حجم این تصاویر هم ۸۰ گیگابایت شد! برای مشاهده اطلاعات EXIF یک تصویر می‌تونید از سایت زیر استفاده کنید :</p>
+           </div>
+           <div class="cell">
+                <pre class="has-text-align-center">http://exif-viewer.com/</pre>
+           </div>
+           <div class="cell">
+               <p>لینک تصاویر در کامنت های دیجی‌کالا به صورت زیره :</p>
+           </div>
+           <div class="cell">
+               <p><a href="../../dkstatics-public.digikala.com/digikala-comment-files/14fc32a24cfee198125164d6c1f10ebf57897816_161971625376a0.jpg?x-oss-process=image/resize,m_lfit,h_1024,w_1024/quality,q_80">https://dkstatics-public.digikala.com/digikala-comment-files/14fc32a24cfee198125164d6c1f10ebf57897816_1619716253.jpg?x-oss-process=image/resize,m_lfit,h_1024,w_1024/quality,q_80</a></p>
+           </div>
+           <div class="cell">
+               <p>اگر تصویر لینک بالا رو ذخیره کنیم و با سایت بالا اون رو بررسی کنیم می‌بینیم که تصویر شامل اطلاعات خاصی نیست. در واقع دیجی‌کالا تصویر با کیفیت اصلی رو در قسمت کامنت ها نمایش نمیده. حالا اگر قسمتی که در لینک بالا Bold کردم رو حذف کنید، می‌تونید تصویر با کیفیت اصلی رو دانلود کنید. یعنی دقیقا تصویری که کاربر آپلود کرده. اختلاف حجمشون خیلی زیاده. به طوری که حجم تصویر فشرده شده که دیجی‌کالا در کامنت ها نشون میده ۱۱۱ کیلوبایته و حجم تصویر اصلی ۷ مگابایت! دلیل اینکه حجم تصاویری که ذخیره کردم ۸۰ گیگ شده برای همینه! حالا اگر این تصویر رو در سایت بالا آپلود کنید می‌بینید که کلی اطلاعات از مشخصات دوربین داخلش ذخیره شده! البته الان دیجی‌کالا مشکل رو حل کرده و EXIF تصاویر رو حذف کرده!</p>
+           </div>
+           <div class="cell">
+               <p>حالا میخوام یه تحلیلی روی تصاویری که ذخیره کردم داشته باشم و ببینیم چه اطلاعاتی در تصاویر ذخیره شده!</p>
+           </div>
+           <div class="cell">
+               <p>از بین ۴۸۱۰۶ تصویر، تعداد ۱۴۹۳۶ تصویر (یعنی حدودا ۳۱ درصد تصاویر) EXIF داشتند. تصویر زیر، نمودار توزیع تعداد EXIF های تصاویر رو نشون میده :</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/28-3.png" alt=""></figure>
+               </div>
+           </div>
+           <div class="cell">
+               <p>بیشترین تعداد EXIF برای یک تصویر ۶۲ عدد و کمترین تعداد اون هم ۱ عدده. به طور میانگین هر تصویر ۳۸ عدد تگ EXIF داره. من همه تگ های EXIF رو نمیخوام تحلیل کنم و واقعا هم بعضی از تگ های خیلی به درد بخور و جالب نیست. در ادامه این تگ ها رو بررسی می‌کنم.</p>
+           </div>
+           <div class="cell">
+               <ul class="wp-block-list"><li><strong>تگ make</strong></li></ul>
+           </div>
+           <div class="cell">
+               <p>این تگ برند گوشی رو نشون میده. تعداد ۱۳۹۸۳ تصویر این تگ رو داشتند. نمودار زیر تعداد تصاویر که با هر برند گوشی گرفته شده رو نشون میده :</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/28-4.png" alt=""></figure>
+               </div>
+           </div>
+           <div class="cell">
+               <p>همونطور که می‌بینید بیشترین تعداد تصویر مربوط به برند سامسونگ میشه! لیست کامل رو در لینک زیر قرار دادم :</p>
+           </div>
+           <div class="cell">
+               <pre class="has-text-align-center">https://pastebin.com/wyRkvVyp</pre>
+           </div>
+            <div class="cell">
+                <ul class="wp-block-list"><li><strong>تگ model</strong></li></ul>
+            </div>
+            <div class="cell">
+                <p>این تگ مدل گوشی رو نشون میده.تعداد ۱۳۹۸۳ تصویر این تگ رو داشتند. نمودار زیر تعداد تصاویر که با هر مدل گوشی گرفته شده رو نشون میده :</p>
+            </div>
+           <div class="cell">
+                <div class="wp-block-image">
+                    <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/28-5.png" alt=""></figure>
+                </div>
+           </div>
+           <div class="cell">
+               <p>لیست کامل رو در لینک زیر قرار دادم :</p>
+           </div>
+           <div class="cell">
+               <pre class="has-text-align-center">https://pastebin.com/HqrVPasH</pre>
+           </div>
+           <div class="cell">
+               <p>رتبه های اول تا چهارم برای گوشی های زیره :</p>
+           </div>
+           <div class="cell">
+               <pre class="has-text-align-center">
+Samsung Galaxy A50
+Samsung Galaxy A51
+Xiaomi Redmi Note 8
+Xiaomi Redmi Note 8 Pro
+</pre>
+           </div>
+           <div class="cell">
+               <ul class="wp-block-list"><li><strong>تگ software</strong></li></ul>
+           </div>
+           <div class="cell">
+               <p>این تگ نام و ورژن software یا firmware دوربینی که با استفاده از اون تصویر گرفته شده رو نشون میده. تعداد ۱۱۶۷۴ تصویر این تگ رو داشتند. نمودار زیر تعداد تصاویر که با هر software گرفته شده رو نشون میده :</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                    <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/28-6.png" alt=""></figure>
+               </div>
+           </div>
+           <div class="cell">
+               <p>لیست کامل رو در لینک زیر قرار دادم :</p>
+           </div>
+           <div class="cell">
+               <pre class="has-text-align-center">https://pastebin.com/iWmGgH04</pre>
+           </div>
+            <div class="cell">
+                <ul class="wp-block-list"><li><strong>تگ F_Number</strong></li></ul>
+           </div>
+            <div class="cell">
+                <p>این تگ اندازه‌ی دیافراگم دوربین رو نشون میده. تعداد ۱۳۴۲۱ تصویر این تگ رو داشتند. نمودار زیر تعداد تصاویر هر F-Number رو نشون میده :</p>
+            </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/28-7.png" alt=""></figure>
+               </div>
+           </div>
+           <div class="cell">
+                <p>اگر میخواید اطلاعات بیشتری در مورد اندازه دیافراگم دوربین ها داشته باشید مطلب زیر رو بخونید :</p>
+            </div>
+           <div class="cell">
+               <pre class="has-text-align-center">https://www.digikala.com/mag/?p=59180</pre>
+           </div>
+           <div class="cell">
+               <p>اما به طور خلاصه در تصویر زیر می‌تونید تاثیر اندازه‌ی دیافراگم بر عمق میدان رو مشاهده کنید :</p>
+           </div>
+           <div class="cell">
+                <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/28-8.jpg" alt=""></figure>
+               </div>
+           </div>
+           <div class="cell">
+                <p>لیست کامل رو هم در لینک زیر قرار دادم :</p>
+            </div>
+           <div class="cell">
+               <pre class="has-text-align-center">https://pastebin.com/X7QDucMc</pre>
+           </div>
+           <div class="cell">
+               <p>تگ های دیگه‌ای هم مثل مدت زمان نوردهی، سرعت شاتر، میزان روشنایی و … هم وجود داشت ولی به نظرم خیلی جالب نبود.</p>
+           </div>
+           <div class="cell">
+               <ul class="wp-block-list"><li><strong>تگ GPS</strong></li></ul>
+           </div>
+           <div class="cell">
+               <p>این تگ مختصات مکانی تصویر رو نشون میده. اصلا دلیل نگارش این پست همین بود! از بین ۴۸۱۰۶ تصویر، تعداد ۲۲۹۸ تصویر مختصات مکانی داشتند که در نقشه زیر میتونید نقشه حرارتی این نقاط رو مشاهده کنید :</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/28-9.png" alt=""></figure>
+               </div>
+           </div>
+           <div class="cell">
+               <p>الان دیگه تصاویر در کامنت های دیجی‌کالا تگ GPS ندارند ولی کلا حواستون به تصاویری که به اشتراک میذارید بیشتر باشه! ساده ترین کاری که میتونید انجام بدید اینه که توی تنظیمات دوربین، GPS رو غیر فعال کنید. آموزش اینکار رو از لینک زیر میتونید بخونید :</p>
+           </div>
+           <div class="cell">
+               <p><a href="https://salamdonya.com/tech/remove-location-information-photo">https://salamdonya.com/tech/remove-location-information-photo</a></p>
+           </div>
+       </section>
+   </article>
+   </div>
+</body>
+</html>
+

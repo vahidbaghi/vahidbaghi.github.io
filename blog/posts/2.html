@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+   <title>وبلاگ وحید باقی</title>
+   <style>
+       body {
+           font-family: Vazirmatn, sans-serif;
+           line-height: 1.6;
+           max-width: 900px;
+           margin: 0 auto;
+           padding: 20px;
+           background-color: #f7f7f7;
+       }
+
+       .notebook-container {
+           background: white;
+           border: 1px solid #e1e4e8;
+           border-radius: 4px;
+           box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+       }
+
+       .header {
+           padding: 20px;
+           border-bottom: 1px solid #e1e4e8;
+           background-color: #f6f8fa;
+       }
+
+       .post-title {
+           font-size: 2em;
+           margin: 0;
+           color: #24292e;
+       }
+
+       .post-meta {
+           color: #586069;
+           font-size: 0.9em;
+           margin-top: 10px;
+       }
+
+       .featured-image {
+           width: 100%;
+           max-height: 400px;
+           object-fit: cover;
+       }
+
+       .content {
+           padding: 20px;
+       }
+
+       .cell {
+           margin: 20px 0;
+           padding: 10px;
+           border-radius: 3px;
+           background-color: #f8f9fa;
+           text-align: right;
+       }
+
+       code {
+           background-color: #f6f8fa;
+           padding: 2px 5px;
+           border-radius: 3px;
+           font-family: Monaco, Consolas, monospace;
+       }
+       
+       .link-center {
+           text-align: center;
+       }
+   </style>
+</head>
+<body>
+   <div class="notebook-container">
+       <header class="header">
+           <h1 class="post-title">استفاده از ربات تلگرام به عنوان progress logger</h1>
+           <div class="post-meta">
+
+               <span class="date">۱۳۹۹/۱۲/۲۵</span>
+           </div>
+       </header>
+
+       <div class="content">
+           <div class="cell">
+               <p>بذارید موضوع رو اینجوری مطرح کنم. فرض کنید عکسی در سایت خودتون قرار دادید و میخواید هر زمان که کسی روی عکس کلیک کرد یا اینکه عکس load شد، در تلگرام برای شما یک پیغام ارسال بشه. یا مثلا کدتون رو روی سرور قرار دادید تا اجرا بشه و میخواید میزان پیشرفت کار در تلگرام برای شما ارسال بشه. اینجا هدف اینه که از تلگرام استفاده کنیم و کاری با روش های مشابه نداریم.</p>   
+           </div>
+           <div class="cell">
+               <p>روش کار خیلی ساده است. اولین کاری که باید انجام بدید اینه که در ربات BotFather@ یک ربات جدید ایجاد کنید. حالا API Token رباتی که ساختید رو به جای [TOKEN] در لینک زیر قرار بدید:</p>
+               <p class="link-center"><a href="https://api.telegram.org/bot[TOKEN]/sendMessage?chat_id=[ID]&text=test">https://api.telegram.org/bot[TOKEN]/sendMessage?chat_id=[ID]&text=test</a></p>
+           </div>
+           <div class="cell">
+               <p>به جای [ID] هم باید شناسه تلگرام خودتون رو قرار بدید. برای به دست آوردن شناسه میتونید از ربات myidbot@ در تلگرام استفاده کنید. حالا زمانی که ربات خودتون رو start بزنید و بعد لینک بالا رو در مرورگر خودتون اجرا کنید، کلمه test برای شما ارسال میشه. به همین سادگی! اما اینجا یه مشکل وجود داره! اگر مثلا سروری که کدتون رو روی اون گذاشتید اجرا بشه داخل ایران باشه، یا فیلترشکن کاربری که سایت شما رو باز میکنه خاموش باشه این روش دیگه جواب نمیده. برای حل این مشکل می‌تونیم از Cloudflare استفاده کنیم. منبع این مطلبی که الان میخوام بگم ریپازیتوری گیت هاب زیر است:</p>
+               <p class="link-center"><a href="https://github.com/manzoorwanijk/telegram-bot-api-worker">https://github.com/manzoorwanijk/telegram-bot-api-worker</a></p>
+           </div>
+           <div class="cell">
+               <p>اما من کدی که قرار داده رو کمی تغییر دادم تا راحت تر بشه ازش استفاده کرد :</p>
+               <p class="link-center"><a href="https://gist.github.com/vahidbaghi/90219833d7138081488fd188727d310b">https://gist.github.com/vahidbaghi/90219833d7138081488fd188727d310b</a></p>
+           </div>
+           <div class="cell">
+               <p>تنها چیزی که در کد بالا باید تغییر بدید بخش زیره که باید TOKEN ربات و ID مورد نظرتون رو قرار بدید.</p>
+               <p class="link-center"><a href="https://api.telegram.org/bot[TOKEN]/sendMessage?chat_id=[ID]&text">https://api.telegram.org/bot[TOKEN]/sendMessage?chat_id=[ID]&text</a></p>
+           </div>
+           <div class="cell">
+               <p>حالا وارد اکانت خودتون در سایت Cloudflare بشید و از صفحه اصلی Workers رو انتخاب کنید. بر روی Create a Worker کلیک کنید تا یک Worker جدید برای شما ایجاد شود. هر چیزی که در بخش Script نوشته شده رو حذف کنید و کدی که بالاتر قرار دادم رو داخلش قرار بدید و در نهایت روی Save and Deploy کلیک کنید. حالا از طریق لینک Worker می‌تونید ازش استفاده کنید. مثلا برای من یه همچین چیزیه :</p>
+               <p class="link-center"><a href="https://gentle-base-a3bc.vbaghi.workers.dev">https://gentle-base-a3bc.vbaghi.workers.dev</a></p>
+           </div>
+           <div class="cell">
+               <p>حالا فرض کنید میخوایم متن Salam Test رو ارسال کنیم. برای این کار کافیه بعد از / عبارت Salam Test رو بنویسیم :</p>
+               <p class="link-center"><a href="https://gentle-base-a3bc.vbaghi.workers.dev/Salam Test">https://gentle-base-a3bc.vbaghi.workers.dev/Salam Test</a></p>
+           </div>
+       </div>
+   </div>
+</body>
+</html>

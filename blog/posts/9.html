@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+   <title>وبلاگ وحید باقی</title>
+   <style>
+       body {
+           font-family: Vazirmatn, sans-serif;
+           line-height: 1.6;
+           max-width: 900px;
+           margin: 0 auto;
+           padding: 20px;
+           background-color: #f7f7f7;
+       }
+
+       .notebook-container {
+           background: white;
+           border: 1px solid #e1e4e8;
+           border-radius: 4px;
+           box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+       }
+
+       .header {
+           padding: 20px;
+           border-bottom: 1px solid #e1e4e8;
+           background-color: #f6f8fa;
+       }
+
+       .post-title {
+           font-size: 2em;
+           margin: 0;
+           color: #24292e;
+       }
+
+       .post-meta {
+           color: #586069;
+           font-size: 0.9em;
+           margin-top: 10px;
+       }
+
+       .featured-image {
+           width: 100%;
+           max-height: 400px;
+           object-fit: cover;
+       }
+
+       .content {
+           padding: 20px;
+       }
+
+       .cell {
+           margin: 20px 0;
+           padding: 10px;
+           border-radius: 3px;
+           background-color: #f8f9fa;
+           text-align: right;
+       }
+
+       code {
+           background-color: #f6f8fa;
+           padding: 2px 5px;
+           border-radius: 3px;
+           font-family: Monaco, Consolas, monospace;
+       }
+
+       .link-center {
+           text-align: center;
+       }
+       
+       /* تغییرات مربوط به تصاویر */
+       .wp-block-image {
+           text-align: center; /* وسط چین کردن تصاویر */
+       }
+
+       .wp-block-image img {
+           max-width: 100%; /* جلوگیری از بیرون زدگی تصاویر از کادر */
+           height: auto; /* تنظیم خودکار ارتفاع برای حفظ نسبت ابعاد */
+           display: block; /* حذف فضای اضافی زیر تصویر */
+           margin-left: auto;
+           margin-right: auto;
+       }
+	   .has-text-align-center{
+			text-align: center;
+	   }
+	   
+	   .cell pre {
+		word-break: break-all;
+		overflow-wrap: break-word; /* اضافه شده */
+		overflow-x: auto; /* اضافه شده */
+	}
+   </style>
+</head>
+<body>
+   <div class="notebook-container">
+       <article class="main-article post-551 post type-post status-publish format-standard has-post-thumbnail hentry category-1 category-39">		   
+		   <header class="header">
+           <h1 class="post-title">شخم توییتر فارسی (اراضی برنامه نویسان) – بخش اول</h1>
+           <div class="post-meta">
+               <span class="date">۱۴۰۰/۰۸/۲۱</span>
+           </div>
+       </header>
+
+           <section class="content">
+               <div class="cell">
+                   <p>بخش دوم این مطلب رو می‌تونید از <a href="https://vrgl.ir/okvDo" rel="noreferrer noopener" target="_blank">این لینک</a> بخونید.چند روز پیش در توییتر لیستی رو با عنوان «<strong>لیستی از اهالی فارسی‌زبان آی‌تی توییتر» </strong>دیدم. هیچی دیگه، اون رگ تپه‌نوردیم زد بالا 🙂 البته من در لیست «<strong>لیستی از اهالی فارسی‌زبان آی‌تی توییتر» </strong>نیستم ولی «<strong>لیستی از اهالی فارسی‌زبان آی‌تی توییتر» </strong>رو دوست دارم :)در حال حاضر تعداد اعضای این لیست ۷۲۰ نفره ولی مرتب داره کم و زیاد میشه. بعضی از اکانت ها private بودند و نتونستم توییت هاشون رو ذخیره کنم. بعضی از اکانت ها هم یه دفعه تصمیم میگرفتند که private کنند! بعضی از اکانت ها هم بودند که تعداد ۰ توییت نوشته بودند ولی در این لیست حضور داشتند! در نتیجه، کلا توییت های ۶۱۷ اکانت رو ذخیره کردم. برای کاری که من میخوام انجام بدم جامعه آماری خوبیه و کفایت میکنه.</p>
+               </div>
+			   
+			   <div class="cell">
+                   <pre class="has-text-align-center">https://twitter.com/i/lists/954292956420280320</pre>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/9-1.png" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>حالا چیکار میخوام انجام بدم؟ میخوام توییت هایی که اعضای این لیست مینویسند رو ذخیره و بررسی کنم و یکسری اطلاعات ازشون استخراج کنم. برای این منظور از Tweepy و API توییتر استفاده کردم. اینجا نمیخوام وارد بحث کد و این داستان ها بشم. در اینجا فقط میخوام نتایج رو به سمع و نظر شما برسونم 🙂<strong>تعداد کل توییت های مورد استفاده در این تحلیل چندتاست؟</strong>با توجه به محدودیت API توییتر، من فقط ۳۲۰۰ توییت آخر هر یک از اعضای لیست رو ذخیره کردم. البته بعضی ها کمتر از ۳۲۰۰ توییت نوشته بودند. مجموع تعداد توییت هایی که ذخیره کردم ۱,۴۱۶,۳۵۲ است. حجم اطلاعات هم ۲.۶۳ گیگابایت است.<strong>اعضای این لیست در چه ساعتی از شبانه‌روز بیشترین توییت را نوشته‌اند؟</strong>هیستوگرام زیر نمودار تعداد توییت هایی که در ساعات مختلف شبانه‌روز نوشته شده رو نشون میده. حدودا میشه فهمید بیشترین فعالیت از ساعت ۹ تا ۱۲ شب و کمترین فعالیت از ساعت ۲ شب تا ۸ صبح بوده.</p>
+               </div>
+			   
+			   <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/9-2.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p><strong>میزان فعالیت اعضای این لیست در روز های مختلف هفته چگونه‌ است؟</strong>هیت‌مپ زیر فعالیت اعضا در روز های مختلف هفته و ساعات مختلف شبانه‌روز نشون میده.</p>
+               </div>
+			   
+			   <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/9-3.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p><strong>ابر کلمات توییت ها</strong>تصویر زیر ابر کلمات توییت هایی است که اعضای این لیست نوشته‌اند :</p>
+               </div>
+			   
+			   <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/9-4.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>تصویر بالا برای زمانی است که چیزی رو حذف نکنیم. اگر Stop Word ها رو حذف کنیم نتیجه به صورت زیر میشه :</p>
+               </div>
+
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/9-5.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>لیست Stop Word ها رو از دو لینک زیر گرفتم :</p>
+               </div>
+			   
+			   <div class="cell">
+                   <pre class="has-text-align-center">https://bigdata-ir.com/%D8%A7%DB%8C%D8%B3%D8%AA%E2%80%8C%D9%88%D8%A7%DA%98%D9%87%E2%80%8C%D9%87%D8%A7-%DB%8C%D8%A7-stop-word-%D8%AF%D8%B1-%D8%B2%D8%A8%D8%A7%D9%86-%D9%81%D8%A7%D8%B1%D8%B3%DB%8C/https://github.com/alihoseiny/word_cloud_fa</pre>
+               </div>
+			   
+			   <div class="cell">
+                   <p>نحوه تولید ابر کلمات نیز به این صورت است که ابتدا کلمات پرتکرار را استخراج کردم، سپس با استفاده از سرویس زیر (به دلیل استایل بسیار زیبایی که دارد) آن را تولید کردم :</p>
+               </div>
+			   
+			   <div class="cell">
+                   <pre class="has-text-align-center">https://demo.text-mining.ir/</pre>
+               </div>
+			   
+			   <div class="cell">
+                   <p><strong>نسبت تعداد توییت، ریتوییت و ریپلای ها چگونه است؟</strong></p>
+               </div>
+			   
+			   <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/9-6.png" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <pre class="has-text-align-center">Reply:824579
+Tweet:354815
+Retweet:177125</pre>
+               </div>
+			   
+			   <div class="cell">
+                   <p><strong>اعضای این لیست بیشتر از چه راهی (وب، اندروید، ios) توییت ها را نوشته‌اند؟</strong></p>
+               </div>
+			   
+			   <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/9-7.png" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>البته نمودار کامل خیلی شلوغ تر از این حرفاست! با توجه به اینکه با جماعت برنامه‌نویس سر و کار داریم، خیلی چیز عجیبی نیست که خود شخص یه کلاینت برای توییتر بنویسه و با اون توییت بزنه! دیتا کامل رو در<a href="https://gist.github.com/vahidbaghi/f11560ce35b51c1dfa2d801c24e590ed" rel="noreferrer noopener" target="_blank">این لینک</a> قرار دادم.<strong>چه کسی بیشترین ریپلای را از اعضای لیست دریافت کرده است؟</strong>این لیست خیلی طولانی بود و من در نمودار زیر فقط ۳۰ نفر اول رو که بیشترین ریپلای رو دریافت کرده بودند آوردم :</p>
+               </div>
+			   
+			   <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/9-8.png" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>لیست زیر همین نمودار بالاست که مقابل یوزرنیم هر فرد تعداد ریپلای ها رو نوشتم :</p>
+               </div>
+			   
+			   <div class="cell">
+                   <pre class="has-text-align-center">vesalBehrouzi:4803
+afzouni:3895   
+farnam_violin:3794   
+cenaps:2961   
+epopee__:2898  
+drg_Captivator:2627   
+x3n0b1a:2498   
+irLinja:2495   
+muhammadrezahgh:2454   
+jimmyheller:2443   
+ph4r5h4d:2384   
+amirabbas:2345   
+bardia_heydari:2156  
+realbardia:2102   
+SamadiPour:2052   
+programmer_fa:2044   
+erfanuvthk:1966   
+mr_pouriya:1965   
+NegarJamalifard:1903   
+bigmag:1870   
+Yaser_Bahrami:1829   
+aminkhss:1824   
+jadi:1813   
+mrcyna:1795   
+aliereza:1778   
+theReticent:1773   
+azarijahromi:1736   
+TohidHeshmati:1712   
+iam_vee:1699   
+a_goofy_goober:1662</pre>
+               </div>
+			   
+			   <div class="cell">
+                   <p>دیتا کامل رو در <a href="https://gist.github.com/vahidbaghi/4d5d6a5b5d0472874c4178e3b1d4d780" rel="noreferrer noopener" target="_blank">این لینک</a> قرار دادم.<strong>اعضای لیست توییت های چه کسی را بیشتر از بقیه ریتوییت کرده‌اند؟</strong></p>
+               </div>
+			   
+			   <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/9-9.png" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>لیست زیر همین نمودار بالاست که مقابل یوزرنیم هر فرد تعداد ریتوییت ها رو نوشتم :</p>
+               </div>
+			   
+			   <div class="cell">
+                   <pre class="has-text-align-center">@jadi:1227   
+@Hamed:1026   
+@factnameh:730   
+@MilaDnu:546   
+@nima:536   
+@iam_vee:523   
+@afzouni:511   
+@theReticent:488   
+@Ammir:456   
+@nixcraft:451   
+@Khamenei_fa:443  
+@ArvanCloud_fa:433   
+@hooshmandk:402   
+@amirabbas:398   
+@mlhobbyist:365   
+@archillect:340   
+@amirsedighi:332   
+@s_soroosh:285  
+@alirezashirazi:281   
+@ValaAfshar:278   
+@kulturtava:266   
+@bardia_heydari:258   
+@mehdi_apr:245   
+@khamenei_ir:239   
+@ArminSoleimany:236   
+@mr_pouriya:233  
+@aminkhss:232   
+@ehsan_soltani:230   
+@Peivast:226   
+@AminSabeti:219</pre>
+               </div>
+			   
+			   <div class="cell">
+                   <p>دیتا کامل رو در <a href="https://gist.github.com/vahidbaghi/db9d688024dc45384624fde6f9d80e34" rel="noreferrer noopener" target="_blank">این لینک</a> قرار دادم.<strong>اعضای لیست کدام ایموجی را از همه بیشتر استفاده کرده‌اند؟</strong></p>
+               </div>
+			   
+			   <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/9-10.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>دیتا کامل رو در <a href="https://gist.github.com/vahidbaghi/ccdf5011b2185c53857aed636cb1400c" rel="noreferrer noopener" target="_blank">این لینک</a> قرار دادم.<strong>چند درصد از توییت ها شامل عکس و ویدئو بوده‌اند؟</strong></p>
+               </div>
+			   
+			   <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/9-11.png" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <ul class="wp-block-list"><li>animated_gif : توییت های شامل تصاویر متحرک</li><li>video : توییت های شامل ویدئو</li><li>photo : توییت های شامل عکس</li><li>nan : توییت های بدون مدیا (عکس و ویدئو)</li></ul>
+               </div>
+			   
+			   <div class="cell">
+                   <pre class="has-text-align-center">nan:1208637
+photo:113101
+video:20236
+animated_gif:14342</pre>
+               </div>
+			   
+			   <div class="cell">
+                   <p><strong>کدام تصاویر بیشتر از بقیه مورد استفاده قرار گرفتند؟</strong></p>
+               </div>
+			   
+			   <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/9-12.jpg" alt=""></figure>
+                   </div>
+               </div>
+           </section>
+       </article>
+   </div>
+</body>
+</html>

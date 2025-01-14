@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="fa">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+   <title>وبلاگ وحید باقی</title>
+   <style>
+       body {
+           font-family: Vazirmatn, sans-serif;
+           line-height: 1.6;
+           max-width: 900px;
+           margin: 0 auto;
+           padding: 20px;
+           background-color: #f7f7f7;
+       }
+
+.notebook-container {
+       background: white;
+       border: 1px solid #e1e4e8;
+       border-radius: 4px;
+       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+   }
+
+   .header {
+       padding: 20px;
+       border-bottom: 1px solid #e1e4e8;
+       background-color: #f6f8fa;
+   }
+
+   .post-title {
+       font-size: 2em;
+       margin: 0;
+       color: #24292e;
+   }
+
+   .post-meta {
+       color: #586069;
+       font-size: 0.9em;
+       margin-top: 10px;
+   }
+
+   .featured-image {
+       width: 100%;
+       max-height: 400px;
+       object-fit: cover;
+   }
+
+   .content {
+       padding: 20px;
+   }
+
+   .cell {
+       margin: 20px 0;
+       padding: 10px;
+       border-radius: 3px;
+       background-color: #f8f9fa;
+       text-align: right;
+   }
+
+   code {
+       background-color: #f6f8fa;
+       padding: 2px 5px;
+       border-radius: 3px;
+       font-family: Monaco, Consolas, monospace;
+   }
+
+   .link-center {
+       text-align: center;
+   }
+   
+   /* تغییرات مربوط به تصاویر */
+   .wp-block-image {
+       text-align: center; /* وسط چین کردن تصاویر */
+   }
+
+   .wp-block-image img {
+       max-width: 100%; /* جلوگیری از بیرون زدگی تصاویر از کادر */
+       height: auto; /* تنظیم خودکار ارتفاع برای حفظ نسبت ابعاد */
+       display: block; /* حذف فضای اضافی زیر تصویر */
+       margin-left: auto;
+       margin-right: auto;
+   }
+   .has-text-align-center{
+    text-align: center;
+   }
+   
+   .cell pre {
+  word-break: break-all;
+  overflow-wrap: break-word; /* اضافه شده */
+  overflow-x: auto; /* اضافه شده */
+}
+
+
+ 
+   </style>
+
+</head>
+<body>
+   <div class="notebook-container">
+       <article class="main-article post-482 post type-post status-publish format-standard has-post-thumbnail hentry category-1">       
+       <header class="header">
+           <h1 class="post-title">گشت و گذار در میان ارقام عدد π</h1>
+           <div class="post-meta">
+               <span class="date">۱۴۰۰/۱۱/۲۹</span>
+           </div>
+       </header>
+
+<section class="content">
+    <div class="cell">
+        <p>قطعا میدونید <a href="https://blog.faradars.org/عدد-پی-چیست/" rel="noreferrer noopener" target="_blank">عدد π</a> چیه؟! نمیدونید؟3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491یادتون اومد؟ نه؟!!!</p>
+    </div>
+    <div class="cell">
+        <div class="wp-block-image">
+            <figure class="aligncenter"><img decoding="async" src="images/15-1.jpg" alt=""></figure>
+        </div>
+    </div>
+    <div class="cell">
+        <p>از نظر تئوری، احتمال یافتن هر رشته عددی (حداقل در طول‌های کوتاه) در میان ارقام عدد پی و هر عدد متعالی دیگر، غیر صفر است. مثلا تاریخ تولد میلادی، خورشیدی یا قمری همه ما در میان ارقام عدد پی، قابل یافت است. همین طور، شماره موبایل و شماره ملی [https://vrgl.ir/xgoJ1]یکی از مواردی که نظر من رو به خودش جلب کرد پیدا کردم اسامی/کلمات در عدد پی بود. مثلا با استفاده از <a href="https://www.atractor.pt/mat/fromPI/PIalphasearch-_en.html" rel="noreferrer noopener" target="_blank">این سایت</a> می‌تونید کلمات مختلف انگلیسی رو در عدد پی پیدا کنید. صبر کنید! چی شد؟! کلمه؟! عدد پی؟! چطور ممکنه؟خیلی ساده! میان و عدد پی رو در مبنای ۲۶ (تعداد حروف انگلیسی) نشون میدن! تبدیل مبنا ها چه جوری انجام میشه؟ برای اینکه یک عدد در مبنای ۱۰ رو به مبنای ۲۶ ببریم، باید مرتبا عدد مبنای ۱۰ خودمون رو بر ۲۶ تقسیم کنیم. این کار رو انقدر ادامه میدیم تا خارج قسمت صفر بشه. وقتی خارج قسمت صفر شد، باقیمانده ها رو از چپ به راست (پایین به بالا) مینویسم. مثلا عدد ۵۲۲ رو در نظر بگیرید.</p>
+    </div>
+    <div class="cell">
+        <pre class="has-text-align-center">522÷26   خارج قسمت : 20    -    باقیمانده: 2
+20÷26     خارج قسمت : 0    -    باقیمانده: 20</pre>
+    </div>
+    <div class="cell">
+        <p>معادل هر کدوم از حروف الفبای انگلیسی به صورت زیره :</p>
+    </div>
+    <div class="cell">
+        <pre class="has-text-align-center">A=0, B=1, C=2, D=3, ..., T=19, U=20, V=21, W=22, X=23, Y=24,Z=25</pre>
+    </div>
+    <div class="cell">
+        <p>پس عدد ما در مبنای ۲۶ میشه U2اگر این کار رو برای عدد پی انجام بدیم نتیجه به صورت زیر میشه :D.DRSQLOLYRTRODNLHNQTGKUDQGTUIRXNEQBCKBSZIVQQVGDMELMUEXRO IQIY ALVUZVEB MIJPQQXLKPLRNCP WJPBY!1GGOHJMMQIS MS …مقاله اصلی در این زمینه رو میتونید از <a href="https://digitalcommons.butler.edu/cgi/viewcontent.cgi?article=4395&context=wordways" rel="noreferrer noopener" target="_blank">این لینک</a> بخونید.حالا من با خودم گفتم چرا همین کار رو با حروف الفبای فارسی انجام ندیم؟! فقط کافیه عدد رو به مبنای ۳۲ ببریم. فقط کافیه یک نگاشت از باقیمانده ها (<strong>۰ تا ۳۱</strong>) حروف الفبای فارسی (<strong>الف تا ی</strong>) انجام بدم :</p>
+    </div>
+    <div class="cell">
+        <pre class="has-text-align-center">الف=۰، ب=۱، ...، ه=۲۹،  ی=۳۰</pre>
+    </div>
+    <div class="cell">
+        <p>من عملیات جستجو رو فقط روی ۱ میلیون رقم اول عدد پی انجام میدم. چون طول های بزرگتر خیییلی طول میکشه. این ۱ میلیون رقم رو از <a href="https://pi2e.ch/blog/2017/03/10/pi-digits-/#" rel="noreferrer noopener" target="_blank">این لینک</a> دانلود کردم و با روش بالا به مبنای ۳۲ بردم که نتیجه به صورت زیر شد:</p>
+    </div>
+    <div class="cell">
+        <pre class="has-text-align-center">ت.ثصیفغپثجعزثژچثکگضخقاچنتظخططاطسبپجچشظتعاخجمودضمپسژطثعذذببنکنژاثمققگذچژظگعوثچچگصجزجچمنطیپصمعیکد</pre>
+    </div>
+    <div class="cell">
+        <p>حالا باید یک لیست از کلمات فارسی داشته باشیم که من از<a href="https://github.com/shahind/Persian-Words-Database/" rel="noreferrer noopener" target="_blank"> این لیست</a> استفاده میکنم که شامل <strong>۷۵۰ هزار کلمه</strong> است. با توجه به اینکه تمام حروف به هم چسبیده هستند، بنابراین تمام فاصله ها و نیم‌فاصله ها در کلمات رو حذف کردم. کلمات تکراری رو هم حذف کردم که در نتیجه لیست ما الان <strong>۴۲۱,۵۴۷ کلمه</strong> داره.حالا بریم سراغ تحلیل کلمات! همونطور که در تصویر زیر هم می‌بینید توزیع حروف الفبای فارسی تقریبا به صورت یکنواخت بوده :</p>
+    </div>
+    <div class="cell">
+        <div class="wp-block-image">
+            <figure class="aligncenter"><img decoding="async" src="images/15-2.png" alt=""><figcaption>نمودار تعداد تکرار حروف الفبای فارسی در عدد پی</figcaption></figure>
+        </div>
+    </div>
+    <div class="cell">
+        <p>نمودار زیر تعداد تکرار کلمات n حرفی (n از ۱ تا ۶) رو نشون میده :</p>
+    </div>
+    <div class="cell">
+        <div class="wp-block-image">
+            <figure class="aligncenter"><img decoding="async" src="images/15-3.png" alt=""></figure>
+        </div>
+    </div>
+    <div class="cell">
+        <p>تعداد تکرار کلمات ۸ حرفی به بالا صفر بود! اون ۵ کلمه ۷ حرفی موارد زیر بودند :</p>
+    </div>
+    <div class="cell">
+        <ul class="wp-block-list"><li>وتقریبا</li><li>گستردست</li><li>جانانیم</li><li>الماسست</li><li>سخن‌گستر</li></ul>
+    </div>
+    <div class="cell">
+        <p>به جز کلمه <strong>سخن‌گستر</strong> بقیه خیلی کلمات جالب و معنی داری نیستند! لیست کامل تمام کلمات به همراه تعداد تکرارشون رو در لینک زیر قرار دادم :</p>
+    </div>
+    <div class="cell">
+        <pre class="has-text-align-center">https://gist.github.com/vahidbaghi/26c0cdf825bc01edc41c295661054248</pre>
+    </div>
+    <div class="cell">
+        <p>حالا میخوام بررسی کنم تعداد تکرار هر کدوم از اسم های ایرانی در عدد پی به چه صورتی بوده؟! ابتدا باید لیست نام های ایرانی رو داشته باشیم که من این اسامی رو از سایت ثبت احوال قبلا استخراج کرده بودم :</p>
+    </div>
+    <div class="cell">
+        <pre class="has-text-align-center">https://gist.github.com/vahidbaghi/31070ed61318cd828442e99a83bc73d1</pre>
+    </div>
+    <div class="cell">
+        <p>ابر کلماتشون به صورت زیر میشه :</p>
+    </div>
+    <div class="cell">
+        <div class="wp-block-image">
+            <figure class="aligncenter"><img decoding="async" src="images/15-4.jpg" alt=""></figure>
+        </div>
+    </div>
+    <div class="cell">
+        <p>لیست کامل رو در لینک زیر قرار دادم :</p>
+    </div>
+    <div class="cell">
+        <pre class="has-text-align-center">https://gist.github.com/vahidbaghi/9ceafd7aa807a055254e6ddf523c1f3c</pre>
+    </div>
+   </section>
+   </article>
+   </div>
+</body>
+</html>

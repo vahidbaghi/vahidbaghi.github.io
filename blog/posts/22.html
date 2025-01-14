@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+   <title>وبلاگ وحید باقی</title>
+   <style>
+       body {
+           font-family: Vazirmatn, sans-serif;
+           line-height: 1.6;
+           max-width: 900px;
+           margin: 0 auto;
+           padding: 20px;
+           background-color: #f7f7f7;
+       }
+
+.notebook-container {
+       background: white;
+       border: 1px solid #e1e4e8;
+       border-radius: 4px;
+       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+   }
+
+   .header {
+       padding: 20px;
+       border-bottom: 1px solid #e1e4e8;
+       background-color: #f6f8fa;
+   }
+
+   .post-title {
+       font-size: 2em;
+       margin: 0;
+       color: #24292e;
+   }
+
+   .post-meta {
+       color: #586069;
+       font-size: 0.9em;
+       margin-top: 10px;
+   }
+
+   .featured-image {
+       width: 100%;
+       max-height: 400px;
+       object-fit: cover;
+   }
+
+   .content {
+       padding: 20px;
+   }
+
+   .cell {
+       margin: 20px 0;
+       padding: 10px;
+       border-radius: 3px;
+       background-color: #f8f9fa;
+       text-align: right;
+   }
+
+   code {
+       background-color: #f6f8fa;
+       padding: 2px 5px;
+       border-radius: 3px;
+       font-family: Monaco, Consolas, monospace;
+   }
+
+   .link-center {
+       text-align: center;
+   }
+   
+   /* تغییرات مربوط به تصاویر */
+   .wp-block-image {
+       text-align: center; /* وسط چین کردن تصاویر */
+   }
+
+   .wp-block-image img {
+       max-width: 100%; /* جلوگیری از بیرون زدگی تصاویر از کادر */
+       height: auto; /* تنظیم خودکار ارتفاع برای حفظ نسبت ابعاد */
+       display: block; /* حذف فضای اضافی زیر تصویر */
+       margin-left: auto;
+       margin-right: auto;
+   }
+   .has-text-align-center{
+    text-align: center;
+   }
+   
+   .cell pre {
+  word-break: break-all;
+  overflow-wrap: break-word; /* اضافه شده */
+  overflow-x: auto; /* اضافه شده */
+}
+   </style>
+</head>
+<body>
+   <div class="notebook-container">
+       <article class="main-article post-594 post type-post status-publish format-standard has-post-thumbnail hentry category-1 category-40">       
+       <header class="header">
+           <h1 class="post-title">خیابان های تهران زیر ذره‌بین! (بخش اول)</h1>
+           <div class="post-meta">
+               <span class="date">۱۴۰۱/۰۲/۲۷</span>
+           </div>
+       </header>
+
+<section class="content">
+           <div class="cell">
+               <p>در این مقاله قصد دارم تمام خیابون ها و کوچه های تهران رو قدم بزنم تا ببینم چه خبره!یه روز تو خونه نشسته بودم و این سوال برام پیش اومد که چند تا خیابون، بزرگراه&amp; بوستان و … تو تهران داریم؟ چه اسامی بیشتر از همه تکرار شده؟ و از این دست سوالات. یه ذره سرچ کردم و فقط مطلب زیر رو پیدا کردم که چندین خبرگزاری گذاشته بودند :</p>
+           </div>
+		   <div class="cell">
+		        <pre class="has-text-align-center">https://www.isna.ir/news/97031908268</pre>
+		   </div>
+        <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-1.png" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p>اطلاعاتی که در این گزارش وجود داره برای من راضی کننده نبود! برای همین گفتم خودم دست به کار بشم. اول اومدم نقشه osm تهران رو از آدرس زیر دانلود کردم :</p>
+           </div>
+		    <div class="cell">
+		        <pre class="has-text-align-center">https://.bbbike.org/osm/bbbike/Tehran/</pre>
+		   </div>
+		   <div class="cell">
+               <p>وقتی فایل osm رو باز کنید یه سری تگ way رو به صورت زیر میبینید :</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-2.png" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p>داخل این تگ way یه سری tag وجود داره که ویژگی های اون خیابون، کوچه و … رو نشون میدن. بعد رفتم یه ذره سرچ کردم تا ببینم معنی هر کدوم از این تگ ها چیه؟! در لینک زیر این تگ ها رو توضیح داده :</p>
+           </div>
+		    <div class="cell">
+		        <pre class="has-text-align-center">https://wiki.openstreetmap.org/wiki/Map_Features</pre>
+		   </div>
+		    <div class="cell">
+               <p>به ترتیب میریم جلو ببینیم چی میشه! بیاید اول Roads رو بررسی کنیم و ببینم چند نوع Road داریم؟در لینک بالا ۷ نوع Road رو معرفی کرده که عبارتند از :<strong>راه motorway :</strong> یک راه اصلی که خطوط رفت و برگشت آن مجزاست و دسترسی آن محدود است و اغلب، ۲ خط عبور یا بیشتر بعلاوه شانه اضطراری آسفالته در هر جهت دارد. هم‌ارز آزادراه، اتوبان و… است.</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-3.png" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p><strong>راه trunk :</strong> مهم‌ترین راه‌ها در شبکه جاده‌ای یک کشور که آزادراه نباشد. لازم نیست حتماً دوبانده باشد.</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-4.png" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p><strong>راه primary : </strong>راه مهم بعدی در شبکه جاده‌ای یک کشور که معمولاً شهرهای بزرگ‌تر را به هم متصل می‌کند</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-5.png" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p><strong>راه secondary :</strong> راه مهم بعدی در شبکه جاده‌ای یک کشور که معمولاً شهرها را به هم متصل می‌کند</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-6.png" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p><strong>راه tertiary :</strong> راه مهم بعدی در شبکهٔ جاده‌ای یک کشور که معمولاً شهرهای کوچک‌تر و روستاها را به هم متصل می‌کند</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-7.png" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p><strong>راه unclassified :</strong> کم‌اهمیت‌ترین راه ارتباطی در شبکهٔ جاده‌ای یک کشور این درجه را می‌گیرد؛ یعنی راه‌های فرعی با درجه‌بندی کمتر از tertiary که به‌منظوری غیر از دسترسی به املاک استفاده می‌شوند (معمولاً روستاها و آبادی‌ها را به هم متصل می‌کند). واژهٔ unclassified اصطلاحی قدیمی در شبکهٔ جاده‌ای انگلستان است و به این معنی <strong>نیست</strong> که درجه‌بندی نامشخص است؛ برای درجه‌بندی نامشخص از <a href="https://wiki.openstreetmap.org/wiki/Fa:Key:highway" rel="noreferrer noopener" target="_blank">highway</a>=<a href="https://wiki.openstreetmap.org/wiki/Fa:Tag:highway%3Droad" rel="noreferrer noopener" target="_blank">road</a> استفاده نمایید.</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-8.png" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p><strong>راه residential :</strong> راه‌هایی که برای دسترسی به منازل مسکونی استفاده می‌شود و کارکرد ارتباط‌دهندگی مناطق مسکونی را ندارند. بیشتر، در امتداد منازل مسکونی هستند</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-9.png" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p>اگر نقشه تهران رو در osm باز کنید میتونید هر کدوم از خیابان/کوچه های بالا رو که با رنگ های مختلف نمایش داده شده اند را ببینید :</p>
+           </div>
+		    <div class="cell">
+		        <pre class="has-text-align-center">https://www.openstreetmap.org/#map=12/35.6938/51.3872</pre>
+		   </div>
+		   <div class="cell">
+               <p>نتیجه جستجو در فایل osm به شرح زیر است :</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-10.jpg" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p>نکته‌ای که در اینجا وجود داره اینه که اگر یک خیابونی دو طرفه باشه، اون رو دو تا خیابون حساب میکنه. یا مثلا در مورد بزرگراه همت خیلی بیشتره :</p>
+           </div>
+		   <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-11.png" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p>پس وقتی میگم از فلان خیابون با فلان ویژگی ۵ تا وجود داره، نکته بالا رو در نظر داشته باشید!اگر ابر کلمات اسامی تمامی این راه ها رو رسم کنیم نتیجه به صورت زیر میشه :</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-12.jpg" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p>هر کدوم از راه ها یک تگ به نام maxspeed دارند که حداکثر سرعتی که میشه داخل اون خیابون حرکت کرد رو مشخص میکنه. واحد سرعت ها کیلومتر بر ساعت است :<strong>سرعت ۳۰ :</strong> ۴۴۲۰۵ خیابان<strong>سرعت ۴۰ :</strong> ۵۰۶۹ خیابان<strong>سرعت ۵۰ :</strong> ۳۳۵۷ خیابان<strong>سرعت ۶۰ :</strong> ۹۹۲ خیابان<strong>سرعت ۸۰ :</strong> ۵۱۷ خیابان<strong>سرعت ۹۰ : </strong>۱۵۳ خیابان<strong>سرعت ۲۰ : </strong>۱۱۷ خیابان<strong>سرعت ۷۰ :</strong> ۸۵ خیابان<strong>سرعت ۱۰ : </strong>۳۴ خیابان<strong>سرعت ۱۲۰ :</strong> ۵ خیابان<strong>سرعت ۱۰۰ :</strong> ۴ خیابان<strong>سرعت ۵ :</strong> ۱ خیابانیه کوچه هم بود که سرعتش رو صفر زده بود! کوچه زیر بود :</p>
+           </div>
+		    <div class="cell">
+		        <pre class="has-text-align-center">https://www.openstreetmap.org/way/485845097</pre>
+		   </div>
+		   <div class="cell">
+               <p>توی لینک زیر حداکثر سرعت همین کوچه رو زده ۵۰ کیلومتر بر ساعت که به نظر صحیح میاد :</p>
+           </div>
+		    <div class="cell">
+		        <pre class="has-text-align-center">https://www.openstreetmap.org/way/36773509</pre>
+		   </div>
+		   <div class="cell">
+               <p>کوچه زیر هم حداکثر سرعتش ۵ کیلومتر بر ساعته! یعنی آدم ها هم یه ذره سریع حرکت کنند ممکنه تصادف کنن!</p>
+           </div>
+		   <div class="cell">
+		        <pre class="has-text-align-center">https://www.openstreetmap.org/way/426572332</pre>
+		   </div>
+		    <div class="cell">
+               <p>حالا میخوام ببینم اسم چند تا خیابون تا حالا تغییر کرده! اگر خیابون هایی که تگ old_name دارند رو بشمریم متوجه میشیم ۷۲۷ خیابون وجود داره که اسمشون تغییر کرده! لیست کاملشون در لینک زیر قرار دادم :</p>
+           </div>
+		   <div class="cell">
+		        <pre class="has-text-align-center">https://gist.github.com/vahidbaghi/32faf68eee364ee399c8b01ca1f14338</pre>
+		   </div>
+		   <div class="cell">
+               <hr class="wp-block-separator">
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-13.jpg" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p>الان می‌خوام تگ <a href="https://wiki.openstreetmap.org/wiki/Key%3Aleisure" rel="noreferrer noopener" target="_blank">leisure</a> یا اوقات فراغت رو بررسی کنم. این تگ ۳۳ مقدار مختلف رو می‌تونه داشته باشه که فقط ۱۸ تا از این مقادیر در نقشه تهران وجود داره. از بین این ۱۸ تا هم فقط ۷ مورد رو که تعدادشون بیشتره رو بررسی میکنم. این ۷ مورد عبارتند از :<strong>مقدار park : </strong>همون پارک خودمونه یا به عبارت دقیق تر به پارک های وابسته به شهرداری گفته میشه. طبق اطلاعات نقشه، تعداد ۲۰۲۳ پارک داریم. ابر کلمات اسامی این پارک ها به صورت زیر است :</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-14.jpg" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p><strong>مقدار garden :</strong> به جایی گفته میشه که دار و درخت به صورت تزئینی گاشته میشن یا بنابر تعریف ویکی‌پدیا به زمین‌هایی که برای پرورش گل، میوه و درختان زیبا، حصارکشی شده باشند، باغ می‌گویند. توی نقشه به باغ سفارت ها، باغ های خصوصی، میدون هایی که گل کاری شدند گفته میشه. تعداد ۱۷۰۱ باغ در تهران داریم. ابر کلمات اسامی این باغ ها به صورت زیر است :</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-15.jpg" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p><strong>مقدار pitch :</strong> منطقه ای که برای تمرین یک ورزش خاص طراحی شده است که معمولاً با علامت گذاری مناسب مشخص می شود. این مقدار معمولا برای زمین های فوتبال، باشگاه ها (فوتبال، والیبال، تنیس و …) در نظر گرفته میشه. تعداد ۱۲۰۷ تا pitch در تهران داریم. ابر کلمات این pitch ها به صورت زیر است :</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-16.jpg" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p><strong>مقدار swimming_pool :</strong> همون استخر خودمونه! تعداد ۵۸۳ استخر در تهران داریم. البته استخر های خصوصی رو هم در حساب کردم و طبیعتا استخر های خصوصی اسم ندارن! ابر کلمات اسامی این استخر ها به صورت زیر است :</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-17.jpg" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p><strong>مقدار playground :</strong> فضایی که برای بازی کودکان طراحی شده است. زمین بازی معمولا بخشی از park به حساب میاد. تعداد ۳۶۶ زمین بازی در تهران داریم. البته معمولا اسم خاصی ندارند. صرفا بخشی از پارک رو داره نشون میده که زمین بازی اونجاست.<strong>مقدار sports_centre :</strong> به مجموعه های ورزشی گفته میشه. مثل مجموعه ورزشی انقلاب. تعداد ۲۹۴ مجموعه ورزشی در تهران داریم. ابر کلمات اسامی این مجموعه های ورزشی به صورت زیره :</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-18.jpg" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p><strong>مقدار stadium :</strong> یک مرکز ورزشی بزرگ با صندلی های طبقه بندی شده قابل توجه یا همون استادیوم خودمون! البته به پیست های دوچرخه سواری و استادیوم های تنیس هم گفته میشه. تعداد ۴۰ استادیوم در تهران داریم. ابر کلمات اسامی این استادیوم ها به صورت زیره :</p>
+           </div>
+           <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/22-19.jpg" alt=""></figure>
+               </div>
+           </div>
+		   <div class="cell">
+               <p>در بخش دوم موارد بیشتری رو بررسی خواهم کرد. منتظر باشید!</p>
+           </div>
+       </section>
+   </article>
+   </div>
+</body>
+</html>
+

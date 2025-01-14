@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+   <title>وبلاگ وحید باقی</title>
+   <style>
+       body {
+           font-family: Vazirmatn, sans-serif;
+           line-height: 1.6;
+           max-width: 900px;
+           margin: 0 auto;
+           padding: 20px;
+           background-color: #f7f7f7;
+       }
+
+.notebook-container {
+       background: white;
+       border: 1px solid #e1e4e8;
+       border-radius: 4px;
+       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+   }
+
+   .header {
+       padding: 20px;
+       border-bottom: 1px solid #e1e4e8;
+       background-color: #f6f8fa;
+   }
+
+   .post-title {
+       font-size: 2em;
+       margin: 0;
+       color: #24292e;
+   }
+
+   .post-meta {
+       color: #586069;
+       font-size: 0.9em;
+       margin-top: 10px;
+   }
+
+   .featured-image {
+       width: 100%;
+       max-height: 400px;
+       object-fit: cover;
+   }
+
+   .content {
+       padding: 20px;
+   }
+
+   .cell {
+       margin: 20px 0;
+       padding: 10px;
+       border-radius: 3px;
+       background-color: #f8f9fa;
+       text-align: right;
+   }
+
+   code {
+       background-color: #f6f8fa;
+       padding: 2px 5px;
+       border-radius: 3px;
+       font-family: Monaco, Consolas, monospace;
+   }
+
+   .link-center {
+       text-align: center;
+   }
+   
+   /* تغییرات مربوط به تصاویر */
+   .wp-block-image {
+       text-align: center; /* وسط چین کردن تصاویر */
+   }
+
+   .wp-block-image img {
+       max-width: 100%; /* جلوگیری از بیرون زدگی تصاویر از کادر */
+       height: auto; /* تنظیم خودکار ارتفاع برای حفظ نسبت ابعاد */
+       display: block; /* حذف فضای اضافی زیر تصویر */
+       margin-left: auto;
+       margin-right: auto;
+   }
+   .has-text-align-center{
+    text-align: center;
+   }
+   
+   .cell pre {
+  word-break: break-all;
+  overflow-wrap: break-word; /* اضافه شده */
+  overflow-x: auto; /* اضافه شده */
+}
+
+
+ 
+   </style>
+</head>
+<body>
+   <div class="notebook-container">
+       <article class="main-article post-594 post type-post status-publish format-standard has-post-thumbnail hentry category-1 category-40">       
+       <header class="header">
+           <h1 class="post-title">اسنپ‌فود چند رستوران فعال دارد؟!</h1>
+           <div class="post-meta">
+               <span class="date">۱۴۰۱/۰۳/۰۹</span>
+           </div>
+       </header>
+
+<section class="content">
+    <div class="cell">
+        <p>اگر دقت کنید، در اپلیکیشن اسنپ‌فود تعداد رستوران های باز رو مینویسه. این سوال برای من به وجود اومد که در ساعات مختلف شبانه روز چند تا رستوران فعال وجود داره؟! با استفاده از لینک زیر میتونید تعداد رستوران های فعال و باز (آماده خدمت) رو مشاهده کنید :</p>
+    </div>
+    <div class="cell">
+        <pre class="has-text-align-center">https://snappfood.ir/search/api/v1/desktop/vendors-list?optionalClient=WEBSITE&amp;client=WEBSITE&amp;deviceType=WEBSITE&amp;appVersion=8.1.1&amp;UDID=ae5ce34d-6f87-43d7-9ea0-e2a956c363cd&amp;page=1&amp;page_size=20&amp;filters={}&amp;query=&amp;sp_alias=restaurant&amp;city_name=tehran</pre>
+    </div>
+    <div class="cell">
+        <p>اون آخر من اسم شهر رو tehran گذاشتم. نتیجه‌ای که برمیگردونه چیزی شبیه به تصویر زیره :</p>
+    </div>
+    <div class="cell">
+        <div class="wp-block-image">
+            <figure class="aligncenter"><img decoding="async" src="images/24-1.jpg" alt=""></figure>
+        </div>
+    </div>
+    <div class="cell">
+        <p>چیزی که به نظر میرسه count تعداد رستوران های فعال رو نشون میده. یعنی رستوران هایی که در حال حاضر با اسنپ‌فود همکاری میکنن و open_count تعداد رستوران های باز (آماده خدمت) رو نشون میده. من اومدم یه برنامه روی سرور گذاشتم و از تاریخ ۲۰ اردیبهشت تا ۸ خرداد ۱۴۰۱، هر یک ساعت تعداد رستوران های باز و فعال رو جمع آوری کردم. البته نه فقط برای شهر تهران! برای تمام شهر هایی که اسنپ فود ساپورت میکنه! اسم این شهر ها در پایین سایت <a href="https://snappfood.ir">https://snappfood.ir</a> نوشته شده :</p>
+    </div>
+    <div class="cell">
+        <div class="wp-block-image">
+            <figure class="aligncenter"><img decoding="async" src="images/24-2.jpg" alt=""></figure>
+        </div>
+    </div>
+        <div class="cell">
+    <p>مثلا تعداد رستوران های فعال در تهران به صورت زیره :</p>
+    </div>
+        <div class="cell">
+            <div class="wp-block-image">
+                <figure class="aligncenter"><img decoding="async" src="images/24-3.png" alt=""></figure>
+            </div>
+        </div>
+            <div class="cell">
+    <p>تعداد رستوران های باز هم در تهران به صورت زیر :</p>
+    </div>
+        <div class="cell">
+            <div class="wp-block-image">
+                <figure class="aligncenter"><img decoding="async" src="images/24-4.png" alt=""></figure>
+            </div>
+        </div>
+    <div class="cell">
+        <p>در توییتی که نوشته بودم حواسم نبود که باید ۴.۵ ساعت به زمان سرور اضافه کنم تا ساعت تهران رو نشون بده. اما دیتای بالا درسته اما اینکه واقعا اون ساعت از شبانه‌روز واقعا اون تعداد رستوران باز بوده یا نه رو نمیدونم. چون دیتا رو از API اسنپ‌فود گرفتم.</p>
+    </div>
+        <div class="cell">
+            <div class="wp-block-image">
+                <figure class="aligncenter"><img decoding="async" src="images/24-5.png" alt=""></figure>
+            </div>
+        </div>
+
+</section>
+   </article>
+
+
+ 
+   </div>
+</body>
+</html>
+

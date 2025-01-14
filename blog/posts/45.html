@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+   <title>وبلاگ وحید باقی</title>
+   <style>
+       body {
+           font-family: Vazirmatn, sans-serif;
+           line-height: 1.6;
+           max-width: 900px;
+           margin: 0 auto;
+           padding: 20px;
+           background-color: #f7f7f7;
+       }
+
+.notebook-container {
+       background: white;
+       border: 1px solid #e1e4e8;
+       border-radius: 4px;
+       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+   }
+
+   .header {
+       padding: 20px;
+       border-bottom: 1px solid #e1e4e8;
+       background-color: #f6f8fa;
+   }
+
+   .post-title {
+       font-size: 2em;
+       margin: 0;
+       color: #24292e;
+   }
+
+   .post-meta {
+       color: #586069;
+       font-size: 0.9em;
+       margin-top: 10px;
+   }
+
+   .featured-image {
+       width: 100%;
+       max-height: 400px;
+       object-fit: cover;
+   }
+
+   .content {
+       padding: 20px;
+   }
+
+   .cell {
+       margin: 20px 0;
+       padding: 10px;
+       border-radius: 3px;
+       background-color: #f8f9fa;
+       text-align: right;
+   }
+
+   code {
+       background-color: #f6f8fa;
+       padding: 2px 5px;
+       border-radius: 3px;
+       font-family: Monaco, Consolas, monospace;
+   }
+
+   .link-center {
+       text-align: center;
+   }
+   
+   /* تغییرات مربوط به تصاویر */
+   .wp-block-image {
+       text-align: center; /* وسط چین کردن تصاویر */
+   }
+
+   .wp-block-image img {
+       max-width: 100%; /* جلوگیری از بیرون زدگی تصاویر از کادر */
+       height: auto; /* تنظیم خودکار ارتفاع برای حفظ نسبت ابعاد */
+       display: block; /* حذف فضای اضافی زیر تصویر */
+       margin-left: auto;
+       margin-right: auto;
+   }
+   .has-text-align-center{
+    text-align: center;
+   }
+   
+   .cell pre {
+  word-break: break-all;
+  overflow-wrap: break-word; /* اضافه شده */
+  overflow-x: auto; /* اضافه شده */
+}
+
+
+ 
+   </style>
+</head>
+<body>
+   <div class="notebook-container">
+       <article class="main-article post-594 post type-post status-publish format-standard has-post-thumbnail hentry category-1 category-40">       
+       <header class="header">
+           <h1 class="post-title">مرکز هندسی (centroid) تهران کجاست؟</h1>
+           <div class="post-meta">
+               <span class="date">۱۴۰۲/۰۹/۲۰</span>
+           </div>
+       </header>
+
+<section class="content">
+           <div class="cell">
+               <p>من چند سال پیش توییت زیر رو در توییتر دیدم و دقیقا مثل ایشون، کک به تنبونم انداخت که برم ببینم مرکز شهر تهران کجاست؟ اما اون زمان درگیر کار های مختلف بودم و بعدش هم که درگیر سربازی بودم و این قضیه به فراموشی سپرده شد.</p>
+           </div>
+<div class="cell">
+    <div class="wp-block-image">
+        <figure class="aligncenter size-full"><img decoding="async" src="images/45-1.png" alt=""></figure>
+    </div>
+</div>
+<div class="cell">
+    <pre class="has-text-align-center"><a href="https://twitter.com/polfosol/status/1245055111824576514">https://twitter.com/polfosol/status/1245055111824576514</a></pre>
+</div>
+<div class="cell">
+    <p>توصیه می‌کنم ایشون رو فالو کنید چون مطالب خوبی می‌نویسن. اما برای اینکه هم پیوستگی مطالب حفظ بشه و هم لازم نباشه توضیحات عالی ایشون رو بازنویسی کنم، محتوای توییت ایشون رو عینا در ادامه می‌نویسم که بعدش بریم سراغ کار اصلی خودمون.</p>
+</div>
+<div class="cell">
+    <p>محتوای <a href="https://twitter.com/polfosol/status/1245055111824576514">توییت </a>:</p>
+</div>
+<div class="cell">
+    <p>این توییتِ مربوط به چندروز پیش (اسکرین‌شات: <a href="https://t.co/FjftCrVxtj" target="_blank" rel="noreferrer noopener">http://bit.ly/twSCRSH</a>) کک به تنبونم انداخت که برم ببینم واقعا مرکز ایران کجاست. لذا در این رشته‌توییت میخوام یه توضیحاتی بدم درمورد اینکه اصلا مرکز چیه و چه‌جوری محاسبه میشه. مرکز یک دایره از تمام نقاط روی دایره فاصله‌ی یکسانی داره. برای یک شکل متقارن مثل مربع هم مرکز تقارن خیلی تعریف ساده‌ای داره. اما برای شکل‌های نامتقارن و اجق‌وجق مرکز یعنی چی؟ طبق تعریف ریاضیاتی، مرکز (centroid) یک شکل اون نقطه‌ایه که برابره با میانگینِ تمام نقاط روی شکل.</p>
+</div>
+<div class="cell">
+    <div class="wp-block-image">
+        <figure class="aligncenter size-full is-resized"><img decoding="async" src="images/45-2.jpg" alt="" style="width:517px;height:auto"></figure>
+    </div>
+</div>
+<div class="cell">
+    <p>به بیان فیزیکی، فرض کنید یه شکل «مسطح» رو به صورت افقی بذاریم رو نوک مداد. اگر نقطه‌ی تماس مرکز شکل باشه، اون وقت تعادل خودش رو می‌تونه حفظ کنه. راه ساده برای محاسبه‌ی مرکز شکل اینه که به این‌صورت از یه نخی آویزونش کنیم و امتداد نخ رو رسم کنیم. با آویزون کردنش از دو نقطه، مرکزش به‌دست میاد.</p>
+</div>
+<div class="cell">
+    <div class="wp-block-image">
+        <figure class="aligncenter size-full"><img decoding="async" src="images/45-3.png" alt=""></figure>
+    </div>
+</div>
+<div class="cell">
+    <p>اما فرمول ریاضیش ممکنه پیچیده به نظر بیاد چون توش انتگرال داره. اینجاست که واقعا انتگرال به‌کار آدمیزاد میاد و باید لعنت فرستاد بر اونهایی که با حذف انتگرال ازبرنامه درسی، جوانان ما رو ازمحاسبه‌ی مرکز شکل‌ها محروم کرده و به فساد سوق دادن. به هرحال، فرمول ریاضیش اینه:</p>
+</div>
+<div class="cell">
+    <div class="wp-block-image">
+        <figure class="aligncenter size-full"><img loading="lazy" decoding="async" src="images/45-4.png" alt=""></figure>
+    </div>
+</div>
+<div class="cell">
+    <p>موسسه ملی ژئودتیک آمریکا (NGS) در اوایل قرن ۲۰ یه بررسی انجام داد برای تعیین مرکز این کشور. اینجا جزئیاتش رو توضیح داده:</p>
+</div>
+<div class="cell">
+    <pre class="has-text-align-center"> <a href="https://t.co/3YlTpCaPn7" target="_blank" rel="noreferrer noopener">https://ngs.noaa.gov/PUBS_LIB/GeoCenter_USA1.pdf</a></pre>
+</div>
+<div class="cell">
+    <p> درواقع کاری که انجام دادن کمابیش همونی بود که گفتم. نقشه رو روی کاغذ درآوردن و بعد با آویزون کردن مرکزش رو پیدا کردن. اما یه مشکلی تو این روش هست که توضیح خواهم داد. به هرحال، طبق این محاسبه مرکز آمریکا شد یه جایی طرفای داکوتای جنوبی. بعد رفتن تو اون نقطه یه لوح یادبود زدن و به این صورت امامزاده و زیارتگاه درست کردن:</p>
+</div>
+<div class="cell">
+    <figure class="wp-block-image size-full"><img loading="lazy" decoding="async" src="images/45-5.jpg" alt=""></figure>
+</div>
+<div class="cell">
+    <figure class="wp-block-image size-full"><img loading="lazy" decoding="async" src="images/45-6.jpg" alt=""></figure>
+</div>
+<div class="cell">
+    <p>مشکلش اینه که زمین کرویه و وقتی که نقشه‌ی کشورا رو میخوان رو کاغذ مسطح رسم کنن اون بالاش پهن میشه و کلا چیزی که رو کاغذ دوبعدی میاد اونی نیست که واقعا باید باشه. علاوه‌براین، آلاسکا و هاوایی از اون تیکه‌ی اصلی آمریکا جدان و نمیشه نقشه‌ی یکپارچه ازش درآورد. این شکل‌ها رو ببینید:</p>
+</div>
+<div class="cell">
+    <figure class="wp-block-image size-full"><img loading="lazy" decoding="async" src="images/45-7.jpg" alt=""></figure>
+</div>
+<div class="cell">
+    <p>بعدها با ابزارهای محاسباتی پیشرفته‌تر و نقشه‌های دقیق‌تر، محاسباتی برای تعیین مرکز کشورها انجام گرفت. این صفحه‌ی ویکی‌پدیا یه لیستی از مراکز کشورها رو آورده:</p>
+</div>
+<div class="cell">
+    <pre class="has-text-align-center"> <a href="https://t.co/UfG7WRYoHT" target="_blank" rel="noreferrer noopener">https://en.wikipedia.org/wiki/Geographical_centre</a> </pre>
+</div>
+<div class="cell">
+    <p>اما متاسفانه کشور ما تو اون لیست غایبه و لذا کس نخارد پشت من جز ناخن انگشت من. بریم برای محاسبه. چون شکل کشور ما نسبت به مثلا شیلی یا ژاپن زیاد اجق‌وجق نیست، ساده‌ترین کار اینه که وسطِ طول و عرض جغرافیاییش رو حساب کنیم. عرض جغرافیایی ایران از حدود ۲۵ تا ۴۰ درجه گسترده شده و طول جغرافیاییش از ۴۴ تا ۶۳ درجه. لذا میانگینِ این دو میشه بین نائین و میبد:</p>
+</div>
+<div class="cell">
+    <pre class="has-text-align-center"><a href="https://www.google.com/maps?q=+32.42,+53.683&amp;z=5&amp;t=h">https://www.google.com/maps?q=+32.42,+53.683&amp;z=5&amp;t=h</a></pre>
+</div>
+<div class="cell">
+    <p>خب واضحه که این روش خطای زیادی داره. حالا خوشبختانه یه ابزار قوی دراختیار ما هست به اسم Mathematica، که باهاش میشه انتگرال عددی رو با تقریب خیلی خوبی روی سطح‌های اجق‌وجق محاسبه کرده و نقطه وسط نقشه رو پیدا کرد. کدش رو به این صورت نوشتم:</p>
+</div>
+<div class="cell">
+    <div class="wp-block-image">
+        <figure class="aligncenter size-full"><img loading="lazy" decoding="async" src="images/45-8.png" alt=""></figure>
+    </div>
+</div>
+<div class="cell">
+    <p>با محاسبه میانگین انتگرال روی سطح دوبعدی، مختصات دقیق مرکز ایران میشه اینجا که نقطه‌ایه در شمال‌شرقی اردکان و میبد:</p>
+</div>
+<div class="cell">
+    <pre class="has-text-align-center"> <a href="https://t.co/qv9F3jhhjB" target="_blank" rel="noreferrer noopener">http://maps.google.com/maps?q=+32.5686,+54.3011&amp;z=5&amp;t=h</a> </pre>
+</div>
+<div class="cell">
+    <p>اما همون‌طور که گفتم، نقشه‌ی یک کشور وقتی از سطح کره‌ی زمین روی یک سطح دوبعدی میاد، یه سری پهن‌شدگی و جمع‌شدگی داره که خطا ایجاد می‌کنه.</p>
+</div>
+<div class="cell">
+    <p>این نکته رو هم درنظر بگیرید که ایران نسبت به آمریکا خیلی کوچکتره و بالطبع خمیدگیش روی سطح کره‌ی زمین خیلی کمتره. لذا این خطای تسطیح نقشه‌ی ایران قاعدتا خیلی کمه. ولی برای اینکه دلمون آروم بگیره میگیم سگ خورد. بدون تسطیح نقشه، همون میانگین انتگرالِ سطح سه‌بعدی رو حساب می‌کنیم:</p>
+</div>
+<div class="cell">
+    <figure class="wp-block-image size-full"><img loading="lazy" decoding="async" src="images/45-9.png" alt=""></figure>
+</div>
+<div class="cell">
+    <p>با این روش، نقطه‌ای که محاسبه میشه یک مختصات سه‌بعدی داره. اون عدد سوم که تو نتیجه‌ی آخر ملاحظه می‌کنید ارتفاعشه. پس با تقریب خوبی میشه گفت که دیگه این محاسبه دقیقه و مو لای درزش نمیره. مرکز ایران می‌افته روستای پَتکستان در حوالی اردکان:</p>
+</div>
+<div class="cell">
+    <pre class="has-text-align-center"><a href="https://www.google.com/maps?q=+32.5247,+54.4659&amp;z=5&amp;t=h">https://www.google.com/maps?q=+32.5247,+54.4659&amp;z=5&amp;t=h</a></pre>
+</div>
+<div class="cell">
+<hr class="wp-block-separator has-alpha-channel-opacity">
+</div>
+<div class="cell">
+<hr class="wp-block-separator has-alpha-channel-opacity">
+</div>
+<div class="cell">
+    <p>تا اینجای کار توضیحات ایشون بود. بنابراین متوجه شدید که این کار چه جوری انجام میشه. حالا من میخوام همین کار رو برای شهر تهران انجام بدم. اول باید مرز شهر تهران رو پیدا کنم که از فایل GeoJson زیر استفاده کردم :</p>
+</div>
+<div class="cell">
+    <pre class="has-text-align-center"><a href="https://github.com/yassermzh/iran-map/blob/master/maps/tehran_iran_admin.geojson">https://github.com/yassermzh/iran-map/blob/master/maps/tehran_iran_admin.geojson</a></pre>
+</div>
+<div class="cell">
+    <p>این فایل با ۴۱۳۹ نقطه، مرز تهران رو نشون میده که به صورت زیره :</p>
+</div>
+<div class="cell">
+    <figure class="wp-block-image size-large"><img loading="lazy" decoding="async" src="images/45-10.png" alt=""></figure>
+</div>
+<div class="cell">
+    <p>با استفاده از کتابخونه shapely توی پایتون نقطه زیر رو به عنوان نقطه مرکزی تهران پیدا کردم :</p>
+</div>
+<div class="cell">
+    <pre class="has-text-align-center"><a href="https://map.ir/lat/35.725472/lng/51.391983/z/12">https://map.ir/lat/35.725472/lng/51.391983/z/12</a></pre>
+</div>
+</section>
+   </article>
+   </div>
+</body>
+</html>
+

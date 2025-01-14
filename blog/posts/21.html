@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+   <title>وبلاگ وحید باقی</title>
+   <style>
+       body {
+           font-family: Vazirmatn, sans-serif;
+           line-height: 1.6;
+           max-width: 900px;
+           margin: 0 auto;
+           padding: 20px;
+           background-color: #f7f7f7;
+       }
+
+.notebook-container {
+       background: white;
+       border: 1px solid #e1e4e8;
+       border-radius: 4px;
+       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+   }
+
+   .header {
+       padding: 20px;
+       border-bottom: 1px solid #e1e4e8;
+       background-color: #f6f8fa;
+   }
+
+   .post-title {
+       font-size: 2em;
+       margin: 0;
+       color: #24292e;
+   }
+
+   .post-meta {
+       color: #586069;
+       font-size: 0.9em;
+       margin-top: 10px;
+   }
+
+   .featured-image {
+       width: 100%;
+       max-height: 400px;
+       object-fit: cover;
+   }
+
+   .content {
+       padding: 20px;
+   }
+
+   .cell {
+       margin: 20px 0;
+       padding: 10px;
+       border-radius: 3px;
+       background-color: #f8f9fa;
+       text-align: right;
+   }
+
+   code {
+       background-color: #f6f8fa;
+       padding: 2px 5px;
+       border-radius: 3px;
+       font-family: Monaco, Consolas, monospace;
+   }
+
+   .link-center {
+       text-align: center;
+   }
+   
+   /* تغییرات مربوط به تصاویر */
+   .wp-block-image {
+       text-align: center; /* وسط چین کردن تصاویر */
+   }
+
+   .wp-block-image img {
+       max-width: 100%; /* جلوگیری از بیرون زدگی تصاویر از کادر */
+       height: auto; /* تنظیم خودکار ارتفاع برای حفظ نسبت ابعاد */
+       display: block; /* حذف فضای اضافی زیر تصویر */
+       margin-left: auto;
+       margin-right: auto;
+   }
+   .has-text-align-center{
+    text-align: center;
+   }
+   
+   .cell pre {
+  word-break: break-all;
+  overflow-wrap: break-word; /* اضافه شده */
+  overflow-x: auto; /* اضافه شده */
+}
+
+
+ 
+   </style>
+</head>
+<body>
+   <div class="notebook-container">
+       <article class="main-article post-594 post type-post status-publish format-standard has-post-thumbnail hentry category-1 category-40">       
+       <header class="header">
+           <h1 class="post-title">گشت و گذاری در iFilm</h1>
+           <div class="post-meta">
+               <span class="date">۹/۲/۱۴۰۱</span>
+           </div>
+       </header>
+
+<section class="content">
+           <div class="cell">
+               <p>تو خونه ما خیلی از اوقات شبکه آی‌فیلم در حال پخشه! بعضی مواقع یکسری سریال ها رو انقدر پخش میکنن که آدم حالش بهم میخوره! البته من عموما تلویزیون نگاه نمیکنم ولی صداش میاد! یکدفعه این سوال برام پیش اومد که کدوم سریال/فیلم از همه بیشتر پخش شده؟ اول که توی توییتر ایده رو مطرح کردم خیلی ها گفتند مختارنامه، یوسف پیامبر و …اما من میخواستم ببینم جواب واقعا چیه؟! سایت iFilm رو باز کردم و بخش جدول پخش رو آوردم :</p>
+           </div>
+           <div class="cell">
+               <pre class="has-text-align-center"><a href="https://fa.ifilmtv.tv/Schedule">https://fa.ifilmtv.tv/Schedule</a></pre>
+           </div>
+       
+       <div class="cell">
+           <p>دیدم جدول پخش هر روز رو نشون میده. یه ذره پکت های ارسالی به سایت رو بررسی کردم و متوجه شدم جدول پخش هر روز رو از لینک زیر میگیره :</p>
+        </div>
+        <div class="cell">
+           <pre class="has-text-align-center">https://fa.ifilmtv.tv/Schedule/GetItemInDay?strDate=2021-04-25+00%3A00%3A00</pre>
+       </div>
+       <div class="cell">
+        <p>یه بخش تاریخ داره. تاریخ های مختلف رو امتحان کردم و دیدم جدول پخش روز های گذشته و حتی آینده (تا آخر هفته) رو هم نشون میده :</p>
+    </div>
+       <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/21-1.png" alt=""></figure>
+               </div>
+           </div>
+           <div class="cell">
+            <p>فرمت خروجی هم json بود و کار رو خیلی ساده میکنه! منم یه اسکریپت ساده نوشتم و تمام تاریخچه رو استخراج کردم. قدیمی ترین آرشیوشون برای ۲ سپتامبر سال ۲۰۱۶ بود که تا الان میشه 5 سال 7 ماه 27 روز آرشیو! البته من نمیدونم صحت دیتای آرشیو چقدره ولی نتایجی که در ادامه میگیرم بر اساس این دیتاست!حالا بریم سراغ تحلیل! طبق اطلاعات به دست آمده از آرشیو جدول پخش، تا الان ۸۲۹ عنوان از شبکه آی‌فیلم پخش شده. تعداد دفعاتی که هر قسمت از سریال در نتایج جدول پخش اومده رو در لینک زیر قرار دادم :</p>
+           </div>
+           <div class="cell">
+               <pre class="has-text-align-center"><a href="https://gist.github.com/vahidbaghi/ae68ae7a6f9ebf7c9ed7709365fe9f37">https://gist.github.com/vahidbaghi/ae68ae7a6f9ebf7c9ed7709365fe9f37</a></pre>
+           </div>
+           <div class="cell">
+            <p>لیست ۲۰ تا فیلم/سریالی که بیشتر از بقیه پخش شدند عبارتند از :</p>
+        </div>
+        <div class="cell">
+            <p>بدون شرح (1381)-321 </p>
+        </div>
+        <div class="cell">
+            <p>کمربندها را ببندیم (1383)-281 </p>
+        </div>
+        <div class="cell">
+            <p>مسافران (1388)-210 </p>
+        </div>
+        <div class="cell">
+            <p>قصه‌های تبیان (1394)-206 </p>
+        </div>
+        <div class="cell">
+            <p>باغچه مینو (1381)-202 </p>
+        </div>
+        <div class="cell">
+            <p>نفس گرم (1394)-197 </p>
+        </div>
+        <div class="cell">
+            <p>امروز و فردا (1390)-189 </p>
+        </div>
+        <div class="cell">
+            <p>زندگی به شرط خنده (1385)-183 </p>
+        </div>
+        <div class="cell">
+            <p>روز رفتن (1385)-177 </p>
+        </div>
+        <div class="cell">
+            <p>پاورچین (1381)-175 </p>
+        </div>
+        <div class="cell">
+            <p>باجناق‌ها (1383)-163 </p>
+        </div>
+        <div class="cell">
+            <p>ریحانه (1384)-162 </p>
+        </div>
+        <div class="cell">
+            <p>کیمیا (1392)-161 </p>
+        </div>
+        <div class="cell">
+            <p>نقطه چین (1383)-157 </p>
+        </div>
+        <div class="cell">
+            <p>پرستاران (1395)-156 </p>
+        </div>
+        <div class="cell">
+            <p>دیوار به دیوار (1396)-144 </p>
+        </div>
+        <div class="cell">
+            <p>دلنوازان (1388)-143 </p>
+        </div>
+        <div class="cell">
+            <p>شمس‌ العماره (1388)-143 </p>
+        </div>
+        <div class="cell">
+            <p>کت جادویی (1378-1377)-138 </p>
+        </div>
+        <div class="cell">
+            <p>یادداشت های یک زن خانه‌دار (1393)-138</p>
+        </div>
+        <div class="cell">
+            <p>مقابل هر اسم تعداد تکرار رو نوشتم. مثلا سریال بدون شرح که ۳۲۱ بار پخش شده یعنی چی؟ یعنی ۳۲۱ بار در جدول پخش بوده. نه اینکه کل سریال ۳۲۱ بار پخش شده! مجموع قسمت هایی که پخش شده ۳۲۱ بار بوده. البته با توجه به اینکه آی‌فیلم هر فیلم رو در روز سه بار پخش میکنه (یک بار اصلی و دوبار تکرار) پس باید اعداد رو بر ۳ تقسیم کنید. می‌بینید که نتیجه چیزی نیست که خیلی ها فکر میکردند!</p>
+           </div>
+       </section>
+   </article>
+
+
+ 
+   </div>
+</body>
+</html>
+

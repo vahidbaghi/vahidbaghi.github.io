@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+   <title>وبلاگ وحید باقی</title>
+   <style>
+       body {
+           font-family: Vazirmatn, sans-serif;
+           line-height: 1.6;
+           max-width: 900px;
+           margin: 0 auto;
+           padding: 20px;
+           background-color: #f7f7f7;
+       }
+
+.notebook-container {
+       background: white;
+       border: 1px solid #e1e4e8;
+       border-radius: 4px;
+       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+   }
+
+   .header {
+       padding: 20px;
+       border-bottom: 1px solid #e1e4e8;
+       background-color: #f6f8fa;
+   }
+
+   .post-title {
+       font-size: 2em;
+       margin: 0;
+       color: #24292e;
+   }
+
+   .post-meta {
+       color: #586069;
+       font-size: 0.9em;
+       margin-top: 10px;
+   }
+
+   .featured-image {
+       width: 100%;
+       max-height: 400px;
+       object-fit: cover;
+   }
+
+   .content {
+       padding: 20px;
+   }
+
+   .cell {
+       margin: 20px 0;
+       padding: 10px;
+       border-radius: 3px;
+       background-color: #f8f9fa;
+       text-align: right;
+   }
+
+   code {
+       background-color: #f6f8fa;
+       padding: 2px 5px;
+       border-radius: 3px;
+       font-family: Monaco, Consolas, monospace;
+   }
+
+   .link-center {
+       text-align: center;
+   }
+   
+   /* تغییرات مربوط به تصاویر */
+   .wp-block-image {
+       text-align: center; /* وسط چین کردن تصاویر */
+   }
+
+   .wp-block-image img {
+       max-width: 100%; /* جلوگیری از بیرون زدگی تصاویر از کادر */
+       height: auto; /* تنظیم خودکار ارتفاع برای حفظ نسبت ابعاد */
+       display: block; /* حذف فضای اضافی زیر تصویر */
+       margin-left: auto;
+       margin-right: auto;
+   }
+   .has-text-align-center{
+    text-align: center;
+   }
+   
+   .cell pre {
+  word-break: break-all;
+  overflow-wrap: break-word; /* اضافه شده */
+  overflow-x: auto; /* اضافه شده */
+}
+
+
+ 
+   </style>
+</head>
+<body>
+   <div class="notebook-container">
+       <article class="main-article post-594 post type-post status-publish format-standard has-post-thumbnail hentry category-1 category-40">       
+       <header class="header">
+           <h1 class="post-title">خانه کاوی در دیوار!</h1>
+           <div class="post-meta">
+               <span class="date">۰۷/۱۲/۱۴۰۱</span>
+           </div>
+       </header>
+
+<section class="content">
+           <div class="cell">
+               <p>چند وقت پیش توی توییتر مرض گذاشتن هیت‌مپ از اسنپ، اسنپ‌فود، تپسی و … گرفته بودم. همون موقع علاقه‌مند شدم که یه هیت‌مپ از قیمت خونه ها در تهران هم بذارم. الان یه فرصتی پیش اومد که این تپه رو هم فتح کنم. قیمت ها رو از سایت دیوار استخراج کردم. حالا با این موضوع کاری ندارم که ممکنه قیمت ها توی دیوار کمی پایین تر یا بالاتر از قیمت واقعی باشه. همین که یه حدودی دستمون بیاد می‌تونه جالب باشه!</p>
+           </div>
+<div class="cell">
+               <p>با توجه به اینکه من میخوام یه هیت‌مپ روی نقشه ترسیم کنم پس باید یه جوری مختصات خونه‌ای که توی دیوار آگهی شده رو پیدا کنم. عموما آدرس کاملا به صورت کلی گفته شده. مثلا نوشته خونه ۸۰ متری در مرزداران. اما همین هم برای من کافیه. من فقط می‌خوام بدونم مثلا تو مرزداران، تجریش، یافت آباد و … چند تا خونه آگهی شده و میانگین قیمت چقدره. برای تبدیل آدرس به مختصات از Search API نشان استفاده کردم :</p>
+           </div>
+       
+       <div class="cell">
+            <figure class="wp-block-embed is-type-wp-embed">
+                <div class="wp-block-embed__wrapper">
+                    <blockquote class="wp-embedded-content" data-secret="2JuekqcoQD" style="display: none;">
+                        <a href="https://platform.neshan.org/api/getting-started/">وب سرویس های نقشه: چطور شروع کنم؟</a>
+                    </blockquote>
+                    <iframe class="wp-embedded-content" sandbox="allow-scripts" security="restricted" title="“وب سرویس های نقشه: چطور شروع کنم؟” — پلتفرم نقشه نشان" src="https://platform.neshan.org/api/getting-started/embed/#?secret=H95QwYOut6#?secret=2JuekqcoQD" data-secret="2JuekqcoQD" width="600" height="235" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+                </div>
+            </figure>
+       </div>
+        <div class="cell">
+               <p>این API یه اسم از من می‌گیره و در خروجی مختصات جغرافیایی برمی‌گردونه. من اطلاعات آگهی ۲۳۱۰۸۲ تا خونه رو که در سه هفته اخیر منتشر شده بودند از دیوار جمع‌آوری کردم. همونطور که در نمودار زیر هم مشاهده می‌کنید، تعداد ۱۵۳۳۰۹ خونه فقط برای فروش، ۴۸۸۰۰ خونه رهن و اجاره، ۲۸۶۹۸ خونه رهن کامل و ۲۷۶ خونه هم فقط اجاره خواستند.</p>
+           </div>
+       <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/33-2.png" alt=""></figure>
+               </div>
+           </div>
+        <div class="cell">
+               <p> حالا می‌خوام هیت‌مپ های مختلف از این دیتاست رو بررسی کنم. برای رسم هیت‌مپ روی نقشه روش های مختلفی وجود داره. من از 3D Maps اکسل استفاده میکنم. مثلا فرض کنید آدرس ۱۰۰ تا خونه تو خیابون کریمخان زنده. خب هیت‌مپ رو چه جوری برای این نقشه رسم کنیم؟ من سه حالت زیر رو در نظر می‌گیرم.</p>
+           </div>
+        <div class="cell">
+               <p><strong>روش Maximum :</strong> تو این روش اگر چند تا نقطه روی هم داشته باشیم، اونی که بیشترین مقدار رو داره به عنوان نماینده اون نقطه در نظر میگیره.</p>
+           </div>
+       <div class="cell">
+               <p><strong>روش Average : </strong>تو این روش اگر چند تا نقطه روی هم داشته باشیم، میانگین مقادیر رو به عنوان نماینده اون نقطه در نظر میگیره.</p>
+           </div>
+        <div class="cell">
+               <p><strong>روش Sum :</strong> تو این روش اگر چند تا نقطه روی هم داشته باشیم، جمع مقادیر رو به عنوان نماینده اون نقطه در نظر میگیره.</p>
+           </div>
+        <div class="cell">
+               <p><strong>توزیع تعداد آگهی ها</strong></p>
+           </div>
+        <div class="cell">
+               <p>هیت‌مپ زیر نشون میده به صورت کلی توزیع تعداد آگهی املاک در تهران به چه صورتی است :</p>
+           </div>
+        <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img decoding="async" src="images/33-3.png" alt=""></figure>
+               </div>
+           </div>
+        <div class="cell">
+               <p>همونطور که در نقشه بالا مشاهده می‌کنید وسط نقشه تعداد آگهی های بیشتری وجود داره. روی اون قسمت قرمز زوم کنیم تا ببینیم دقیقا کجاست؟!</p>
+           </div>
+        <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-4.png" alt=""></figure>
+               </div>
+           </div>
+         <div class="cell">
+               <p>محدوده خیابان کریمخان زند، میدان انقلاب و خیابان سپهبد قرنی/ایرانشهر بیشترین آگهی ها رو به خودشون اختصاص دادند. خیابان کریمخان و ایرانشهر به دلیل بافت اداری/تجاری که داره کاملا منطقیه که آگهی های زیادی داشته باشه.</p>
+           </div>
+       <div class="cell">
+               <p><strong>توزیع قیمت خانه ها (فروش)</strong></p>
+           </div>
+        <div class="cell">
+               <p>نمودار زیر نشون میده توزیع قیمت خونه ها (اونایی که برای فروش گذاشتند) در تهران به چه صورتی است. بیاید از زاویه های مختلف به نمودار نگاه کنیم :</p>
+           </div>
+       <div class="cell">
+               <p><strong>شرق به غرب :</strong></p>
+           </div>
+        <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-5.png" alt=""></figure>
+               </div>
+           </div>
+        <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-6.png" alt=""></figure>
+               </div>
+           </div>
+       <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-7.png" alt=""></figure>
+               </div>
+           </div>
+        <div class="cell">
+               <p>همونطور که می‌بینید قیمت خونه ها در شرق بیشتره (به خصوص شمال شرق) که میشه به محله های کاشانک، نیاوران، اقدسیه، قیطریه، تجریش، قلهک و … اشاره کرد.</p>
+           </div>
+       <div class="cell">
+               <p><strong>جنوب به شمال :</strong></p>
+           </div>
+        <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-8.png" alt=""></figure>
+               </div>
+           </div>
+        <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-9.png" alt=""></figure>
+               </div>
+           </div>
+       <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-10.png" alt=""></figure>
+               </div>
+           </div>
+        <div class="cell">
+               <p>همونطور که در نمودار بالا مشاهده می‌کنید قیمت خونه ها از جنوب به شمال شیب صعودی داره.</p>
+           </div>
+        <div class="cell">
+               <p>تصاویر زیر هم هیت‌مپ همین نمودار ها رو نشون میدن. اعدادی که در هیت‌مپ ها مشاهده می‌کنید قیمت یک متر از اون خونه هاست. یعنی مثلا توی نمودار زیر که هیت‌مپ قیمت فروش خونه با روش Maximum رو نشون میده، گرون ترین خونه متری ۲۸ میلیارد تومن بوده و ارزون ترین خونه متری ۱۹ میلیون تومن بوده!</p>
+           </div>
+       <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-11.png" alt=""></figure>
+               </div>
+           </div>
+        <div class="cell">
+               <p>اون ناحیه قرمز رنگ شمال شرق نقشه میشه کاشانک، اقدسیه، فرمانیه و چیذر که بیشترین قیمت خونه ها رو دارند. ناحیه قرمز رنگ شمال مرکز میشه سعادت آباد و اون ناحیه قرمز رنگ جنوب شرقی اطراف خیابون پامنار و امیرکبیر</p>
+           </div>
+       <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-12.png" alt=""></figure>
+               </div>
+           </div>
+        <div class="cell">
+               <p>اون ناحیه قرمز رنگ وسط نقشه میشه بازار بزرگ تهران، پامنار و خیابان کریمخان زند (اطراف میون ولیعصر)</p>
+           </div>
+       <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-13.png" alt=""></figure>
+               </div>
+           </div>
+       <div class="cell">
+               <p>اون قسمت قرمز رنگ شمال شرق و مرکز هم میشه محله های کاوه، الهیه و سعادت آباد</p>
+           </div>
+        <div class="cell">
+               <p><strong>توزیع قیمت خانه ها (رهن کامل)</strong></p>
+           </div>
+       <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-14.png" alt=""></figure>
+               </div>
+           </div>
+       <div class="cell">
+               <p>محله ۱ : تقاطع امام خمینی – نواب</p>
+           </div>
+       <div class="cell">
+               <p>محله ۲ : اباذر – کاشانی</p>
+           </div>
+       <div class="cell">
+               <p>محله ۳ : دریاچه چیتگر</p>
+           </div>
+        <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-15.png" alt=""></figure>
+               </div>
+           </div>
+        <div class="cell">
+               <p>محله ۱ : بازار بزرگ تهران و پامنار</p>
+           </div>
+       <div class="cell">
+               <p>محله ۲ : خیابان قرنی، کریمخان زند، نجات اللهی و میدان ولیعصر</p>
+           </div>
+       <div class="cell">
+               <p>محله ۳ : محله نظامی گنجوی (توانیر)</p>
+           </div>
+        <div class="cell">
+               <p>محله ۴ : کاوه، الهیه</p>
+           </div>
+       <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-16.png" alt=""></figure>
+               </div>
+           </div>
+       <div class="cell">
+               <p>محله ۱ : کاوه، الهیه</p>
+           </div>
+        <div class="cell">
+               <p>محله ۲ : سعادت آباد</p>
+           </div>
+       <div class="cell">
+               <p><strong>توزیع قیمت خانه ها (فقط اجاره)</strong></p>
+           </div>
+        <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-17.png" alt=""></figure>
+               </div>
+           </div>
+        <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-18.png" alt=""></figure>
+               </div>
+           </div>
+        <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-19.png" alt=""></figure>
+               </div>
+           </div>
+        <div class="cell">
+               <p>ناحیه قرمز رنگ برای هر سه تا نقشه میشه خیابان وحید دستجردی – شاهسون و بزرگراه کردستان – همت</p>
+           </div>
+        <div class="cell">
+               <p><strong>توزیع قیمت خانه ها (رهن و اجاره)</strong></p>
+           </div>
+       <div class="cell">
+               <p>نمودار های قبلی ما فقط یه قیمت داشتیم. یعنی یا فروش بوده، یا رهن کامل بوده (بدون اجاره) یا فقط اجاره بوده. اما اینجا ما رهن و اجاره رو داریم. یعنی دو تا عدد داریم. این دو تا رو چه جوری با هم ترکیب کنم؟ کاری که من میخوام انجام بدم اینه که اجاره رو هم به رهن تبدیل کنم. الان یه نفر که پول رهن رو میگیره چیکار میکنه؟ عموما میذارن توی بانک و سودش رو میگیرن. من فرض میکنم سود روز شمار ۱۰ درصد باشه. فرض کنید یه نفر ۵۰۰ میلیون ودیعه بگیره و ۱ میلیون اجاره. ما چقدر باید توی بانک بذاریم که ماهی ۱ میلیون تومن سود بده؟ اگر ۱۲۰ میلیون توی بانک بذاره میشه ماهی ۱ میلیون تومن سود. خب من این ۱۲۰ میلیون رو با ۵۰۰ جمع میکنم که میشه ۶۲۰ میلیون رهن کامل!</p>
+           </div>
+       <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-20.png" alt=""></figure>
+               </div>
+           </div>
+        <div class="cell">
+               <p>محله ۱ : ابوذر غربی – یافت آباد</p>
+           </div>
+       <div class="cell">
+               <p>محله ۲ : توحید – نصرت</p>
+           </div>
+        <div class="cell">
+               <p>محله ۳ : نجات اللهی – ولیعصر/بهشتی – رسالت/الوند</p>
+           </div>
+       <div class="cell">
+               <p>محله ۴ : الهیه – کاوه</p>
+           </div>
+        <div class="cell">
+               <p>محله ۵ : تهران پارس</p>
+           </div>
+       <div class="cell">
+               <p>محله ۶ : سعادت آباد – شهرک غرب</p>
+           </div>
+        <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-21.png" alt=""></figure>
+               </div>
+           </div>
+       <div class="cell">
+               <p>محله های این نقشه هم مثل ۶ تا محله نقشه قبلیه. </p>
+           </div>
+        <div class="cell">
+               <div class="wp-block-image">
+                   <figure class="aligncenter"><img loading="lazy" decoding="async" src="images/33-22.png" alt=""></figure>
+               </div>
+           </div>
+        <div class="cell">
+               <p>تو نقشه بالا هم نقاط قرمز رنگ کاوه – الهیه و سعادت آباد هستند.</p>
+           </div>
+       <div class="cell">
+           <hr class="wp-block-separator has-alpha-channel-opacity">
+       </div>
+
+       </section>
+   </article>
+
+
+ 
+   </div>
+</body>
+</html>
+

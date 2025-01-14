@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+   <title>وبلاگ وحید باقی</title>
+   <style>
+       body {
+           font-family: Vazirmatn, sans-serif;
+           line-height: 1.6;
+           max-width: 900px;
+           margin: 0 auto;
+           padding: 20px;
+           background-color: #f7f7f7;
+       }
+
+       .notebook-container {
+           background: white;
+           border: 1px solid #e1e4e8;
+           border-radius: 4px;
+           box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+       }
+
+       .header {
+           padding: 20px;
+           border-bottom: 1px solid #e1e4e8;
+           background-color: #f6f8fa;
+       }
+
+       .post-title {
+           font-size: 2em;
+           margin: 0;
+           color: #24292e;
+       }
+
+       .post-meta {
+           color: #586069;
+           font-size: 0.9em;
+           margin-top: 10px;
+       }
+
+       .featured-image {
+           width: 100%;
+           max-height: 400px;
+           object-fit: cover;
+       }
+
+       .content {
+           padding: 20px;
+       }
+
+       .cell {
+           margin: 20px 0;
+           padding: 10px;
+           border-radius: 3px;
+           background-color: #f8f9fa;
+           text-align: right;
+       }
+
+       code {
+           background-color: #f6f8fa;
+           padding: 2px 5px;
+           border-radius: 3px;
+           font-family: Monaco, Consolas, monospace;
+       }
+
+       .link-center {
+           text-align: center;
+       }
+       
+       /* تغییرات مربوط به تصاویر */
+       .wp-block-image {
+           text-align: center; /* وسط چین کردن تصاویر */
+       }
+
+       .wp-block-image img {
+           max-width: 100%; /* جلوگیری از بیرون زدگی تصاویر از کادر */
+           height: auto; /* تنظیم خودکار ارتفاع برای حفظ نسبت ابعاد */
+           display: block; /* حذف فضای اضافی زیر تصویر */
+           margin-left: auto;
+           margin-right: auto;
+       }
+	   .has-text-align-center{
+			text-align: center;
+	   }
+	   
+	   .cell pre {
+		word-break: break-all;
+		overflow-wrap: break-word; /* اضافه شده */
+		overflow-x: auto; /* اضافه شده */
+	}
+   </style>
+</head>
+<body>
+   <div class="notebook-container">
+       <article class="main-article post-7 post type-post status-publish format-standard has-post-thumbnail hentry category-1 category-40">		   
+		   <header class="header">
+           <h1 class="post-title">مروری بر اِکس در توییتر فارسی</h1>
+           <div class="post-meta">
+               <span class="date">۱۴۰۰/۰۸/۲۸</span>
+           </div>
+       </header>
+
+           <section class="content">
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/10-1.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   <div class="cell">
+                   <p>مدتی است که در توییتر فارسی ژانر «<strong>به اکسی که {۱} میگن {۲}»</strong> داغ شده. البته این دفعه اولی نیست که این ژانر داغ میشه و قبلا هم توییت هایی با این مضمون نوشته شده. از طریق لینک زیر می‌تونید توییت های این ژانر رو ببینید :</p>
+               </div>
+               <div class="cell">
+                   <pre class="has-text-align-center">https://twitter.com/search?q=%D8%A8%D9%87%20%D8%A7%DA%A9%D8%B3%DB%8C%20%DA%A9%D9%87%20%D9%85%DB%8C%DA%AF%D9%86&src=typed_query&f=live</pre>
+               </div>
+               <div class="cell">
+                   <p>با توجه به محدودیت API توییتر که فقط توییت های ۳۰ روز اخیر رو نشون میده، من از <a href="https://github.com/vahidbaghi/twitter-js-scraper">روش اختصاصی</a> خودم برای دانلود توییت ها استفاده کردم 🙂 تعداد ۱۶۲۱ توییت رو ذخیره و پردازش کردم و نتیجه رو در فایل اکسل زیر قرار دادم :</p>
+               </div>
+               <div class="cell">
+                   <pre class="has-text-align-center">https://docs.google.com/spreadsheets/d/1U6liVpBYkkmG9Ofg7NbjkEv2bPlKPPJwfxTqke3LUKM/edit?usp=sharing</pre>
+               </div>
+               <div class="cell">
+                   <p>فایل بالا شامل ۵ ستون زیر است :<strong>«میگن» :</strong> کلمه‌ای که به جای {۲} قرار میگیره.«<strong>به اکسی که» : </strong>جمله/جملاتی که به جای {۱} قرار میگیره. «<strong>لایک» : </strong>مجموع تعداد لایک هایی که کلمه {۲} گرفته است.«<strong>ریتوییت» : </strong>مجموع تعداد ریتوییت هایی که کلمه {۲} گرفته است.«<strong>ریپلای» :</strong> مجموع تعداد ریپلای هایی که کلمه {۲} گرفته است.</p>
+               </div>
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/10-2.png" alt=""></figure>
+                   </div>
+               </div>
+               <div class="cell">
+                   <p>فایل خام توییت ها رو به صورت json میذارم اگر خواستید خودتون باهاش کار کنید :</p>
+               </div>
+               <div class="cell">
+                   <pre class="has-text-align-center">https://gist.github.com/vahidbaghi/91299498a278b0197c19af1ae2682cc4</pre>
+               </div>
+           </section>
+       </article>
+   </div>
+</body>
+</html>

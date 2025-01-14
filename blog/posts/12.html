@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+   <title>وبلاگ وحید باقی</title>
+   <style>
+       body {
+           font-family: Vazirmatn, sans-serif;
+           line-height: 1.6;
+           max-width: 900px;
+           margin: 0 auto;
+           padding: 20px;
+           background-color: #f7f7f7;
+       }
+
+       .notebook-container {
+           background: white;
+           border: 1px solid #e1e4e8;
+           border-radius: 4px;
+           box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+       }
+
+       .header {
+           padding: 20px;
+           border-bottom: 1px solid #e1e4e8;
+           background-color: #f6f8fa;
+       }
+
+       .post-title {
+           font-size: 2em;
+           margin: 0;
+           color: #24292e;
+       }
+
+       .post-meta {
+           color: #586069;
+           font-size: 0.9em;
+           margin-top: 10px;
+       }
+
+       .featured-image {
+           width: 100%;
+           max-height: 400px;
+           object-fit: cover;
+       }
+
+       .content {
+           padding: 20px;
+       }
+
+       .cell {
+           margin: 20px 0;
+           padding: 10px;
+           border-radius: 3px;
+           background-color: #f8f9fa;
+           text-align: right;
+       }
+
+       code {
+           background-color: #f6f8fa;
+           padding: 2px 5px;
+           border-radius: 3px;
+           font-family: Monaco, Consolas, monospace;
+       }
+
+       .link-center {
+           text-align: center;
+       }
+       
+       /* تغییرات مربوط به تصاویر */
+       .wp-block-image {
+           text-align: center; /* وسط چین کردن تصاویر */
+       }
+
+       .wp-block-image img {
+           max-width: 100%; /* جلوگیری از بیرون زدگی تصاویر از کادر */
+           height: auto; /* تنظیم خودکار ارتفاع برای حفظ نسبت ابعاد */
+           display: block; /* حذف فضای اضافی زیر تصویر */
+           margin-left: auto;
+           margin-right: auto;
+       }
+	   .has-text-align-center{
+			text-align: center;
+	   }
+	   
+	   .cell pre {
+		word-break: break-all;
+		overflow-wrap: break-word; /* اضافه شده */
+		overflow-x: auto; /* اضافه شده */
+	}
+   </style>
+</head>
+<body>
+   <div class="notebook-container">
+       <article class="main-article post-7 post type-post status-publish format-standard has-post-thumbnail hentry category-1 category-40">		   
+		   <header class="header">
+           <h1 class="post-title">دیجی کالا در توییتر چه می‌کند؟!</h1>
+           <div class="post-meta">
+               <span class="date">۱۴۰۰/۰۹/۱۹</span>
+           </div>
+       </header>
+
+           <section class="content">
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-1.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>مقدمه لازمه؟ ولش کن! بریم سراغ اصل مطلب!اومدم توییت هایی که شامل «دیجی کالا» ، «دیجیکالا» و «digikala» هستند رو به کمک Selenium و پایتون استخراج کردم و حالا میخوام یکسری تحلیل رو روی داده ها انجام بدم. توییت ها رو از تاریخ<strong> ۹ نوامبر ۲۰۰۸</strong> تا<strong> ۹ دسامبر ۲۰۲۱</strong> جمع آوری کردم :</p>
+               </div>
+			   
+               <div class="cell">
+                   <pre class="has-text-align-center">https://twitter.com/search?q=since%3A2008-11-09%20until%3A2021-12-09%20lang%3Afa%20digikala%20OR%20%D8%AF%DB%8C%D8%AC%DB%8C%DA%A9%D8%A7%D9%84%D8%A7%20OR%20%D8%AF%DB%8C%D8%AC%DB%8C%E2%80%8C%DA%A9%D8%A7%D9%84%D8%A7%20OR%20%22%D8%AF%DB%8C%D8%AC%DB%8C%20%DA%A9%D8%A7%D9%84%D8%A7%22&src=typed_query&f=live</pre>
+               </div>
+			   
+			   <div class="cell">
+                   <p>مجموع تعداد توییت های جمع‌آوری شده 106,936 عدد است. اول ببینیم نخستین توییت در چه سالی نوشته شده و در سال های مختلف چه تعداد توییت در مورد دیجی‌کالا نوشته شده؟اولین توییت در تاریخ <strong>یکشنبه، ۱۹ آبان ۱۳۸۷</strong> نوشته شده :</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-2.png" alt=""><figcaption>https://twitter.com/erfani/status/997718112</figcaption></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>نمودار زیر نشون میده از سال ۲۰۰۸ تا الان هر سال چه تعداد توییت در مورد دیجی‌کالا نوشته شده :</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-3.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>نمودار زیر نشون میده در چه ماه هایی از سال بیشترین توییت نوشته شده :</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-4.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>هیت مپ زیر نشان می‌دهد در چه روزی از هفته و در چه ساعتی از شبانه‌روز بیشترین توییت نوشته شده است :</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-5.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>ابر کلمات توییت های هر سال به صورت زیره. البته بعضی از سال ها (۲۰۰۸ و ۲۰۰۱۱) حجم دیتا انقدری نبود که بشه براش ابر کلمات ترسیم کرد. ابر کلمات بعضی از سالها هم به هم شباهت داره اما در جزئیات با هم تفاوت دارند. سال ۲۰۰۸ تا ۲۰۲۱ :</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-6.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>سال ۲۰۰۸ تا ۲۰۱۱ : مقدار دیتا کافی نبود :/سال ۲۰۱۲ :</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-7.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>سال ۲۰۱۳ :</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-8.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>سال ۲۰۱۴ :</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-9.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>سال ۲۰۱۵ :</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-10.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>سال ۲۰۱۶ :</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-11.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>سال ۲۰۱۷ :</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-12.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>سال ۲۰۱۸ :</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-13.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>سال ۲۰۱۹ :</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-14.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>سال ۲۰۲۰ :</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-15.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>سال ۲۰۲۱ :</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-16.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>حالا می‌خوام بررسی کنم ملت لینک چه کالا هایی رو در توییت های خودشون قرار دادند. الگوی لینک کالا ها در دیجی‌کالا به صورت زیره :</p>
+               </div>
+			   
+               <div class="cell">
+                   <pre class="has-text-align-center">https://www.digikala.com/product/dkp-عدد</pre>
+               </div>
+			   
+			   <div class="cell">
+                   <p>منم توی توییت ها گشتم ببینم لینک چه کالا هایی به اشتراک گذاشته شده. در لیست زیر ۴ تا از کالا هایی که بیشترین تکرار رو داشتند رو قرار دادم :</p>
+               </div>
+			   
+               <div class="cell">
+                   <pre class="has-text-align-center">https://www.digikala.com/product/dkp-311431 - 2
+https://www.digikala.com/product/dkp-882011 - 2
+https://www.digikala.com/product/dkp-441847 - 2
+https://www.digikala.com/product/dkp-784530 - 2</pre>
+               </div>
+			   
+			   <div class="cell">
+                   <p>مقابل هر لینک یک عدد نوشته شده که تعداد تکرار این لینک رو در همه توییت ها نشون میده. همونطور که می‌بینید اطلاعات مفیدی نمیده. تعداد تکرار ۲ اصلا قابل توجه نیست! لیست کامل رو در gist زیر قرار دادم :</p>
+               </div>
+			   
+               <div class="cell">
+                   <pre class="has-text-align-center">https://gist.github.com/vahidbaghi/6ea6c9aaf000049050c7df8464f766ab</pre>
+               </div>
+			   
+			   <div class="cell">
+                   <p>برای تلاش دوم، اومدم و به جای تعداد تکرار، مقدار engagement رو در نظر گرفتم. engagement یعنی تعداد لایک + ریتوییت + کامنت (ریپلای). در لیست زیر ۵ تا از کالا هایی که بیشترین مقدار engagement رو داشتند رو قرار دادم :</p>
+               </div>
+			   
+               <div class="cell">
+                   <pre class="has-text-align-center">https://www.digikala.com/product/dkp-311431 - 58 
+!غیر فعال شده
+
+https://www.digikala.com/product/dkp-441847 - 37
+مانیتور سامسونگ مدل C24F390 سایز 24 اینچ
+
+https://www.digikala.com/product/dkp-135021 - 29
+خودرو بوگاتی Chiron اتوماتیک سال 2016
+
+https://www.digikala.com/product/dkp-4102064 - 29
+!غیر فعال شده
+
+https://www.digikala.com/product/dkp-1753218 - 15
+تی شرت مردانه آریوس مدل CSRBMB-Blank-106</pre>
+               </div>
+			   
+			   <div class="cell">
+                   <p>لیست کامل رو در gist زیر قرار دادم :</p>
+               </div>
+			   
+               <div class="cell">
+                   <pre class="has-text-align-center">https://gist.github.com/vahidbaghi/49114a3c08c7ea7a027042e3d565c02e</pre>
+               </div>
+			   
+			   <div class="cell">
+                   <p>لیست ۵ توییت که بیشترین مقدار engagement رو دارند :</p>
+               </div>
+			   
+               <div class="cell">
+                   <pre class="has-text-align-center">https://twitter.com/_nadja_nadja/status/1298553550038081536 - 17972
+https://twitter.com/Verkhovensky_ST/status/1448026344776929280 - 10333
+https://twitter.com/koushhhh/status/1446582857649041410 - 9598
+https://twitter.com/melikasn/status/1452970081022095360 - 8690
+https://twitter.com/SaeedMoy/status/1451981183051575300 - 6381</pre>
+               </div>
+			   
+			   <div class="cell">
+                   <p>عددی که مقابل لینک توییت نوشته شده مقدار engagement است. عکس توییت های بالا :</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-17.png" alt=""></figure>
+                   </div>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-18.png" alt=""></figure>
+                   </div>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-19.png" alt=""></figure>
+                   </div>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-20.png" alt=""></figure>
+                   </div>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-21.png" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>لیست کامل رو در gist زیر قرار دادم :</p>
+               </div>
+			   
+               <div class="cell">
+                   <pre class="has-text-align-center">https://gist.github.com/vahidbaghi/7d14c45f2f53c507171b56f0789bfe22</pre>
+               </div>
+			   
+			   <div class="cell">
+                   <p>اکانت digikalasupport@ اکانت رسمی پشتیبانی دیجی‌کالا در توییتره که همیشه متن معروف زیر رو میفرسته:</p>
+               </div>
+			   
+               <div class="cell">
+                   <pre class="has-text-align-center">کد سفارش‌تون رو ارسال کنین در دایرکت حتما بررسی و پیگیری می‌کنیم.</pre>
+               </div>
+			   
+			   <div class="cell">
+                   <p>تعداد 18360 توییت از این اکانت رو ذخیره کردم و حالا میخوام کمی بررسیش کنم. این اکانت در چه روزی از هفته و در چه ساعتی از شبانه‌روز بیشترین فعالیت رو داشته؟</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-22.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>ابر کلمات توییت های این اکانت هم به صورت زیره :</p>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-23.jpg" alt=""></figure>
+                   </div>
+               </div>
+			   
+			   <div class="cell">
+                   <p>۵ توییت این اکانت که بیشترین engagement رو دارند :</p>
+               </div>
+			   
+               <div class="cell">
+                   <pre class="has-text-align-center">https://twitter.com/digikalasupport/status/1461176159069257732
+https://twitter.com/digikalasupport/status/1388850716979105797
+https://twitter.com/digikalasupport/status/1332272656230604800
+https://twitter.com/digikalasupport/status/1416761953641500677
+https://twitter.com/digikalasupport/status/1394909326783959044</pre>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-24.png" alt=""></figure>
+                   </div>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-25.png" alt=""></figure>
+                   </div>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-26.png" alt=""></figure>
+                   </div>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-27.png" alt=""></figure>
+                   </div>
+               </div>
+			   
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/12-28.png" alt=""></figure>
+                   </div>
+               </div>
+           </section>
+       </article>
+   </div>
+</body>
+</html>

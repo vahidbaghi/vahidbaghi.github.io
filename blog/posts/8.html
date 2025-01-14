@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
+   <title>وبلاگ وحید باقی</title>
+   <style>
+       body {
+           font-family: Vazirmatn, sans-serif;
+           line-height: 1.6;
+           max-width: 900px;
+           margin: 0 auto;
+           padding: 20px;
+           background-color: #f7f7f7;
+       }
+
+       .notebook-container {
+           background: white;
+           border: 1px solid #e1e4e8;
+           border-radius: 4px;
+           box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+       }
+
+       .header {
+           padding: 20px;
+           border-bottom: 1px solid #e1e4e8;
+           background-color: #f6f8fa;
+       }
+
+       .post-title {
+           font-size: 2em;
+           margin: 0;
+           color: #24292e;
+       }
+
+       .post-meta {
+           color: #586069;
+           font-size: 0.9em;
+           margin-top: 10px;
+       }
+
+       .featured-image {
+           width: 100%;
+           max-height: 400px;
+           object-fit: cover;
+       }
+
+       .content {
+           padding: 20px;
+       }
+
+       .cell {
+           margin: 20px 0;
+           padding: 10px;
+           border-radius: 3px;
+           background-color: #f8f9fa;
+           text-align: right;
+       }
+
+       code {
+           background-color: #f6f8fa;
+           padding: 2px 5px;
+           border-radius: 3px;
+           font-family: Monaco, Consolas, monospace;
+       }
+
+       .link-center {
+           text-align: center;
+       }
+       
+       /* تغییرات مربوط به تصاویر */
+       .wp-block-image {
+           text-align: center; /* وسط چین کردن تصاویر */
+       }
+
+       .wp-block-image img {
+           max-width: 100%; /* جلوگیری از بیرون زدگی تصاویر از کادر */
+           height: auto; /* تنظیم خودکار ارتفاع برای حفظ نسبت ابعاد */
+           display: block; /* حذف فضای اضافی زیر تصویر */
+           margin-left: auto;
+           margin-right: auto;
+       }
+	   .has-text-align-center{
+			text-align: center;
+	   }
+	   
+	   .cell pre {
+		word-break: break-all;
+		overflow-wrap: break-word; /* اضافه شده */
+		overflow-x: auto; /* اضافه شده */
+	}
+   </style>
+</head>
+<body>
+   <div class="notebook-container">
+       <article class="main-article post-565 post type-post status-publish format-standard has-post-thumbnail hentry category-1">		   
+		   <header class="header">
+           <h1 class="post-title">کنکور و بازی با احتمالات؟!</h1>
+           <div class="post-meta">
+               <span class="date">۱۴۰۰/۰۸/۰۴</span>
+           </div>
+       </header>
+
+           <section class="content">
+               <div class="cell">
+                   <p>در این مقاله کوتاه می‌خوام بررسی کنم که اگر در کنکور به صورت تصادفی گزینه ها رو انتخاب کنیم چه اتفاقی میافته؟! اصلا بیاید کنکور رو بذاریم کنار. فرض کنید این مقاله قصد داره یه سری مفاهیم آماری رو در قالب این موضوع بررسی کنه.برای انجام این کار پاسخنامه های کنکور سراسری ۱۴۰۰ رو از لینک زیر دانلود کردم :</p>
+               </div>
+               <div class="cell">
+                   <pre class="has-text-align-center">http://result2.sanjesh.org/keys/sarasari1400/</pre>
+               </div>
+               <div class="cell">
+                   <p>اول بیاید بررسی کنم جواب های صحیح به چه صورتی توزیع شدند. به زبان ساده تر، یعنی چند تا گزینه ۱، چند تا گزینه ۲، چند تا گزینه ۳ و چند تا گزینه ۴ داریم. پس میام و هیستوگرام جواب های صحیح رو رسم می‌کنم :</p>
+               </div>
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/8-1.jpg" alt=""></figure>
+                   </div>
+               </div>
+               <div class="cell">
+                   <p>به صورت چشمی و با نگاه کردن به نمودار بالا میشه نتیجه گرفت که جواب های صحیح به صورت یکنواخت توزیع شدند. یکنواخت یعنی چی؟ یعنی جواب های صحیح به شکل کاملا مساوی بین گزینه های مختلف تقسیم بشن. البته در اینجا به صورت تقریبا مساوی تقسیم شدند ولی اشکال نداره، ما قبول می‌کنیم :)حالا اگر تعداد داده های ما زیاد بود و نتونستیم چشمی این موضوع رو بررسی کنیم چه خاکی باید به سر بریزیم؟ اینجاست که باید از آزمون برازش Chi Square کمک بگیریم! من اینجا به صورت خیلی خلاصه این آزمون رو توضیح می‌دم و برای اطلاعات بیشتر می‌تونید <a href="https://blog.faradars.org/chi-square-distribution/" rel="noreferrer noopener" target="_blank">این مقاله</a> و <a href="https://www.youtube.com/watch?v=HKDqlYSLt68" rel="noreferrer noopener" target="_blank">این ویدئو</a> رو ببینید. اول بیاید جدول زیر رو برای کنکور ریاضی تشکیل بدیم :</p>
+               </div>
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/8-2.png" alt=""></figure>
+                   </div>
+               </div>
+               <div class="cell">
+                   <p><strong>مقدار مشاهده شده</strong> در جدول بالا همون هیستوگرام جواب های صحیحه که بالاتر بررسیش کردیم. حالا اگر توزیع جواب های صحیح کاملا یکنواخت باشه، ما انتطار داریم به هر گزینه ۵۸.۷۵ تا سوال برسه که میشه مقدار مورد انتظار. یعنی اگر توزیع کاملا یکنواخت باشه، ما انتظار داریم به هر گزینه ۵۸.۷۵ تا سوال برسه! آزمون Chi Square یه رابطه داره که به صورت زیره :</p>
+               </div>
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/8-3.png" alt=""></figure>
+                   </div>
+               </div>
+               <div class="cell">
+                   <p>در رابطه بالا، O مقدار مشاهده شده (Observed) و E مقدار مورد انتظار (Expected) است. با توجه به توضیحاتی که دادم، مقدار χ به صورت زیر محاسبه میشه :</p>
+               </div>
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/8-4.png" alt=""></figure>
+                   </div>
+               </div>
+               <div class="cell">
+                   <p>این کار رو با استفاده از کتابخونه scipy در پایتون هم می‌تونستیم انجام بدیم :بعد از اینکه این مقدار رو محاسبه کردیم باید چیکار کنیم؟ اول به جدول زیر که جدول توزیع Chi Square است توجه کنید (این جدول رو از <a href="https://passel2.unl.edu/view/lesson/9beaa382bf7e/8" rel="noreferrer noopener" target="_blank">این لینک</a> برداشتم) :</p>
+               </div>
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/8-5.png" alt=""></figure>
+                   </div>
+               </div>
+               <div class="cell">
+                   <p>ستون اول Degree of Freedom یا درجه آزادی رو در توزیع Chi Square نشون میده که از ۱ تا ۶۰ مقداردهی شده. درجه آزادی رو چه جوری تعیین کنیم؟ خیلی ساده! چند تا کلاس/دسته/گزینه داریم؟ آفرین ۴ تا! پس ۳=۱-۴ میشه درجه آزادی ما در این مسئله!به اون اعداد ۰.۰۱ تا ۰.۹۹ که در بالای جدول نوشته شده میگن significance level یا سطح اهمیت. یعنی چی؟ اول ببینیم هدف ما از انجام این تست چیه؟ ما میخوایم بررسی کنیم که آیا توزیع جواب های صحیح بین گزینه های مختلف به صورت یکنواخت انجام شده یا نه. اگر significance level یا سطح اهمیت رو ۰.۰۵ در نظر بگیریم، یعنی ۵ درصد این احتمال وجود داره که توزیع داده های ما یکنواخت نباشه، اما Chi Square بگه یکنواخته. در واقع جوابی که در آزمون به ما میده اطمینان ۹۵ درصدی داره. در خیلی از مسائل میگن سطح اهمیت رو همین ۰.۰۵ در نظر بگیرید کفایت میکنه. منم سطح اهمیت رو در این مسئله ۰.۰۵ در نظر می‌گیرم.حالا باید چیکار کنیم؟ در سطر ۳ و ستون ۰.۰۵ مقدار ۷.۸۱ رو داریم. مقداری که ما محاسبه کردیم ۰.۳۸ بود. چون ۰.۳۸ کوچکتر از ۷.۸۱ است پس توزیع داده های ما یکنواخته. به همین سادگی! این کار رو اگر برای کنکور تجربی، انسانی و … هم انجام بدید همین نتیجه رو میده.الان می‌خوام بررسی کنم که اگر به صورت تصادفی (با توزیع یکنواخت) به تست ها جواب بدیم نتیجه به چه صورتی میشه؟ برای انجام این کار از کد زیر استفاده کردم :محتویات فایل riyazi-A-1400.txt به صورت زیره :</p>
+               </div>
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/8-6.png" alt=""></figure>
+                   </div>
+               </div>
+               <div class="cell">
+                   <p>در هر سطر از این فایل، ابتدا شماره سوال رو داریم و مقابلش هم گزینه صحیح مشخص شده. در خط ۳ و ۴ محتویات این فایل رو خوندم و در متغیر lines قرار دادم. بعد یک حلقه for تشکیل دادم که هر بار میاد و خط به خط از متغیر lines می‌خونه و عدد گزینه صحیح رو در متغیر correct_choice قرار میده. بعد میاد و یک عدد تصادفی بین ۱ تا ۴ با توزیع یکنواخت انتخاب می‌کنه و اون رو داخل متغیر random_choice قرار میده. اگر عدد تصادفی انتخاب شده با عدد گزینه صحیح یکی باشه، متغیر correct_count رو یک واحد زیاد میکنه. برای اینکه نتیجه دقیق تری داشته باشیم، من این کار رو num_iteration بار انجام میدم و در نهایت میانگین می‌گیرم. در این مثال مقدار num_iterationرو ۱۰۰ هزار در نظر گرفتم.نتیجه ۵۹≅۵۸.۷۳۵۴۵ شد. یعنی اگر گزینه ها رو به صورت تصادفی انتخاب کنیم، به صورت میانگین به ۵۹ سوال از ۲۳۵ سوال پاسخ صحیح می‌دیم. با توجه به اینکه توی کنکور نمره منفی وجود داره، پس هر ۳ پاسخ غلط، ۱ پاسخ صحیح رو هم از بین می‌بره. بنابراین اگر تعداد پاسخ های صحیح ۵۹ و تعداد پاسخ های غلط ۱۷۶ باشه، درصد (نمره خام) ما ۰.۱ درصد میشه. یعنی تقریبا صفر میشه!الان می‌خوام به صورت ریاضی ثابت کنم که اگر به صورت تصادفی (با توزیع یکنواخت) به سوالات پاسخ بدید نمره خام شما میشه صفر! برای انجام این کار قصد دارم از امید ریاضی استفاده کنم. اگر نمی‌دونید امید ریاضی چیه، می‌تونید <a href="https://blog.faradars.org/expected-value/" rel="noreferrer noopener" target="_blank">این لینک</a> و <a href="https://fa.wikipedia.org/wiki/امید_ریاضی" rel="noreferrer noopener" target="_blank">این لینک</a> رو مطالعه کنید. مثال زیر به نظرم خیلی خوب می‌تونه مفهوم امید ریاضی رو توضیح بده :</p>
+               </div>
+               <div class="cell">
+                   <div class="wp-block-image">
+                       <figure class="aligncenter"><img decoding="async" src="images/8-7.png" alt=""></figure>
+                   </div>
+               </div>
+               <div class="cell">
+                   <p>حالا بیاید برای مسئله خودمون این محاسبات رو انجام بدیم. در یک سوال ۴ گزینه‌ای، احتمال اینکه پاسخ صحیح رو انتخاب کنیم ۰.۲۵ (یک چهارم) است و احتمال اینکه پاسخ غلط رو انتخاب کنیم ۰.۷۵ (سه چهارم) است. با توجه به وجود نمره منفی در کنکور، اگر پاسخ صحیح بدیم <strong>۳ امتیاز مثبت</strong> و اگر پاسخ غلط بدیم <strong>۱ امتیاز منفی</strong> به دست میاریم. بنابراین داریم:E[X] = 0.25×3 – 0.75×1 = 0خلاصه اینکه اگر به صورت تصادفی و با توزیع یکنواخت تست ها رو بزنید درصدتون صفر میشه!راستش می‌خواستم خیلی جامع تر این حرفا این موضوع رو بررسی کنم و تکنیک های مهندسی معکوس تست زنی رو هم با روش های آماری بررسی کنم اما در حال حاضر زمان و حوصله کافی برای انجام این کار رو ندارم. اما خیلی دوست داشتم حتی در همین حد هم این موضوع رو بررسی کنم.</p>
+               </div>
+           </section>
+       </article>
+   </div>
+</body>
+</html>
