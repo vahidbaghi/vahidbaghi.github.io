@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه پیدا نشد (404)</title>
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f4;
+            direction: rtl;
+            color: #333;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #e74c3c;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+        <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div id="error-content">
+        <h1>صفحه پیدا نشد</h1>
+        <p>متاسفیم، صفحه‌ای که دنبال آن بودید وجود ندارد.</p>
+        <p>لطفاً به <a href="/">صفحه اصلی</a> بازگردید.</p>
+    </div>
+
+    <script>
+        // 1. دیکشنری ریدایرکت را مستقیماً تعریف می‌کنیم
+         const redirectMap = {
+            "/blog/index52a0.html?p=1096": "/blog/posts/50.html"
+        };
+
+
+        // 2. دریافت URL فعلی و استخراج بخش مورد نظر
+         const currentUrl = window.location.pathname + window.location.search;
+
+
+        // 3. جستجو در دیکشنری و ریدایرکت
+            if (redirectMap[currentUrl]) {
+                window.location.href = redirectMap[currentUrl];
+            } else {
+                //4. در صورتی که url یافت نشد این قسمت نمایش داده شود
+                document.getElementById('error-content').style.display = 'block';
+            }
+
+
+    </script>
+</body>
+</html>
