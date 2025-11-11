@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سیستم مدیریت نوبت‌دهی مطب</title>
+
+    <!-- Jalali Date Picker -->
+    <script src="https://unpkg.com/jalali-moment/dist/jalali-moment.browser.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/js/persian-datepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/persian-date@1.1.0/dist/persian-date.min.js"></script>
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #17a2b5;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+            --border-color: #dee2e6;
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            margin: 0;
+            padding: 20px;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .date-navigation {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .date-navigation input {
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            text-align: center;
+            width: 120px;
+            font-family: inherit;
+        }
+        
+        .main-content {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .board-container {
+            flex: 3;
+        }
+        
+        .sidebar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        #appointment-board {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .slot {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .slot-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .slot-time {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .slot-status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: #fff;
+        }
+
+        .slot-patient-info {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .slot-actions {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        
+        /* Slot Status Colors */
+        .slot.available { border-left: 5px solid var(--success-color); }
+        .slot.booked { border-left: 5px solid var(--info-color); }
+        .slot.checked-in { border-left: 5px solid var(--warning-color); }
+        .slot.in-visit { border-left: 5px solid var(--danger-color); }
+        .slot.disabled { background-color: #e9ecef; border-left: 5px solid var(--secondary-color); color: #6c757d; }
+
+        .status-available { background-color: var(--success-color); }
+        .status-booked { background-color: var(--info-color); }
+        .status-checked-in { background-color: var(--warning-color); }
+        .status-in-visit { background-color: var(--danger-color); }
+        
+        .btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn:hover { opacity: 0.8; }
+        .btn-primary { background-color: var(--primary-color); }
+        .btn-success { background-color: var(--success-color); }
+        .btn-danger { background-color: var(--danger-color); }
+        .btn-warning { background-color: var(--warning-color); color: var(--dark-gray); }
+        .btn-info { background-color: var(--info-color); }
+        .btn-secondary { background-color: var(--secondary-color); }
+        .btn-sm { padding: 4px 8px; font-size: 0.8rem;}
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 8px;
+            position: relative;
+        }
+        .close-btn {
+            color: #aaa;
+            position: absolute;
+            left: 15px;
+            top: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .modal-content h2 { margin-top: 0;}
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        
+        .settings-panel, .live-queue, .data-management {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .live-queue ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .live-queue li {
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .live-queue li:last-child {
+            border-bottom: none;
+        }
+        .live-queue .patient-name {
+            font-weight: bold;
+        }
+        
+        .data-management button {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1><i class="fa-solid fa-stethoscope"></i> مدیریت نوبت‌دهی</h1>
+            <div class="date-navigation">
+                <button id="prev-day-btn" class="btn btn-secondary"><i class="fa-solid fa-chevron-right"></i> دیروز</button>
+                <button id="today-btn" class="btn btn-primary">امروز</button>
+                <input type="text" id="datepicker" readonly>
+                <button id="next-day-btn" class="btn btn-secondary">فردا <i class="fa-solid fa-chevron-left"></i></button>
+            </div>
+            <button id="settings-toggle-btn" class="btn btn-info"><i class="fa-solid fa-gear"></i> تنظیمات</button>
+        </header>
+        
+        <div id="settings-panel" class="settings-panel" style="display:none; margin-bottom: 20px;">
+            <h2>تنظیمات مطب</h2>
+            <form id="settings-form">
+                 <div class="form-group">
+                    <label for="work-days">روزهای کاری</label>
+                    <div>
+                        <input type="checkbox" id="sat" value="6" checked><label for="sat">شنبه</label>
+                        <input type="checkbox" id="sun" value="0" checked><label for="sun">یکشنبه</label>
+                        <input type="checkbox" id="mon" value="1" checked><label for="mon">دوشنبه</label>
+                        <input type="checkbox" id="tue" value="2" checked><label for="tue">سه‌شنبه</label>
+                        <input type="checkbox" id="wed" value="3" checked><label for="wed">چهارشنبه</label>
+                        <input type="checkbox" id="thu" value="4"><label for="thu">پنج‌شنبه</label>
+                        <input type="checkbox" id="fri" value="5"><label for="fri">جمعه</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="start-time">ساعت شروع کار</label>
+                    <input type="time" id="start-time" value="09:00">
+                </div>
+                <div class="form-group">
+                    <label for="end-time">ساعت پایان کار</label>
+                    <input type="time" id="end-time" value="17:00">
+                </div>
+                <div class="form-group">
+                    <label for="visit-duration">مدت زمان متوسط ویزیت (دقیقه)</label>
+                    <input type="number" id="visit-duration" value="15" min="5">
+                </div>
+                <div class="form-group">
+                    <label for="buffer-time">فاصله بین دو نوبت (دقیقه)</label>
+                    <input type="number" id="buffer-time" value="5" min="0">
+                </div>
+                <button type="submit" class="btn btn-success"><i class="fa-solid fa-save"></i> ذخیره تنظیمات</button>
+            </form>
+        </div>
+
+        <main class="main-content">
+            <div class="board-container">
+                <h2 id="board-title">بُرد نوبت‌دهی</h2>
+                <div id="appointment-board">
+                    <!-- Time slots will be generated here by JS -->
+                </div>
+            </div>
+            <aside class="sidebar">
+                <div class="live-queue">
+                    <h3><i class="fa-solid fa-users"></i> صف انتظار زنده</h3>
+                    <ul id="live-queue-list">
+                        <!-- Live queue will be generated here by JS -->
+                        <li class="empty-queue">هیچ بیماری در صف انتظار نیست.</li>
+                    </ul>
+                </div>
+                 <div class="data-management">
+                    <h3><i class="fa-solid fa-database"></i> مدیریت داده</h3>
+                    <button id="clear-data-btn" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i> حذف تمام اطلاعات</button>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modal-title">ثبت نوبت جدید</h2>
+            <form id="booking-form">
+                <input type="hidden" id="appointment-id">
+                <input type="hidden" id="appointment-time">
+                <div class="form-group">
+                    <label for="patient-name">نام بیمار</label>
+                    <input type="text" id="patient-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="patient-phone">شماره تماس</label>
+                    <input type="tel" id="patient-phone">
+                </div>
+                <div class="form-group">
+                    <label for="visit-type">نوع مراجعه</label>
+                    <select id="visit-type">
+                        <option value="ویزیت جدید">ویزیت جدید</option>
+                        <option value="ویزیت مجدد">ویزیت مجدد</option>
+                        <option value="مشاوره">مشاوره</option>
+                        <option value="اورژانسی">اورژانسی</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="notes">یادداشت</label>
+                    <textarea id="notes" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> ثبت نوبت</button>
+                 <button type="button" id="delete-appointment-btn" class="btn btn-danger" style="display:none;"><i class="fa-solid fa-trash"></i> حذف نوبت</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- DOM Elements ---
+        const board = document.getElementById('appointment-board');
+        const boardTitle = document.getElementById('board-title');
+        const liveQueueList = document.getElementById('live-queue-list');
+        const datepicker = document.getElementById('datepicker');
+        const modal = document.getElementById('booking-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const bookingForm = document.getElementById('booking-form');
+        const settingsPanel = document.getElementById('settings-panel');
+
+        // --- State Management ---
+        let state = {
+            settings: {
+                workDays: [6, 0, 1, 2, 3], // Sat-Wed
+                startTime: '09:00',
+                endTime: '17:00',
+                visitDuration: 15,
+                bufferTime: 5
+            },
+            appointments: {}
+        };
+        
+        let currentDate = moment();
+
+        function saveState() {
+            localStorage.setItem('clinicAppState', JSON.stringify(state));
+        }
+
+        function loadState() {
+            const savedState = localStorage.getItem('clinicAppState');
+            if (savedState) {
+                state = JSON.parse(savedState);
+            }
+            // Load settings into form
+            document.getElementById('start-time').value = state.settings.startTime;
+            document.getElementById('end-time').value = state.settings.endTime;
+            document.getElementById('visit-duration').value = state.settings.visitDuration;
+            document.getElementById('buffer-time').value = state.settings.bufferTime;
+            document.querySelectorAll('#settings-form input[type="checkbox"]').forEach(cb => {
+                cb.checked = state.settings.workDays.includes(parseInt(cb.value));
+            });
+        }
+
+        // --- Date Picker Initialization ---
+        $('#datepicker').persianDatepicker({
+            initialValue: true,
+            format: 'YYYY/MM/DD',
+            altField: '#datepicker',
+            observer: true,
+            onSelect: function(unix) {
+                currentDate = moment.unix(unix / 1000);
+                renderAll();
+            }
+        });
+
+        function updateDatePicker() {
+            const persianDate = currentDate.format('jYYYY/jMM/jDD');
+            $('#datepicker').val(persianDate);
+        }
+
+        // --- Core Rendering Functions ---
+        function renderAll() {
+            renderBoard();
+            renderLiveQueue();
+            updateDatePicker();
+        }
+        
+        function renderBoard() {
+            board.innerHTML = '';
+            boardTitle.innerText = `بُرد نوبت‌دهی برای تاریخ: ${currentDate.format('jYYYY/jMM/jDD')}`;
+            const dateKey = currentDate.format('jYYYY-jMM-jDD');
+            const dayOfWeek = currentDate.day();
+
+            if (!state.settings.workDays.includes(dayOfWeek)) {
+                board.innerHTML = '<p>این روز تعطیل است.</p>';
+                return;
+            }
+
+            let currentTime = moment(currentDate).set({
+                hour: parseInt(state.settings.startTime.split(':')[0]),
+                minute: parseInt(state.settings.startTime.split(':')[1]),
+                second: 0
+            });
+            
+            const endTime = moment(currentDate).set({
+                hour: parseInt(state.settings.endTime.split(':')[0]),
+                minute: parseInt(state.settings.endTime.split(':')[1]),
+                second: 0
+            });
+            
+            const slotInterval = parseInt(state.settings.visitDuration) + parseInt(state.settings.bufferTime);
+
+            while (currentTime.isBefore(endTime)) {
+                const timeStr = currentTime.format('HH:mm');
+                const appointmentsForDay = state.appointments[dateKey] || [];
+                const appointment = appointmentsForDay.find(a => a.time === timeStr);
+
+                const slot = document.createElement('div');
+                slot.classList.add('slot');
+                
+                let content = '';
+                if (appointment) {
+                    slot.classList.add(appointment.status || 'booked');
+                    let statusText = 'رزرو شده';
+                    if (appointment.status === 'checked-in') statusText = 'پذیرش شده';
+                    if (appointment.status === 'in-visit') statusText = 'در حال ویزیت';
+                    
+                    content = `
+                        <div class="slot-header">
+                            <div class="slot-time">${timeStr}</div>
+                            <span class="slot-status status-${appointment.status || 'booked'}">${statusText}</span>
+                        </div>
+                        <div class="slot-patient-info">
+                            <strong>${appointment.patientName}</strong><br>
+                            <small>${appointment.visitType}</small>
+                        </div>
+                        <div class="slot-actions">
+                            ${appointment.status !== 'checked-in' && appointment.status !== 'in-visit' ? `<button class="btn btn-sm btn-warning" data-id="${appointment.id}" data-action="check-in">پذیرش</button>` : ''}
+                            ${appointment.status === 'checked-in' ? `<button class="btn btn-sm btn-danger" data-id="${appointment.id}" data-action="start-visit">شروع ویزیت</button>` : ''}
+                            ${appointment.status === 'in-visit' ? `<button class="btn btn-sm btn-success" data-id="${appointment.id}" data-action="finish-visit">پایان ویزیت</button>` : ''}
+                            <button class="btn btn-sm btn-secondary" data-id="${appointment.id}" data-action="edit">ویرایش</button>
+                        </div>
+                    `;
+                } else {
+                    slot.classList.add('available');
+                    content = `
+                        <div class="slot-header">
+                            <div class="slot-time">${timeStr}</div>
+                            <span class="slot-status status-available">خالی</span>
+                        </div>
+                        <p>این نوبت برای رزرو در دسترس است.</p>
+                        <div class="slot-actions">
+                            <button class="btn btn-sm btn-success" data-time="${timeStr}" data-action="book">رزرو نوبت</button>
+                        </div>
+                    `;
+                }
+                slot.innerHTML = content;
+                board.appendChild(slot);
+
+                currentTime.add(slotInterval, 'minutes');
+            }
+        }
+        
+        function renderLiveQueue() {
+            liveQueueList.innerHTML = '';
+            const dateKey = currentDate.format('jYYYY-jMM-jDD');
+            const appointmentsForDay = state.appointments[dateKey] || [];
+            
+            const queue = appointmentsForDay
+                .filter(a => a.status === 'checked-in' || a.status === 'in-visit')
+                .sort((a, b) => a.time.localeCompare(b.time));
+
+            if (queue.length === 0) {
+                liveQueueList.innerHTML = '<li class="empty-queue">هیچ بیماری در صف انتظار نیست.</li>';
+                return;
+            }
+
+            queue.forEach(apt => {
+                const li = document.createElement('li');
+                let statusInfo = '';
+                if(apt.status === 'in-visit') {
+                    statusInfo = `<span class="slot-status status-in-visit">در حال ویزیت</span>`;
+                } else {
+                    statusInfo = `<span class="slot-status status-checked-in">منتظر</span>`;
+                }
+
+                li.innerHTML = `<span class="patient-name">${apt.patientName}</span> ${statusInfo}`;
+                liveQueueList.appendChild(li);
+            });
+        }
+        
+        // --- Modal Handling ---
+        function openModal(data = {}) {
+            bookingForm.reset();
+            document.getElementById('appointment-id').value = data.id || '';
+            document.getElementById('appointment-time').value = data.time || '';
+            document.getElementById('patient-name').value = data.patientName || '';
+            document.getElementById('patient-phone').value = data.patientPhone || '';
+            document.getElementById('visit-type').value = data.visitType || 'ویزیت جدید';
+            document.getElementById('notes').value = data.notes || '';
+            
+            const deleteBtn = document.getElementById('delete-appointment-btn');
+            if(data.id) {
+                modalTitle.innerText = `ویرایش نوبت ساعت ${data.time}`;
+                deleteBtn.style.display = 'inline-block';
+            } else {
+                modalTitle.innerText = `ثبت نوبت جدید برای ساعت ${data.time}`;
+                deleteBtn.style.display = 'none';
+            }
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // --- Event Listeners ---
+        document.getElementById('settings-toggle-btn').addEventListener('click', () => {
+            settingsPanel.style.display = settingsPanel.style.display === 'none' ? 'block' : 'none';
+        });
+
+        document.getElementById('settings-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            state.settings.startTime = document.getElementById('start-time').value;
+            state.settings.endTime = document.getElementById('end-time').value;
+            state.settings.visitDuration = parseInt(document.getElementById('visit-duration').value);
+            state.settings.bufferTime = parseInt(document.getElementById('buffer-time').value);
+            state.settings.workDays = [];
+            document.querySelectorAll('#settings-form input[type="checkbox"]:checked').forEach(cb => {
+                state.settings.workDays.push(parseInt(cb.value));
+            });
+            saveState();
+            renderAll();
+            alert('تنظیمات با موفقیت ذخیره شد.');
+        });
+        
+        board.addEventListener('click', (e) => {
+            const target = e.target.closest('button');
+            if (!target) return;
+            
+            const action = target.dataset.action;
+            const id = target.dataset.id;
+            const time = target.dataset.time;
+            const dateKey = currentDate.format('jYYYY-jMM-jDD');
+
+            if (action === 'book') {
+                openModal({ time });
+            } else if (action === 'edit') {
+                const appointment = state.appointments[dateKey].find(a => a.id === id);
+                openModal(appointment);
+            } else if (['check-in', 'start-visit', 'finish-visit'].includes(action)) {
+                const appointmentIndex = state.appointments[dateKey].findIndex(a => a.id === id);
+                if (appointmentIndex > -1) {
+                    if (action === 'check-in') state.appointments[dateKey][appointmentIndex].status = 'checked-in';
+                    if (action === 'start-visit') state.appointments[dateKey][appointmentIndex].status = 'in-visit';
+                    if (action === 'finish-visit') {
+                        // For simplicity, we remove finished appointments from the board.
+                        // You could also add a 'finished' status.
+                        state.appointments[dateKey].splice(appointmentIndex, 1);
+                    }
+                    saveState();
+                    renderAll();
+                }
+            }
+        });
+        
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const dateKey = currentDate.format('jYYYY-jMM-jDD');
+            const appointmentData = {
+                id: document.getElementById('appointment-id').value || Date.now().toString(),
+                time: document.getElementById('appointment-time').value,
+                patientName: document.getElementById('patient-name').value,
+                patientPhone: document.getElementById('patient-phone').value,
+                visitType: document.getElementById('visit-type').value,
+                notes: document.getElementById('notes').value,
+                status: 'booked'
+            };
+            
+            if (!state.appointments[dateKey]) {
+                state.appointments[dateKey] = [];
+            }
+            
+            const existingIndex = state.appointments[dateKey].findIndex(a => a.id === appointmentData.id);
+            if (existingIndex > -1) {
+                // Update existing
+                state.appointments[dateKey][existingIndex] = appointmentData;
+            } else {
+                // Add new
+                state.appointments[dateKey].push(appointmentData);
+            }
+            
+            // Sort appointments by time
+            state.appointments[dateKey].sort((a,b) => a.time.localeCompare(b.time));
+            
+            saveState();
+            renderAll();
+            closeModal();
+        });
+
+        document.getElementById('delete-appointment-btn').addEventListener('click', () => {
+            if (!confirm('آیا از حذف این نوبت اطمینان دارید؟')) return;
+
+            const id = document.getElementById('appointment-id').value;
+            const dateKey = currentDate.format('jYYYY-jMM-jDD');
+
+            if (state.appointments[dateKey]) {
+                state.appointments[dateKey] = state.appointments[dateKey].filter(a => a.id !== id);
+                saveState();
+                renderAll();
+                closeModal();
+            }
+        });
+        
+        modal.querySelector('.close-btn').addEventListener('click', closeModal);
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        
+        // Navigation buttons
+        document.getElementById('today-btn').addEventListener('click', () => {
+            currentDate = moment();
+            renderAll();
+        });
+        document.getElementById('prev-day-btn').addEventListener('click', () => {
+            currentDate.subtract(1, 'days');
+            renderAll();
+        });
+        document.getElementById('next-day-btn').addEventListener('click', () => {
+            currentDate.add(1, 'days');
+            renderAll();
+        });
+        
+        document.getElementById('clear-data-btn').addEventListener('click', () => {
+            if(confirm('هشدار! تمام اطلاعات نوبت‌ها و تنظیمات برای همیشه حذف خواهند شد. آیا مطمئن هستید؟')) {
+                localStorage.removeItem('clinicAppState');
+                location.reload();
+            }
+        });
+        
+        // --- Initial Load ---
+        loadState();
+        renderAll();
+    });
+    </script>
+
+</body>
+</html>
