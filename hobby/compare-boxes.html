@@ -649,7 +649,7 @@
             0xff9f43, 0x00d2d3, 0xf368e0, 0x6c5ce7
         ];
 
-        const CORS_PROXY = 'https://corsproxy.io/?url=';
+        const WORKER_PROXY = 'https://torob-test.vbaghi.workers.dev/?url=';
 
         // ========== API ==========
         function buildSearchUrl(page, query) {
@@ -670,17 +670,14 @@
         }
 
         async function fetchJson(url) {
-            // Try direct first
             try {
-                const res = await fetch(url);
+                const res = await fetch(WORKER_PROXY + encodeURIComponent(url), {
+                    method: 'GET',
+                    mode: 'cors',
+                    credentials: 'omit'
+                });
                 if (res.ok) return await res.json();
-            } catch (e) { /* direct failed */ }
-
-            // Try via CORS proxy
-            try {
-                const res = await fetch(CORS_PROXY + encodeURIComponent(url));
-                if (res.ok) return await res.json();
-            } catch (e) { /* proxy also failed */ }
+            } catch (e) { /* request failed */ }
 
             return null;
         }
