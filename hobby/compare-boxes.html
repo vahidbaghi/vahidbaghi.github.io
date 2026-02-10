@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقایسه ابعاد کیس کامپیوتر</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 25px;
+            font-size: 2em;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Search Section */
+        .search-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .search-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-controls input[type="text"] {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 16px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1em;
+            font-family: inherit;
+            direction: rtl;
+        }
+
+        .search-controls input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .search-controls select {
+            padding: 12px 16px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1em;
+            font-family: inherit;
+            direction: rtl;
+            background: white;
+            cursor: pointer;
+            min-width: 120px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn:hover { transform: translateY(-1px); }
+        .btn:active { transform: translateY(0); }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            color: white;
+        }
+
+        .btn-success:hover {
+            box-shadow: 0 4px 15px rgba(17, 153, 142, 0.4);
+        }
+
+        .btn-danger {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 0.85em;
+        }
+
+        .btn-xs {
+            padding: 5px 12px;
+            font-size: 0.8em;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* Product Grid */
+        .products-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            display: none;
+        }
+
+        .products-section.visible { display: block; }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .section-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .pagination {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .pagination span {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .product-card {
+            border: 2px solid #eee;
+            border-radius: 12px;
+            padding: 12px;
+            background: #fafafa;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-card.selected {
+            border-color: #11998e;
+            background: #f0fff4;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: white;
+            margin-bottom: 10px;
+        }
+
+        .product-name {
+            font-size: 0.85em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 6px;
+            line-height: 1.4;
+            max-height: 3.6em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        .product-price {
+            font-size: 0.82em;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .product-dims {
+            font-size: 0.78em;
+            color: #888;
+            margin-bottom: 8px;
+            min-height: 1.4em;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .product-actions .btn {
+            flex: 1;
+            text-align: center;
+        }
+
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-overlay.visible {
+            display: flex;
+        }
+
+        .loading-spinner {
+            background: white;
+            border-radius: 16px;
+            padding: 30px 50px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #eee;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Selected Cases */
+        .selected-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            display: none;
+        }
+
+        .selected-section.visible { display: block; }
+
+        .selected-cases {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .selected-case-chip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #f0f4ff, #e8ecf8);
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            padding: 8px 14px;
+        }
+
+        .chip-color {
+            width: 18px;
+            height: 18px;
+            border-radius: 5px;
+            border: 1px solid rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+
+        .chip-info {
+            font-size: 0.85em;
+        }
+
+        .chip-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .chip-dims {
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .chip-remove {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.75em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* 3D Canvas */
+        .canvas-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            display: none;
+        }
+
+        .canvas-section.visible { display: block; }
+
+        .view-mode {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .view-btn {
+            flex: 1;
+            min-width: 100px;
+            padding: 10px;
+            background: #f0f0f0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .view-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        #canvas-container {
+            width: 100%;
+            height: 550px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+
+        /* Comparison */
+        .comparison-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            display: none;
+        }
+
+        .comparison-section.visible { display: block; }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .comparison-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #eee;
+        }
+
+        .comparison-item h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .hint {
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #333;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 0.9em;
+            z-index: 2000;
+            transition: transform 0.3s ease;
+            text-align: center;
+            max-width: 90%;
+        }
+
+        .toast.visible {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast.error { background: #ff6b6b; }
+        .toast.success { background: #11998e; }
+
+        .dim-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75em;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 4px;
+        }
+
+        .no-dim-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75em;
+            background: #fff3e0;
+            color: #e65100;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 4px;
+        }
+
+        .manual-input-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .manual-form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+
+        .manual-form .input-group {
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .manual-form label {
+            display: block;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 4px;
+        }
+
+        .manual-form input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+        }
+
+        .manual-form input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.4em; }
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            }
+            #canvas-container { height: 400px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>&#x1F5A5;&#xFE0F; مقایسه ابعاد کیس کامپیوتر (سه&#x200C;بعدی)</h1>
+
+        <!-- Search -->
+        <div class="search-section">
+            <div class="search-controls">
+                <input type="text" id="search-query" placeholder="جستجوی کیس کامپیوتر..." value="">
+                <select id="sort-select">
+                    <option value="popularity">محبوب&#x200C;ترین</option>
+                    <option value="price">ارزان&#x200C;ترین</option>
+                    <option value="-price">گران&#x200C;ترین</option>
+                    <option value="-date">جدیدترین</option>
+                </select>
+                <select id="page-size-select">
+                    <option value="12">12 تا</option>
+                    <option value="24" selected>24 تا</option>
+                    <option value="48">48 تا</option>
+                </select>
+                <button class="btn btn-primary" onclick="searchCases(1)">&#x1F50D; جستجو</button>
+                <button class="btn btn-success" onclick="loadAllCases(1)">&#x1F4E6; همه کیس&#x200C;ها</button>
+            </div>
+        </div>
+
+        <!-- Products List -->
+        <div class="products-section" id="products-section">
+            <div class="section-header">
+                <span class="section-title" id="results-title">نتایج جستجو</span>
+                <div class="pagination" id="pagination"></div>
+            </div>
+            <div class="products-grid" id="products-grid"></div>
+        </div>
+
+        <!-- Manual Add -->
+        <div class="manual-input-section">
+            <div class="section-title" style="margin-bottom: 12px;">&#x2795; افزودن دستی کیس</div>
+            <div class="manual-form">
+                <div class="input-group" style="flex: 2; min-width: 150px;">
+                    <label>نام کیس</label>
+                    <input type="text" id="manual-name" placeholder="نام دلخواه...">
+                </div>
+                <div class="input-group">
+                    <label>طول (mm)</label>
+                    <input type="number" id="manual-length" placeholder="420" min="1">
+                </div>
+                <div class="input-group">
+                    <label>عرض (mm)</label>
+                    <input type="number" id="manual-width" placeholder="210" min="1">
+                </div>
+                <div class="input-group">
+                    <label>ارتفاع (mm)</label>
+                    <input type="number" id="manual-height" placeholder="480" min="1">
+                </div>
+                <button class="btn btn-success" onclick="addManualCase()">افزودن</button>
+            </div>
+        </div>
+
+        <!-- Selected Cases -->
+        <div class="selected-section" id="selected-section">
+            <div class="section-header">
+                <span class="section-title">&#x1F4D0; کیس&#x200C;های انتخاب&#x200C;شده برای مقایسه</span>
+                <button class="btn btn-danger btn-sm" onclick="clearAllSelected()">پاک کردن همه</button>
+            </div>
+            <div class="selected-cases" id="selected-cases"></div>
+        </div>
+
+        <!-- 3D View -->
+        <div class="canvas-section" id="canvas-section">
+            <div class="view-mode">
+                <button class="view-btn active" onclick="setViewMode('together', this)">کنار هم</button>
+                <button class="view-btn" onclick="setViewMode('nested', this)">تو در تو</button>
+                <button class="view-btn" onclick="setViewMode('stacked', this)">روی هم</button>
+            </div>
+            <div class="controls">
+                <button class="btn btn-primary btn-sm" onclick="resetCamera()">&#x1F4F7; بازنشانی دوربین</button>
+                <button class="btn btn-primary btn-sm" onclick="toggleAutoRotate()">&#x1F501; چرخش خودکار</button>
+                <button class="btn btn-primary btn-sm" onclick="toggleLabels()">&#x1F3F7;&#xFE0F; برچسب&#x200C;ها</button>
+            </div>
+            <div id="canvas-container"></div>
+        </div>
+
+        <!-- Comparison Info -->
+        <div class="comparison-section" id="comparison-section">
+            <span class="section-title">&#x1F4CA; جدول مقایسه</span>
+            <div class="comparison-grid" id="comparison-grid"></div>
+        </div>
+
+        <p class="hint">&#x1F5B1;&#xFE0F; بکشید: چرخش | &#x1F50D; اسکرول: زوم | راست&#x200C;کلیک: جابجایی | داده&#x200C;ها از torob.com</p>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <div id="loading-text">در حال بارگذاری...</div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // ========== State ==========
+        let scene, camera, renderer;
+        let meshes = [];
+        let labelSprites = [];
+        let selectedCases = [];
+        let viewMode = 'together';
+        let autoRotate = true;
+        let showLabels = true;
+        let currentPage = 1;
+        let totalResults = 0;
+        let cachedProducts = {};
+        let lastSearchQuery = '';
+
+        const COLORS = [
+            0xff6b6b, 0x4ecdc4, 0xffe66d, 0x95e1d3,
+            0xaa96da, 0xfcbad3, 0x54a0ff, 0x48dbfb,
+            0xff9f43, 0x00d2d3, 0xf368e0, 0x6c5ce7
+        ];
+
+        const CORS_PROXY = 'https://corsproxy.io/?url=';
+
+        // ========== API ==========
+        function buildSearchUrl(page, query) {
+            const size = document.getElementById('page-size-select').value;
+            const sort = document.getElementById('sort-select').value;
+            const offset = (page - 1) * parseInt(size);
+            let url = 'https://api.torob.com/v4/base-product/search/?page=' + page +
+                '&sort=' + sort +
+                '&size=' + size +
+                '&category=239' +
+                '&category_name=%DA%A9%DB%8C%D8%B3-%DA%A9%D8%A7%D9%85%D9%BE%DB%8C%D9%88%D8%AA%D8%B1-case' +
+                '&_landing_page=browse_239&source=next_desktop' +
+                '&rank_offset=' + offset;
+            if (query) {
+                url += '&q=' + encodeURIComponent(query);
+            }
+            return url;
+        }
+
+        async function fetchJson(url) {
+            // Try direct first
+            try {
+                const res = await fetch(url);
+                if (res.ok) return await res.json();
+            } catch (e) { /* direct failed */ }
+
+            // Try via CORS proxy
+            try {
+                const res = await fetch(CORS_PROXY + encodeURIComponent(url));
+                if (res.ok) return await res.json();
+            } catch (e) { /* proxy also failed */ }
+
+            return null;
+        }
+
+        async function loadAllCases(page) {
+            lastSearchQuery = '';
+            await doSearch(page, '');
+        }
+
+        async function searchCases(page) {
+            lastSearchQuery = document.getElementById('search-query').value.trim();
+            await doSearch(page, lastSearchQuery);
+        }
+
+        async function doSearch(page, query) {
+            showLoading('در حال دریافت لیست کیس\u200Cها...');
+            currentPage = page;
+
+            const url = buildSearchUrl(page, query);
+            const data = await fetchJson(url);
+
+            if (!data || !data.results) {
+                hideLoading();
+                showToast('خطا در دریافت اطلاعات. لطفا دوباره تلاش کنید.', 'error');
+                return;
+            }
+
+            totalResults = data.count || 0;
+            const size = parseInt(document.getElementById('page-size-select').value);
+            const totalPages = Math.ceil(totalResults / size);
+
+            document.getElementById('results-title').textContent =
+                '\u0646\u062A\u0627\u06CC\u062C (' + totalResults + ' \u06A9\u06CC\u0633) \u2014 \u0635\u0641\u062D\u0647 ' + page + ' \u0627\u0632 ' + totalPages;
+
+            renderProducts(data.results);
+            renderPagination(page, totalPages, query);
+
+            document.getElementById('products-section').classList.add('visible');
+            hideLoading();
+        }
+
+        function renderProducts(products) {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            products.forEach(function(product) {
+                const prk = product.random_key;
+                const isSelected = selectedCases.some(function(c) { return c.id === prk; });
+                const card = document.createElement('div');
+                card.className = 'product-card' + (isSelected ? ' selected' : '');
+                card.id = 'card-' + prk;
+
+                const imgUrl = product.image_url || '';
+                const name = product.name1 || product.name2 || '\u0628\u062F\u0648\u0646 \u0646\u0627\u0645';
+                const priceText = product.price_text || '';
+                const moreInfoUrl = product.more_info_url || '';
+
+                // Check if we already have cached dims
+                const cached = cachedProducts[prk];
+                let dimHtml;
+                if (cached) {
+                    if (cached.dims) {
+                        dimHtml = '<span class="dim-label">\uD83D\uDCD0 ' + cached.dims.length + '\u00D7' + cached.dims.width + '\u00D7' + cached.dims.height + ' mm</span>';
+                    } else {
+                        dimHtml = '<span class="no-dim-label">\u274C \u0627\u0628\u0639\u0627\u062F \u062B\u0628\u062A \u0646\u0634\u062F\u0647</span>';
+                    }
+                } else {
+                    dimHtml = '<span style="color:#999">\u23F3 \u0628\u0631\u0627\u06CC \u062F\u0631\u06CC\u0627\u0641\u062A \u0627\u0628\u0639\u0627\u062F \u06A9\u0644\u06CC\u06A9 \u06A9\u0646\u06CC\u062F</span>';
+                }
+
+                card.innerHTML =
+                    (imgUrl ? '<img class="product-img" src="' + imgUrl + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' : '') +
+                    '<div class="product-name" title="' + escapeHtml(name) + '">' + escapeHtml(name) + '</div>' +
+                    '<div class="product-price">' + priceText + '</div>' +
+                    '<div class="product-dims" id="dims-' + prk + '">' + dimHtml + '</div>' +
+                    '<div class="product-actions">' +
+                        '<button class="btn btn-primary btn-xs" onclick="fetchDims(\'' + prk + '\',event)">\uD83D\uDCD0 \u0627\u0628\u0639\u0627\u062F</button>' +
+                        '<button class="btn btn-success btn-xs" id="add-btn-' + prk + '" onclick="addCase(\'' + prk + '\',event)"' +
+                            (isSelected ? ' disabled' : '') + '>' +
+                            (isSelected ? '\u2713 \u0627\u0636\u0627\u0641\u0647 \u0634\u062F' : '\u2795 \u0645\u0642\u0627\u06CC\u0633\u0647') +
+                        '</button>' +
+                    '</div>';
+
+                // Store data attributes
+                card.setAttribute('data-more-info-url', moreInfoUrl);
+                card.setAttribute('data-name', name);
+                card.setAttribute('data-image-url', imgUrl);
+
+                grid.appendChild(card);
+            });
+        }
+
+        function escapeHtml(text) {
+            var div = document.createElement('div');
+            div.appendChild(document.createTextNode(text));
+            return div.innerHTML;
+        }
+
+        function renderPagination(current, total, query) {
+            var container = document.getElementById('pagination');
+            container.innerHTML = '';
+
+            if (total <= 1) return;
+
+            function createBtn(label, page) {
+                var btn = document.createElement('button');
+                btn.className = 'btn btn-sm' + (page === current ? ' btn-primary' : '');
+                if (page !== current) btn.style.cssText = 'background:#eee;color:#333;';
+                btn.textContent = label;
+                btn.onclick = function() {
+                    if (query) {
+                        lastSearchQuery = query;
+                        doSearch(page, query);
+                    } else {
+                        loadAllCases(page);
+                    }
+                };
+                if (page === current) btn.disabled = true;
+                return btn;
+            }
+
+            if (current > 1) container.appendChild(createBtn('\u00AB \u0642\u0628\u0644\u06CC', current - 1));
+
+            var start = Math.max(1, current - 2);
+            var end = Math.min(total, current + 2);
+
+            if (start > 1) {
+                container.appendChild(createBtn('1', 1));
+                if (start > 2) {
+                    var dots = document.createElement('span');
+                    dots.textContent = '...';
+                    container.appendChild(dots);
+                }
+            }
+
+            for (var i = start; i <= end; i++) {
+                container.appendChild(createBtn(String(i), i));
+            }
+
+            if (end < total) {
+                if (end < total - 1) {
+                    var dots2 = document.createElement('span');
+                    dots2.textContent = '...';
+                    container.appendChild(dots2);
+                }
+                container.appendChild(createBtn(String(total), total));
+            }
+
+            if (current < total) container.appendChild(createBtn('\u0628\u0639\u062F\u06CC \u00BB', current + 1));
+        }
+
+        // ========== Fetch Dimensions ==========
+        async function fetchDims(prk, event) {
+            if (event) event.stopPropagation();
+            if (cachedProducts[prk]) return;
+
+            var card = document.getElementById('card-' + prk);
+            if (!card) return;
+
+            var url = card.getAttribute('data-more-info-url');
+            if (!url) return;
+
+            var dimEl = document.getElementById('dims-' + prk);
+            if (dimEl) dimEl.innerHTML = '<span style="color:#667eea">\u23F3 \u062F\u0631 \u062D\u0627\u0644 \u062F\u0631\u06CC\u0627\u0641\u062A...</span>';
+
+            var data = await fetchJson(url);
+            if (!data) {
+                if (dimEl) dimEl.innerHTML = '<span class="no-dim-label">\u274C \u062E\u0637\u0627 \u062F\u0631 \u062F\u0631\u06CC\u0627\u0641\u062A</span>';
+                return;
+            }
+
+            var dims = extractDimensions(data);
+            cachedProducts[prk] = { data: data, dims: dims };
+
+            if (dimEl) {
+                if (dims) {
+                    dimEl.innerHTML = '<span class="dim-label">\uD83D\uDCD0 ' + dims.length + '\u00D7' + dims.width + '\u00D7' + dims.height + ' mm</span>';
+                } else {
+                    dimEl.innerHTML = '<span class="no-dim-label">\u274C \u0627\u0628\u0639\u0627\u062F \u062B\u0628\u062A \u0646\u0634\u062F\u0647</span>';
+                }
+            }
+        }
+
+        function extractDimensions(productData) {
+            if (!productData.structural_specs || !productData.structural_specs.headers) {
+                return null;
+            }
+
+            var headers = productData.structural_specs.headers;
+
+            for (var h = 0; h < headers.length; h++) {
+                var specs = headers[h].specs;
+                if (!specs) continue;
+                var keys = Object.keys(specs);
+                for (var k = 0; k < keys.length; k++) {
+                    if (keys[k].indexOf('\u0627\u0628\u0639\u0627\u062F') !== -1) {
+                        var parsed = parseDimensionString(specs[keys[k]]);
+                        if (parsed) return parsed;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        function parseDimensionString(str) {
+            if (!str || typeof str !== 'string') return null;
+
+            // Convert Persian/Arabic numerals to Western
+            str = str.replace(/[\u06F0-\u06F9]/g, function(ch) {
+                return String.fromCharCode(ch.charCodeAt(0) - 0x06F0 + 48);
+            });
+            str = str.replace(/[\u0660-\u0669]/g, function(ch) {
+                return String.fromCharCode(ch.charCodeAt(0) - 0x0660 + 48);
+            });
+
+            // Check if cm
+            var isCm = /\u0633\u0627\u0646\u062A\u06CC|\u0633\u0627\u0646\u062A\u064A|cm/i.test(str);
+
+            // Remove unit strings
+            str = str.replace(/\u0645\u06CC\u0644\u06CC[\u200C\s]*\u0645\u062A\u0631|\u0645\u06CC\u0644\u06CC\u0645\u062A\u0631|\u0633\u0627\u0646\u062A\u06CC[\u200C\s]*\u0645\u062A\u0631|\u0633\u0627\u0646\u062A\u06CC\u0645\u062A\u0631|mm|cm/gi, '').trim();
+
+            // Split by separators: x, X, *, ×
+            var parts = str.split(/[xX\u00D7\*\u2715\u2716\u2718]/);
+            parts = parts.map(function(s) { return s.trim(); }).filter(function(s) { return s; });
+
+            if (parts.length < 3) {
+                // Try extracting any 3 numbers
+                var nums = str.match(/[\d]+(?:\.[\d]+)?/g);
+                if (nums && nums.length >= 3) {
+                    parts = nums.slice(0, 3);
+                }
+            }
+
+            if (parts.length >= 3) {
+                var values = [];
+                for (var i = 0; i < 3; i++) {
+                    var match = parts[i].match(/[\d]+(?:\.[\d]+)?/);
+                    values.push(match ? parseFloat(match[0]) : NaN);
+                }
+
+                if (values.every(function(n) { return !isNaN(n) && n > 0; })) {
+                    if (isCm) {
+                        values = values.map(function(n) { return n * 10; });
+                    }
+                    // If all values very small, likely in cm
+                    if (values.every(function(n) { return n < 15; })) {
+                        values = values.map(function(n) { return n * 10; });
+                    }
+
+                    return {
+                        length: Math.round(values[0]),
+                        width: Math.round(values[1]),
+                        height: Math.round(values[2])
+                    };
+                }
+            }
+
+            return null;
+        }
+
+        // ========== Add / Remove Cases ==========
+        async function addCase(prk, event) {
+            if (event) event.stopPropagation();
+            if (selectedCases.some(function(c) { return c.id === prk; })) {
+                showToast('\u0627\u06CC\u0646 \u06A9\u06CC\u0633 \u0642\u0628\u0644\u0627\u064B \u0627\u0636\u0627\u0641\u0647 \u0634\u062F\u0647', 'error');
+                return;
+            }
+
+            var card = document.getElementById('card-' + prk);
+            if (!card) return;
+
+            // If dims not fetched yet, fetch now
+            if (!cachedProducts[prk]) {
+                showLoading('\u062F\u0631 \u062D\u0627\u0644 \u062F\u0631\u06CC\u0627\u0641\u062A \u0645\u0634\u062E\u0635\u0627\u062A...');
+                await fetchDims(prk, null);
+                hideLoading();
+            }
+
+            var cached = cachedProducts[prk];
+            if (!cached || !cached.dims) {
+                showToast('\u0627\u0628\u0639\u0627\u062F \u0627\u06CC\u0646 \u06A9\u06CC\u0633 \u062F\u0631 \u062A\u0631\u0628 \u062B\u0628\u062A \u0646\u0634\u062F\u0647. \u0645\u06CC\u200C\u062A\u0648\u0627\u0646\u06CC\u062F \u062F\u0633\u062A\u06CC \u0627\u0636\u0627\u0641\u0647 \u06A9\u0646\u06CC\u062F.', 'error');
+                return;
+            }
+
+            var caseItem = {
+                id: prk,
+                name: card.getAttribute('data-name'),
+                length: cached.dims.length,
+                width: cached.dims.width,
+                height: cached.dims.height,
+                color: COLORS[selectedCases.length % COLORS.length],
+                image_url: card.getAttribute('data-image-url')
+            };
+
+            selectedCases.push(caseItem);
+
+            card.classList.add('selected');
+            var addBtn = document.getElementById('add-btn-' + prk);
+            if (addBtn) {
+                addBtn.disabled = true;
+                addBtn.textContent = '\u2713 \u0627\u0636\u0627\u0641\u0647 \u0634\u062F';
+            }
+
+            updateSelectedUI();
+            updateScene();
+            showToast(caseItem.name + ' \u0627\u0636\u0627\u0641\u0647 \u0634\u062F', 'success');
+        }
+
+        function addManualCase() {
+            var name = document.getElementById('manual-name').value.trim() || ('\u06A9\u06CC\u0633 \u062F\u0633\u062A\u06CC ' + (selectedCases.length + 1));
+            var length = parseFloat(document.getElementById('manual-length').value);
+            var width = parseFloat(document.getElementById('manual-width').value);
+            var height = parseFloat(document.getElementById('manual-height').value);
+
+            if (!length || !width || !height || length <= 0 || width <= 0 || height <= 0) {
+                showToast('\u0644\u0637\u0641\u0627\u064B \u0627\u0628\u0639\u0627\u062F \u0645\u0639\u062A\u0628\u0631 \u0648\u0627\u0631\u062F \u06A9\u0646\u06CC\u062F', 'error');
+                return;
+            }
+
+            var caseItem = {
+                id: 'manual-' + Date.now(),
+                name: name,
+                length: Math.round(length),
+                width: Math.round(width),
+                height: Math.round(height),
+                color: COLORS[selectedCases.length % COLORS.length],
+                image_url: ''
+            };
+
+            selectedCases.push(caseItem);
+            updateSelectedUI();
+            updateScene();
+            showToast(name + ' \u0627\u0636\u0627\u0641\u0647 \u0634\u062F', 'success');
+
+            document.getElementById('manual-name').value = '';
+            document.getElementById('manual-length').value = '';
+            document.getElementById('manual-width').value = '';
+            document.getElementById('manual-height').value = '';
+        }
+
+        function removeCase(id) {
+            selectedCases = selectedCases.filter(function(c) { return c.id !== id; });
+
+            var card = document.getElementById('card-' + id);
+            if (card) {
+                card.classList.remove('selected');
+                var addBtn = document.getElementById('add-btn-' + id);
+                if (addBtn) {
+                    addBtn.disabled = false;
+                    addBtn.textContent = '\u2795 \u0645\u0642\u0627\u06CC\u0633\u0647';
+                }
+            }
+
+            updateSelectedUI();
+            updateScene();
+        }
+
+        function clearAllSelected() {
+            var ids = selectedCases.map(function(c) { return c.id; });
+            selectedCases = [];
+            ids.forEach(function(id) {
+                var card = document.getElementById('card-' + id);
+                if (card) {
+                    card.classList.remove('selected');
+                    var addBtn = document.getElementById('add-btn-' + id);
+                    if (addBtn) {
+                        addBtn.disabled = false;
+                        addBtn.textContent = '\u2795 \u0645\u0642\u0627\u06CC\u0633\u0647';
+                    }
+                }
+            });
+            updateSelectedUI();
+            updateScene();
+        }
+
+        function updateSelectedUI() {
+            var section = document.getElementById('selected-section');
+            var container = document.getElementById('selected-cases');
+            var canvasSection = document.getElementById('canvas-section');
+            var compSection = document.getElementById('comparison-section');
+
+            if (selectedCases.length === 0) {
+                section.classList.remove('visible');
+                canvasSection.classList.remove('visible');
+                compSection.classList.remove('visible');
+                return;
+            }
+
+            section.classList.add('visible');
+            canvasSection.classList.add('visible');
+            compSection.classList.add('visible');
+
+            container.innerHTML = '';
+            selectedCases.forEach(function(c) {
+                var chip = document.createElement('div');
+                chip.className = 'selected-case-chip';
+                chip.innerHTML =
+                    '<div class="chip-color" style="background:#' + c.color.toString(16).padStart(6, '0') + '"></div>' +
+                    '<div class="chip-info">' +
+                        '<div class="chip-name">' + escapeHtml(c.name) + '</div>' +
+                        '<div class="chip-dims">' + c.length + '\u00D7' + c.width + '\u00D7' + c.height + ' mm</div>' +
+                    '</div>' +
+                    '<button class="chip-remove" onclick="removeCase(\'' + c.id + '\')">\u2715</button>';
+                container.appendChild(chip);
+            });
+
+            updateComparison();
+        }
+
+        // ========== 3D Rendering ==========
+        function initThreeJS() {
+            var container = document.getElementById('canvas-container');
+
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x1a1a2e);
+
+            camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 5000);
+            camera.position.set(400, 350, 500);
+            camera.lookAt(0, 0, 0);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            // Lights
+            scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+            var dirLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
+            dirLight1.position.set(500, 500, 500);
+            scene.add(dirLight1);
+            var dirLight2 = new THREE.DirectionalLight(0xffffff, 0.3);
+            dirLight2.position.set(-300, -100, -300);
+            scene.add(dirLight2);
+
+            // Grid (1000mm = 1m, 20 divisions = 50mm each)
+            var grid = new THREE.GridHelper(1000, 20, 0x444466, 0x333355);
+            scene.add(grid);
+
+            setupControls();
+            animate();
+
+            window.addEventListener('resize', function() {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
+        }
+
+        function updateScene() {
+            meshes.forEach(function(m) { scene.remove(m); });
+            meshes = [];
+            labelSprites.forEach(function(s) { scene.remove(s); });
+            labelSprites = [];
+
+            if (selectedCases.length === 0) return;
+
+            if (viewMode === 'together') createSideBySide();
+            else if (viewMode === 'nested') createNested();
+            else if (viewMode === 'stacked') createStacked();
+
+            autoFitCamera();
+        }
+
+        function createBox(caseInfo, position) {
+            var geo = new THREE.BoxGeometry(caseInfo.width, caseInfo.height, caseInfo.length);
+            var mat = new THREE.MeshPhongMaterial({
+                color: caseInfo.color,
+                transparent: true,
+                opacity: viewMode === 'nested' ? 0.35 : 0.75,
+                side: THREE.DoubleSide
+            });
+
+            var mesh = new THREE.Mesh(geo, mat);
+            mesh.position.copy(position);
+
+            var edges = new THREE.EdgesGeometry(geo);
+            var lineMat = new THREE.LineBasicMaterial({ color: 0x000000, linewidth: 1 });
+            var lineSegments = new THREE.LineSegments(edges, lineMat);
+            mesh.add(lineSegments);
+
+            scene.add(mesh);
+            meshes.push(mesh);
+
+            if (showLabels) {
+                var label = createTextSprite(
+                    caseInfo.name + '\n' + caseInfo.length + '\u00D7' + caseInfo.width + '\u00D7' + caseInfo.height + ' mm',
+                    caseInfo.color
+                );
+                label.position.set(position.x, position.y + caseInfo.height / 2 + 30, position.z);
+                scene.add(label);
+                labelSprites.push(label);
+            }
+
+            return mesh;
+        }
+
+        function createTextSprite(text, bgColor) {
+            var canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 128;
+            var ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = 'rgba(0,0,0,0.75)';
+            roundRect(ctx, 0, 0, canvas.width, canvas.height, 12);
+            ctx.fill();
+
+            ctx.fillStyle = '#' + bgColor.toString(16).padStart(6, '0');
+            ctx.fillRect(0, canvas.height - 6, canvas.width, 6);
+
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 26px Segoe UI, Tahoma, sans-serif';
+            ctx.textAlign = 'center';
+
+            var lines = text.split('\n');
+            for (var i = 0; i < lines.length; i++) {
+                ctx.fillText(lines[i], canvas.width / 2, 40 + i * 40, canvas.width - 20);
+            }
+
+            var texture = new THREE.CanvasTexture(canvas);
+            var spriteMat = new THREE.SpriteMaterial({ map: texture });
+            var sprite = new THREE.Sprite(spriteMat);
+            sprite.scale.set(140, 35, 1);
+            return sprite;
+        }
+
+        function roundRect(ctx, x, y, w, h, r) {
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.lineTo(x + w - r, y);
+            ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+            ctx.lineTo(x + w, y + h - r);
+            ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+            ctx.lineTo(x + r, y + h);
+            ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+            ctx.lineTo(x, y + r);
+            ctx.quadraticCurveTo(x, y, x + r, y);
+            ctx.closePath();
+        }
+
+        function createSideBySide() {
+            var spacing = 50;
+            var totalWidth = 0;
+            selectedCases.forEach(function(c) { totalWidth += c.width; });
+            totalWidth += (selectedCases.length - 1) * spacing;
+
+            var currentX = -totalWidth / 2;
+
+            selectedCases.forEach(function(c) {
+                var pos = new THREE.Vector3(currentX + c.width / 2, c.height / 2, 0);
+                createBox(c, pos);
+                currentX += c.width + spacing;
+            });
+        }
+
+        function createNested() {
+            var sorted = selectedCases.slice().sort(function(a, b) {
+                return (b.length * b.width * b.height) - (a.length * a.width * a.height);
+            });
+
+            sorted.forEach(function(c) {
+                createBox(c, new THREE.Vector3(0, c.height / 2, 0));
+            });
+        }
+
+        function createStacked() {
+            var currentY = 0;
+            selectedCases.forEach(function(c) {
+                createBox(c, new THREE.Vector3(0, currentY + c.height / 2, 0));
+                currentY += c.height + 10;
+            });
+        }
+
+        function autoFitCamera() {
+            if (meshes.length === 0) return;
+
+            var box = new THREE.Box3();
+            meshes.forEach(function(m) { box.expandByObject(m); });
+            var center = box.getCenter(new THREE.Vector3());
+            var size = box.getSize(new THREE.Vector3());
+            var maxDim = Math.max(size.x, size.y, size.z);
+            var dist = maxDim * 1.8;
+
+            camera.position.set(center.x + dist * 0.6, center.y + dist * 0.5, center.z + dist * 0.7);
+            camera.lookAt(center);
+        }
+
+        function setViewMode(mode, btn) {
+            viewMode = mode;
+            var buttons = document.querySelectorAll('.view-btn');
+            for (var i = 0; i < buttons.length; i++) buttons[i].classList.remove('active');
+            if (btn) btn.classList.add('active');
+            updateScene();
+        }
+
+        function resetCamera() {
+            autoFitCamera();
+        }
+
+        function toggleAutoRotate() {
+            autoRotate = !autoRotate;
+            showToast(autoRotate ? '\u0686\u0631\u062E\u0634 \u062E\u0648\u062F\u06A9\u0627\u0631 \u0641\u0639\u0627\u0644 \u0634\u062F' : '\u0686\u0631\u062E\u0634 \u062E\u0648\u062F\u06A9\u0627\u0631 \u063A\u06CC\u0631\u0641\u0639\u0627\u0644 \u0634\u062F');
+        }
+
+        function toggleLabels() {
+            showLabels = !showLabels;
+            updateScene();
+        }
+
+        function setupControls() {
+            var isDragging = false;
+            var isRightDrag = false;
+            var prevX = 0, prevY = 0;
+            var cameraTarget = new THREE.Vector3(0, 0, 0);
+
+            renderer.domElement.addEventListener('mousedown', function(e) {
+                isDragging = true;
+                isRightDrag = e.button === 2;
+                prevX = e.clientX;
+                prevY = e.clientY;
+            });
+
+            renderer.domElement.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                var dx = e.clientX - prevX;
+                var dy = e.clientY - prevY;
+
+                if (isRightDrag) {
+                    // Pan
+                    var right = new THREE.Vector3();
+                    camera.getWorldDirection(right);
+                    right.crossVectors(camera.up, right).normalize();
+                    var up = camera.up.clone();
+                    camera.position.addScaledVector(right, dx * 0.8);
+                    camera.position.addScaledVector(up, dy * 0.8);
+                    cameraTarget.addScaledVector(right, dx * 0.8);
+                    cameraTarget.addScaledVector(up, dy * 0.8);
+                    camera.lookAt(cameraTarget);
+                } else {
+                    // Orbit
+                    var speed = 0.005;
+                    camera.position.sub(cameraTarget);
+                    camera.position.applyAxisAngle(new THREE.Vector3(0, 1, 0), -dx * speed);
+
+                    var rightAxis = new THREE.Vector3();
+                    rightAxis.crossVectors(camera.position.clone().normalize(), new THREE.Vector3(0, 1, 0)).normalize();
+                    if (rightAxis.length() > 0.01) {
+                        camera.position.applyAxisAngle(rightAxis, -dy * speed);
+                    }
+
+                    camera.position.add(cameraTarget);
+                    camera.lookAt(cameraTarget);
+                }
+
+                prevX = e.clientX;
+                prevY = e.clientY;
+            });
+
+            renderer.domElement.addEventListener('mouseup', function() { isDragging = false; });
+            renderer.domElement.addEventListener('mouseleave', function() { isDragging = false; });
+
+            renderer.domElement.addEventListener('wheel', function(e) {
+                e.preventDefault();
+                var factor = 1 + (e.deltaY > 0 ? 0.08 : -0.08);
+                var dir = camera.position.clone().sub(cameraTarget);
+                dir.multiplyScalar(factor);
+                camera.position.copy(cameraTarget).add(dir);
+            }, { passive: false });
+
+            renderer.domElement.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+
+            // Touch support
+            var touchDist = 0;
+            renderer.domElement.addEventListener('touchstart', function(e) {
+                if (e.touches.length === 1) {
+                    isDragging = true;
+                    prevX = e.touches[0].clientX;
+                    prevY = e.touches[0].clientY;
+                } else if (e.touches.length === 2) {
+                    touchDist = Math.hypot(
+                        e.touches[0].clientX - e.touches[1].clientX,
+                        e.touches[0].clientY - e.touches[1].clientY
+                    );
+                }
+            });
+
+            renderer.domElement.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+                if (e.touches.length === 1 && isDragging) {
+                    var dx = e.touches[0].clientX - prevX;
+                    var dy = e.touches[0].clientY - prevY;
+                    camera.position.sub(cameraTarget);
+                    camera.position.applyAxisAngle(new THREE.Vector3(0, 1, 0), -dx * 0.005);
+                    camera.position.add(cameraTarget);
+                    camera.lookAt(cameraTarget);
+                    prevX = e.touches[0].clientX;
+                    prevY = e.touches[0].clientY;
+                } else if (e.touches.length === 2) {
+                    var newDist = Math.hypot(
+                        e.touches[0].clientX - e.touches[1].clientX,
+                        e.touches[0].clientY - e.touches[1].clientY
+                    );
+                    var factor = 1 + (touchDist - newDist) * 0.003;
+                    var dir = camera.position.clone().sub(cameraTarget);
+                    dir.multiplyScalar(factor);
+                    camera.position.copy(cameraTarget).add(dir);
+                    touchDist = newDist;
+                }
+            }, { passive: false });
+
+            renderer.domElement.addEventListener('touchend', function() { isDragging = false; });
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            if (autoRotate && meshes.length > 0) {
+                var target = new THREE.Vector3(0, 0, 0);
+                camera.position.sub(target);
+                camera.position.applyAxisAngle(new THREE.Vector3(0, 1, 0), 0.002);
+                camera.position.add(target);
+                camera.lookAt(target);
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        // ========== Comparison ==========
+        function updateComparison() {
+            var grid = document.getElementById('comparison-grid');
+            grid.innerHTML = '';
+
+            if (selectedCases.length === 0) return;
+
+            // Volume comparison
+            var volumes = selectedCases.map(function(c) {
+                return {
+                    name: c.name,
+                    volume: (c.length * c.width * c.height) / 1000000,
+                    color: c.color,
+                    l: c.length, w: c.width, h: c.height
+                };
+            }).sort(function(a, b) { return b.volume - a.volume; });
+
+            var volHtml = '<div class="comparison-item"><h3>\uD83D\uDCE6 \u0627\u0628\u0639\u0627\u062F \u0648 \u062D\u062C\u0645</h3>';
+            volumes.forEach(function(v) {
+                volHtml += '<div style="margin:6px 0;display:flex;align-items:center;gap:8px;">' +
+                    '<div style="width:16px;height:16px;background:#' + v.color.toString(16).padStart(6,'0') + ';border-radius:4px;flex-shrink:0"></div>' +
+                    '<div><strong>' + escapeHtml(v.name) + '</strong><br>' +
+                    '<span style="font-size:0.85em;color:#666">' + v.l + '\u00D7' + v.w + '\u00D7' + v.h + ' mm \u2014 <strong>' + v.volume.toFixed(1) + ' \u0644\u06CC\u062A\u0631</strong></span></div></div>';
+            });
+            volHtml += '</div>';
+            grid.innerHTML += volHtml;
+
+            // Size ratios
+            if (volumes.length >= 2) {
+                var ratioHtml = '<div class="comparison-item"><h3>\uD83D\uDCCF \u0646\u0633\u0628\u062A \u062D\u062C\u0645\u200C\u0647\u0627</h3>';
+                for (var r = 1; r < volumes.length; r++) {
+                    ratioHtml += '<div style="margin:6px 0;font-size:0.9em">' +
+                        escapeHtml(volumes[0].name) +
+                        ' <strong style="color:#667eea">' + (volumes[0].volume / volumes[r].volume).toFixed(2) + '\u00D7</strong> ' +
+                        '\u0628\u0632\u0631\u06AF\u062A\u0631 \u0627\u0632 ' + escapeHtml(volumes[r].name) + '</div>';
+                }
+                ratioHtml += '</div>';
+                grid.innerHTML += ratioHtml;
+            }
+
+            // Fit analysis
+            if (selectedCases.length >= 2) {
+                grid.innerHTML += '<div class="comparison-item"><h3>\uD83C\uDFAF \u062A\u062D\u0644\u06CC\u0644 \u062C\u0627\u06CC\u0627\u0628\u06CC</h3>' + analyzeFitting() + '</div>';
+            }
+
+            // Dimension table
+            var tableHtml = '<div class="comparison-item"><h3>\uD83D\uDCCA \u062C\u062F\u0648\u0644 \u0645\u0642\u0627\u06CC\u0633\u0647</h3>' +
+                '<table style="width:100%;border-collapse:collapse;font-size:0.85em">' +
+                '<tr style="border-bottom:2px solid #ddd"><th style="padding:6px;text-align:right">\u06A9\u06CC\u0633</th><th style="padding:6px">\u0637\u0648\u0644</th><th style="padding:6px">\u0639\u0631\u0636</th><th style="padding:6px">\u0627\u0631\u062A\u0641\u0627\u0639</th><th style="padding:6px">\u062D\u062C\u0645 (L)</th></tr>';
+            selectedCases.forEach(function(c) {
+                var vol = (c.length * c.width * c.height / 1000000).toFixed(1);
+                tableHtml += '<tr style="border-bottom:1px solid #eee">' +
+                    '<td style="padding:6px;text-align:right"><span style="display:inline-block;width:10px;height:10px;background:#' + c.color.toString(16).padStart(6,'0') + ';border-radius:3px;margin-left:4px"></span>' + escapeHtml(c.name) + '</td>' +
+                    '<td style="padding:6px;text-align:center">' + c.length + '</td>' +
+                    '<td style="padding:6px;text-align:center">' + c.width + '</td>' +
+                    '<td style="padding:6px;text-align:center">' + c.height + '</td>' +
+                    '<td style="padding:6px;text-align:center">' + vol + '</td></tr>';
+            });
+            tableHtml += '</table></div>';
+            grid.innerHTML += tableHtml;
+        }
+
+        function analyzeFitting() {
+            var result = '';
+            var sorted = selectedCases.slice().sort(function(a, b) {
+                return (b.length * b.width * b.height) - (a.length * a.width * a.height);
+            });
+
+            for (var i = 0; i < sorted.length; i++) {
+                for (var j = i + 1; j < sorted.length; j++) {
+                    var larger = sorted[i];
+                    var smaller = sorted[j];
+
+                    var largerDims = [larger.length, larger.width, larger.height].sort(function(a, b) { return b - a; });
+                    var smallerDims = [smaller.length, smaller.width, smaller.height].sort(function(a, b) { return b - a; });
+
+                    var fits = smallerDims[0] <= largerDims[0] && smallerDims[1] <= largerDims[1] && smallerDims[2] <= largerDims[2];
+
+                    if (fits) {
+                        result += '<div style="margin:6px 0;color:green">\u2705 ' + escapeHtml(smaller.name) + ' \u062F\u0627\u062E\u0644 ' + escapeHtml(larger.name) + ' \u062C\u0627 \u0645\u06CC\u200C\u0634\u0648\u062F</div>';
+                    } else {
+                        result += '<div style="margin:6px 0;color:#c62828">\u274C ' + escapeHtml(smaller.name) + ' \u062F\u0627\u062E\u0644 ' + escapeHtml(larger.name) + ' \u062C\u0627 \u0646\u0645\u06CC\u200C\u0634\u0648\u062F</div>';
+                    }
+                }
+            }
+
+            return result || '<div>\u062D\u062F\u0627\u0642\u0644 \u062F\u0648 \u06A9\u06CC\u0633 \u0644\u0627\u0632\u0645 \u0627\u0633\u062A</div>';
+        }
+
+        // ========== Helpers ==========
+        function showLoading(text) {
+            document.getElementById('loading-text').textContent = text || '\u062F\u0631 \u062D\u0627\u0644 \u0628\u0627\u0631\u06AF\u0630\u0627\u0631\u06CC...';
+            document.getElementById('loading-overlay').classList.add('visible');
+        }
+
+        function hideLoading() {
+            document.getElementById('loading-overlay').classList.remove('visible');
+        }
+
+        var toastTimer;
+        function showToast(message, type) {
+            var toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast' + (type ? ' ' + type : '');
+            clearTimeout(toastTimer);
+            requestAnimationFrame(function() {
+                toast.classList.add('visible');
+                toastTimer = setTimeout(function() { toast.classList.remove('visible'); }, 3000);
+            });
+        }
+
+        // ========== Init ==========
+        window.addEventListener('load', function() {
+            initThreeJS();
+            document.getElementById('search-query').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') searchCases(1);
+            });
+        });
+    </script>
+</body>
+</html>
