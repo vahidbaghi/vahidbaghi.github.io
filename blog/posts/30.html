@@ -1,272 +1,334 @@
-
 <!DOCTYPE html>
-<html dir="rtl" lang="fa">
+<html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
-    <title>وبلاگ وحید باقی</title>
-    <style>
-        body {
-            font-family: Vazirmatn, sans-serif;
-            line-height: 1.6;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f7f7f7;
-        }
-
-        .notebook-container {
-            background: white;
-            border: 1px solid #e1e4e8;
-            border-radius: 4px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-        }
-
-        .header {
-            padding: 20px;
-            border-bottom: 1px solid #e1e4e8;
-            background-color: #f6f8fa;
-        }
-
-        .post-title {
-            font-size: 2em;
-            margin: 0;
-            color: #24292e;
-        }
-
-        .post-meta {
-            color: #586069;
-            font-size: 0.9em;
-            margin-top: 10px;
-        }
-
-        .featured-image {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-        }
-
-        .content {
-            padding: 20px;
-        }
-
-        .cell {
-            margin: 20px 0;
-            padding: 10px;
-            border-radius: 3px;
-            background-color: #f8f9fa;
-            text-align: right;
-        }
-
-        code {
-            background-color: #f6f8fa;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-family: Monaco, Consolas, monospace;
-        }
-
-        .link-center {
-            text-align: center;
-        }
-
-        
-        .wp-block-image {
-            text-align: center; 
-        }
-
-        .wp-block-image img {
-            max-width: 100%; 
-            height: auto; 
-            display: block; 
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .has-text-align-center{
-            text-align: center;
-        }
-
-        .cell pre {
-            word-break: break-all;
-            overflow-wrap: break-word; 
-            overflow-x: auto; 
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>۱. هات‌داگ؛ هست یا نیست؟ — وحید باقی</title>
+<meta name="description" content="من چند وقت پیش با today.bnomial.com آشنا شدم که هر روز یک سوال یادگیری ماشین مطرح می‌کنه و بعد از اینکه پاسخ خودتون رو ثبت کنید پاسخ صحیح رو به همراه کمی ت">
+<meta property="og:title" content="۱. هات‌داگ؛ هست یا نیست؟">
+<meta property="og:description" content="من چند وقت پیش با today.bnomial.com آشنا شدم که هر روز یک سوال یادگیری ماشین مطرح می‌کنه و بعد از اینکه پاسخ خودتون رو ثبت کنید پاسخ صحیح رو به همراه کمی ت">
+<meta property="og:type" content="article">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css">
+<style>
+.meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;color:var(--jp-ui-font-color2);
+  font-size:12.5px;margin:-.2em 0 1.5em;max-width:none}
+.meta .dot{width:3px;height:3px;border-radius:50%;background:var(--jp-border2);flex:0 0 3px}
+.meta .tag{border:1px solid var(--jp-border2);border-radius:2px;padding:0 7px;font-size:11.5px}
+.meta .mono{direction:ltr;font-family:"JetBrains Mono",Menlo,monospace}
+.mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
+.figout{margin:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.figout img{max-width:min(100%,720px);height:auto;border:1px solid var(--jp-border1);
+  border-radius:2px;display:block;margin:0 auto 6px}
+.figout img:last-of-type{margin-bottom:0}
+.figout figcaption{color:var(--jp-ui-font-color2);font-size:12px;padding-top:8px;
+  max-width:60ch;text-align:center}
+.tblout{overflow-x:auto;max-width:100%}
+.jp-md p.ctr{text-align:center}
+.jp-md p.embed a{display:inline-block;border:1px solid var(--jp-border2);border-radius:3px;
+  padding:8px 13px;text-decoration:none;background:var(--jp-editor-bg)}
+.jp-md p.embed a:hover{border-color:var(--jp-brand1)}
+</style>
 </head>
 <body>
-<div class="notebook-container">
-    <article class="main-article post-594 post type-post status-publish format-standard has-post-thumbnail hentry category-1 category-40">
-        <header class="header">
-            <h1 class="post-title">۱. هات‌داگ؛ هست یا نیست؟</h1>
-            <div class="post-meta">
-                <span class="date">۱۴۰۱/۱۰/۰۵</span>
-            </div>
-        </header>
-
-        <section class="content">
-            <div class="cell">
-                <p>من چند وقت پیش با today.bnomial.com آشنا شدم که هر روز یک سوال یادگیری ماشین مطرح می‌کنه و بعد از اینکه پاسخ خودتون رو ثبت کنید پاسخ صحیح رو به همراه کمی توضیحات نشون میده. من خیلی از این سایت و سوالاتش خوشم اومد. برای اینکه به تاریخچه سوالات دسترسی داشته باشید با پول بدید و کتابش رو بخرید. من کتابش رو خریدم و قصد دارم هر چند روز یکبار یکی از این سوالات رو در قالب یک بلاگ پست مطرح کنم تا هم دانسته های خودم رو تثبیت کنم هم برای بقیه مفید باشه. قرار نیست کتاب رو ترجمه کنم. صرفا صورت سوال رو می‌نویسم بعد خودم شروع میکنم به توضیح دادن. توی کتاب ممکنه یک صفحه جواب رو توضیح داده باشه ولی من می‌شینم چند صفحه براتون می‌بافم 🙂</p>
-            </div>
-            <div class="cell">
-                <h2 class="wp-block-heading">۱. هات‌داگ؛ هست یا نیست؟</h2>
-            </div>
-            <div class="cell">
-                <p>یه نمایش تلویزیونی معروف، این ایده رو که یه اپلیکیشن داشته باشیم که یه تصویر رو بگیره و بگه هات‌داگه یا نه v, مسخره کرده بود! اگر سریال سیلیکون‌ولی رو دیده باشید می‌دونید در مورد <a rel="noreferrer noopener" href="https://www.youtube.com/watch?v=vIci3C4JkL0" target="_blank">کدوم قسمت</a> داره صحبت می‌کنه 🙂 می‌دونم ایده احمقانه‌ای محسوب میشه ولی فرض کنید می‌خوایم این اپلیکیشن رو بسازیم. ما می‌خوایم از یادگیری عمیق (deep learning) برای ساخت یک binary classifier استفاده کنیم. فقط سوالی که اینجا مطرح میشه ساختار لایه آخر شبکه باید چه جوری باشه؟ کدوم یکی از توابع فعال‌سازی (activation functions) می‌تونه برای لایه خروجی انتخاب بشه؟</p>
-            </div>
-            <div class="cell">
-                <ol class="wp-block-list">
+<div id="cells" hidden>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h1>۱. هات‌داگ؛ هست یا نیست؟</h1>
+      <div class="meta"><span class="mono">۱۴۰۱/۱۰/۰۵</span><span class="dot"></span><span class="tag">حل تمرین</span><span class="dot"></span><span>آموزش</span></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>من چند وقت پیش با today.bnomial.com آشنا شدم که هر روز یک سوال یادگیری ماشین مطرح می‌کنه و بعد از اینکه پاسخ خودتون رو ثبت کنید پاسخ صحیح رو به همراه کمی توضیحات نشون میده. من خیلی از این سایت و سوالاتش خوشم اومد. برای اینکه به تاریخچه سوالات دسترسی داشته باشید با پول بدید و کتابش رو بخرید. من کتابش رو خریدم و قصد دارم هر چند روز یکبار یکی از این سوالات رو در قالب یک بلاگ پست مطرح کنم تا هم دانسته های خودم رو تثبیت کنم هم برای بقیه مفید باشه. قرار نیست کتاب رو ترجمه کنم. صرفا صورت سوال رو می‌نویسم بعد خودم شروع میکنم به توضیح دادن. توی کتاب ممکنه یک صفحه جواب رو توضیح داده باشه ولی من می‌شینم چند صفحه براتون می‌بافم 🙂</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>۱. هات‌داگ؛ هست یا نیست؟</h2>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>یه نمایش تلویزیونی معروف، این ایده رو که یه اپلیکیشن داشته باشیم که یه تصویر رو بگیره و بگه هات‌داگه یا نه v, مسخره کرده بود! اگر سریال سیلیکون‌ولی رو دیده باشید می‌دونید در مورد <a href="https://www.youtube.com/watch?v=vIci3C4JkL0" target="_blank" rel="noopener">کدوم قسمت</a> داره صحبت می‌کنه 🙂 می‌دونم ایده احمقانه‌ای محسوب میشه ولی فرض کنید می‌خوایم این اپلیکیشن رو بسازیم. ما می‌خوایم از یادگیری عمیق (deep learning) برای ساخت یک binary classifier استفاده کنیم. فقط سوالی که اینجا مطرح میشه ساختار لایه آخر شبکه باید چه جوری باشه؟ کدوم یکی از توابع فعال‌سازی (activation functions) می‌تونه برای لایه خروجی انتخاب بشه؟</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <ol>
                     <li>Rectifier Linear Unit (ReLU)</li>
                     <li>Leaky ReLU</li>
                     <li>Sigmoid</li>
                     <li>Softmax</li>
                 </ol>
-            </div>
-            <div class="cell">
-                <p><strong>پاسخ کوتاه :</strong> گزینه ۳ و ۴</p>
-            </div>
-            <div class="cell">
-                <p><strong>پاسخ بلند :</strong> ما اینجا با یک مسئله Classification یا طبقه‌بندی رو‌به‌رو هستیم. یکسری تصویر داریم که از قبل برچسب خوردند. یعنی تعدادی تصویر هات‌داگ داریم و می‌خوایم مدل یاد بگیره هات‌داگه چه ویژگی هایی داره و زمانی که یه تصویر جدید بهش می‌دیم بگه هات‌داگه یا نیست؟! چون اینجا فقط دو تا دسته داریم (هات‌داگ بودن یا نبودن) پس میشه طبقه‌بندی دودویی یا Binary Classification</p>
-            </div>
-              <div class="cell">
-                <p>اگر می‌خواید بیشتر در مورد Binary Classification بدونید می‌تونید لینک زیر رو مطالعه کنید :</p>
-            </div>
-           
-            <div class="cell">
-                <figure class="wp-block-embed is-type-wp-embed"><div class="wp-block-embed__wrapper">
-                    <blockquote class="wp-embedded-content" data-secret="xHGLKvkifR" style="display: none;"><a href="https://chistio.ir/طبقه-بندی-دودویی-binary-چند-کلاسه-multi-class/">مسائل طبقه‌بندی دودویی (binary)، چند کلاسه (Multi Class)، چند برچسبه (Multi Label) و تفاوت آن‌ها</a></blockquote><iframe class="wp-embedded-content" sandbox="allow-scripts" security="restricted" title="“مسائل طبقه‌بندی دودویی (binary)، چند کلاسه (Multi Class)، چند برچسبه (Multi Label) و تفاوت آن‌ها” — چیستیو | علوم داده و نرم افزار" src="https://chistio.ir/طبقه-بندی-دودویی-binary-چند-کلاسه-multi-class/embed/#?secret=XKp0CIAmKB#?secret=xHGLKvkifR" data-secret="xHGLKvkifR" width="600" height="266" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
-                </div></figure>
-            </div>
-            <div class="cell">
-                 <p>هدف این سوال اینه که شما کاربرد توابع فعال‌سازی رو یادآوری کنید و بدونید چه زمانی باید از کدوم تابع فعال‌سازی استفاده کنید. اول بیاید نحوه کار این ۴ تا تابع فعال‌سازی رو بررسی کنیم.</p>
-            </div>
-            <div class="cell">
-                 <p><strong>تابع ReLU : </strong>همونطور که در تصویر زیر هم مشاهده می‌کنید، اگر ورودی این تابع مقداری کمتر از ۰ (صفر) باشه خروجی تابع ۰ (صفر) میشه و در غیر این صورت همون مقداری که به عنوان ورودی گرفته رو به خروجی انتقال میده.</p>
-            </div>
-            <div class="cell">
-               <div class="wp-block-image">
-                    <figure class="aligncenter size-large"><img decoding="async" src="images/30-1.webp" alt="" class="wp-image-714"></figure>
-                </div>
-           </div>
-           <div class="cell">
-                <p><strong>تابع Leaky ReLU‌ :</strong> مشابه ReLU عمل می‌کنه با این تفاوت که برای مقادیر ورودی منفی، خروجی ۰ (صفر) نمیشه و می‌تونیم برای مواردی که مقادیر منفی هم داریم ازش استفاده کنیم. مثلا فرض کنید مقدار ما ۱- باشه. این تابع میاد بین ۱- و ۰.۱- اون مقداری که بزرگتره رو انتخاب میکنه که اینجا ۰.۱- میشه. پس مقادیر کمتر از ۰ رو کاملا حذف نمیکنه، فقط وزن کمی بهشون میده.</p>
-           </div>
-            <div class="cell">
-                <div class="wp-block-image">
-                    <figure class="aligncenter size-full"><img decoding="async" src="images/30-2.webp" alt="" class="wp-image-713"></figure>
-                </div>
-            </div>
-            <div class="cell">
-                 <p><strong>تابع Sigmoid :</strong> این تابع مقادیر ورودی رو به بازه ۰ تا ۱ نگاشت میکنه.</p>
-            </div>
-             <div class="cell">
-                <div class="wp-block-image">
-                    <figure class="aligncenter size-large"><img loading="lazy" decoding="async" src="images/30-3.png" alt="" class="wp-image-715"></figure>
-                 </div>
-            </div>
-           <div class="cell">
-                 <p><strong>تابع Softmax :</strong> مشابه Sigmoid عمل می‌کنه و مقادیر ورودی رو به نحوی به بازه ۰ تا ۱ نگاشت می‌کنه که مجموع اون برابر با ۱ بشه. اما توی Sigmoid لزوما مجموع مقادیر برابر با ۱ نمیشد.</p>
-            </div>
-            <div class="cell">
-                 <p>حالا ما چی می‌خوایم؟ ما یه شبکه عصبی چند لایه داریم که یه تصویر رو به عنوان ورودی بهش می‌دیم و در خروجی به ما میگه اون تصویر هات داگه یا نه! اینکه تو لایه های میانی از چه تابع فعال‌سازی استفاده شده الان برای ما مهم نیست. تو لایه های میانی عموما از ReLU استفاده میشه ولی ما اینجا با لایه آخر کار داریم. لایه آخر دو تا نورون داره. چرا؟ چون دو تا دسته داریم. حالا اگر برای لایه آخر از تابع ReLU یا Leaky ReLU استفاده کنیم چه اتفاقی می‌افته؟ همونطور که می‌دونید تابع ReLU مقادیر کوچکتر از صفر رو همون صفر در نظر میگیره و Leaky ReLU هم یه مقدار خیلی کوچیک در نظر میگیره. عملا فقط مقادیر بزرگتر از ۰ رو از خودش عبور میده. خب این برای Classification به درد ما نمیخوره. فرض کنید در لایه آخر از ReLU استفاده کردیم و خروجی شده ۵۰ و ۱۰۰. خب از این چه نتیجه‌ای می‌تونیم بگیریم؟ هیچی! چون هیچ مرزی نداره. مقدار خروجی می‌تونه از صفر تا بی‌نهایت باشه! ممکنه دفعه بعدی خروجی این دو تا نورون بشه ۱۰۰۰ و ۴۰۰۰ که بازم نمیشه نتیجه خاصی گرفت! یعنی سقفی نداره که بتونیم threshold بذاریم.</p>
-            </div>
-            <div class="cell">
-                 <p>اما اگر Sigmoid یا Softmax استفاده کنیم خروجی ما به بازه ۰ تا ۱ نگاشت میشه و به راحتی می‌تونیم نتیجه‌گیری کنیم. مثلا می‌گیم اگر مقدار خروجی بزرگتر از ۰.۵ بود یعنی تصویر هات‌داگ بوده و اگر کوچکتر از ۰.۵ بود یعنی هات‌داگ نبوده. در واقع این دو تا تابع به ما این قدرت رو میدن که threshold بذاریم.</p>
-            </div>
-            <div class="cell">
-                <p>تصویر زیر نحوه انتخاب تابع فعال‌سازی لایه آخر رو برای مسائل مختلف نشون میده :</p>
-            </div>
-            <div class="cell">
-                 <figure class="wp-block-image size-full"><img loading="lazy" decoding="async" src="images/30-4.png" alt="" class="wp-image-703"><figcaption class="wp-element-caption">https://machinelearningmastery.com/choose-an-activation-function-for-deep-learning</figcaption></figure>
-            </div>
-             <div class="cell">
-                <p>حالا من می‌خوام واقعا این مدل رو بسازم! برای این کار از سایت زیر می‌خوام استفاده کنم :</p>
-            </div>
-             <div class="cell">
-               <pre class="has-text-align-center"><a href="https://teachablemachine.withgoogle.com/">https://teachablemachine.withgoogle.com</a></pre>
-            </div>
-            <div class="cell">
-                 <p>با استفاده از این سایت به سادگی و با یک رابط کاربری فوق‌ العاده ساده می‌تونید یک مدل برای طبقه‌بندی (Classification) صوت و تصویر ایجاد کنید و خروجی رو همون لحظه با وب‌کم تست کنید. حتی کدش رو هم بهتون میده و میتونید مرحله train رو آنلاین انجام بدید و بعد از مدل آموزش دیده به صورت آفلاین استفاده کنید!</p>
-            </div>
-            <div class="cell">
-                <p>زمانی که در صفحه اصلی سایت بر روی Get Started کلیک کنید سه تا گزینه براتون میاره و باید نوع پروژه رو مشخص کنید. من Image Project رو انتخاب می‌کنم :</p>
-            </div>
-            <div class="cell">
-                <div class="wp-block-image">
-                     <figure class="aligncenter size-large"><img loading="lazy" decoding="async" src="images/30-5.png" alt="" class="wp-image-689"></figure>
-                </div>
-           </div>
-           <div class="cell">
-                <p>در مرحله بعدی هم Standard Image model رو انتخاب کنید :</p>
-            </div>
-           <div class="cell">
-                <div class="wp-block-image">
-                     <figure class="aligncenter size-large"><img loading="lazy" decoding="async" src="images/30-6.png" alt="" class="wp-image-690"></figure>
-                </div>
-           </div>
-           <div class="cell">
-               <p>حالا باید با استفاده از دکمه Upload تصاویر مربوط به هر کلاس رو آپلود کنید. می‌تونید از گوگل درایوتون هم تصاویر رو انتخاب کنید. من از دیتاست زیر استفاده میکنم :</p>
-            </div>
-             <div class="cell">
-                  <pre class="has-text-align-center"><a href="https://github.com/youngsoul/hotdog-not-hotdog-dataset">https://github.com/youngsoul/hotdog-not-hotdog-dataset</a></pre>
-            </div>
-            <div class="cell">
-                <p>تعداد تصاویر زیاد بود، من اینجا فقط ۶۰ تا تصویر رو برای هر دسته آپلود کردم. هر چی تعداد تصاویر بیشتری آپلود کنید مدل دقیق‌تری خواهید داشت!</p>
-            </div>
-             <div class="cell">
-                  <div class="wp-block-image">
-                      <figure class="aligncenter size-large"><img loading="lazy" decoding="async" src="images/30-7.png" alt="" class="wp-image-698"></figure>
-                 </div>
-             </div>
-            <div class="cell">
-                 <p>برای train یکسری گزینه ها وجود داره. با یه مثال براتون توضیح میدم. فرض کنید ۲۰۰ تا تصویر داریم و تعداد Batch Size رو ۵ و تعداد Epoch رو ۱۰۰۰ در نظر گرفتیم. این یعنی ما می‌خوایم دیتاست (تصاویر) رو به ۴۰ دسته ۵ تایی تقسیم کنیم و این کار رو هم ۱۰۰۰ بار انجام می‌دیم. یعنی کل تصاویر رو ۱۰۰۰ بار به عنوان ورودی به شبکه عصبی می‌دیم و وزن ها رو آپدیت می‌کنیم. به طور کلی هر چی تعداد epoch ها بیشتر باشه مدل دقیق‌تری خواهیم داشت (اما لزوما همیشه درست نیست). اگر می‌خواید در مورد نحوه انتخاب هایپرپارامتر ها بیشتر بدونید مقاله زیر رو بخونید :</p>
-            </div>
-            <div class="cell">
-                  <pre class="has-text-align-center"><a href="https://towardsdatascience.com/what-are-hyperparameters-and-how-to-tune-the-hyperparameters-in-a-deep-neural-network-d0604917584a">https://towardsdatascience.com/what-are-hyperparameters-and-how-to-tune-the-hyperparameters-in-a-deep-neural-network-d0604917584a</a></pre>
-            </div>
-           <div class="cell">
-                <p> بعد روی دکمه train کلیک کنید تا پردازش رو شروع کنه. بعد از اینکه عملیات به اتمام برسه شما می‌تونید با استفاده وب‌کم یا آپلود یک تصویر مدل خودتون رو تست کنید. من یه تصویر رو به عنوان نمونه آپلود کردم و نتیجه به صورت زیر شد :</p>
-            </div>
-            <div class="cell">
-                <div class="wp-block-image">
-                      <figure class="aligncenter size-full"><img loading="lazy" decoding="async" src="images/30-8.png" alt="" class="wp-image-694"></figure>
-                 </div>
-            </div>
-            <div class="cell">
-                <p>همونطور که می‌بینید این تصویر رو ۱۰۰ درصد یک هات‌داگ تشخیص داده! زمانی که روی Export Model کلیک کنید صفحه زیر رو مشاهده خواهید کرد :</p>
-            </div>
-             <div class="cell">
-                  <div class="wp-block-image">
-                      <figure class="aligncenter size-large"><img loading="lazy" decoding="async" src="images/30-9.png" alt="" class="wp-image-695"></figure>
-                 </div>
-            </div>
-            <div class="cell">
-                <p>در اینجا گزینه های زیادی رو برای خروجی گرفتن از مدلتون میتونید مشاهده کنید. با استفاده از Tensorflow.js به شما کد ها و نحوه استفاده از مدل train شده در جاوا اسکریپت رو نشون میده. اگر Tensorflow رو انتخاب کنید کد های نسخه اصلی Tensorflow در پایتون رو نشون میده و اگر Tensorflow Lite رو انتخاب کنید نحوه استفاده از مدل رو در اندروید و Google Edge TPU نشون میده. پس از اینجا می‌تونید مدل train شده خودتون رو دانلود کنید و با استفاده از کد هایی که قرار داده توی پروژه خودتون ازش استفاده کنید.</p>
-            </div>
-            <div class="cell">
-                <p>من برای خودم جالب شد که یک مقدار در مورد Edge TPU ها تحقیق کنم. گوگل یکسری برد های ASIC رو برای اجرای الگوریتم های یادگیری ماشین توسعه داده که در تصویر یک نمونه Coral Edge TPU رو می‌تونید مشاهده کنید :</p>
-            </div>
-           <div class="cell">
-                 <div class="wp-block-image">
-                      <figure class="aligncenter size-large"><img loading="lazy" decoding="async" src="images/30-10.webp" alt="" class="wp-image-697"></figure>
-                 </div>
-            </div>
-            <div class="cell">
-                <div class="wp-block-image">
-                    <figure class="aligncenter size-large"><img loading="lazy" decoding="async" src="images/30-11.webp" alt="" class="wp-image-706"></figure>
-                </div>
-            </div>
-            <div class="cell">
-                <p>قیمتش هم حدودا ۶۰ دلاره. طبق توضیحاتی که توی سایتش نوشته ۴ تریلیون عمل در ثانیه رو می‌تونه انجام بده. تو لینک زیر یه بنچمارک ازش گذاشته :</p>
-            </div>
-             <div class="cell">
-                 <pre class="has-text-align-left"><a href="https://coral.ai/docs/edgetpu/benchmarks/">https://coral.ai/docs/edgetpu/benchmarks</a></pre>
-            </div>
-        
-
-        </section>
-    </article>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p><strong>پاسخ کوتاه :</strong> گزینه ۳ و ۴</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p><strong>پاسخ بلند :</strong> ما اینجا با یک مسئله Classification یا طبقه‌بندی رو‌به‌رو هستیم. یکسری تصویر داریم که از قبل برچسب خوردند. یعنی تعدادی تصویر هات‌داگ داریم و می‌خوایم مدل یاد بگیره هات‌داگه چه ویژگی هایی داره و زمانی که یه تصویر جدید بهش می‌دیم بگه هات‌داگه یا نیست؟! چون اینجا فقط دو تا دسته داریم (هات‌داگ بودن یا نبودن) پس میشه طبقه‌بندی دودویی یا Binary Classification</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>اگر می‌خواید بیشتر در مورد Binary Classification بدونید می‌تونید لینک زیر رو مطالعه کنید :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p class="embed"><a href="https://chistio.ir/طبقه-بندی-دودویی-binary-چند-کلاسه-multi-class/" target="_blank" rel="noopener">مسائل طبقه‌بندی دودویی (binary)، چند کلاسه (Multi Class)، چند برچسبه (Multi Label) و تفاوت آن‌ها</a></p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>هدف این سوال اینه که شما کاربرد توابع فعال‌سازی رو یادآوری کنید و بدونید چه زمانی باید از کدوم تابع فعال‌سازی استفاده کنید. اول بیاید نحوه کار این ۴ تا تابع فعال‌سازی رو بررسی کنیم.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p><strong>تابع ReLU : </strong>همونطور که در تصویر زیر هم مشاهده می‌کنید، اگر ورودی این تابع مقداری کمتر از ۰ (صفر) باشه خروجی تابع ۰ (صفر) میشه و در غیر این صورت همون مقداری که به عنوان ورودی گرفته رو به خروجی انتقال میده.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[1]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/30-1.webp" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p><strong>تابع Leaky ReLU‌ :</strong> مشابه ReLU عمل می‌کنه با این تفاوت که برای مقادیر ورودی منفی، خروجی ۰ (صفر) نمیشه و می‌تونیم برای مواردی که مقادیر منفی هم داریم ازش استفاده کنیم. مثلا فرض کنید مقدار ما ۱- باشه. این تابع میاد بین ۱- و ۰.۱- اون مقداری که بزرگتره رو انتخاب میکنه که اینجا ۰.۱- میشه. پس مقادیر کمتر از ۰ رو کاملا حذف نمیکنه، فقط وزن کمی بهشون میده.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[2]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/30-2.webp" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p><strong>تابع Sigmoid :</strong> این تابع مقادیر ورودی رو به بازه ۰ تا ۱ نگاشت میکنه.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[3]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/30-3.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p><strong>تابع Softmax :</strong> مشابه Sigmoid عمل می‌کنه و مقادیر ورودی رو به نحوی به بازه ۰ تا ۱ نگاشت می‌کنه که مجموع اون برابر با ۱ بشه. اما توی Sigmoid لزوما مجموع مقادیر برابر با ۱ نمیشد.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>حالا ما چی می‌خوایم؟ ما یه شبکه عصبی چند لایه داریم که یه تصویر رو به عنوان ورودی بهش می‌دیم و در خروجی به ما میگه اون تصویر هات داگه یا نه! اینکه تو لایه های میانی از چه تابع فعال‌سازی استفاده شده الان برای ما مهم نیست. تو لایه های میانی عموما از ReLU استفاده میشه ولی ما اینجا با لایه آخر کار داریم. لایه آخر دو تا نورون داره. چرا؟ چون دو تا دسته داریم. حالا اگر برای لایه آخر از تابع ReLU یا Leaky ReLU استفاده کنیم چه اتفاقی می‌افته؟ همونطور که می‌دونید تابع ReLU مقادیر کوچکتر از صفر رو همون صفر در نظر میگیره و Leaky ReLU هم یه مقدار خیلی کوچیک در نظر میگیره. عملا فقط مقادیر بزرگتر از ۰ رو از خودش عبور میده. خب این برای Classification به درد ما نمیخوره. فرض کنید در لایه آخر از ReLU استفاده کردیم و خروجی شده ۵۰ و ۱۰۰. خب از این چه نتیجه‌ای می‌تونیم بگیریم؟ هیچی! چون هیچ مرزی نداره. مقدار خروجی می‌تونه از صفر تا بی‌نهایت باشه! ممکنه دفعه بعدی خروجی این دو تا نورون بشه ۱۰۰۰ و ۴۰۰۰ که بازم نمیشه نتیجه خاصی گرفت! یعنی سقفی نداره که بتونیم threshold بذاریم.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>اما اگر Sigmoid یا Softmax استفاده کنیم خروجی ما به بازه ۰ تا ۱ نگاشت میشه و به راحتی می‌تونیم نتیجه‌گیری کنیم. مثلا می‌گیم اگر مقدار خروجی بزرگتر از ۰.۵ بود یعنی تصویر هات‌داگ بوده و اگر کوچکتر از ۰.۵ بود یعنی هات‌داگ نبوده. در واقع این دو تا تابع به ما این قدرت رو میدن که threshold بذاریم.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>تصویر زیر نحوه انتخاب تابع فعال‌سازی لایه آخر رو برای مسائل مختلف نشون میده :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[4]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/30-4.png" alt="" loading="lazy"><figcaption>https://machinelearningmastery.com/choose-an-activation-function-for-deep-learning</figcaption></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>حالا من می‌خوام واقعا این مدل رو بسازم! برای این کار از سایت زیر می‌خوام استفاده کنم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <a href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noopener">https://teachablemachine.withgoogle.com</a>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>با استفاده از این سایت به سادگی و با یک رابط کاربری فوق‌ العاده ساده می‌تونید یک مدل برای طبقه‌بندی (Classification) صوت و تصویر ایجاد کنید و خروجی رو همون لحظه با وب‌کم تست کنید. حتی کدش رو هم بهتون میده و میتونید مرحله train رو آنلاین انجام بدید و بعد از مدل آموزش دیده به صورت آفلاین استفاده کنید!</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>زمانی که در صفحه اصلی سایت بر روی Get Started کلیک کنید سه تا گزینه براتون میاره و باید نوع پروژه رو مشخص کنید. من Image Project رو انتخاب می‌کنم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[5]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/30-5.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>در مرحله بعدی هم Standard Image model رو انتخاب کنید :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[6]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/30-6.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>حالا باید با استفاده از دکمه Upload تصاویر مربوط به هر کلاس رو آپلود کنید. می‌تونید از گوگل درایوتون هم تصاویر رو انتخاب کنید. من از دیتاست زیر استفاده میکنم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <a href="https://github.com/youngsoul/hotdog-not-hotdog-dataset" target="_blank" rel="noopener">https://github.com/youngsoul/hotdog-not-hotdog-dataset</a>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>تعداد تصاویر زیاد بود، من اینجا فقط ۶۰ تا تصویر رو برای هر دسته آپلود کردم. هر چی تعداد تصاویر بیشتری آپلود کنید مدل دقیق‌تری خواهید داشت!</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[7]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/30-7.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>برای train یکسری گزینه ها وجود داره. با یه مثال براتون توضیح میدم. فرض کنید ۲۰۰ تا تصویر داریم و تعداد Batch Size رو ۵ و تعداد Epoch رو ۱۰۰۰ در نظر گرفتیم. این یعنی ما می‌خوایم دیتاست (تصاویر) رو به ۴۰ دسته ۵ تایی تقسیم کنیم و این کار رو هم ۱۰۰۰ بار انجام می‌دیم. یعنی کل تصاویر رو ۱۰۰۰ بار به عنوان ورودی به شبکه عصبی می‌دیم و وزن ها رو آپدیت می‌کنیم. به طور کلی هر چی تعداد epoch ها بیشتر باشه مدل دقیق‌تری خواهیم داشت (اما لزوما همیشه درست نیست). اگر می‌خواید در مورد نحوه انتخاب هایپرپارامتر ها بیشتر بدونید مقاله زیر رو بخونید :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <a href="https://towardsdatascience.com/what-are-hyperparameters-and-how-to-tune-the-hyperparameters-in-a-deep-neural-network-d0604917584a" target="_blank" rel="noopener">https://towardsdatascience.com/what-are-hyperparameters-and-how-to-tune-the-hyperparameters-in-a-deep-neural-network-d0604917584a</a>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p> بعد روی دکمه train کلیک کنید تا پردازش رو شروع کنه. بعد از اینکه عملیات به اتمام برسه شما می‌تونید با استفاده وب‌کم یا آپلود یک تصویر مدل خودتون رو تست کنید. من یه تصویر رو به عنوان نمونه آپلود کردم و نتیجه به صورت زیر شد :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[8]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/30-8.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>همونطور که می‌بینید این تصویر رو ۱۰۰ درصد یک هات‌داگ تشخیص داده! زمانی که روی Export Model کلیک کنید صفحه زیر رو مشاهده خواهید کرد :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[9]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/30-9.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>در اینجا گزینه های زیادی رو برای خروجی گرفتن از مدلتون میتونید مشاهده کنید. با استفاده از Tensorflow.js به شما کد ها و نحوه استفاده از مدل train شده در جاوا اسکریپت رو نشون میده. اگر Tensorflow رو انتخاب کنید کد های نسخه اصلی Tensorflow در پایتون رو نشون میده و اگر Tensorflow Lite رو انتخاب کنید نحوه استفاده از مدل رو در اندروید و Google Edge TPU نشون میده. پس از اینجا می‌تونید مدل train شده خودتون رو دانلود کنید و با استفاده از کد هایی که قرار داده توی پروژه خودتون ازش استفاده کنید.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>من برای خودم جالب شد که یک مقدار در مورد Edge TPU ها تحقیق کنم. گوگل یکسری برد های ASIC رو برای اجرای الگوریتم های یادگیری ماشین توسعه داده که در تصویر یک نمونه Coral Edge TPU رو می‌تونید مشاهده کنید :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[10]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/30-10.webp" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[11]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/30-11.webp" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>قیمتش هم حدودا ۶۰ دلاره. طبق توضیحاتی که توی سایتش نوشته ۴ تریلیون عمل در ثانیه رو می‌تونه انجام بده. تو لینک زیر یه بنچمارک ازش گذاشته :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <a href="https://coral.ai/docs/edgetpu/benchmarks/" target="_blank" rel="noopener">https://coral.ai/docs/edgetpu/benchmarks</a>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[12]:</div>
+        <div class="jp-editor"><pre>nb<span class="o">.</span><span class="f">neighbours</span>()</pre></div></div>
+      <div class="jp-io"><div class="jp-prompt out">Out[12]:</div>
+        <div class="jp-outputs"><table class="dataframe"><thead><tr><th></th><th>title</th><th>date</th></tr></thead><tbody><tr><th class="l mono">prev</th><td><a href="/blog/posts/29.html">تبلیغات تلویزیون زیر ذره‌بین!</a></td><td class="num">۱۴۰۱/۰۷</td></tr><tr><th class="l mono">next</th><td><a href="/blog/posts/31.html">۲. چالش دانیلا با تابع ReLU!</a></td><td class="num">۱۴۰۱/۱۰</td></tr></tbody></table></div></div>
+    </div>
+  </div>
 </div>
+<script src="/assets/lab.js"></script>
+<script>
+Lab.chrome({ active:'post', tab:{ name:'post_30.ipynb', href:'/blog/posts/30.html' } });
+Lab.wire();
+Lab.kernel(false);
+</script>
 </body>
 </html>
-
-

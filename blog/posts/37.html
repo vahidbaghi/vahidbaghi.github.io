@@ -1,165 +1,147 @@
-
 <!DOCTYPE html>
-
-<html dir="rtl" lang="fa">
+<html lang="fa">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
-   <title>وبلاگ وحید باقی</title>
-   <style>
-       body {
-           font-family: Vazirmatn, sans-serif;
-           line-height: 1.6;
-           max-width: 900px;
-           margin: 0 auto;
-           padding: 20px;
-           background-color: #f7f7f7;
-       }
-
-.notebook-container {
-       background: white;
-       border: 1px solid #e1e4e8;
-       border-radius: 4px;
-       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-   }
-
-   .header {
-       padding: 20px;
-       border-bottom: 1px solid #e1e4e8;
-       background-color: #f6f8fa;
-   }
-
-   .post-title {
-       font-size: 2em;
-       margin: 0;
-       color: #24292e;
-   }
-
-   .post-meta {
-       color: #586069;
-       font-size: 0.9em;
-       margin-top: 10px;
-   }
-
-   .featured-image {
-       width: 100%;
-       max-height: 400px;
-       object-fit: cover;
-   }
-
-   .content {
-       padding: 20px;
-   }
-
-   .cell {
-       margin: 20px 0;
-       padding: 10px;
-       border-radius: 3px;
-       background-color: #f8f9fa;
-       text-align: right;
-   }
-
-   code {
-       background-color: #f6f8fa;
-       padding: 2px 5px;
-       border-radius: 3px;
-       font-family: Monaco, Consolas, monospace;
-   }
-
-   .link-center {
-       text-align: center;
-   }
-   
-   
-   .wp-block-image {
-       text-align: center; 
-   }
-
-   .wp-block-image img {
-       max-width: 100%; 
-       height: auto; 
-       display: block; 
-       margin-left: auto;
-       margin-right: auto;
-   }
-   .has-text-align-center{
-    text-align: center;
-   }
-   
-   .cell pre {
-  word-break: break-all;
-  overflow-wrap: break-word; 
-  overflow-x: auto; 
-}
-
-
- 
-   </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>چرا آموزش برنامه‌نویسی تولید کردم؟ (+ انتشار رایگان آموزش جاوا) — وحید باقی</title>
+<meta name="description" content="من ضبط فیلم های آموزشی رو از سال سوم دبیرستان شروع کردم. یکی از آشناها گیر داده بود که بیا به من کار با کامپیوتر رو یاد بده. میخواست کار های خیلی ساده رو ب">
+<meta property="og:title" content="چرا آموزش برنامه‌نویسی تولید کردم؟ (+ انتشار رایگان آموزش جاوا)">
+<meta property="og:description" content="من ضبط فیلم های آموزشی رو از سال سوم دبیرستان شروع کردم. یکی از آشناها گیر داده بود که بیا به من کار با کامپیوتر رو یاد بده. میخواست کار های خیلی ساده رو ب">
+<meta property="og:type" content="article">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css">
+<style>
+.meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;color:var(--jp-ui-font-color2);
+  font-size:12.5px;margin:-.2em 0 1.5em;max-width:none}
+.meta .dot{width:3px;height:3px;border-radius:50%;background:var(--jp-border2);flex:0 0 3px}
+.meta .tag{border:1px solid var(--jp-border2);border-radius:2px;padding:0 7px;font-size:11.5px}
+.meta .mono{direction:ltr;font-family:"JetBrains Mono",Menlo,monospace}
+.mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
+.figout{margin:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.figout img{max-width:min(100%,720px);height:auto;border:1px solid var(--jp-border1);
+  border-radius:2px;display:block;margin:0 auto 6px}
+.figout img:last-of-type{margin-bottom:0}
+.figout figcaption{color:var(--jp-ui-font-color2);font-size:12px;padding-top:8px;
+  max-width:60ch;text-align:center}
+.tblout{overflow-x:auto;max-width:100%}
+.jp-md p.ctr{text-align:center}
+.jp-md p.embed a{display:inline-block;border:1px solid var(--jp-border2);border-radius:3px;
+  padding:8px 13px;text-decoration:none;background:var(--jp-editor-bg)}
+.jp-md p.embed a:hover{border-color:var(--jp-brand1)}
+</style>
 </head>
 <body>
-   <div class="notebook-container">
-       <article class="main-article post-594 post type-post status-publish format-standard has-post-thumbnail hentry category-1 category-40">       
-       <header class="header">
-           <h1 class="post-title">چرا آموزش برنامه‌نویسی تولید کردم؟ (+ انتشار رایگان آموزش جاوا)</h1>
-           <div class="post-meta">
-               <span class="date">۱۴۰۲/۰۶/۱۴</span>
-           </div>
-       </header>
-
-<section class="content">
-           <div class="cell">
-               <p>من ضبط فیلم های آموزشی رو از سال سوم دبیرستان شروع کردم. یکی از آشناها گیر داده بود که بیا به من کار با کامپیوتر رو یاد بده. میخواست کار های خیلی ساده رو بتونه انجام بده. در حد کار های اداری روتین مثل پرینت گرفتن و نصب برنامه و از این قبیل کار ها. حجم مطالب پکیج های آموزشی موجود در بازار هم زیاد بود. این نمی‌خواست ICDL یاد بگیره. منم راستش حوصله نداشتم و امتحان نهایی هم داشتم و اینم ول نمی‌کرد. منم گفتم بذار فیلم آموزشی ضبط می‌کنم و همون نکات کاربردی رو برات توضیح می‌دم. اینجا بود که اولین فیلم آموزشی خودم رو ضبط کردم.</p>
-           </div>
-           <div class="cell">
-               <p>سال ۹۲ که وارد دانشگاه شدم با سایت <a href="https://www.daneshjooyar.com/">دانشجویار</a> آشنا شدم. دانشجویار اون موقع تازه تاسیس بود و تعداد مدرسینش خیلی کم بود. منم اون موقع تازه سی‌شارپ رو داشتم یاد می‌گرفتم و تو اوج قله حماقت نمودار دانینگ کروگر بودم! بهشون ایمیل زدم که من دوست دارم به عنوان مدرس توی سایتتون آموزش بذارم. یه نمونه آموزش هم براشون فرستادم و پذیرفته شدم.</p>
-           </div>
-           <div class="cell">
-               <div class="wp-block-image">
-                   <figure class="aligncenter"><img decoding="async" src="images/37-2.png" alt=""></figure>
-               </div>
-           </div>
-           <div class="cell">
-               <p>فیلمی که به عنوان نمونه براشون فرستادم نحوه ساخت AutoComplete توی سی‌شارپ بود که یه متنی رو که تایپ می‌کردی، ادامه رو پیشنهاد می‌داد. برنامه این بود :</p>
-           </div>
-           <div class="cell">
-                <div class="wp-block-image">
-                    <figure class="aligncenter size-full"><img decoding="async" width="488" height="340" src="images/37-3.png" alt="" class="wp-image-890"></figure>
-                </div>
-            </div>
-            <div class="cell">
-                <p>کارم این شده بود که می‌رفتم تو سایت <a href="https://www.codeproject.com/">CodeProject </a>و سورس یه برنامه جالبی که به چشمم می‌خورد رو دانلود می‌کردم و کدش رو می‌خوندم و بعد فیلم آموزشیش رو ضبط می‌کردم و توی دانشجویار میذاشتم. همه آموزش ها هم رایگان توی سایت قرار می‌گرفت ولی من یه مبلغ کمی از مدیر سایت دریافت می‌کردم. توی اون آموزش ها سوتی هم زیاد دادم که طبیعی بود اما حداقل برنامه کار می‌کرد 🙂</p>
-            </div>
-            <div class="cell">
-                <p>نظر شخصی من اینه که کسی که یه مبحثی رو خوب تدریس می‌کنه دلیل نمیشه که در عمل هم توی اون مبحث خوب باشه و برعکس، کسی که یه مبحثی رو در عمل خوب بلده دلیل نمیشه که بتونه خوب هم تدریس کنه. به خصوص تو حوزه برنامه نویسی این موضوع خیلی مشهوده. من اون آدمه بودم که در عمل خوب نبود، نحوه تدریسش هم ضعیف بود. البته به مرور داشتم بهتر می‌شدم.</p>
-            </div>
-            <div class="cell">
-                <p>یه مدت که گذشت مدیر سایت http://w3-farsi.com به من ایمیل زدند که بیا با هم همکاری داشته باشیم. دورانی رو تصور کنید که بهترین کتاب های فارسی برای برنامه نویسی کتاب های جعفرنژاد قمی بودند. کتاب های دیگه هم به همون افتضاحی جعفرنژاد قمی بودند. توی این دوران، چنین کتاب های فوق العاده‌ای رو نوشته بودند. نثرش به شدت ساده و روان بود. به نظرم هنوز هم بهترین کتاب های فارسی حوزه برنامه‌نویسی محسوب میشه. گفتند بیا از روی کتاب سی‌شارپ، ویدئو ضبط کن. دیگه نیاز نیست دنبال جمع کردن سرفصل باشی یا بخوای فکر کنی که چی بگی.</p>
-            </div>
-            <div class="cell">
-                <p>منم قبول کردم و کل تابستون طول کشید که آموزش رو ضبط کنم. فن بیانم نسبت به آموزش های قبلی که ضبط کرده بودم بهتر شده بود. اما بازم به نظرم قابل قبول نبود. لحن صحبت میتونست بهتر باشه. با وجود اینکه خیلی از آموزش استقبال شده بود ولی من بخش هایی که به نظرم فن بیان خوبی نداشتم یا نتونسته بودم مفهوم رو به خوبی منتقل کنم رو دوباره ضبط کردم. حتی تفاوت فن بیانم بین قسمت های اول آموزش و قسمت های آخر آموزش کاملا مشهود بود. هر چند وقت یکبار هم به خریداران ایمیل می‌زدم و نظرشون رو می‌پرسیدم. ۹۰ درصد راضی بودند. ۱۰ قسمت اول رو هم رایگان گذاشته بودم و به شدت تاکید داشتم که قبل از خرید ۱۰ قسمت مقدماتی رو ببینن، اگر راضی بودن آموزش رو بخرن. خیلی روی این موضوع تاکید داشتم. چون نمی‌خواستم طرف آموزش رو بخره بعد ببینه از مدل تدریس خوشش نمیاد و ناراضی بشه. روی سرفصل هم خیلی تاکید داشتم. همیشه میگفتم اگر دنبال مبحث خاصی هستید سرفصل ها رو نگاه کنید یا کامنت بذارید و بپرسید. البته اینجوری هم نبود که همه چیز بی‌نقص باشه و هیچ کسی هم ناراضی نباشه. افرادی بودند که ناراضی بودند ولی تعداد افراد راضی خیلی بیشتر بود. در کل شما هیچ وقت نمی‌تونید همه رو راضی نگه دارید.</p>
-            </div>
-            <div class="cell">
-               <div class="wp-block-image">
-                   <figure class="aligncenter size-large"><img loading="lazy" decoding="async" width="1024" height="576" src="images/37-4.png" alt="" class="wp-image-892"></figure>
-                </div>
-           </div>
-            <div class="cell">
-                <p>گذشت و دیدیم که آموزش سی‌شارپ خوب دراومد، پیشنهاد دادند که آموزش جاوا رو هم ضبط کنم. من از اشتباهاتی که تو ضبط آموزش سی‌شارپ داشتم درس های خوبی گرفته بودم. توی ضبط آموزش دیگه عجله نکردم. گفتم ۶ ماه هم طول بکشه مهم نیست. به جاش کیفیت خوب باشه. خیلی از جاها فراتر از کتاب توضیح دادم. یعنی هر مبحثی که میخواستم فیلمش رو ضبط کنم قبلش چندین رفرنس رو می‌خوندم که یه موقع چیزی رو اشتباه نگم. میکروفون حرفه‌ای هم خریده بودم. روز اولی که آموزش رو منتشر کردم ترکوند! یعنی خیلی استقبال شد. آموزش جاوا رقیب رایگان و پولی زیاد داشت. اما یه چیزی که اونا نداشتند حل تمرین و  پروژه بود. این آموزش جای خودش رو بین دانشجو ها پیدا کرد. دانشجو هدفش چیه؟ پاس کردن درس. وجود حل تمرین توی آموزش باعث شد قشر دانشجو جذب آموزش بشه. البته این قضیه نکته منفی هم بود. دانشجو جماعت پول نمیده. عموما یه نفر که میخره یه بقیه هم میده. نکته بامزه هم اینه که یه دفعه یکی از دوستانم تعریف می‌کرد که رفیقش بهش گفته آره می‌خوای جاوا یاد بگیری یه آموزش دارم خیلی خوبه. بعد که براش روی فلش ریخته دیده آموزش منه :))))</p>
-            </div>
-            <div class="cell">
-                <p>دلیل اینکه آموزش جاوا رو رایگان تو یوتیوب گذاشتم اینه که خیلی ساله گذشته و من هم دیگه قرار نیست آموزش ها رو آپدیت کنم. فروش آموزش به طور کلی خیلی کم شده ولی زمانی که یه تخفیف خیلی خوب (مثلا ۹۰ درصد) می‌خوره افراد زیادی میان می‌خرن. این نشون میده خواهان داره ولی قیمت آموزش بالاست که واقعا دست من هم نیست. سیاست فروش هر سایت فرق داره. مشاهده رایگان ویدئو ها هم با این شرطه که توی یوتیوب دیده بشه. همچنین فایل ها و سورس کد های آموزش رو هم توی یوتوب نذاشتم و اگر کسی بخواد باید آموزش رو بخره. آموزش رو از طریق Playlist زیر می‌تونید مشاهده کنید :</p>
-            </div>
-           <div class="cell">
-             <pre class="has-text-align-center"><a href="https://www.youtube.com/playlist?list=PLoUfrSM-MrR3iFQZiyRgOiYri5D9RE6ux">https://www.youtube.com/playlist?list=PLoUfrSM-MrR3iFQZiyRgOiYri5D9RE6ux</a></pre>
-           </div>
-            <div class="cell">
-                <p>حالا چرا آموزش سی‌شارپ رو نذاشتم؟ از آموزش سی‌شارپ راضی نیستم. قدیمی هم شده. البته برای مباحث پایه‌ای هنوز می‌تونه کمک کنه ولی اگر اهل خوندن کتاب هستید توصیه میکنم کتاب سی‌شارپ سایت w3-farsi.com رو بگیرید.</p>
-            </div>
-        </section>
-   </article>
-   </div>
+<div id="cells" hidden>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h1>چرا آموزش برنامه‌نویسی تولید کردم؟ (+ انتشار رایگان آموزش جاوا)</h1>
+      <div class="meta"><span class="mono">۱۴۰۲/۰۶/۱۴</span><span class="dot"></span><span class="tag">کاربردی</span><span class="dot"></span><span>آموزش</span></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>من ضبط فیلم های آموزشی رو از سال سوم دبیرستان شروع کردم. یکی از آشناها گیر داده بود که بیا به من کار با کامپیوتر رو یاد بده. میخواست کار های خیلی ساده رو بتونه انجام بده. در حد کار های اداری روتین مثل پرینت گرفتن و نصب برنامه و از این قبیل کار ها. حجم مطالب پکیج های آموزشی موجود در بازار هم زیاد بود. این نمی‌خواست ICDL یاد بگیره. منم راستش حوصله نداشتم و امتحان نهایی هم داشتم و اینم ول نمی‌کرد. منم گفتم بذار فیلم آموزشی ضبط می‌کنم و همون نکات کاربردی رو برات توضیح می‌دم. اینجا بود که اولین فیلم آموزشی خودم رو ضبط کردم.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>سال ۹۲ که وارد دانشگاه شدم با سایت <a href="https://www.daneshjooyar.com/" target="_blank" rel="noopener">دانشجویار</a> آشنا شدم. دانشجویار اون موقع تازه تاسیس بود و تعداد مدرسینش خیلی کم بود. منم اون موقع تازه سی‌شارپ رو داشتم یاد می‌گرفتم و تو اوج قله حماقت نمودار دانینگ کروگر بودم! بهشون ایمیل زدم که من دوست دارم به عنوان مدرس توی سایتتون آموزش بذارم. یه نمونه آموزش هم براشون فرستادم و پذیرفته شدم.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[1]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/37-2.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>فیلمی که به عنوان نمونه براشون فرستادم نحوه ساخت AutoComplete توی سی‌شارپ بود که یه متنی رو که تایپ می‌کردی، ادامه رو پیشنهاد می‌داد. برنامه این بود :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[2]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/37-3.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>کارم این شده بود که می‌رفتم تو سایت <a href="https://www.codeproject.com/" target="_blank" rel="noopener">CodeProject </a>و سورس یه برنامه جالبی که به چشمم می‌خورد رو دانلود می‌کردم و کدش رو می‌خوندم و بعد فیلم آموزشیش رو ضبط می‌کردم و توی دانشجویار میذاشتم. همه آموزش ها هم رایگان توی سایت قرار می‌گرفت ولی من یه مبلغ کمی از مدیر سایت دریافت می‌کردم. توی اون آموزش ها سوتی هم زیاد دادم که طبیعی بود اما حداقل برنامه کار می‌کرد 🙂</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>نظر شخصی من اینه که کسی که یه مبحثی رو خوب تدریس می‌کنه دلیل نمیشه که در عمل هم توی اون مبحث خوب باشه و برعکس، کسی که یه مبحثی رو در عمل خوب بلده دلیل نمیشه که بتونه خوب هم تدریس کنه. به خصوص تو حوزه برنامه نویسی این موضوع خیلی مشهوده. من اون آدمه بودم که در عمل خوب نبود، نحوه تدریسش هم ضعیف بود. البته به مرور داشتم بهتر می‌شدم.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>یه مدت که گذشت مدیر سایت http://w3-farsi.com به من ایمیل زدند که بیا با هم همکاری داشته باشیم. دورانی رو تصور کنید که بهترین کتاب های فارسی برای برنامه نویسی کتاب های جعفرنژاد قمی بودند. کتاب های دیگه هم به همون افتضاحی جعفرنژاد قمی بودند. توی این دوران، چنین کتاب های فوق العاده‌ای رو نوشته بودند. نثرش به شدت ساده و روان بود. به نظرم هنوز هم بهترین کتاب های فارسی حوزه برنامه‌نویسی محسوب میشه. گفتند بیا از روی کتاب سی‌شارپ، ویدئو ضبط کن. دیگه نیاز نیست دنبال جمع کردن سرفصل باشی یا بخوای فکر کنی که چی بگی.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>منم قبول کردم و کل تابستون طول کشید که آموزش رو ضبط کنم. فن بیانم نسبت به آموزش های قبلی که ضبط کرده بودم بهتر شده بود. اما بازم به نظرم قابل قبول نبود. لحن صحبت میتونست بهتر باشه. با وجود اینکه خیلی از آموزش استقبال شده بود ولی من بخش هایی که به نظرم فن بیان خوبی نداشتم یا نتونسته بودم مفهوم رو به خوبی منتقل کنم رو دوباره ضبط کردم. حتی تفاوت فن بیانم بین قسمت های اول آموزش و قسمت های آخر آموزش کاملا مشهود بود. هر چند وقت یکبار هم به خریداران ایمیل می‌زدم و نظرشون رو می‌پرسیدم. ۹۰ درصد راضی بودند. ۱۰ قسمت اول رو هم رایگان گذاشته بودم و به شدت تاکید داشتم که قبل از خرید ۱۰ قسمت مقدماتی رو ببینن، اگر راضی بودن آموزش رو بخرن. خیلی روی این موضوع تاکید داشتم. چون نمی‌خواستم طرف آموزش رو بخره بعد ببینه از مدل تدریس خوشش نمیاد و ناراضی بشه. روی سرفصل هم خیلی تاکید داشتم. همیشه میگفتم اگر دنبال مبحث خاصی هستید سرفصل ها رو نگاه کنید یا کامنت بذارید و بپرسید. البته اینجوری هم نبود که همه چیز بی‌نقص باشه و هیچ کسی هم ناراضی نباشه. افرادی بودند که ناراضی بودند ولی تعداد افراد راضی خیلی بیشتر بود. در کل شما هیچ وقت نمی‌تونید همه رو راضی نگه دارید.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[3]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/37-4.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>گذشت و دیدیم که آموزش سی‌شارپ خوب دراومد، پیشنهاد دادند که آموزش جاوا رو هم ضبط کنم. من از اشتباهاتی که تو ضبط آموزش سی‌شارپ داشتم درس های خوبی گرفته بودم. توی ضبط آموزش دیگه عجله نکردم. گفتم ۶ ماه هم طول بکشه مهم نیست. به جاش کیفیت خوب باشه. خیلی از جاها فراتر از کتاب توضیح دادم. یعنی هر مبحثی که میخواستم فیلمش رو ضبط کنم قبلش چندین رفرنس رو می‌خوندم که یه موقع چیزی رو اشتباه نگم. میکروفون حرفه‌ای هم خریده بودم. روز اولی که آموزش رو منتشر کردم ترکوند! یعنی خیلی استقبال شد. آموزش جاوا رقیب رایگان و پولی زیاد داشت. اما یه چیزی که اونا نداشتند حل تمرین و  پروژه بود. این آموزش جای خودش رو بین دانشجو ها پیدا کرد. دانشجو هدفش چیه؟ پاس کردن درس. وجود حل تمرین توی آموزش باعث شد قشر دانشجو جذب آموزش بشه. البته این قضیه نکته منفی هم بود. دانشجو جماعت پول نمیده. عموما یه نفر که میخره یه بقیه هم میده. نکته بامزه هم اینه که یه دفعه یکی از دوستانم تعریف می‌کرد که رفیقش بهش گفته آره می‌خوای جاوا یاد بگیری یه آموزش دارم خیلی خوبه. بعد که براش روی فلش ریخته دیده آموزش منه :))))</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>دلیل اینکه آموزش جاوا رو رایگان تو یوتیوب گذاشتم اینه که خیلی ساله گذشته و من هم دیگه قرار نیست آموزش ها رو آپدیت کنم. فروش آموزش به طور کلی خیلی کم شده ولی زمانی که یه تخفیف خیلی خوب (مثلا ۹۰ درصد) می‌خوره افراد زیادی میان می‌خرن. این نشون میده خواهان داره ولی قیمت آموزش بالاست که واقعا دست من هم نیست. سیاست فروش هر سایت فرق داره. مشاهده رایگان ویدئو ها هم با این شرطه که توی یوتیوب دیده بشه. همچنین فایل ها و سورس کد های آموزش رو هم توی یوتوب نذاشتم و اگر کسی بخواد باید آموزش رو بخره. آموزش رو از طریق Playlist زیر می‌تونید مشاهده کنید :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <a href="https://www.youtube.com/playlist?list=PLoUfrSM-MrR3iFQZiyRgOiYri5D9RE6ux" target="_blank" rel="noopener">https://www.youtube.com/playlist?list=PLoUfrSM-MrR3iFQZiyRgOiYri5D9RE6ux</a>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>حالا چرا آموزش سی‌شارپ رو نذاشتم؟ از آموزش سی‌شارپ راضی نیستم. قدیمی هم شده. البته برای مباحث پایه‌ای هنوز می‌تونه کمک کنه ولی اگر اهل خوندن کتاب هستید توصیه میکنم کتاب سی‌شارپ سایت w3-farsi.com رو بگیرید.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[4]:</div>
+        <div class="jp-editor"><pre>nb<span class="o">.</span><span class="f">neighbours</span>()</pre></div></div>
+      <div class="jp-io"><div class="jp-prompt out">Out[4]:</div>
+        <div class="jp-outputs"><table class="dataframe"><thead><tr><th></th><th>title</th><th>date</th></tr></thead><tbody><tr><th class="l mono">prev</th><td><a href="/blog/posts/36.html">در مرکز تبادل کتاب تهران چه می‌گذرد؟!</a></td><td class="num">۱۴۰۲/۰۵</td></tr><tr><th class="l mono">next</th><td><a href="/blog/posts/38.html">کلاب‌هاوس در آتش — داستان هک کلاب‌هاوس</a></td><td class="num">۱۴۰۲/۰۶</td></tr></tbody></table></div></div>
+    </div>
+  </div>
+</div>
+<script src="/assets/lab.js"></script>
+<script>
+Lab.chrome({ active:'post', tab:{ name:'post_37.ipynb', href:'/blog/posts/37.html' } });
+Lab.wire();
+Lab.kernel(false);
+</script>
 </body>
 </html>
-
-

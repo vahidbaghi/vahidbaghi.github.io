@@ -1,220 +1,197 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="fa">
+<html lang="fa">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
-   <title>وبلاگ وحید باقی</title>
-   <style>
-       body {
-           font-family: Vazirmatn, sans-serif;
-           line-height: 1.6;
-           max-width: 900px;
-           margin: 0 auto;
-           padding: 20px;
-           background-color: #f7f7f7;
-       }
-
-       .notebook-container {
-           background: white;
-           border: 1px solid #e1e4e8;
-           border-radius: 4px;
-           box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-       }
-
-       .header {
-           padding: 20px;
-           border-bottom: 1px solid #e1e4e8;
-           background-color: #f6f8fa;
-       }
-
-       .post-title {
-           font-size: 2em;
-           margin: 0;
-           color: #24292e;
-       }
-
-       .post-meta {
-           color: #586069;
-           font-size: 0.9em;
-           margin-top: 10px;
-       }
-
-       .featured-image {
-           width: 100%;
-           max-height: 400px;
-           object-fit: cover;
-       }
-
-       .content {
-           padding: 20px;
-       }
-
-       .cell {
-           margin: 20px 0;
-           padding: 10px;
-           border-radius: 3px;
-           background-color: #f8f9fa;
-           text-align: right;
-       }
-
-       code {
-           background-color: #f6f8fa;
-           padding: 2px 5px;
-           border-radius: 3px;
-           font-family: Monaco, Consolas, monospace;
-       }
-
-       .link-center {
-           text-align: center;
-       }
-       
-       
-       .wp-block-image {
-           text-align: center; 
-       }
-
-       .wp-block-image img {
-           max-width: 100%; 
-           height: auto; 
-           display: block; 
-           margin-left: auto;
-           margin-right: auto;
-       }
-	   .has-text-align-center{
-			text-align: center;
-	   }
-	   
-	   .cell pre {
-		word-break: break-all;
-		overflow-wrap: break-word; 
-		overflow-x: auto; 
-	}
-   </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>شخم توییتر فارسی (اراضی برنامه نویسان) – بخش اول — وحید باقی</title>
+<meta name="description" content="بخش دوم این مطلب رو می‌تونید از این لینک بخونید.چند روز پیش در توییتر لیستی رو با عنوان « لیستی از اهالی فارسی‌زبان آی‌تی توییتر» دیدم. هیچی دیگه، اون رگ ت">
+<meta property="og:title" content="شخم توییتر فارسی (اراضی برنامه نویسان) – بخش اول">
+<meta property="og:description" content="بخش دوم این مطلب رو می‌تونید از این لینک بخونید.چند روز پیش در توییتر لیستی رو با عنوان « لیستی از اهالی فارسی‌زبان آی‌تی توییتر» دیدم. هیچی دیگه، اون رگ ت">
+<meta property="og:type" content="article">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css">
+<style>
+.meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;color:var(--jp-ui-font-color2);
+  font-size:12.5px;margin:-.2em 0 1.5em;max-width:none}
+.meta .dot{width:3px;height:3px;border-radius:50%;background:var(--jp-border2);flex:0 0 3px}
+.meta .tag{border:1px solid var(--jp-border2);border-radius:2px;padding:0 7px;font-size:11.5px}
+.meta .mono{direction:ltr;font-family:"JetBrains Mono",Menlo,monospace}
+.mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
+.figout{margin:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.figout img{max-width:min(100%,720px);height:auto;border:1px solid var(--jp-border1);
+  border-radius:2px;display:block;margin:0 auto 6px}
+.figout img:last-of-type{margin-bottom:0}
+.figout figcaption{color:var(--jp-ui-font-color2);font-size:12px;padding-top:8px;
+  max-width:60ch;text-align:center}
+.tblout{overflow-x:auto;max-width:100%}
+.jp-md p.ctr{text-align:center}
+.jp-md p.embed a{display:inline-block;border:1px solid var(--jp-border2);border-radius:3px;
+  padding:8px 13px;text-decoration:none;background:var(--jp-editor-bg)}
+.jp-md p.embed a:hover{border-color:var(--jp-brand1)}
+</style>
 </head>
 <body>
-   <div class="notebook-container">
-       <article class="main-article post-551 post type-post status-publish format-standard has-post-thumbnail hentry category-1 category-39">		   
-		   <header class="header">
-           <h1 class="post-title">شخم توییتر فارسی (اراضی برنامه نویسان) – بخش اول</h1>
-           <div class="post-meta">
-               <span class="date">۱۴۰۰/۰۸/۲۱</span>
-           </div>
-       </header>
-
-           <section class="content">
-               <div class="cell">
-                   <p>بخش دوم این مطلب رو می‌تونید از <a href="https://vrgl.ir/okvDo" rel="noreferrer noopener" target="_blank">این لینک</a> بخونید.چند روز پیش در توییتر لیستی رو با عنوان «<strong>لیستی از اهالی فارسی‌زبان آی‌تی توییتر» </strong>دیدم. هیچی دیگه، اون رگ تپه‌نوردیم زد بالا 🙂 البته من در لیست «<strong>لیستی از اهالی فارسی‌زبان آی‌تی توییتر» </strong>نیستم ولی «<strong>لیستی از اهالی فارسی‌زبان آی‌تی توییتر» </strong>رو دوست دارم :)در حال حاضر تعداد اعضای این لیست ۷۲۰ نفره ولی مرتب داره کم و زیاد میشه. بعضی از اکانت ها private بودند و نتونستم توییت هاشون رو ذخیره کنم. بعضی از اکانت ها هم یه دفعه تصمیم میگرفتند که private کنند! بعضی از اکانت ها هم بودند که تعداد ۰ توییت نوشته بودند ولی در این لیست حضور داشتند! در نتیجه، کلا توییت های ۶۱۷ اکانت رو ذخیره کردم. برای کاری که من میخوام انجام بدم جامعه آماری خوبیه و کفایت میکنه.</p>
-               </div>
-			   
-			   <div class="cell">
-                   <pre class="has-text-align-center">https://twitter.com/i/lists/954292956420280320</pre>
-               </div>
-
-               <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/9-1.png" alt=""></figure>
-                   </div>
-               </div>
-			   
-			   <div class="cell">
-                   <p>حالا چیکار میخوام انجام بدم؟ میخوام توییت هایی که اعضای این لیست مینویسند رو ذخیره و بررسی کنم و یکسری اطلاعات ازشون استخراج کنم. برای این منظور از Tweepy و API توییتر استفاده کردم. اینجا نمیخوام وارد بحث کد و این داستان ها بشم. در اینجا فقط میخوام نتایج رو به سمع و نظر شما برسونم 🙂<strong>تعداد کل توییت های مورد استفاده در این تحلیل چندتاست؟</strong>با توجه به محدودیت API توییتر، من فقط ۳۲۰۰ توییت آخر هر یک از اعضای لیست رو ذخیره کردم. البته بعضی ها کمتر از ۳۲۰۰ توییت نوشته بودند. مجموع تعداد توییت هایی که ذخیره کردم ۱,۴۱۶,۳۵۲ است. حجم اطلاعات هم ۲.۶۳ گیگابایت است.<strong>اعضای این لیست در چه ساعتی از شبانه‌روز بیشترین توییت را نوشته‌اند؟</strong>هیستوگرام زیر نمودار تعداد توییت هایی که در ساعات مختلف شبانه‌روز نوشته شده رو نشون میده. حدودا میشه فهمید بیشترین فعالیت از ساعت ۹ تا ۱۲ شب و کمترین فعالیت از ساعت ۲ شب تا ۸ صبح بوده.</p>
-               </div>
-			   
-			   <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/9-2.jpg" alt=""></figure>
-                   </div>
-               </div>
-			   
-			   <div class="cell">
-                   <p><strong>میزان فعالیت اعضای این لیست در روز های مختلف هفته چگونه‌ است؟</strong>هیت‌مپ زیر فعالیت اعضا در روز های مختلف هفته و ساعات مختلف شبانه‌روز نشون میده.</p>
-               </div>
-			   
-			   <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/9-3.jpg" alt=""></figure>
-                   </div>
-               </div>
-			   
-			   <div class="cell">
-                   <p><strong>ابر کلمات توییت ها</strong>تصویر زیر ابر کلمات توییت هایی است که اعضای این لیست نوشته‌اند :</p>
-               </div>
-			   
-			   <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/9-4.jpg" alt=""></figure>
-                   </div>
-               </div>
-			   
-			   <div class="cell">
-                   <p>تصویر بالا برای زمانی است که چیزی رو حذف نکنیم. اگر Stop Word ها رو حذف کنیم نتیجه به صورت زیر میشه :</p>
-               </div>
-
-               <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/9-5.jpg" alt=""></figure>
-                   </div>
-               </div>
-			   
-			   <div class="cell">
-                   <p>لیست Stop Word ها رو از دو لینک زیر گرفتم :</p>
-               </div>
-			   
-			   <div class="cell">
-                   <pre class="has-text-align-center">https://bigdata-ir.com/%D8%A7%DB%8C%D8%B3%D8%AA%E2%80%8C%D9%88%D8%A7%DA%98%D9%87%E2%80%8C%D9%87%D8%A7-%DB%8C%D8%A7-stop-word-%D8%AF%D8%B1-%D8%B2%D8%A8%D8%A7%D9%86-%D9%81%D8%A7%D8%B1%D8%B3%DB%8C/https://github.com/alihoseiny/word_cloud_fa</pre>
-               </div>
-			   
-			   <div class="cell">
-                   <p>نحوه تولید ابر کلمات نیز به این صورت است که ابتدا کلمات پرتکرار را استخراج کردم، سپس با استفاده از سرویس زیر (به دلیل استایل بسیار زیبایی که دارد) آن را تولید کردم :</p>
-               </div>
-			   
-			   <div class="cell">
-                   <pre class="has-text-align-center">https://demo.text-mining.ir/</pre>
-               </div>
-			   
-			   <div class="cell">
-                   <p><strong>نسبت تعداد توییت، ریتوییت و ریپلای ها چگونه است؟</strong></p>
-               </div>
-			   
-			   <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/9-6.png" alt=""></figure>
-                   </div>
-               </div>
-			   
-			   <div class="cell">
-                   <pre class="has-text-align-center">Reply:824579
+<div id="cells" hidden>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h1>شخم توییتر فارسی (اراضی برنامه نویسان) – بخش اول</h1>
+      <div class="meta"><span class="mono">۱۴۰۰/۰۸/۲۱</span><span class="dot"></span><span class="tag">تپه‌نوردی</span><span class="tag">توییتر نوردی</span><span class="dot"></span><span>توییتر</span></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>بخش دوم این مطلب رو می‌تونید از <a href="https://vrgl.ir/okvDo" target="_blank" rel="noopener">این لینک</a> بخونید.چند روز پیش در توییتر لیستی رو با عنوان «<strong>لیستی از اهالی فارسی‌زبان آی‌تی توییتر» </strong>دیدم. هیچی دیگه، اون رگ تپه‌نوردیم زد بالا 🙂 البته من در لیست «<strong>لیستی از اهالی فارسی‌زبان آی‌تی توییتر» </strong>نیستم ولی «<strong>لیستی از اهالی فارسی‌زبان آی‌تی توییتر» </strong>رو دوست دارم :)در حال حاضر تعداد اعضای این لیست ۷۲۰ نفره ولی مرتب داره کم و زیاد میشه. بعضی از اکانت ها private بودند و نتونستم توییت هاشون رو ذخیره کنم. بعضی از اکانت ها هم یه دفعه تصمیم میگرفتند که private کنند! بعضی از اکانت ها هم بودند که تعداد ۰ توییت نوشته بودند ولی در این لیست حضور داشتند! در نتیجه، کلا توییت های ۶۱۷ اکانت رو ذخیره کردم. برای کاری که من میخوام انجام بدم جامعه آماری خوبیه و کفایت میکنه.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      https://twitter.com/i/lists/954292956420280320
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[1]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/9-1.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>حالا چیکار میخوام انجام بدم؟ میخوام توییت هایی که اعضای این لیست مینویسند رو ذخیره و بررسی کنم و یکسری اطلاعات ازشون استخراج کنم. برای این منظور از Tweepy و API توییتر استفاده کردم. اینجا نمیخوام وارد بحث کد و این داستان ها بشم. در اینجا فقط میخوام نتایج رو به سمع و نظر شما برسونم 🙂<strong>تعداد کل توییت های مورد استفاده در این تحلیل چندتاست؟</strong>با توجه به محدودیت API توییتر، من فقط ۳۲۰۰ توییت آخر هر یک از اعضای لیست رو ذخیره کردم. البته بعضی ها کمتر از ۳۲۰۰ توییت نوشته بودند. مجموع تعداد توییت هایی که ذخیره کردم ۱,۴۱۶,۳۵۲ است. حجم اطلاعات هم ۲.۶۳ گیگابایت است.<strong>اعضای این لیست در چه ساعتی از شبانه‌روز بیشترین توییت را نوشته‌اند؟</strong>هیستوگرام زیر نمودار تعداد توییت هایی که در ساعات مختلف شبانه‌روز نوشته شده رو نشون میده. حدودا میشه فهمید بیشترین فعالیت از ساعت ۹ تا ۱۲ شب و کمترین فعالیت از ساعت ۲ شب تا ۸ صبح بوده.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[2]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/9-2.jpg" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p><strong>میزان فعالیت اعضای این لیست در روز های مختلف هفته چگونه‌ است؟</strong>هیت‌مپ زیر فعالیت اعضا در روز های مختلف هفته و ساعات مختلف شبانه‌روز نشون میده.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[3]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/9-3.jpg" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p><strong>ابر کلمات توییت ها</strong>تصویر زیر ابر کلمات توییت هایی است که اعضای این لیست نوشته‌اند :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[4]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/9-4.jpg" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>تصویر بالا برای زمانی است که چیزی رو حذف نکنیم. اگر Stop Word ها رو حذف کنیم نتیجه به صورت زیر میشه :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[5]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/9-5.jpg" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>لیست Stop Word ها رو از دو لینک زیر گرفتم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      https://bigdata-ir.com/%D8%A7%DB%8C%D8%B3%D8%AA%E2%80%8C%D9%88%D8%A7%DA%98%D9%87%E2%80%8C%D9%87%D8%A7-%DB%8C%D8%A7-stop-word-%D8%AF%D8%B1-%D8%B2%D8%A8%D8%A7%D9%86-%D9%81%D8%A7%D8%B1%D8%B3%DB%8C/https://github.com/alihoseiny/word_cloud_fa
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>نحوه تولید ابر کلمات نیز به این صورت است که ابتدا کلمات پرتکرار را استخراج کردم، سپس با استفاده از سرویس زیر (به دلیل استایل بسیار زیبایی که دارد) آن را تولید کردم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      https://demo.text-mining.ir/
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p><strong>نسبت تعداد توییت، ریتوییت و ریپلای ها چگونه است؟</strong></p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[6]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/9-6.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      Reply:824579
 Tweet:354815
-Retweet:177125</pre>
-               </div>
-			   
-			   <div class="cell">
-                   <p><strong>اعضای این لیست بیشتر از چه راهی (وب، اندروید، ios) توییت ها را نوشته‌اند؟</strong></p>
-               </div>
-			   
-			   <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/9-7.png" alt=""></figure>
-                   </div>
-               </div>
-			   
-			   <div class="cell">
-                   <p>البته نمودار کامل خیلی شلوغ تر از این حرفاست! با توجه به اینکه با جماعت برنامه‌نویس سر و کار داریم، خیلی چیز عجیبی نیست که خود شخص یه کلاینت برای توییتر بنویسه و با اون توییت بزنه! دیتا کامل رو در<a href="https://gist.github.com/vahidbaghi/f11560ce35b51c1dfa2d801c24e590ed" rel="noreferrer noopener" target="_blank">این لینک</a> قرار دادم.<strong>چه کسی بیشترین ریپلای را از اعضای لیست دریافت کرده است؟</strong>این لیست خیلی طولانی بود و من در نمودار زیر فقط ۳۰ نفر اول رو که بیشترین ریپلای رو دریافت کرده بودند آوردم :</p>
-               </div>
-			   
-			   <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/9-8.png" alt=""></figure>
-                   </div>
-               </div>
-			   
-			   <div class="cell">
-                   <p>لیست زیر همین نمودار بالاست که مقابل یوزرنیم هر فرد تعداد ریپلای ها رو نوشتم :</p>
-               </div>
-			   
-			   <div class="cell">
-                   <pre class="has-text-align-center">vesalBehrouzi:4803
+Retweet:177125
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p><strong>اعضای این لیست بیشتر از چه راهی (وب، اندروید، ios) توییت ها را نوشته‌اند؟</strong></p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[7]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/9-7.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>البته نمودار کامل خیلی شلوغ تر از این حرفاست! با توجه به اینکه با جماعت برنامه‌نویس سر و کار داریم، خیلی چیز عجیبی نیست که خود شخص یه کلاینت برای توییتر بنویسه و با اون توییت بزنه! دیتا کامل رو در<a href="https://gist.github.com/vahidbaghi/f11560ce35b51c1dfa2d801c24e590ed" target="_blank" rel="noopener">این لینک</a> قرار دادم.<strong>چه کسی بیشترین ریپلای را از اعضای لیست دریافت کرده است؟</strong>این لیست خیلی طولانی بود و من در نمودار زیر فقط ۳۰ نفر اول رو که بیشترین ریپلای رو دریافت کرده بودند آوردم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[8]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/9-8.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>لیست زیر همین نمودار بالاست که مقابل یوزرنیم هر فرد تعداد ریپلای ها رو نوشتم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      vesalBehrouzi:4803
 afzouni:3895   
 farnam_violin:3794   
 cenaps:2961   
@@ -243,25 +220,32 @@ theReticent:1773
 azarijahromi:1736   
 TohidHeshmati:1712   
 iam_vee:1699   
-a_goofy_goober:1662</pre>
-               </div>
-			   
-			   <div class="cell">
-                   <p>دیتا کامل رو در <a href="https://gist.github.com/vahidbaghi/4d5d6a5b5d0472874c4178e3b1d4d780" rel="noreferrer noopener" target="_blank">این لینک</a> قرار دادم.<strong>اعضای لیست توییت های چه کسی را بیشتر از بقیه ریتوییت کرده‌اند؟</strong></p>
-               </div>
-			   
-			   <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/9-9.png" alt=""></figure>
-                   </div>
-               </div>
-			   
-			   <div class="cell">
-                   <p>لیست زیر همین نمودار بالاست که مقابل یوزرنیم هر فرد تعداد ریتوییت ها رو نوشتم :</p>
-               </div>
-			   
-			   <div class="cell">
-                   <pre class="has-text-align-center">@jadi:1227   
+a_goofy_goober:1662
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>دیتا کامل رو در <a href="https://gist.github.com/vahidbaghi/4d5d6a5b5d0472874c4178e3b1d4d780" target="_blank" rel="noopener">این لینک</a> قرار دادم.<strong>اعضای لیست توییت های چه کسی را بیشتر از بقیه ریتوییت کرده‌اند؟</strong></p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[9]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/9-9.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>لیست زیر همین نمودار بالاست که مقابل یوزرنیم هر فرد تعداد ریتوییت ها رو نوشتم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      @jadi:1227   
 @Hamed:1026   
 @factnameh:730   
 @MilaDnu:546   
@@ -290,51 +274,78 @@ a_goofy_goober:1662</pre>
 @aminkhss:232   
 @ehsan_soltani:230   
 @Peivast:226   
-@AminSabeti:219</pre>
-               </div>
-			   
-			   <div class="cell">
-                   <p>دیتا کامل رو در <a href="https://gist.github.com/vahidbaghi/db9d688024dc45384624fde6f9d80e34" rel="noreferrer noopener" target="_blank">این لینک</a> قرار دادم.<strong>اعضای لیست کدام ایموجی را از همه بیشتر استفاده کرده‌اند؟</strong></p>
-               </div>
-			   
-			   <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/9-10.jpg" alt=""></figure>
-                   </div>
-               </div>
-			   
-			   <div class="cell">
-                   <p>دیتا کامل رو در <a href="https://gist.github.com/vahidbaghi/ccdf5011b2185c53857aed636cb1400c" rel="noreferrer noopener" target="_blank">این لینک</a> قرار دادم.<strong>چند درصد از توییت ها شامل عکس و ویدئو بوده‌اند؟</strong></p>
-               </div>
-			   
-			   <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/9-11.png" alt=""></figure>
-                   </div>
-               </div>
-			   
-			   <div class="cell">
-                   <ul class="wp-block-list"><li>animated_gif : توییت های شامل تصاویر متحرک</li><li>video : توییت های شامل ویدئو</li><li>photo : توییت های شامل عکس</li><li>nan : توییت های بدون مدیا (عکس و ویدئو)</li></ul>
-               </div>
-			   
-			   <div class="cell">
-                   <pre class="has-text-align-center">nan:1208637
+@AminSabeti:219
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>دیتا کامل رو در <a href="https://gist.github.com/vahidbaghi/db9d688024dc45384624fde6f9d80e34" target="_blank" rel="noopener">این لینک</a> قرار دادم.<strong>اعضای لیست کدام ایموجی را از همه بیشتر استفاده کرده‌اند؟</strong></p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[10]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/9-10.jpg" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>دیتا کامل رو در <a href="https://gist.github.com/vahidbaghi/ccdf5011b2185c53857aed636cb1400c" target="_blank" rel="noopener">این لینک</a> قرار دادم.<strong>چند درصد از توییت ها شامل عکس و ویدئو بوده‌اند؟</strong></p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[11]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/9-11.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <ul><li>animated_gif : توییت های شامل تصاویر متحرک</li><li>video : توییت های شامل ویدئو</li><li>photo : توییت های شامل عکس</li><li>nan : توییت های بدون مدیا (عکس و ویدئو)</li></ul>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      nan:1208637
 photo:113101
 video:20236
-animated_gif:14342</pre>
-               </div>
-			   
-			   <div class="cell">
-                   <p><strong>کدام تصاویر بیشتر از بقیه مورد استفاده قرار گرفتند؟</strong></p>
-               </div>
-			   
-			   <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/9-12.jpg" alt=""></figure>
-                   </div>
-               </div>
-           </section>
-       </article>
-   </div>
+animated_gif:14342
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p><strong>کدام تصاویر بیشتر از بقیه مورد استفاده قرار گرفتند؟</strong></p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[12]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/9-12.jpg" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[13]:</div>
+        <div class="jp-editor"><pre>nb<span class="o">.</span><span class="f">neighbours</span>()</pre></div></div>
+      <div class="jp-io"><div class="jp-prompt out">Out[13]:</div>
+        <div class="jp-outputs"><table class="dataframe"><thead><tr><th></th><th>title</th><th>date</th></tr></thead><tbody><tr><th class="l mono">prev</th><td><a href="/blog/posts/8.html">کنکور و بازی با احتمالات؟!</a></td><td class="num">۱۴۰۰/۰۸</td></tr><tr><th class="l mono">next</th><td><a href="/blog/posts/10.html">مروری بر اِکس در توییتر فارسی</a></td><td class="num">۱۴۰۰/۰۸</td></tr></tbody></table></div></div>
+    </div>
+  </div>
+</div>
+<script src="/assets/lab.js"></script>
+<script>
+Lab.chrome({ active:'post', tab:{ name:'post_09.ipynb', href:'/blog/posts/9.html' } });
+Lab.wire();
+Lab.kernel(false);
+</script>
 </body>
 </html>

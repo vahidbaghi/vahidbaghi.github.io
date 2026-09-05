@@ -1,292 +1,316 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="fa">
+<html lang="fa">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
-   <title>وبلاگ وحید باقی</title>
-   <style>
-       body {
-           font-family: Vazirmatn, sans-serif;
-           line-height: 1.6;
-           max-width: 900px;
-           margin: 0 auto;
-           padding: 20px;
-           background-color: #f7f7f7;
-       }
-
-       .notebook-container {
-           background: white;
-           border: 1px solid #e1e4e8;
-           border-radius: 4px;
-           box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-       }
-
-       .header {
-           padding: 20px;
-           border-bottom: 1px solid #e1e4e8;
-           background-color: #f6f8fa;
-       }
-
-       .post-title {
-           font-size: 2em;
-           margin: 0;
-           color: #24292e;
-       }
-
-       .post-meta {
-           color: #586069;
-           font-size: 0.9em;
-           margin-top: 10px;
-       }
-
-       .featured-image {
-           width: 100%;
-           max-height: 400px;
-           object-fit: cover;
-       }
-
-       .content {
-           padding: 20px;
-       }
-
-       .cell {
-           margin: 20px 0;
-           padding: 10px;
-           border-radius: 3px;
-           background-color: #f8f9fa;
-           text-align: right;
-       }
-
-       code {
-           background-color: #f6f8fa;
-           padding: 2px 5px;
-           border-radius: 3px;
-           font-family: Monaco, Consolas, monospace;
-       }
-
-       .link-center {
-           text-align: center;
-       }
-       
-       
-       .wp-block-image {
-           text-align: center; 
-       }
-
-       .wp-block-image img {
-           max-width: 100%; 
-           height: auto; 
-           display: block; 
-           margin-left: auto;
-           margin-right: auto;
-       }
-	   .has-text-align-center{
-			text-align: center;
-	   }
-	   
-	   .cell pre {
-		word-break: break-all;
-		overflow-wrap: break-word; 
-		overflow-x: auto; 
-	}
-   </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>یافتن نقطه بهینه موقع گرفتن اسنپ! — وحید باقی</title>
+<meta name="description" content="یکی از کار هایی که همیشه دوست داشتم انجام بدم این بوده که یه برنامه بنویسم که مختصات نقطه مبدا/مقصد در اسنپ رو بهش بدم و بهم بگه کجا رو به عنوان مبدا/مقصد ">
+<meta property="og:title" content="یافتن نقطه بهینه موقع گرفتن اسنپ!">
+<meta property="og:description" content="یکی از کار هایی که همیشه دوست داشتم انجام بدم این بوده که یه برنامه بنویسم که مختصات نقطه مبدا/مقصد در اسنپ رو بهش بدم و بهم بگه کجا رو به عنوان مبدا/مقصد ">
+<meta property="og:type" content="article">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css">
+<style>
+.meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;color:var(--jp-ui-font-color2);
+  font-size:12.5px;margin:-.2em 0 1.5em;max-width:none}
+.meta .dot{width:3px;height:3px;border-radius:50%;background:var(--jp-border2);flex:0 0 3px}
+.meta .tag{border:1px solid var(--jp-border2);border-radius:2px;padding:0 7px;font-size:11.5px}
+.meta .mono{direction:ltr;font-family:"JetBrains Mono",Menlo,monospace}
+.mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
+.figout{margin:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.figout img{max-width:min(100%,720px);height:auto;border:1px solid var(--jp-border1);
+  border-radius:2px;display:block;margin:0 auto 6px}
+.figout img:last-of-type{margin-bottom:0}
+.figout figcaption{color:var(--jp-ui-font-color2);font-size:12px;padding-top:8px;
+  max-width:60ch;text-align:center}
+.tblout{overflow-x:auto;max-width:100%}
+.jp-md p.ctr{text-align:center}
+.jp-md p.embed a{display:inline-block;border:1px solid var(--jp-border2);border-radius:3px;
+  padding:8px 13px;text-decoration:none;background:var(--jp-editor-bg)}
+.jp-md p.embed a:hover{border-color:var(--jp-brand1)}
+</style>
 </head>
 <body>
-   <div class="notebook-container">
-       <article class="main-article post-594 post type-post status-publish format-standard has-post-thumbnail hentry category-1 category-40">		   
-		   <header class="header">
-           <h1 class="post-title">یافتن نقطه بهینه موقع گرفتن اسنپ!</h1>
-           <div class="post-meta">
-               <span class="date">۱۴۰۰/۰۵/۱۱</span>
-           </div>
-       </header>
-
-           <section class="content">
-               <div class="cell">
-                   <p>یکی از کار هایی که همیشه دوست داشتم انجام بدم این بوده که یه برنامه بنویسم که مختصات نقطه مبدا/مقصد در اسنپ رو بهش بدم و بهم بگه کجا رو به عنوان مبدا/مقصد انتخاب کنم که کمترین هزینه ممکن رو برام داشته باشه. مثلا بهش بگم من تا ۱۰۰ متر هم میتونم پیاده برم تا نقطه مبدا/مقصد و بر اساس اون بهم پیشنهاد بده.توی این مقاله صرفا میخوام به صورت خلاصه مراحل انجام این کار رو توضیح بدم. حالا شما اگر حوصله داشتید اون رو برای خودتون توسعه بدید و بهش فیچر اضافه کنید. من فقط میخوام ایده رو بگم و برم :)اولین کاری که باید انجام بدید اینه که وب اپلیکیشن اسنپ رو باز کنید :</p>
-               </div>
-
-               <div class="cell">
-                   <pre class="has-text-align-center"><a href="https://app.snapp.taxi/pre-ride">https://app.snapp.taxi/pre-ride</a></pre>
-               </div>
-
-               <div class="cell">
-                   <p>من از فایرفاکس استفاده میکنم. روی صفحه راست کلیک کنید و Inspect رو بزنید. تب Network رو باز کنید. میبینید که یه سری ریکوئست داره ارسال و دریافت میشه.</p>
-               </div>
-
-               <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/6-1.png" alt=""></figure>
-                   </div>
-               </div>
-
-               <div class="cell">
-                   <p>یه نقطه رو به عنوان مبدا سفر مشخص کنید و تایید مبدا رو بزنید. بعد یه نقطه رو به عنوان مقصد انتخاب کنید اما تایید مقصد رو الان نزنید! اول برید از تب Network روی آیکون سطل زباله گوشه بالا سمت چپ کلیک کنید تا ریکوئست هایی که تا الان ارسال شده حذف بشه. حالا بدون اینکه نقشه رو تکون بدید تایید مقصد رو بزنید. حالا از تب Network دنبال یه ریکوئست Post بگردید که مثل تصویر زیر باشه :</p>
-               </div>
-
-               <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/6-2.png" alt=""></figure>
-                   </div>
-               </div>
-
-               <div class="cell">
-                   <p>اینجا چی داریم؟ همونطور که توی بخش Request با کادر قرمز مشخص کردم، اینجا دو تا مختصات برای سرور های اسنپ ارسال میشه. lat مخفف Latitude و به معنای عرض جغرافیایی و lng مخفف Longitude و به معنای طول جغرافیایی است. دو تا نقطه اول مختصات مبدا و دو تا نقطه دوم مختصات مقصد هستند. از تب Response هم یه چیز دیگه رو هم باید چک کنید که مطمئن بشید همون ریکوئستی است که دنبالش هستید :</p>
-               </div>
-
-               <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/6-3.png" alt=""></figure>
-                   </div>
-               </div>
-
-               <div class="cell">
-                   <p>چک کنید که در Response حتما final مقدار داشته باشه. مثلا اینجا 15 هزار تومنه. حالا روی ریکوئستی که پیدا کردید راست کلیک کنید، از منوی Copy گزینه Copy as cURL (POSIX) رو انتخاب کنید.</p>
-               </div>
-
-               <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/6-4.png" alt=""></figure>
-                   </div>
-               </div>
-
-               <div class="cell">
-                   <p>حالا وارد سایت زیر بشید و آدرسی که کپی کردید رو اونجا paste کنید و بعد هم Run رو بزنید.</p>
-               </div>
-
-               <div class="cell">
-                   <pre class="has-text-align-center">https://reqbin.com/req/python/c-xgafmluu/convert-curl-to-python-requests</pre>
-               </div>
-
-               <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/6-5.png" alt=""></figure>
-                   </div>
-               </div>
-
-               <div class="cell">
-                   <p>حالا از سمت راست Generate Code رو بزنید و زبانی که بلدید رو انتخاب کنید. من پایتو رو انتخاب میکنم :</p>
-               </div>
-
-               <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/6-6.png" alt=""></figure>
-                   </div>
-               </div>
-
-               <div class="cell">
-                   <p>یه نمونه از این کد رو توی gist زیر گذاشتم اما بخش Authorization و Cookie رو حذف کردم که کسی شیطونی نکنه 🙂</p>
-               </div>
-
-               <div class="cell">
-                   <pre class="has-text-align-center">https://gist.github.com/vahidbaghi/dd302a1c993afbb5e730ea2528ff7e86</pre>
-               </div>
-
-               <div class="cell">
-                   <p>از این کد فقط نیاز داریم که با data بازی کنیم 🙂</p>
-               </div>
-
-               <div class="cell">
-                   <pre class="has-text-align-center">data = '{"points":[{"lat":"35.69997540770194","lng":"51.344421424748106"},{"lat":"35.700164999999984","lng":"51.353939"}],"locale":"fa-IR","os":6,"version":0}'</pre>
-               </div>
-
-               <div class="cell">
-                   <p>همونطور که میبینید اینجا همون lat و lng رو داریم اما اینجا میتونیم به هر شکلی که میخوایم تغییرش بدیم و بعد ریکوئست رو برای اسنپ ارسال کنیم. کاری که ما میخوایم انجام بدیم چیه؟ مثلا بگیم در شعاع ۱۰۰ متری از نقطه مبدا، کجا رو بزنم که کمترین هزینه ممکن رو داشته باشه؟سوالی که اینجا پیش میاد اینه که من به lat و lng که اعداد اعشاری هستند چقدر اضافه کنم که مثلا بشه ۱ متر؟ توی لینک زیر این موارد رو تقریب زده :</p>
-               </div>
-
-               <div class="cell">
-                   <pre class="has-text-align-center">https://www.usna.edu/Users/oceano/pguth/md_help/html/approx_equivalents.htm</pre>
-               </div>
-
-               <div class="cell">
-                   <p>مثلا اگر 0.00001 به اعداد lat و lng اضافه کنید میشه تقریبا 1.11 مترحالا کد زیر رو در نظر بگیرید :</p>
-               </div>
-
-               <div class="cell">
-                   <pre class="has-text-align-center">https://gist.github.com/vahidbaghi/aa4dab9d8ace17d38e7f865e5223dbc9</pre>
-               </div>
-
-               <div class="cell">
-                   <p>هدف این کد چیه؟ ما یه شعاعی رو تعیین میکنیم. مثلا اینجا من radius که همون شعاع است رو گذاشتم ۱۰۰ متر. حالا میخوایم در شعاع ۱۰۰ متری نقطه مبدا یه تعدادی نقطه رو انتخاب کنیم و اون رو برای سرور اسنپ ارسال کنیم و ببینیم قیمت چقدر تغییر میکنه. در واقع یه دایره داریم به شعاع ۱۰۰ متر که مرکز این دایره نقطه مبدا ما قرار داره. میخوایم روی محیط این دایره چند تا نقطه رو انتخاب کنیم. من اینجا ۸ تا نقطه رو انتخاب کردم. این نقاط رو به کمک dimensions پیدا میکنم. چه جوری؟ مثلا عنصر اول dimensions رو گذاشتم [0,1]یعنی چی؟ یعنی میخوام lat صفر متر تغییر کنه (تغییر نکنه!) و lng هم ۱ متر به سمت راست بره. اگر -1 بود چی میشد؟ آفرین! میشد ۱ متر به سمت چپ!متغیر های init_lat و init_lng هم نقاط مبدا ما هستند که میخوایم در شعاع ۱۰۰ متری از اونها تعدادی نقطه رو انتخاب کنیم. بعد یه حلقه for گذاشتم که دونه دونه این dimension ها رو انتخاب کنه. داخل حلقه چه اتفاقی میافته؟</p>
-               </div>
-
-               <div class="cell">
-                   <pre class="has-text-align-center">start_lat = init_lat+dim[0]*0.00001*radius
-start_lng = init_lng+dim[1]*0.00001*radius</pre>
-               </div>
-
-               <div class="cell">
-                   <p>گفتم که هر 0.00001 واحدی که به lat و lng اضافه کنیم میشه 1.11 متر. من اینجا میخوام فاصله 100 متری رو محاسبه کنم. پس 0.00001 رو در radius ضرب میکنم. میشه 111 متر ولی مهم نیست! حالا dim[0] و dim[1] چیه؟ چند خط بالاتر یه مثال زدم. نشون میده چند متر باید به سمت راست/چپ بریم یا حتی نریم!بعد از اینکه این محاسبات رو انجام دادیم، درخواست رو به سرور اسنپ ارسال میکنیم و قیمت رو در متغیر price ذخیره می‌کنیم. بعدش مقادیر رو داخل یه دیکشنری ذخیره میکنیم. خط آخر هم بر اساس قیمت به صورت صعودی مرتب میکنه و چاپ میکنه!<strong>آپدیت شنبه، ۲۹ آبان ۱۴۰۰ :</strong>یکی از دوستان زحمت کشیدند و کد کاملش رو نوشتند :</p>
-               </div>
-
-               <div class="cell">
-                   <pre class="has-text-align-center">https://github.com/amirhoseinMhmD/snapp_minimizer</pre>
-               </div>
-
-               <div class="cell">
-                   <p><strong>آپدیت جمعه، ۳ دی ۱۴۰۰ : </strong>من چون میخواستم با گوشی دکمه‌ای اسنپ بگیرم یه سرشماره پیامکی خریداری کردم و اون رو متصل کردن به یک URL که تمامی پیامک هایی که به اون سرشماره ارسال میشه به URL مربوطه فوروارد بشه و من اونجا هر پردازشی که میخوام انجام بدم.</p>
-               </div>
-
-               <div class="cell">
-                   <pre class="has-text-align-center"> <a href="https://twitter.com/vahidbaghi95/status/1474311718314647556" target="_blank" rel="noreferrer noopener">https://twitter.com/vahidbaghi95/status/1474311718314647556</a></pre>
-               </div>
-
-               <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/6-7.png" alt=""></figure>
-                   </div>
-               </div>
-
-               <div class="cell">
-                   <p><strong>آپدیت شنبه، ۲۰ فروردین ۱۴۰۱ :</strong></p>
-               </div>
-
-               <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/6-8.png" alt=""></figure>
-                   </div>
-               </div>
-
-               <div class="cell">
-                   <p>برای این کار از سرویس زیر استفاده میکنم :</p>
-               </div>
-
-               <div class="cell">
-                   <pre class="has-text-align-center"><a href="https://core.map.ir/">https://core.map.ir</a></pre>
-               </div>
-
-               <div class="cell">
-                   <p>حملات توپخانه ای</p>
-               </div>
-
-               <div class="cell">
-                   <div class="wp-block-image">
-                       <figure class="aligncenter"><img decoding="async" src="images/6-9.jpg" alt=""></figure>
-                   </div>
-               </div>
-
-               <div class="cell">
-                   <p>در این مقاله صرفا قرار بود ایده کلی گفته بشه. کار های زیادی میشه انجام داد. خودم بعضی هاش رو انجام دادم. اما اینجا فقط روش پایه‌ای رو گفتم. من فرض میکنم شما برنامه نویس هستید و میتونید بر اساس نیازتون کد رو تغییر بدید و فیچر های مختلف رو بهش اضافه کنید.</p>
-               </div>
-
-               <div class="cell">
-                   <p>شما این کار رو قبلا انجام دادید؟ آفرین! روش شما بهتره؟ وای چه خفن! خب اینجا چیکار میکنی زاکربرگ جوان؟</p>
-               </div>
-
-               <div class="cell">
-                   <p>این روش به درد نمیخوره؟ عملی نیست؟ آخی، به نظر میرسه اینجا گیر افتادی. بذار نحوه بستن مرورگر رو بهت یاد بدم :</p>
-               </div>
-
-               <div class="cell">
-                   <pre class="has-text-align-center">http://www.usethefuckinggoogle.com/?q=how+to+close+browser</pre>
-               </div>
-
-               <div class="cell">
-                   <p>میشه با این ایده یه کسب و کار راه انداخت؟ Good Luck 🙂</p>
-               </div>
-           </section>
-       </article>
-   </div>
+<div id="cells" hidden>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h1>یافتن نقطه بهینه موقع گرفتن اسنپ!</h1>
+      <div class="meta"><span class="mono">۱۴۰۰/۰۵/۱۱</span><span class="dot"></span><span class="tag">تپه‌نوردی</span><span class="tag">وب‌نوردی</span><span class="dot"></span><span>اسنپ</span></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>یکی از کار هایی که همیشه دوست داشتم انجام بدم این بوده که یه برنامه بنویسم که مختصات نقطه مبدا/مقصد در اسنپ رو بهش بدم و بهم بگه کجا رو به عنوان مبدا/مقصد انتخاب کنم که کمترین هزینه ممکن رو برام داشته باشه. مثلا بهش بگم من تا ۱۰۰ متر هم میتونم پیاده برم تا نقطه مبدا/مقصد و بر اساس اون بهم پیشنهاد بده.توی این مقاله صرفا میخوام به صورت خلاصه مراحل انجام این کار رو توضیح بدم. حالا شما اگر حوصله داشتید اون رو برای خودتون توسعه بدید و بهش فیچر اضافه کنید. من فقط میخوام ایده رو بگم و برم :)اولین کاری که باید انجام بدید اینه که وب اپلیکیشن اسنپ رو باز کنید :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <a href="https://app.snapp.taxi/pre-ride" target="_blank" rel="noopener">https://app.snapp.taxi/pre-ride</a>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>من از فایرفاکس استفاده میکنم. روی صفحه راست کلیک کنید و Inspect رو بزنید. تب Network رو باز کنید. میبینید که یه سری ریکوئست داره ارسال و دریافت میشه.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[1]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/6-1.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>یه نقطه رو به عنوان مبدا سفر مشخص کنید و تایید مبدا رو بزنید. بعد یه نقطه رو به عنوان مقصد انتخاب کنید اما تایید مقصد رو الان نزنید! اول برید از تب Network روی آیکون سطل زباله گوشه بالا سمت چپ کلیک کنید تا ریکوئست هایی که تا الان ارسال شده حذف بشه. حالا بدون اینکه نقشه رو تکون بدید تایید مقصد رو بزنید. حالا از تب Network دنبال یه ریکوئست Post بگردید که مثل تصویر زیر باشه :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[2]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/6-2.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>اینجا چی داریم؟ همونطور که توی بخش Request با کادر قرمز مشخص کردم، اینجا دو تا مختصات برای سرور های اسنپ ارسال میشه. lat مخفف Latitude و به معنای عرض جغرافیایی و lng مخفف Longitude و به معنای طول جغرافیایی است. دو تا نقطه اول مختصات مبدا و دو تا نقطه دوم مختصات مقصد هستند. از تب Response هم یه چیز دیگه رو هم باید چک کنید که مطمئن بشید همون ریکوئستی است که دنبالش هستید :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[3]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/6-3.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>چک کنید که در Response حتما final مقدار داشته باشه. مثلا اینجا 15 هزار تومنه. حالا روی ریکوئستی که پیدا کردید راست کلیک کنید، از منوی Copy گزینه Copy as cURL (POSIX) رو انتخاب کنید.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[4]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/6-4.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>حالا وارد سایت زیر بشید و آدرسی که کپی کردید رو اونجا paste کنید و بعد هم Run رو بزنید.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      https://reqbin.com/req/python/c-xgafmluu/convert-curl-to-python-requests
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[5]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/6-5.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>حالا از سمت راست Generate Code رو بزنید و زبانی که بلدید رو انتخاب کنید. من پایتو رو انتخاب میکنم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[6]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/6-6.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>یه نمونه از این کد رو توی gist زیر گذاشتم اما بخش Authorization و Cookie رو حذف کردم که کسی شیطونی نکنه 🙂</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      https://gist.github.com/vahidbaghi/dd302a1c993afbb5e730ea2528ff7e86
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>از این کد فقط نیاز داریم که با data بازی کنیم 🙂</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      data = '{"points":[{"lat":"35.69997540770194","lng":"51.344421424748106"},{"lat":"35.700164999999984","lng":"51.353939"}],"locale":"fa-IR","os":6,"version":0}'
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>همونطور که میبینید اینجا همون lat و lng رو داریم اما اینجا میتونیم به هر شکلی که میخوایم تغییرش بدیم و بعد ریکوئست رو برای اسنپ ارسال کنیم. کاری که ما میخوایم انجام بدیم چیه؟ مثلا بگیم در شعاع ۱۰۰ متری از نقطه مبدا، کجا رو بزنم که کمترین هزینه ممکن رو داشته باشه؟سوالی که اینجا پیش میاد اینه که من به lat و lng که اعداد اعشاری هستند چقدر اضافه کنم که مثلا بشه ۱ متر؟ توی لینک زیر این موارد رو تقریب زده :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      https://www.usna.edu/Users/oceano/pguth/md_help/html/approx_equivalents.htm
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>مثلا اگر 0.00001 به اعداد lat و lng اضافه کنید میشه تقریبا 1.11 مترحالا کد زیر رو در نظر بگیرید :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      https://gist.github.com/vahidbaghi/aa4dab9d8ace17d38e7f865e5223dbc9
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>هدف این کد چیه؟ ما یه شعاعی رو تعیین میکنیم. مثلا اینجا من radius که همون شعاع است رو گذاشتم ۱۰۰ متر. حالا میخوایم در شعاع ۱۰۰ متری نقطه مبدا یه تعدادی نقطه رو انتخاب کنیم و اون رو برای سرور اسنپ ارسال کنیم و ببینیم قیمت چقدر تغییر میکنه. در واقع یه دایره داریم به شعاع ۱۰۰ متر که مرکز این دایره نقطه مبدا ما قرار داره. میخوایم روی محیط این دایره چند تا نقطه رو انتخاب کنیم. من اینجا ۸ تا نقطه رو انتخاب کردم. این نقاط رو به کمک dimensions پیدا میکنم. چه جوری؟ مثلا عنصر اول dimensions رو گذاشتم [0,1]یعنی چی؟ یعنی میخوام lat صفر متر تغییر کنه (تغییر نکنه!) و lng هم ۱ متر به سمت راست بره. اگر -1 بود چی میشد؟ آفرین! میشد ۱ متر به سمت چپ!متغیر های init_lat و init_lng هم نقاط مبدا ما هستند که میخوایم در شعاع ۱۰۰ متری از اونها تعدادی نقطه رو انتخاب کنیم. بعد یه حلقه for گذاشتم که دونه دونه این dimension ها رو انتخاب کنه. داخل حلقه چه اتفاقی میافته؟</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      start_lat = init_lat+dim[0]*0.00001*radius
+start_lng = init_lng+dim[1]*0.00001*radius
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>گفتم که هر 0.00001 واحدی که به lat و lng اضافه کنیم میشه 1.11 متر. من اینجا میخوام فاصله 100 متری رو محاسبه کنم. پس 0.00001 رو در radius ضرب میکنم. میشه 111 متر ولی مهم نیست! حالا dim[0] و dim[1] چیه؟ چند خط بالاتر یه مثال زدم. نشون میده چند متر باید به سمت راست/چپ بریم یا حتی نریم!بعد از اینکه این محاسبات رو انجام دادیم، درخواست رو به سرور اسنپ ارسال میکنیم و قیمت رو در متغیر price ذخیره می‌کنیم. بعدش مقادیر رو داخل یه دیکشنری ذخیره میکنیم. خط آخر هم بر اساس قیمت به صورت صعودی مرتب میکنه و چاپ میکنه!<strong>آپدیت شنبه، ۲۹ آبان ۱۴۰۰ :</strong>یکی از دوستان زحمت کشیدند و کد کاملش رو نوشتند :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      https://github.com/amirhoseinMhmD/snapp_minimizer
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p><strong>آپدیت جمعه، ۳ دی ۱۴۰۰ : </strong>من چون میخواستم با گوشی دکمه‌ای اسنپ بگیرم یه سرشماره پیامکی خریداری کردم و اون رو متصل کردن به یک URL که تمامی پیامک هایی که به اون سرشماره ارسال میشه به URL مربوطه فوروارد بشه و من اونجا هر پردازشی که میخوام انجام بدم.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <a href="https://twitter.com/vahidbaghi95/status/1474311718314647556" target="_blank" rel="noopener">https://twitter.com/vahidbaghi95/status/1474311718314647556</a>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[7]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/6-7.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p><strong>آپدیت شنبه، ۲۰ فروردین ۱۴۰۱ :</strong></p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[8]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/6-8.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>برای این کار از سرویس زیر استفاده میکنم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <a href="https://core.map.ir/" target="_blank" rel="noopener">https://core.map.ir</a>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>حملات توپخانه ای</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[9]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/6-9.jpg" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>در این مقاله صرفا قرار بود ایده کلی گفته بشه. کار های زیادی میشه انجام داد. خودم بعضی هاش رو انجام دادم. اما اینجا فقط روش پایه‌ای رو گفتم. من فرض میکنم شما برنامه نویس هستید و میتونید بر اساس نیازتون کد رو تغییر بدید و فیچر های مختلف رو بهش اضافه کنید.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>شما این کار رو قبلا انجام دادید؟ آفرین! روش شما بهتره؟ وای چه خفن! خب اینجا چیکار میکنی زاکربرگ جوان؟</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>این روش به درد نمیخوره؟ عملی نیست؟ آخی، به نظر میرسه اینجا گیر افتادی. بذار نحوه بستن مرورگر رو بهت یاد بدم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      http://www.usethefuckinggoogle.com/?q=how+to+close+browser
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>میشه با این ایده یه کسب و کار راه انداخت؟ Good Luck 🙂</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[10]:</div>
+        <div class="jp-editor"><pre>nb<span class="o">.</span><span class="f">neighbours</span>()</pre></div></div>
+      <div class="jp-io"><div class="jp-prompt out">Out[10]:</div>
+        <div class="jp-outputs"><table class="dataframe"><thead><tr><th></th><th>title</th><th>date</th></tr></thead><tbody><tr><th class="l mono">prev</th><td><a href="/blog/posts/5.html">انتخاب بستهٔ اینترنت همراه به کمک مسئلهٔ کوله‌پشتی!</a></td><td class="num">۱۴۰۰/۰۴</td></tr><tr><th class="l mono">next</th><td><a href="/blog/posts/7.html">سفر به دنیای شمارهٔ پلاک خودروها!</a></td><td class="num">۱۴۰۰/۰۷</td></tr></tbody></table></div></div>
+    </div>
+  </div>
+</div>
+<script src="/assets/lab.js"></script>
+<script>
+Lab.chrome({ active:'post', tab:{ name:'post_06.ipynb', href:'/blog/posts/6.html' } });
+Lab.wire();
+Lab.kernel(false);
+</script>
 </body>
 </html>

@@ -1,267 +1,356 @@
 <!DOCTYPE html>
-<html>
-<head><meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1">
-<!-- Google tag (gtag.js) -->
+<html lang="fa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>وحید باقی</title>
+<meta name="description" content="چیزهای دوروبرم را اندازه می‌گیرم و نتیجه‌اش را می‌نویسم — خیابان‌های تهران، ارقام عدد پی، قیمت بسته‌های اینترنت، و هر چیزی که بشود شمرد.">
+<meta property="og:title" content="وحید باقی">
+<meta property="og:description" content="چیزهای دوروبرم را اندازه می‌گیرم و نتیجه‌اش را می‌نویسم.">
+<meta property="og:type" content="website">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css">
+<style>
+/* the social row: one monospace mark per platform, so the column reads as a
+   single system instead of eight mismatched logos */
+.lnk-tile{display:inline-grid;place-items:center;width:23px;height:23px;border-radius:3px;
+  border:1px solid var(--jp-border2);font-family:"JetBrains Mono",monospace;font-size:10px;
+  font-weight:500;color:var(--jp-ui-font-color2);letter-spacing:-.03em;flex:0 0 23px;direction:ltr}
+tr:hover .lnk-tile{border-color:var(--jp-brand1);color:var(--jp-brand1)}
+.lnk-cell{display:flex;align-items:center;gap:9px;justify-content:flex-start;direction:rtl}
+.lnk-cell .nm{direction:ltr}
+.mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
+.jp-editor .live{outline:none;display:inline-block;min-width:9ch;direction:rtl}
+.jp-editor .live:focus{background:var(--jp-layout1);box-shadow:0 0 0 3px rgba(33,150,243,.14)}
+.ok{color:#2ca02c}
+</style>
+</head>
+<body>
+<div id="cells" hidden>
+
+  <div class="jp-cell sel">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h1>وحید باقی</h1>
+      <p>چیزهای دوروبرم را اندازه می‌گیرم و نتیجه‌اش را می‌نویسم — خیابان‌های تهران، ارقام عدد پی،
+         قیمت بسته‌های اینترنت، و هر چیزی که بشود شمرد.</p>
+      <hr>
+    </div>
+  </div>
+
+  <div class="jp-cell" data-exec="profile">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io">
+        <div class="jp-prompt">[1]:</div>
+        <div class="jp-editor"><pre><span class="k">import</span> pandas <span class="k">as</span> pd
+<span class="k">import</span> curiosity <span class="k">as</span> cu
+
+me <span class="o">=</span> cu<span class="o">.</span><span class="f">load</span>(<span class="s">"vahidbaghi.ir"</span>)
+me<span class="o">.</span>profile</pre></div>
+      </div>
+      <div class="jp-io res">
+        <div class="jp-prompt out">Out[1]:</div>
+        <div class="jp-outputs"><div id="o-profile"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="jp-cell" data-exec="links">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io">
+        <div class="jp-prompt">[2]:</div>
+        <div class="jp-editor"><pre>me<span class="o">.</span>links<span class="o">.</span><span class="f">sort_values</span>(<span class="s">"platform"</span>)</pre></div>
+      </div>
+      <div class="jp-io res">
+        <div class="jp-prompt out">Out[2]:</div>
+        <div class="jp-outputs"><div id="o-links"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="jp-cell" data-exec="cal">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io">
+        <div class="jp-prompt">[3]:</div>
+        <div class="jp-editor"><pre><span class="c"># <bdi>کِی می‌نویسم؟ ماه‌های تقویم جلالی در برابر سال</bdi></span>
+cal <span class="o">=</span> me<span class="o">.</span>posts<span class="o">.</span><span class="f">pivot_table</span>(index<span class="o">=</span><span class="s">"year"</span>, columns<span class="o">=</span><span class="s">"month"</span>,
+                            values<span class="o">=</span><span class="s">"id"</span>, aggfunc<span class="o">=</span><span class="s">"count"</span>, fill_value<span class="o">=</span><span class="n">0</span>)
+plt<span class="o">.</span><span class="f">imshow</span>(cal, cmap<span class="o">=</span><span class="s">"Blues"</span>, aspect<span class="o">=</span><span class="s">"auto"</span>)</pre></div>
+      </div>
+      <div class="jp-io res">
+        <div class="jp-prompt out"></div>
+        <div class="jp-outputs">
+          <pre class="jp-out-repr code">&lt;matplotlib.image.AxesImage at 0x7f2a1c4b8e50&gt;</pre>
+          <div class="fig" id="o-cal"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="jp-cell" data-exec="topic">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io">
+        <div class="jp-prompt">[4]:</div>
+        <div class="jp-editor"><pre><span class="c"># <bdi>و دربارهٔ چه چیزهایی؟</bdi></span>
+me<span class="o">.</span>posts<span class="o">.</span>topic<span class="o">.</span><span class="f">value_counts</span>()<span class="o">.</span>plot<span class="o">.</span><span class="f">barh</span>(color<span class="o">=</span><span class="s">"C0"</span>)</pre></div>
+      </div>
+      <div class="jp-io res">
+        <div class="jp-prompt out"></div>
+        <div class="jp-outputs">
+          <pre class="jp-out-repr code">&lt;Axes: ylabel='topic'&gt;</pre>
+          <div class="fig" id="o-topic"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="jp-cell" data-exec="sample">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io">
+        <div class="jp-prompt">[5]:</div>
+        <div class="jp-editor"><pre><span class="c"># <bdi>نمی‌دانی از کجا شروع کنی؟ پنج‌تا شانسی</bdi></span>
+me<span class="o">.</span>posts<span class="o">.</span><span class="f">sample</span>(<span class="n">5</span>)[[<span class="s">"title"</span>, <span class="s">"year"</span>, <span class="s">"topic"</span>]]</pre></div>
+      </div>
+      <div class="jp-io res">
+        <div class="jp-prompt out">Out[5]:</div>
+        <div class="jp-outputs"><div id="o-sample"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="jp-cell" data-exec="send" data-manual>
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io">
+        <div class="jp-prompt">[6]:</div>
+        <div class="jp-editor"><pre><span class="c"># <bdi>پیام‌ات را داخل گیومه بنویس، بعد ▶ را بزن</bdi></span>
+me<span class="o">.</span><span class="f">send</span>(<span class="s">"</span><span class="s live" contenteditable="true" role="textbox" aria-label="متن پیام">سلام وحید،</span><span class="s">"</span>)</pre></div>
+      </div>
+      <div class="jp-io res">
+        <div class="jp-prompt out">Out[6]:</div>
+        <div class="jp-outputs"><pre class="jp-out-txt code" id="o-send"></pre></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="/assets/lab.js"></script>
+<script src="/assets/posts.js"></script>
+<script>
+var fa = Lab.fa;
+var YEARS = [1399,1400,1401,1402,1403];
+var MON = ["فرو","ارد","خرد","تیر","مرد","شهر","مهر","آبا","آذر","دی","بهم","اسف"];
+var LINKS = [
+  ["gh","github",   "vahidbaghi",   "https://github.com/vahidbaghi"],
+  ["kg","kaggle",   "johntukey",    "https://www.kaggle.com/johntukey"],
+  ["in","linkedin", "vahid-baghi",  "https://ir.linkedin.com/in/vahid-baghi-0452baa9"],
+  ["tw","twitter",  "vahidbaghi95", "https://twitter.com/vahidbaghi95"],
+  ["tg","telegram", "vahidbaghi",   "https://t.me/vahidbaghi"],
+  ["yt","youtube",  "vahidbaghi",   "https://www.youtube.com/channel/UClT4ufrOX9yg0eIfgvt5Bgg"],
+  ["ig","instagram","vahidbaghi",   "https://www.instagram.com/vahidbaghi/"],
+  ["em","email",    "vbaghi",       "mailto:vbaghi@gmail.com"]
+];
+var ARTICLES = POSTS.filter(function(r){ return r[5] === "پست" });
+
+/* ── Out[1] ─────────────────────────────────────────────────── */
+var first = ARTICLES[0], last = ARTICLES[ARTICLES.length-1];
+function d3(r){ return fa(r[2])+'/'+fa(('0'+r[3]).slice(-2))+'/'+fa(('0'+r[4]).slice(-2)) }
+var PROFILE = [
+  ["name","وحید باقی"], ["role","تحلیل‌گر داده"], ["base","تهران"],
+  ["first_post", d3(first)], ["last_post", d3(last)],
+  ["posts", fa(ARTICLES.length)],
+  ["interactive", fa(POSTS.length - ARTICLES.length)]
+];
+document.getElementById('o-profile').innerHTML =
+  '<table class="dataframe"><thead><tr><th></th><th>value</th></tr></thead><tbody>' +
+  PROFILE.map(function (r) {
+    var num = /^[۰-۹\/]+$/.test(r[1]);
+    return '<tr><th class="l mono">'+r[0]+'</th><td'+(num?' class="num"':'')+'>'+r[1]+'</td></tr>';
+  }).join('') + '</tbody></table>';
+
+/* ── Out[2] ─────────────────────────────────────────────────── */
+document.getElementById('o-links').innerHTML =
+  '<table class="dataframe"><thead><tr><th></th><th>platform</th><th>handle</th>' +
+  '<th class="l hide-sm">url</th></tr></thead><tbody>' +
+  LINKS.map(function (l, i) {
+    var shown = l[3].replace(/^https?:\/\/(www\.)?/,'').replace(/^mailto:/,'');
+    return '<tr><th class="l mono">'+i+'</th>' +
+      '<td><a href="'+l[3]+'" target="_blank" rel="noopener" class="lnk-cell">' +
+      '<span class="lnk-tile">'+l[0]+'</span><span class="nm">'+l[1]+'</span></a></td>' +
+      '<td class="mono">'+l[2]+'</td>' +
+      '<td class="l mono hide-sm"><a href="'+l[3]+'" target="_blank" rel="noopener">'+shown+'</a></td></tr>';
+  }).join('') + '</tbody></table>';
+
+/* ── matplotlib-flavoured svg ───────────────────────────────── */
+function el(t,a,k){var s='<'+t;for(var p in a)s+=' '+p+'="'+a[p]+'"';return s+'>'+(k||'')+'</'+t+'>'}
+function box(x,y,w,h){return el('rect',{x:x,y:y,width:w,height:h,fill:'none',
+  stroke:'var(--mpl-axis)','stroke-width':.9})}
+function txt(x,y,s,o){o=o||{};return el('text',{x:x,y:y,'font-size':o.size||10.5,
+  fill:o.fill||'var(--mpl-axis)','text-anchor':o.anchor||'middle','font-weight':o.w||400},s)}
+function tick(a,b,c,d){return el('line',{x1:a,y1:b,x2:c,y2:d,stroke:'var(--mpl-axis)','stroke-width':.9})}
+function avail(id){
+  var n = document.getElementById(id).parentNode;
+  return Math.max(300, Math.floor(n.getBoundingClientRect().width) - 4);
+}
+
+/* ── Out[3] activity calendar ───────────────────────────────── */
+var CAL = (function(){
+  var g = []; for (var i=0;i<5;i++) g.push(new Array(12).fill(0));
+  ARTICLES.forEach(function(r){ g[YEARS.indexOf(r[2])][r[3]-1]++ });
+  return g;
+})();
+var CALMAX = Math.max.apply(null, CAL.map(function(r){return Math.max.apply(null,r)}));
+
+function drawCal(){
+  var wide = avail('o-cal') >= 640;
+  /* on a phone the twelve month columns cannot fit, so the grid is transposed:
+     months down the side, years across */
+  var rows = wide ? 5 : 12, cols = wide ? 12 : 5;
+  var rowLab = wide ? YEARS.map(fa) : MON, colLab = wide ? MON : YEARS.map(fa);
+  function val(r,c){ return wide ? CAL[r][c] : CAL[c][r] }
+
+  var pad = wide ? 84 : 52, W = Math.min(avail('o-cal'), wide ? 720 : 420);
+  var right = wide ? 56 : 34;
+  var pw = W - pad - right, cw = pw / cols, ch = wide ? 30 : 22, H = ch * rows;
+  var Y0 = 44, g = '';
+  g += txt(pad + pw/2, 26, 'تعداد پست در هر ماه', {size:12.5, w:600});
+  for (var r=0;r<rows;r++) for (var c=0;c<cols;c++){
+    var v = val(r,c), step = v===0 ? 0 : 1 + Math.round(v/CALMAX*5);
+    g += el('rect',{x:(pad+c*cw).toFixed(1), y:(Y0+r*ch).toFixed(1),
+      width:cw.toFixed(1), height:ch.toFixed(1), fill:'var(--hm'+Math.min(6,step)+')'});
+    if (v) g += txt(pad+c*cw+cw/2, Y0+r*ch+ch/2+3.6, fa(v),
+      {size:10.5, fill: v>=3 ? 'var(--hm-ink-hi)' : 'var(--hm-ink-lo)', w:600});
+  }
+  g += box(pad, Y0, pw, H);
+  for (var c2=0;c2<cols;c2++){
+    g += tick(pad+c2*cw+cw/2, Y0+H, pad+c2*cw+cw/2, Y0+H+3.5);
+    g += txt(pad+c2*cw+cw/2, Y0+H+15, colLab[c2], {size:10});
+  }
+  for (var r2=0;r2<rows;r2++){
+    g += tick(pad-3.5, Y0+r2*ch+ch/2, pad, Y0+r2*ch+ch/2);
+    g += txt(pad-7, Y0+r2*ch+ch/2+3.6, rowLab[r2], {size:10.5, anchor:'end'});
+  }
+  var CB = pad + pw + 18, defs = '<defs><linearGradient id="cbg" x1="0" y1="1" x2="0" y2="0">' +
+    [0,1,2,3,4,5,6].map(function(i){
+      return '<stop offset="'+(i/6*100).toFixed(0)+'%" stop-color="var(--hm'+i+')"/>';
+    }).join('') + '</linearGradient></defs>';
+  g += el('rect',{x:CB, y:Y0, width:13, height:H, fill:'url(#cbg)',
+    stroke:'var(--mpl-axis)','stroke-width':.9});
+  for (var v2=0; v2<=CALMAX; v2++){
+    var yy = Y0 + H - v2/CALMAX*H;
+    g += tick(CB+13, yy, CB+16, yy) + txt(CB+19, yy+3.6, fa(v2), {size:9.5, anchor:'start'});
+  }
+  document.getElementById('o-cal').innerHTML =
+    '<svg viewBox="0 0 '+W+' '+(Y0+H+30)+'" width="'+W+'" role="img" ' +
+    'aria-label="تقویم فعالیت انتشار">' + defs + g + '</svg>';
+}
+
+/* ── Out[4] topics ──────────────────────────────────────────── */
+function drawTopic(){
+  var m = {};
+  POSTS.forEach(function(r){ m[r[7]] = (m[r[7]]||0) + 1 });
+  var rows = Object.keys(m).map(function(k){return [k,m[k]]})
+    .sort(function(a,b){return a[1]-b[1]});          /* barh puts the largest on top */
+  var W = Math.min(avail('o-topic'), 660);
+  var pad = Math.min(150, Math.max(96, W*0.28));
+  var pw = W - pad - 34, max = 10, Y0 = 30, rh = 21, H = rows.length*rh, g = '';
+  g += box(pad, Y0, pw, H);
+  var ticks = pw > 300 ? [0,2,4,6,8,10] : [0,5,10];
+  ticks.forEach(function(v){
+    var xx = pad + v/max*pw;
+    g += el('line',{x1:xx,y1:Y0,x2:xx,y2:Y0+H,stroke:'var(--mpl-grid)','stroke-width':.8});
+    g += tick(xx,Y0+H,xx,Y0+H+3.5) + txt(xx,Y0+H+15,fa(v),{size:10});
+  });
+  rows.forEach(function(r,i){
+    var y = Y0 + H - (i+1)*rh + rh*.2, h = rh*.6;
+    g += el('rect',{x:pad, y:y.toFixed(1), width:(r[1]/max*pw).toFixed(1),
+      height:h.toFixed(1), fill:'var(--mpl-c0)'});
+    g += txt(pad-7, y+h/2+3.6, r[0], {size:10.5, anchor:'end'});
+    g += txt(pad + r[1]/max*pw + 6, y+h/2+3.6, fa(r[1]),
+      {size:10, anchor:'start', fill:'var(--jp-ui-font-color3)'});
+  });
+  g += txt(pad+pw/2, Y0+H+33, 'تعداد پست و نوت‌بوک', {size:10.5});
+  document.getElementById('o-topic').innerHTML =
+    '<svg viewBox="0 0 '+W+' '+(Y0+H+44)+'" width="'+W+'" role="img" ' +
+    'aria-label="موضوع‌ها بر حسب تعداد">' + g + '</svg>';
+}
+
+/* ── Out[5] five at random ──────────────────────────────────── */
+function sample(){
+  var pool = POSTS.slice(), pick = [];
+  for (var i=0; i<5 && pool.length; i++)
+    pick.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
+  document.getElementById('o-sample').innerHTML =
+    '<table class="dataframe"><thead><tr><th></th><th>title</th><th>year</th>' +
+    '<th class="hide-sm">topic</th></tr></thead><tbody>' +
+    pick.map(function(r){
+      return '<tr><th class="l mono">'+r[0]+'</th>' +
+        '<td><a href="'+r[8]+'">'+r[1]+'</a></td>' +
+        '<td class="num">'+fa(r[2])+'</td><td class="hide-sm">'+r[7]+'</td></tr>';
+    }).join('') + '</tbody></table>';
+}
+
+/* ── boot ───────────────────────────────────────────────────── */
+function drawAll(){ drawCal(); drawTopic() }
+Lab.chrome({ active: 'home' });
+Lab.wire({ sample: sample, cal: drawCal, topic: drawTopic });
+sample(); drawAll();
+Lab.runAll();
+
+var rt;
+addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(drawAll, 180) });
+
+var live = document.querySelector('.jp-editor .live');
+live.addEventListener('focus', function(){
+  if (live.textContent === 'سلام وحید،') live.textContent = '';
+});
+live.addEventListener('keydown', function(e){ if (e.key === 'Enter') e.preventDefault() });
+
+/* the contact cell is the one cell the reader runs; it posts the message on */
+var ENDPOINT = 'https://hello-world-wild-field-dc82.vbaghi.workers.dev/?message=';
+Lab.wire.send = null;
+document.querySelector('[data-exec="send"] .jp-cellrun')
+  .addEventListener('click', function(){
+    var out = document.getElementById('o-send'), msg = live.textContent.trim();
+    if (!msg || msg === 'سلام وحید،') {
+      out.innerHTML = '<span style="color:var(--jp-warn)">!</span> اول یک پیام بنویس.';
+      live.focus(); return;
+    }
+    out.textContent = 'در حال ارسال…';
+    fetch(ENDPOINT + encodeURIComponent(msg))
+      .then(function(r){
+        out.innerHTML = r.ok
+          ? '<span class="ok">✓</span> پیام رسید.'
+          : '<span style="color:var(--jp-warn)">!</span> نرسید — به vbaghi@gmail.com ایمیل بزن.';
+      })
+      .catch(function(){
+        out.innerHTML = '<span style="color:var(--jp-warn)">!</span> نرسید — به vbaghi@gmail.com ایمیل بزن.';
+      });
+  });
+</script>
+
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177888668-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'UA-177888668-1');
 </script>
-<link rel="stylesheet" href="styles.css">
-<title>Vahid Baghi</title>
-
-
-<!-- Loading mathjax macro -->
-<!-- Load mathjax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
-    <!-- MathJax configuration -->
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-            processEscapes: true,
-            processEnvironments: true
-        },
-        // Center justify equations in code and markdown cells. Elsewhere
-        // we use CSS to left justify single line equations in code cells.
-        displayAlign: 'center',
-        "HTML-CSS": {
-            styles: {'.MathJax_Display': {"margin": 0}},
-            linebreaks: { automatic: true }
-        }
-    });
-    </script>
-    <!-- End of mathjax configuration --></head>
-<body onload="Loadphoto('visitor')">
-
-
-
-  <div tabindex="-1" id="notebook" class="border-box-sizing">
-    <div class="container" id="notebook-container">
-	      
-<div class="image-container">
-    <img src="/images/VahidBaghi.jpg" usemap="#image-map">
-</div>
-
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">data_science_world</span> <span class="kn">import</span> <span class="n">Person</span><span class="p">
-<span class="n">vahid_baghi = Person(name=</span><span class="s1">"Vahid Baghi"</span><span class="n">)</span>
-<span class="n">vahid_baghi.get_profile()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">vahid_baghi.get_social_links()</span></pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_area">
-<div class="output_html rendered_html output_subarea ">
-<div>
-<ul class="social-icon-two">
-								    <li><a href="mailto:vbaghi@gmail.com" target="_blank"><div class="img1"><img src="/images/resource/gmail.png" alt="" onclick="Loadphoto('gmail')" class="mCS_img_loaded"></div></a></li>
-<li><a href="https://www.youtube.com/channel/UClT4ufrOX9yg0eIfgvt5Bgg" target="_blank"><div class="img1"><img src="/images/resource/youtube.png" alt="" onclick="Loadphoto('youtube')" class="mCS_img_loaded"></div></a></li>
-                                    <li><a href="https://t.me/vahidbaghi" target="_blank"><div class="img1"><img src="/images/resource/telegram.png" alt="" onclick="Loadphoto('telegram')" class="mCS_img_loaded"></div></a></li>
-              
-                                    <li><a href="https://twitter.com/vahidbaghi95" target="_blank"><div class="img1"><img src="/images/resource/Twitter.png" alt="" onclick="Loadphoto('twitter')" class="mCS_img_loaded"></div></a></li>
-<li><a href="mailto:vahid.baghi@ut.ac.ir"><div class="img1" target="_blank"><img src="/images/resource/Uni.png" alt="" onclick="Loadphoto('ut')" class="mCS_img_loaded"></div></a></li>
-                                    <li><a href="https://ir.linkedin.com/in/vahid-baghi-0452baa9?_l=en_US" target="_blank"><div class="img1"><img src="/images/resource/linkedin.png" alt="" onclick="Loadphoto('linkedin')" class="mCS_img_loaded"></div></a></li>
-									<li><a href="https://github.com/vahidbaghi/" target="_blank"><div class="img1"><img src="/images/resource/github.png" alt="" onclick="Loadphoto('github')" class="mCS_img_loaded"></div></a></li>
-									<li><a href="https://www.kaggle.com/johntukey" target="_blank"><div class="img1"><img src="/images/resource/kaggle.png" alt="" onclick="Loadphoto('kaggle')" class="mCS_img_loaded"></div></a></li>
-									<li><a href="/blog/" target="_blank"><div class="img1"><img src="/images/resource/Blog.jpg" alt="" onclick="Loadphoto('virgool')" class="mCS_img_loaded"></div></a></li>
-	<li><a href="https://www.instagram.com/vahidbaghi/" target="_blank"><div class="img1"><img src="/images/resource/instagram.png" alt="" onclick="Loadphoto('instagram')" class="mCS_img_loaded"></div></a></li>
-                                </ul>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_container">
-      <div class="input_box">
-        <div class="input_action">
-          <div class="action_button trigger">
-            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 490.718 490.718" style="enable-background: new 0 0 490.718 490.718" xml:space="preserve">
-              <g>
-                <path d="M245.359,0.359C109.852,0.359,0,110.049,0,245.358s109.852,245,245.359,245s245.359-109.691,245.359-245
-            S380.866,0.359,245.359,0.359z M176.828,341.011V140.824l187.489,100.098L176.828,341.011z"></path>
-              </g>
-            </svg>
-          </div>
-          <div class="action_button loading">
-            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="26.349px" height="26.35px" viewBox="0 0 26.349 26.35" style="enable-background: new 0 0 26.349 26.35" xml:space="preserve">
-              <g>
-                <g>
-                  <circle cx="13.792" cy="3.082" r="3.082"></circle>
-                  <circle cx="13.792" cy="24.501" r="1.849"></circle>
-                  <circle cx="6.219" cy="6.218" r="2.774"></circle>
-                  <circle cx="21.365" cy="21.363" r="1.541"></circle>
-                  <circle cx="3.082" cy="13.792" r="2.465"></circle>
-                  <circle cx="24.501" cy="13.791" r="1.232"></circle>
-                  <path d="M4.694,19.84c-0.843,0.843-0.843,2.207,0,3.05c0.842,0.843,2.208,0.843,3.05,0c0.843-0.843,0.843-2.207,0-3.05
-			C6.902,18.996,5.537,18.988,4.694,19.84z"></path>
-                  <circle cx="21.364" cy="6.218" r="0.924"></circle>
-                </g>
-              </g>
-            </svg>
-          </div>
-          <div class="action_button success">
-            <svg width="26.349px" height="26.35px" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <style>
-                  .cls-1 {
-                    fill: #699f4c;
-                    fill-rule: evenodd;
-                  }
-                </style>
-              </defs>
-              <path class="cls-1" d="M800,510a30,30,0,1,1,30-30A30,30,0,0,1,800,510Zm-16.986-23.235a3.484,3.484,0,0,1,0-4.9l1.766-1.756a3.185,3.185,0,0,1,4.574.051l3.12,3.237a1.592,1.592,0,0,0,2.311,0l15.9-16.39a3.187,3.187,0,0,1,4.6-.027L817,468.714a3.482,3.482,0,0,1,0,4.846l-21.109,21.451a3.185,3.185,0,0,1-4.552.03Z" id="check" transform="translate(-770 -450)"></path>
-            </svg>
-          </div>
-        </div>
-        <div class="inner_cell" contenteditable="true">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n"># لطفا متن پیام خود را بنوبسید و سپس دکمه ارسال را بزنید<br>message = "پیام_شما"<br>vahid_baghi.send_message(message)</span></pre></div>
-
-    </div>
-</div>
-      </div>
-      <div class="input_message"></div>
-    </div>
-</div>
-</div>
-
-
-
-</div>
-
-
-    </div>
-  </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script>
-function Loadphoto(text)
-{
-$.get('https://www.cloudflare.com/cdn-cgi/trace', function(data) {
-  // Convert key-value pairs to JSON
-  // https://stackoverflow.com/a/39284735/452587
-  data = data.trim().split('\n').reduce(function(obj, pair) {
-    pair = pair.split('=');
-    return obj[pair[0]] = pair[1], obj;
-  }, {});
-  const Http = new XMLHttpRequest();
-const url='https://hello-world-wild-field-dc82.vbaghi.workers.dev/?message='+text+'-'+data["ip"];
-Http.open("GET", url);
-Http.send();
-
-Http.onreadystatechange = (e) => {
-  console.log(Http.responseText)
-}
-});
-}
-</script>
-
-<script>
-  const input = document.querySelectorAll(".input_area")[2];
-  const responseMessage = document.querySelector(".input_message");
-  const triggerBtn = document.querySelector(".action_button.trigger");
-  const loadingBtn = document.querySelector(".action_button.loading");
-  const successBtn = document.querySelector(".action_button.success");
-
-
-  triggerBtn.addEventListener("click", async (event) => {
-    event.preventDefault(); // Prevent the default behavior (form submission or navigation)
-
-    triggerBtn.style.display = "none";
-    loadingBtn.style.display = "block";
-
-    const messageData = input.innerText.match(/"([^"]*)"/)[0];
-
-    const url = "https://hello-world-wild-field-dc82.vbaghi.workers.dev/?message=" + encodeURIComponent(messageData);
-
-    const response = await fetch(url);
-
-    if (response.ok) {
-      responseMessage.innerText = "پیام با موفقیت ارسال شد.";
-      successBtn.style.display = "block";
-      loadingBtn.style.display = "none";
-    }
-  });
-</script>
-
+<!-- Microsoft Clarity -->
 <script type="text/javascript">
-    (function() {
-        try {
-            (function(c, l, a, r, i, t, y) {
-                c[a] = c[a] || function() { (c[a].q = c[a].q || []).push(arguments); };
-                t = l.createElement(r); 
-                t.async = 1; 
-                t.src = "https://www.clarity.ms/tag/" + i;
-                y = l.getElementsByTagName(r)[0]; 
-                y.parentNode.insertBefore(t, y);
-            })(window, document, "clarity", "script", "po012xeaq9");
-        } catch (error) {
-            console.error(error);
-        }
-    })();
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window,document,"clarity","script","po012xeaq9");
 </script>
-
 </body>
-
- 
-
-
 </html>

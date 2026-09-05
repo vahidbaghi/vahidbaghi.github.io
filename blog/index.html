@@ -1,355 +1,401 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>لیست پست ها</title>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --background-color: #f8fafc;
-            --text-color: #1e293b;
-            --border-color: #e2e8f0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Vazirmatn', sans-serif;
-        }
-
-        body {
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding: 2rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            text-align: center;
-            color: var(--primary-color);
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-        }
-
-        .search-container {
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        #search-input {
-            width: 100%;
-            padding: 1rem 3rem 1rem 1rem;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background-color: white;
-        }
-
-        #search-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        #search-input::placeholder {
-            color: #94a3b8;
-        }
-
-        #posts {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
-        }
-
-
-        .post {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            height: 250px; /* ارتفاع ثابت برای همه باکس‌ها */
-        }
-
-
-        .post p:hover, .post-title:hover {
-            position: relative;
-        }
-
-        .post p:hover::after {
-            content: attr(data-full-text);
-            position: absolute;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 0.5rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            max-width: 300px;
-            z-index: 1000;
-            bottom: 100%;
-            right: 0;
-            display: none; /* برای فعال کردن tooltip این خط را حذف کنید */
-        }
-
-        .post-title {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-            display: block;
-            display: -webkit-box;
-            -webkit-line-clamp: 2; /* محدود کردن عنوان به دو خط */
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .post-title:hover {
-            color: var(--secondary-color);
-        }
-
-        .post p {
-            color: #64748b;
-            font-size: 0.95rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 3; /* تعداد خطوط نمایش داده شده */
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            flex-grow: 1; /* اجازه می‌دهد متن فضای باقیمانده را پر کند */
-        }
-        .categories {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: auto; /* چسباندن دسته‌بندی‌ها به پایین باکس */
-            flex-wrap: wrap;
-            padding-top: 1rem;
-        }
-
-
-        .category {
-            background-color: #e2e8f0;
-            padding: 0.25rem 0.75rem;
-            border-radius: 999px;
-            font-size: 0.8rem;
-            color: #475569;
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 0.5rem;
-            }
-
-            .container {
-                padding: 0.5rem;
-            }
-
-            h1 {
-                font-size: 1.5rem;
-                margin-bottom: 1rem;
-            }
-
-            .search-container {
-                margin-bottom: 1rem;
-            }
-
-            #search-input {
-                padding: 0.75rem;
-                font-size: 0.9rem;
-            }
-
-            .post {
-                padding: 1rem;
-                height: auto;
-                min-height: 200px;
-            }
-
-            .post-title {
-                font-size: 1rem;
-            }
-
-            .post p {
-                font-size: 0.9rem;
-            }
-
-            .category {
-                font-size: 0.75rem;
-                padding: 0.2rem 0.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 0.25rem;
-            }
-
-            .container {
-                padding: 0.25rem;
-            }
-
-            h1 {
-                font-size: 1.25rem;
-            }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>پست‌ها — وحید باقی</title>
+<meta name="description" content="فهرست همهٔ پست‌ها و کارهای تعاملی وحید باقی، با فیلتر و نمودار.">
+<meta property="og:title" content="پست‌ها — وحید باقی">
+<meta property="og:type" content="website">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css">
+<style>
+.mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
+.widgets{border:1px solid var(--jp-border1);border-radius:2px;padding:11px 13px 6px;
+  margin-bottom:12px;background:var(--jp-layout1);max-width:660px}
+.hit{cursor:pointer}
+.hit:hover{opacity:.82}
+table.dataframe td.tt{text-align:right;max-width:460px}
+.tag{display:inline-block;font-size:11px;padding:0 6px;border-radius:2px;
+  border:1px solid var(--jp-border2);color:var(--jp-ui-font-color2);margin-inline-start:4px;
+  white-space:nowrap}
+.tag.k{border-color:var(--jp-brand1);color:var(--jp-brand1)}
+.q-live{color:var(--cm-str)}
+.nores{color:var(--jp-ui-font-color2);padding:12px 0}
+.tblwrap{overflow-x:auto}
+</style>
 </head>
 <body>
-<div class="container">
-    <h1>لیست پست ها</h1>
+<div id="cells" hidden>
 
-    <div class="search-container">
-        <input type="text"
-               id="search-input"
-               placeholder="جستجو در عنوان پست ها..."
-               autocomplete="off">
+  <div class="jp-cell sel">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h1>پست‌ها</h1>
+      <p>هر چیزی که تا امروز نوشته‌ام یا ساخته‌ام، در یک جدول. فیلترها و نمودارها به هم وصل‌اند:
+         میلهٔ کم‌رنگ کلِ چیزی است که با بقیهٔ فیلترها می‌ماند، و میلهٔ پررنگ سهم انتخاب فعلی.
+         روی هر میله هم می‌شود کلیک کرد.</p>
     </div>
+  </div>
 
-    <div id="posts"></div>
+  <div class="jp-cell" data-exec="load">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io">
+        <div class="jp-prompt">[1]:</div>
+        <div class="jp-editor"><pre><span class="k">import</span> pandas <span class="k">as</span> pd
+
+df <span class="o">=</span> pd<span class="o">.</span><span class="f">read_json</span>(<span class="s">"posts.json"</span>)
+df<span class="o">.</span>shape, <span class="b">list</span>(df<span class="o">.</span>columns)</pre></div>
+      </div>
+      <div class="jp-io res">
+        <div class="jp-prompt out">Out[1]:</div>
+        <div class="jp-outputs"><pre class="jp-out-txt code" dir="ltr" id="o-shape"></pre></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="jp-cell" data-exec="cross" data-noprompt>
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io">
+        <div class="jp-prompt">[2]:</div>
+        <div class="jp-editor"><pre>cu<span class="o">.</span><span class="f">crossfilter</span>(df)   <span class="c"># <bdi>فیلترها و نمودارها به هم وصل‌اند</bdi></span></pre></div>
+      </div>
+      <div class="jp-io res">
+        <div class="jp-prompt out"></div>
+        <div class="jp-outputs">
+          <div class="widgets" id="w"></div>
+          <div class="fig" id="o-cross"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="jp-cell" data-exec="table">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io">
+        <div class="jp-prompt">[3]:</div>
+        <div class="jp-editor"><pre id="o-query"></pre></div>
+      </div>
+      <div class="jp-io res">
+        <div class="jp-prompt out">Out[3]:</div>
+        <div class="jp-outputs"><div class="tblwrap" id="o-table"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="jp-cell" data-exec="pat">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io">
+        <div class="jp-prompt">[4]:</div>
+        <div class="jp-editor"><pre><span class="c"># <bdi>عنوان‌ها را که کنار هم بگذاری، چند قالب تکرار می‌شود</bdi></span>
+cu<span class="o">.</span><span class="f">title_patterns</span>(df)</pre></div>
+      </div>
+      <div class="jp-io res">
+        <div class="jp-prompt out">Out[4]:</div>
+        <div class="jp-outputs"><div class="tblwrap" id="o-pat"></div></div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
+<script src="/assets/lab.js"></script>
+<script src="/assets/posts.js"></script>
 <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const postId = urlParams.get('p');
-    const redirectMap = {
-      "606": "/blog/posts/5.html",
-	  "895":"/blog/posts/38.html",
-	  "1096":"/blog/posts/50.html",
-	  "743":"/blog/posts/32.html",
-	  
-    };
+/* old Virgool permalinks still point here */
+(function(){
+  var map = {"606":"/blog/posts/5.html","895":"/blog/posts/38.html",
+             "1096":"/blog/posts/50.html","743":"/blog/posts/32.html"};
+  var p = new URLSearchParams(location.search).get('p');
+  if (p && map[p]) location.replace(map[p]);
+})();
 
+var fa = Lab.fa;
+var YEARS = [1399,1400,1401,1402,1403];
+var CATS  = ["تپه‌نوردی","وب‌نوردی","توییتر نوردی","کاربردی","حل تمرین"];
+var TYPES = ["پست","نقشه","ابزار","نمودار"];
+/* recurring title formulas, found by n-gram over the real titles */
+var PATTERNS = [
+  ["… زیر ذره‌بین", /زیر ذره‌بین/],
+  ["… در توییتر چه می‌کند؟", /در توییتر چه می‌کند/],
+  ["گشت و گذار در …", /گشت و گذار/],
+  ["شخم …", /شخم /],
+  ["سفر به دنیای …", /سفر به دنیای/],
+  ["…‌کاوی در …", /کاوی/]
+];
 
-    // 3. ریدایرکت بر اساس دیکشنری
-    if (postId && redirectMap[postId]) {
-        window.location.href = redirectMap[postId];
-    }
+var R = POSTS.map(function(r){
+  return {id:r[0],title:r[1],year:r[2],month:r[3],day:r[4],type:r[5],
+          cats:r[6],topic:r[7],href:r[8]};
+});
+var TOPICS = (function(){var s=[];R.forEach(function(r){if(s.indexOf(r.topic)<0)s.push(r.topic)});return s})();
+var S = {year:null, cat:null, type:null, topic:null, q:""};
+document.getElementById('o-shape').textContent =
+  "((" + R.length + ", 6), ['title', 'year', 'month', 'type', 'category', 'topic'])";
 
+function keep(r, skip){
+  if (S.q && r.title.indexOf(S.q) < 0) return false;
+  if (skip!=="year"  && S.year  && r.year !== S.year) return false;
+  if (skip!=="cat"   && S.cat   && r.cats.indexOf(S.cat) < 0) return false;
+  if (skip!=="type"  && S.type  && r.type !== S.type) return false;
+  if (skip!=="topic" && S.topic && r.topic !== S.topic) return false;
+  return true;
+}
+function sel(){ return R.filter(function(r){return keep(r,null)}) }
+function filtering(){ return !!(S.year||S.cat||S.type||S.topic||S.q) }
 
-    const postsData = [
-        {title: "اتصال دامنه اختصاصی به گوگل درایو", excerpt: "برای مشاهده این آموزش به لینک زیر مراجعه کنید : https://github.com/vahidbaghi/GoogleDrive", link: "/blog/posts/1.html", categories: ["تپه‌نوردی", "کاربردی"]},
-        {title: "استفاده از ربات تلگرام به عنوان progress logger", excerpt: "بذارید موضوع رو اینجوری مطرح کنم. فرض کنید عکسی در سایت خودتون قرار دادید و میخواید هر...", link: "/blog/posts/2.html", categories: ["تپه‌نوردی", "کاربردی"]},
-        {title: "استخراج اطلاعات از توییتر با js و inspect!", excerpt: "مقدمه برای استخراج اطلاعات از توییتر راه های مختلفی وجود داره. اولین راه استفاده از API رسمی توییتر...", link: "/blog/posts/3.html", categories: ["تپه‌نوردی", "کاربردی"]},
-        {title: "مصور‌سازی مصرف اینترنت همراه اول!", excerpt: "همونطور که احتمالا میدونید، شما از طریق سایت https://my.mci.ir میتونید زیر گزارش مصرف اینترنت خودتون رو در...", link: "/blog/posts/4.html", categories: ["تپه‌نوردی", "کاربردی"]},
-        {title: "انتخاب بسته اینترنت همراه به کمک مسئله کوله‌پشتی!", excerpt: "اول خیلی خلاصه توضیح بدم مسئله کوله‌پشتی چیه؟! یک دزد رو در نظر بگیرید که با یک...", link: "/blog/posts/5.html", categories: ["تپه‌نوردی", "کاربردی"]},
-        {title: "یافتن نقطه بهینه موقع گرفتن اسنپ!", excerpt: "یکی از کار هایی که همیشه دوست داشتم انجام بدم این بوده که یه برنامه بنویسم که...", link: "/blog/posts/6.html", categories: ["تپه‌نوردی", "وب‌نوردی"]},
-        {title: "سفر به دنیای شماره پلاک خودرو ها!", excerpt: "در این مقاله قصد دارم یکسری تحلیل آماری بر روی شماره پلاک خودرو های ایران انجام بدم...", link: "/blog/posts/7.html", categories: ["تپه‌نوردی"]},
-        {title: "کنکور و بازی با احتمالات?!", excerpt: "در این مقاله کوتاه می‌خوام بررسی کنم که اگر در کنکور به صورت تصادفی گزینه ها رو...", link: "/blog/posts/8.html", categories: ["تپه‌نوردی"]},
-        {title: "شخم توییتر فارسی (اراضی برنامه نویسان) – بخش اول", excerpt: "بخش دوم این مطلب رو می‌تونید از این لینک بخونید. چند روز پیش در توییتر لیستی رو با...", link: "/blog/posts/9.html", categories: ["تپه‌نوردی", "توییتر نوردی"]},
-        {title: "مروری بر اِکس در توییتر فارسی", excerpt: "مدتی است که در توییتر فارسی ژانر «به اکسی که {۱} میگن {۲}» داغ شده. البته این...", link: "/blog/posts/10.html", categories: ["تپه‌نوردی", "توییتر نوردی"]},
-        {title: "شخم توییتر فارسی (اراضی برنامه نویسان) – بخش دوم", excerpt: "توصیه میکنم ابتدا بخش اول رو بخونید و بعد بیاید سراغ بخش دوم. لینک بخش اول :...", link: "/blog/posts/11.html", categories: ["تپه‌نوردی", "توییتر نوردی"]},
+/* ── widgets: only what a chart cannot do better ────────────── */
+function widgets(){
+  var h = '';
+  h += '<div class="w-row"><span class="w-lab">year</span><div class="w-tog" id="w-year">' +
+    '<button data-v="" class="'+(S.year?'':'on')+'">همه</button>' +
+    YEARS.map(function(y){
+      return '<button data-v="'+y+'" class="'+(S.year===y?'on':'')+'">'+fa(y)+'</button>';
+    }).join('') + '</div></div>';
+  h += '<div class="w-row"><span class="w-lab">type</span>' +
+    '<select class="w-sel" id="w-type"><option value="">— همه —</option>' +
+    TYPES.map(function(v){
+      return '<option value="'+v+'"'+(S.type===v?' selected':'')+'>'+v+'</option>';
+    }).join('') + '</select>' +
+    '<span class="w-lab">search</span>' +
+    '<input class="w-txt" id="w-q" placeholder="در عنوان…" value="'+S.q+'" style="flex:1;min-width:150px">' +
+    '<button class="w-btn" id="w-clr">reset</button></div>';
+  document.getElementById('w').innerHTML = h;
 
-        {title: "دیجی کالا در توییتر چه می‌کند؟!", excerpt: "مقدمه لازمه؟ ولش کن! بریم سراغ اصل مطلب!اومدم توییت هایی که شامل «دیجی کالا» ، «دیجیکالا» و…", link: "/blog/posts/12.html", categories: ["تپه‌نوردی", "توییتر نوردی"]},
-        {title: "شخم پانگرام فارسی :)", excerpt: "همین اول کار ببینیم پانگرام یعنی چی؟! تعریف از ویکی‌پدیا :حروف جمع یا پانگرام (به انگلیسی: Pangram)…", link: "/blog/posts/13.html", categories: ["تپه‌نوردی", "توییتر نوردی"]},
+  [].forEach.call(document.querySelectorAll('#w-year button'), function(b){
+    b.addEventListener('click', function(){ S.year = b.dataset.v ? +b.dataset.v : null; render() });
+  });
+  document.getElementById('w-type').addEventListener('change', function(e){
+    S.type = e.target.value || null; render();
+  });
+  var q = document.getElementById('w-q');
+  q.addEventListener('input', function(e){
+    S.q = e.target.value.trim(); render();
+    var n = document.getElementById('w-q');
+    n.focus(); n.setSelectionRange(n.value.length, n.value.length);
+  });
+  document.getElementById('w-clr').addEventListener('click', function(){
+    S = {year:null,cat:null,type:null,topic:null,q:""}; render();
+  });
+}
 
+/* ── svg helpers ────────────────────────────────────────────── */
+function el(t,a,k){var s='<'+t;for(var p in a)s+=' '+p+'="'+a[p]+'"';return s+'>'+(k||'')+'</'+t+'>'}
+function box(x,y,w,h){return el('rect',{x:x,y:y,width:w,height:h,fill:'none',
+  stroke:'var(--mpl-axis)','stroke-width':.9})}
+function txt(x,y,s,o){o=o||{};return el('text',{x:x,y:y,'font-size':o.size||10.5,
+  fill:o.fill||'var(--mpl-axis)','text-anchor':o.anchor||'middle','font-weight':o.w||400},s)}
+function tick(a,b,c,d){return el('line',{x1:a,y1:b,x2:c,y2:d,stroke:'var(--mpl-axis)','stroke-width':.9})}
+function avail(){
+  var n = document.getElementById('o-cross').parentNode;
+  return Math.max(300, Math.floor(n.getBoundingClientRect().width) - 4);
+}
 
-        {title: "سفر به دنیای گنجور!", excerpt: "داستان از توییت زیر شروع شد : اگر توییت ها و پست های قبلی من در ویرگول...", link: "/blog/posts/14.html", categories: ["تپه‌نوردی", "وب‌نوردی"]},
-        {title: "گشت و گذار در میان ارقام عدد π", excerpt: "قطعا میدونید عدد π چیه؟! نمیدونید؟3.1415926535897932384626433832795028یادتون اومد؟ نه؟!!! از نظر تئوری، احتمال یافتن هر رشته عددی (حداقل...", link: "/blog/posts/15.html", categories: ["تپه‌نوردی"]},
-        {title: "کرال پشت در متن آهنگ های فارسی!", excerpt: "در پست قبلی تحلیلی بر روی اشعار فارسی موجود در وبسایت گنجور انجام دادم. برام جالب بود...", link: "/blog/posts/16.html", categories: ["تپه‌نوردی", "وب‌نوردی"]},
-        {title: "رادیوگیک زیر ذره‌بین!", excerpt: "قطعا بیشتر شما پادکست رادیوگیک جادی رو میشناسید. من در این مقاله کوتاه قصد دارم یک تحلیل...", link: "/blog/posts/17.html", categories: ["تپه‌نوردی", "وب‌نوردی"]},
-        {title: "مروری بر نظرات نامحبوب در توییتر فارسی!", excerpt: "نظر نامحبوب (Unpopular Opinion) یک ژانر در توییتره که افراد نظرات خلاف عرف خودشون رو در قالب...", link: "/blog/posts/18.html", categories: ["تپه‌نوردی", "توییتر نوردی"]},
+/* a labelled bar panel: faded total, solid selection, clickable.
+   the scale comes from the unfiltered data and never moves, so the solid bar
+   always reads as a share of the whole rather than of the current view */
+function barh(o){
+  var g = '', rh = o.h / o.rows.length;
+  var max = Math.ceil((o.max + 1) / 5) * 5;
+  g += txt(o.x + o.w/2, o.y - 12, o.title, {size:11.5, w:600});
+  g += box(o.x, o.y, o.w, o.h);
+  o.ticks.forEach(function(v){
+    if (v > max) return;
+    var xx = o.x + v/max*o.w;
+    g += el('line',{x1:xx,y1:o.y,x2:xx,y2:o.y+o.h,stroke:'var(--mpl-grid)','stroke-width':.8});
+    g += tick(xx,o.y+o.h,xx,o.y+o.h+3.5) + txt(xx,o.y+o.h+15,fa(v),{size:10});
+  });
+  o.rows.forEach(function(r,i){
+    var y = o.y + o.h - (i+1)*rh + rh*.22, h = Math.max(5, rh*.56);
+    var on = o.cur === r[0];
+    g += el('rect',{x:o.x, y:y.toFixed(1), width:(r[1]/max*o.w).toFixed(1),
+      height:h.toFixed(1), fill:'var(--mpl-c0)', opacity:.22,
+      class:'hit','data-k':o.key,'data-v':r[0]});
+    if (r[2]) g += el('rect',{x:o.x, y:y.toFixed(1), width:(r[2]/max*o.w).toFixed(1),
+      height:h.toFixed(1), fill: on ? 'var(--mpl-c1)' : 'var(--mpl-c0)',
+      class:'hit','data-k':o.key,'data-v':r[0]});
+    g += txt(o.x - 7, y + h/2 + 3.6, r[0],
+      {size:10.5, anchor:'end', fill: on?'var(--mpl-c1)':'var(--mpl-axis)', w: on?700:400});
+    g += txt(o.x + r[1]/max*o.w + 6, y + h/2 + 3.6, fa(r[2]),
+      {size:10, anchor:'start', fill:'var(--jp-ui-font-color3)'});
+  });
+  return g;
+}
 
-        {title: "باند های بازیگری در ۲۵۰ فیلم برتر IMDb", excerpt: "لبست ۲۵۰ فیلم برتر IMDb رو از طریق لینک زیر می‌تونید مشاهده کنید : https://www.imdb.com/chart/top/ مثلا من...", link: "/blog/posts/19.html", categories: ["تپه‌نوردی", "وب‌نوردی"]},
-        {title: "ربات فیواستار فارسی زیر ذره‌بین!", excerpt: "چند روز پیش یه رباتی رو توی توییتر دیدم با عنوان ربات فیواستار فارسی که یه تفاوت...", link: "/blog/posts/20.html", categories: ["تپه‌نوردی", "توییتر نوردی"]},
-        {title: "گشت و گذاری در iFilm", excerpt: "تو خونه ما خیلی از اوقات شبکه آی‌فیلم در حال پخشه! بعضی مواقع یکسری سریال ها رو...", link: "/blog/posts/21.html", categories: ["تپه‌نوردی", "وب‌نوردی"]},
-        {title: "خیابان های تهران زیر ذره‌بین! (بخش اول)", excerpt: "در این مقاله قصد دارم تمام خیابون ها و کوچه های تهران رو قدم بزنم تا ببینم...", link: "/blog/posts/22.html", categories: ["تپه‌نوردی", "وب‌نوردی"]},
-        {title: "کاله در توییتر چه می‌کند?!", excerpt: "در پست قبلی رفتیم سراغ دیجی‌کالا تا ببینیم توی توییتر چیکار میکنه : https://vrgl.ir/KrcpI حالا در این...", link: "/blog/posts/23.html", categories: ["تپه‌نوردی", "توییتر نوردی"]},
-        {title: "اسنپ‌فود چند رستوران فعال دارد?!", excerpt: "اگر دقت کنید، در اپلیکیشن اسنپ‌فود تعداد رستوران های باز رو مینویسه. این سوال برای من به...", link: "/blog/posts/24.html", categories: ["تپه‌نوردی", "وب‌نوردی"]},
-        {title: "کبریت توکلی در توییتر چه می‌کند?!", excerpt: "در پست قبلی رفتیم سراغ کاله تا ببینیم توی توییتر چیکار میکنه : حالا در این پست...", link: "/blog/posts/25.html", categories: ["تپه‌نوردی", "توییتر نوردی"]},
-        {title: "چرا زمستان بیشتر زلزله میاد؟ (بررسی یک شایعه)", excerpt: "من برای جمع آوری اطلاعات زلزله های اتفاق افتاده در ایران از سایت مرکز لرزه‌نگاری کشوری، موسسه...", link: "/blog/posts/26.html", categories: ["تپه‌نوردی", "وب‌نوردی"]},
-        {title: "فرادرس زیر ذره‌بین!", excerpt: "در این پست قصد دارم وبسایت فرادرس رو ببرم زیر ذره‌بین! در صفحه اصلی، یک نمای کلی...", link: "/blog/posts/27.html", categories: ["تپه‌نوردی", "وب‌نوردی"]},
-        {title: "تگ های EXIF و بحران حریم خصوصی!", excerpt: "اول ببینیم EXIF یعنی چی؟ کلمه EXIF مخفف عبارت «Exchangeable Image File» به معنای «فایل تصویری قابل...", link: "/blog/posts/28.html", categories: ["تپه‌نوردی", "وب‌نوردی"]},
+function crossfilter(){
+  var picked = sel(), g = '';
+  var ids = {}; picked.forEach(function(r){ ids[r.id] = 1 });
+  var W = Math.min(avail(), 900), wide = W >= 700;
+  var lab = wide ? 150 : Math.min(128, W*0.36);
 
-        {title: "تبلیغات تلویزیون زیر ذره‌بین!", excerpt: "احتمالا سایت مدیا آرشیو رو بشناسید. این سایت یک آرشیو نسبتا کاملی از تبلیغات صدا و سیما...", link: "/blog/posts/29.html", categories: ["تپه‌نوردی", "وب‌نوردی"]},
+  /* panel A — where the selection sits in the site's history */
+  var X0 = wide ? 56 : 42, Y0 = 32, PW = W - X0 - 14, H = wide ? 86 : 68;
+  var seq = R.filter(function(r){return r.type==="پست"})
+             .sort(function(a,b){return (a.year-b.year)||(a.month-b.month)||(a.day-b.day)});
+  function t(r){ return r.year + (r.month-1)/12 + (r.day-1)/365 }
+  var t0=t(seq[0]), t1=t(seq[seq.length-1]), span=t1-t0;
+  function sx(v){ return X0+(v-t0)/span*PW }
+  function sy(i){ return Y0+H-i/seq.length*H }
+  g += txt(X0+PW/2, 19, 'پست‌های انباشته در طول زمان', {size:11.5,w:600});
+  g += box(X0,Y0,PW,H);
+  [0,25,50].forEach(function(v){
+    var yy=sy(v);
+    g += el('line',{x1:X0,y1:yy,x2:X0+PW,y2:yy,stroke:'var(--mpl-grid)','stroke-width':.8});
+    g += tick(X0-3.5,yy,X0,yy) + txt(X0-6,yy+3.6,fa(v),{size:10,anchor:'end'});
+  });
+  var d='M'+sx(t(seq[0]))+','+sy(0);
+  seq.forEach(function(r,i){
+    d += 'L'+sx(t(r)).toFixed(1)+','+sy(i).toFixed(1)+'L'+sx(t(r)).toFixed(1)+','+sy(i+1).toFixed(1);
+  });
+  g += el('path',{d:d,fill:'none',stroke:'var(--mpl-c0)','stroke-width':1.5});
+  /* the markers only mean something against a selection */
+  if (filtering()) seq.forEach(function(r,i){
+    if(!ids[r.id]) return;
+    g += el('circle',{cx:sx(t(r)).toFixed(1),cy:sy(i+1).toFixed(1),r:3.2,
+      fill:'var(--mpl-c1)',stroke:'var(--mpl-fig)','stroke-width':.9});
+  });
+  YEARS.forEach(function(y){
+    var xx=sx(y); if(xx<X0-1||xx>X0+PW+1) return;
+    g += tick(xx,Y0+H,xx,Y0+H+3.5) + txt(xx,Y0+H+15,fa(y),{size:10});
+  });
 
-        {title: "۱. هات‌داگ؛ هست یا نیست؟", excerpt: "مقدمه من چند وقت پیش با today.bnomial.com آشنا شدم که هر روز یک سوال یادگیری ماشین مطرح...", link: "/blog/posts/30.html", categories: ["حل تمرین"]},
+  var catRows = CATS.map(function(c){
+    return [c,
+      R.filter(function(r){return r.cats.indexOf(c)>=0 && keep(r,'cat')}).length,
+      picked.filter(function(r){return r.cats.indexOf(c)>=0}).length,
+      R.filter(function(r){return r.cats.indexOf(c)>=0}).length];
+  }).sort(function(a,b){return a[3]-b[3]});
+  var topRows = TOPICS.map(function(c){
+    return [c,
+      R.filter(function(r){return r.topic===c && keep(r,'topic')}).length,
+      picked.filter(function(r){return r.topic===c}).length,
+      R.filter(function(r){return r.topic===c}).length];
+  }).sort(function(a,b){return a[3]-b[3]});
+  var catMax = Math.max.apply(null, catRows.map(function(r){return r[3]}));
+  var topMax = Math.max.apply(null, topRows.map(function(r){return r[3]}));
 
-        {title: "۲. چالش دانیلا با تابع ReLU!", excerpt: "دانیلا می‌دونه که اگر تابع فعال‌سازی (activation function) بعضی از لایه های مدلش رو به ReLU تغییر...", link: "/blog/posts/31.html", categories: ["حل تمرین"]},
+  var total;
+  if (wide){
+    /* two panels side by side, matplotlib subplots(1,2) style */
+    var PY = Y0+H+58, PH = 168, pw = (W - lab*2 - 30) / 2;
+    g += barh({x:lab, y:PY, w:pw, h:PH, title:'دسته', key:'cat', cur:S.cat,
+               ticks:[0,10,20,30,40,50], rows:catRows, max:catMax});
+    g += barh({x:lab*2+pw+30, y:PY, w:pw, h:PH, title:'موضوع', key:'topic', cur:S.topic,
+               ticks:[0,5,10], rows:topRows, max:topMax});
+    g += txt(lab+pw/2, PY+PH+33, 'تعداد', {size:10.5});
+    g += txt(lab*2+pw+30+pw/2, PY+PH+33, 'تعداد', {size:10.5});
+    total = PY+PH+44;
+  } else {
+    /* stacked, so neither panel is squeezed into an unreadable strip */
+    var pw2 = W - lab - 30;
+    var AY = Y0+H+58, AH = 108;
+    g += barh({x:lab, y:AY, w:pw2, h:AH, title:'دسته', key:'cat', cur:S.cat,
+               ticks:[0,25,50], rows:catRows, max:catMax});
+    g += txt(lab+pw2/2, AY+AH+32, 'تعداد', {size:10.5});
+    var BY = AY+AH+68, BH = 198;
+    g += barh({x:lab, y:BY, w:pw2, h:BH, title:'موضوع', key:'topic', cur:S.topic,
+               ticks:[0,5,10], rows:topRows, max:topMax});
+    g += txt(lab+pw2/2, BY+BH+32, 'تعداد', {size:10.5});
+    total = BY+BH+44;
+  }
 
+  document.getElementById('o-cross').innerHTML =
+    '<svg viewBox="0 0 '+W+' '+total+'" width="'+W+'" role="img" ' +
+    'aria-label="خط انباشته، و توزیع دسته و موضوع با انتخاب فعلی">' + g + '</svg>';
 
-        {title: "داده کاوی کلوچه محور!", excerpt: "داستان از اینجا شروع شد که من همیشه با خودم بیسکویت، کلوچه یا ... می‌بردم که موقع...", link: "/blog/posts/32.html", categories: ["تپه‌نوردی"]},
-        {title: "خانه کاوی در دیوار!", excerpt: "چند وقت پیش توی توییتر مرض گذاشتن هیت‌مپ از اسنپ، اسنپ‌فود، تپسی و … گرفته بودم. همون...", link: "/blog/posts/33.html", categories: ["تپه‌نوردی"]},
-        {title: "۶۳ میلیون ثانیه اتلاف عمر", excerpt: "سربازی اجباری من هم بعد از ۲۴ ماه که میشه معادل ۷۳۰ روز یا ۱۷,۵۲۰ ساعت یا...", link: "/blog/posts/34.html", categories: ["تپه‌نوردی"]},
-        {title: "یک کیلو بادوم سنگین تره یا چیپس?!", excerpt: "چند وقت پیش یه ویدئویی وایرال شد که یه آقایی داشت قیمت چیپس و بادوم رو مقایسه...", link: "/blog/posts/35.html", categories: ["تپه‌نوردی"]},
-        {title: "در مرکز تبادل کتاب تهران چه می‌گذرد?!", excerpt: "من تعدادی کتاب داشتم و به دلیل کمبود جا و اینکه مدت ها بود ازشون استفاده نمی‌کردم...", link: "/blog/posts/36.html", categories: ["تپه‌نوردی"]},
-        {title: "چرا آموزش برنامه‌نویسی تولید کردم؟ (+ انتشار رایگان آموزش جاوا)", excerpt: "من ضبط فیلم های آموزشی رو از سال سوم دبیرستان شروع کردم. یکی از آشناها گیر داده...", link: "/blog/posts/37.html", categories: ["کاربردی"]},
-        {title: "کلاب هاوس در آتش – داستان هک کلاب‌هاوس", excerpt: "کلاب هاوس یه برنامه چت صوتی گروهی است که زمستون سال ۱۳۹۹ توی ایران ترند شد و...", link: "/blog/posts/38.html", categories: ["تپه‌نوردی"]},
-        {title: "سریال ساعت برنارد", excerpt: "اگر سریال ساعت برنارد (Bernard’s Watch) رو یادتون میاد احتمالا نزدیک 30 سال یا بیشتر سن دارید...", link: "/blog/posts/39.html", categories: ["کاربردی"]},
-        {title: "کاراکتر های پرتکرار زبان های برنامه‌نویسی مختلف چیه؟", excerpt: "من چند وقت پیش چند تا از دکمه های کیبورد لپ تاپم خراب شده بود و کلید...", link: "/blog/posts/40.html", categories: ["تپه‌نوردی"]},
-        {title: "گشت و گذاری در USSD ها", excerpt: "واژه USSD مخفف کلمه انگلیسی Unstructured Supplementary Service Data است. این روش در واقع نوعی ارسال پیام...", link: "/blog/posts/41.html", categories: ["تپه‌نوردی"]},
-
-        {title: "هیت‌مپ قیمت بسته های ساعتی ایرانسل و همراه اول", excerpt: "همراه اول و ایرانسل بسته های اینترنت ساعتی دارن که ادعا میکنن در ساعات مختلف شبانه‌روز قیمتش...", link: "/blog/posts/42.html", categories: ["تپه‌نوردی"]},
-        {title: "آیا پربازدید های دیجی‌کالا پرفروش هم هستند؟", excerpt: "داشتم دنبال یه محصولی تو دیجی‌کالا میگشتم و محصولات رو بر اساس حالت های مختلف مرتب می‌کردم...", link: "/blog/posts/43.html", categories: ["تپه‌نوردی"]},
-        {title: "معمای سریال Person of Interest", excerpt: "داستان از جایی شروع شد که تو قسمت ۲ فصل ۴ سریال Person of Interest یه معما...", link: "/blog/posts/44.html", categories: ["تپه‌نوردی"]},
-        {title: "مرکز هندسی (centroid) تهران کجاست؟", excerpt: "من چند سال پیش توییت زیر رو در توییتر دیدم و دقیقا مثل ایشون، کک به تنبونم...", link: "/blog/posts/45.html", categories: ["تپه‌نوردی"]},
-        {title: "نقشه Dead Drop های جهان", excerpt: "توی فیلم ها دیدید که مثلا یه نفر یه کتاب که داخلش اطلاعاتی مخفی شده رو تو...", link: "/blog/posts/46.html", categories: ["تپه‌نوردی"]},
-        {title: "الملک، تحلیل لحظه‌ای بازار مسکن", excerpt: "در این پست قصد دارم سایت الملک (almelk.com) رو که حاصل کار چند تا از دوستانم است،...", link: "/blog/posts/47.html", categories: ["تپه‌نوردی"]},
-        {title: "از دوغ چیلی تا آبمیوه گوجه فرنگی! (گردشی در سوپرمارکت های اسنپ)", excerpt: "من کلا خیلی علاقه دارم محصولات عجیب و غریب رو تست کنم. چند وقت پیش دیدم یه...", link: "/blog/posts/48.html", categories: ["تپه‌نوردی"]},
-        {title: "تپه‌نوردی یک کوماندو در تپه‌های توپیالند!", excerpt: "دو تا از کانال‌های یوتیوبی که دنبال می‌کنم و خیلی دوست‌شون دارم، Mia Plays و Kouman هستند...", link: "/blog/posts/49.html", categories: ["تپه‌نوردی"]},
-
-        {title: "آب رو نریزید اونجا که می‌سوزه!", excerpt: "درباره علاقه نویسنده به غذاهای تند و تجربه خوردن فلفل با غذا.", link: "/blog/posts/50.html", categories: ["تپه‌نوردی"]}
-
-    ].reverse();
-
-
-    const postsContainer = document.getElementById('posts');
-    const searchInput = document.getElementById('search-input');
-
-    function displayPosts(posts) {
-        postsContainer.innerHTML = '';
-
-        posts.forEach(post => {
-            const postElement = document.createElement('div');
-            postElement.classList.add('post');
-
-            const titleElement = document.createElement('a');
-            titleElement.href = post.link;
-            titleElement.classList.add('post-title');
-            titleElement.textContent = post.title;
-
-            const excerptElement = document.createElement('p');
-            excerptElement.textContent = post.excerpt;
-            excerptElement.setAttribute('data-full-text', post.excerpt); // برای tooltip
-
-            const categoriesElement = document.createElement('div');
-            categoriesElement.classList.add('categories');
-
-            post.categories.forEach(category => {
-                const categoryElement = document.createElement('span');
-                categoryElement.classList.add('category');
-                categoryElement.textContent = category;
-                categoriesElement.appendChild(categoryElement);
-            });
-
-            postElement.appendChild(titleElement);
-            postElement.appendChild(excerptElement);
-            postElement.appendChild(categoriesElement);
-
-            postsContainer.appendChild(postElement);
-        });
-    }
-
-    searchInput.addEventListener('input', () => {
-        const searchTerm = searchInput.value.toLowerCase();
-        const filteredPosts = postsData.filter(post => post.title.toLowerCase().includes(searchTerm));
-        displayPosts(filteredPosts);
+  [].forEach.call(document.querySelectorAll('#o-cross .hit'), function(n){
+    n.addEventListener('click', function(){
+      var k=n.dataset.k, v=n.dataset.v;
+      S[k] = (S[k]===v) ? null : v; render();
     });
+  });
+}
 
-    displayPosts(postsData);
+/* ── query line + table ─────────────────────────────────────── */
+function query(){
+  var w = [];
+  if (S.year)  w.push('year == ' + S.year);
+  if (S.cat)   w.push("category.str.contains('" + S.cat + "')");
+  if (S.type)  w.push("type == '" + S.type + "'");
+  if (S.topic) w.push("topic == '" + S.topic + "'");
+  if (S.q)     w.push("title.str.contains('" + S.q + "')");
+  var q = w.length
+    ? 'df.<span class="f">query</span>(<span class="q-live">"' + w.join(' &amp; ') + '"</span>)'
+    : 'df';
+  document.getElementById('o-query').innerHTML =
+    q + '.<span class="f">sort_values</span>([<span class="s">"year"</span>, <span class="s">"month"</span>], ' +
+    'ascending<span class="o">=</span><span class="b">False</span>)';
+}
+function table(){
+  var list = sel().sort(function(a,b){
+    return (b.year-a.year)||(b.month-a.month)||(b.day-a.day)||(b.id-a.id);
+  });
+  if (!list.length){
+    document.getElementById('o-table').innerHTML =
+      '<div class="nores">هیچ ردیفی با این فیلترها نماند — <b>reset</b> را بزن.</div>';
+    return;
+  }
+  document.getElementById('o-table').innerHTML =
+    '<table class="dataframe"><thead><tr><th></th><th>title</th><th>date</th>' +
+    '<th class="hide-sm">category</th><th class="hide-sm">topic</th></tr></thead><tbody>' +
+    list.map(function(r){
+      return '<tr><th class="l mono">' + r.id + '</th>' +
+        '<td class="tt"><a href="' + r.href + '">' + r.title + '</a>' +
+        (r.type!=="پست" ? '<span class="tag k">' + r.type + '</span>' : '') + '</td>' +
+        '<td class="num">' + fa(r.year) + '/' + fa(('0'+r.month).slice(-2)) + '</td>' +
+        '<td class="hide-sm">' + r.cats.map(function(c){return '<span class="tag">'+c+'</span>'}).join('') + '</td>' +
+        '<td class="hide-sm">' + r.topic + '</td></tr>';
+    }).join('') +
+    '</tbody></table><div class="df-shape code">' + list.length + ' rows × 5 columns</div>';
+}
+function patterns(){
+  var picked = sel();
+  var rows = PATTERNS.map(function(p){
+    var all = R.filter(function(r){return p[1].test(r.title)});
+    return [p[0], all.length, picked.filter(function(r){return p[1].test(r.title)}).length,
+            all[all.length-1]];
+  }).sort(function(a,b){return b[1]-a[1]});
+  document.getElementById('o-pat').innerHTML =
+    '<table class="dataframe"><thead><tr><th></th><th>pattern</th><th>n</th>' +
+    '<th>example</th></tr></thead><tbody>' +
+    rows.map(function(r,i){
+      return '<tr><th class="l mono">'+i+'</th><td>'+r[0]+'</td>' +
+        '<td class="num">'+fa(r[1])+'</td>' +
+        '<td class="tt"><a href="'+r[3].href+'">'+r[3].title+'</a></td></tr>';
+    }).join('') + '</tbody></table>';
+}
 
+function render(){ widgets(); crossfilter(); query(); table(); patterns(); }
 
+Lab.chrome({ active: 'blog' });
+Lab.wire({ cross: crossfilter });
+render();
+Lab.runAll();
+
+var rt;
+addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(crossfilter, 180) });
 </script>
 
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177888668-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-177888668-1');
+</script>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window,document,"clarity","script","po012xeaq9");
+</script>
 </body>
 </html>

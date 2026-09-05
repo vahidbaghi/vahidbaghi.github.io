@@ -1,93 +1,95 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحه پیدا نشد (404)</title>
-    <style>
-        body {
-            font-family: 'Vazirmatn', sans-serif;
-            text-align: center;
-            padding: 20px; /* Reduced padding for smaller screens */
-            background-color: #f4f4f4;
-            direction: rtl;
-            color: #333;
-        }
-
-        h1 {
-            font-size: 2em; /* Reduced font size for smaller screens */
-            margin-bottom: 10px; /* Reduced margin for smaller screens */
-            color: #e74c3c;
-        }
-
-        p {
-            font-size: 1em; /* Reduced font size for smaller screens */
-            margin-bottom: 20px; /* Reduced margin for smaller screens */
-        }
-
-        a {
-            color: #3498db;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        #error-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        img {
-            max-width: 90%; /* Make image responsive */
-            height: auto;    /* Maintain aspect ratio */
-        }
-
-        /* Media Query for larger screens */
-        @media (min-width: 768px) {
-            body {
-                padding: 50px; /* Original padding */
-            }
-
-            h1 {
-                font-size: 2.5em; /* Original font size */
-                margin-bottom: 20px; /* Original margin */
-            }
-
-            p {
-                font-size: 1.2em; /* Original font size */
-                margin-bottom: 30px; /* Original margin */
-            }
-
-            img {
-                max-width: 500px; /* Set a maximum width for larger screens */
-            }
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KeyError — وحید باقی</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css">
+<style>
+:root{ --tb-bg:#fdd; --tb-ink:#7d1c1c; --tb-arrow:#c62828 }
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --tb-bg:#3a1e1e; --tb-ink:#ffb4a8; --tb-arrow:#ff8a80 }}
+:root[data-theme="dark"]{ --tb-bg:#3a1e1e; --tb-ink:#ffb4a8; --tb-arrow:#ff8a80 }
+.tb{background:var(--tb-bg);border-radius:2px;padding:10px 13px;color:var(--tb-ink);
+  overflow-x:auto;white-space:pre;margin:0}
+.tb .em{font-weight:700}
+.tb .ar{color:var(--tb-arrow)}
+.mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
+</style>
 </head>
 <body>
-    <div id="error-content" style="display: none;">
-        <h1>صفحه پیدا نشد</h1>
-        <p>متاسفیم، صفحه‌ای که دنبال آن بودید وجود ندارد.</p>
-        <img src="images/404.png" alt="404 Error Image">
-        <p>بیا یه <a href="/blog">جای خوبی</a> می‌خوام ببرمت :)</p>
+<div id="cells" hidden>
+
+  <div class="jp-cell sel" data-exec="lookup">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io">
+        <div class="jp-prompt">[1]:</div>
+        <div class="jp-editor"><pre>site[<span class="s pq">"/…"</span>]</pre></div>
+      </div>
+      <div class="jp-io res">
+        <div class="jp-prompt out"></div>
+        <div class="jp-outputs"><pre class="tb code" dir="ltr">---------------------------------------------------------------------------
+<span class="em">KeyError</span>                                  Traceback (most recent call last)
+Cell <span class="em">In[1]</span>, line 1
+<span class="ar">----&gt; 1</span> site[<span class="pq">"/…"</span>]
+
+<span class="em">KeyError</span>: <span class="ps">'/…'</span></pre></div>
+      </div>
     </div>
+  </div>
 
-    <script>
-        const redirectMap = {
-            "/blog/index52a0.html?p=1096": "/blog/posts/50.html"
-        };
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>این صفحه وجود ندارد. شاید لینک قدیمی است یا آدرس اشتباه تایپ شده.</p>
+    </div>
+  </div>
 
-        const currentUrl = window.location.pathname + window.location.search;
+  <div class="jp-cell" data-exec="near">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io">
+        <div class="jp-prompt">[2]:</div>
+        <div class="jp-editor"><pre><span class="c"># <bdi>شاید دنبال یکی از این‌ها بودی</bdi></span>
+<span class="b">list</span>(site<span class="o">.</span><span class="f">keys</span>())[:<span class="n">5</span>]</pre></div>
+      </div>
+      <div class="jp-io res">
+        <div class="jp-prompt out">Out[2]:</div>
+        <div class="jp-outputs"><div id="o-near"></div></div>
+      </div>
+    </div>
+  </div>
 
-        if (redirectMap[currentUrl]) {
-            window.location.href = redirectMap[currentUrl];
-        } else {
-            document.getElementById('error-content').style.display = 'block';
-        }
-    </script>
+</div>
+
+<script src="/assets/lab.js"></script>
+<script src="/assets/posts.js"></script>
+<script>
+var fa = Lab.fa;
+var path = (location.pathname + location.search).slice(0, 90);
+[].forEach.call(document.querySelectorAll('.pq'), function (n) { n.textContent = '"' + path + '"' });
+[].forEach.call(document.querySelectorAll('.ps'), function (n) { n.textContent = "'" + path + "'" });
+
+var rows = [{title:'صفحهٔ اصلی', href:'/', y:''},
+            {title:'همهٔ پست‌ها', href:'/blog/', y:''},
+            {title:'کارهای تعاملی', href:'/hobby/', y:''}]
+  .concat(POSTS.slice().sort(function(a,b){
+      return (b[2]-a[2])||(b[3]-a[3])||(b[4]-a[4]);
+    }).slice(0,2).map(function(r){ return {title:r[1], href:r[8], y:fa(r[2])} }));
+document.getElementById('o-near').innerHTML =
+  '<table class="dataframe"><thead><tr><th></th><th>title</th><th>year</th></tr></thead><tbody>' +
+  rows.map(function(r,i){
+    return '<tr><th class="l mono">'+i+'</th><td><a href="'+r.href+'">'+r.title+'</a></td>' +
+      '<td class="num">'+r.y+'</td></tr>';
+  }).join('') + '</tbody></table>';
+
+Lab.chrome({});
+Lab.wire();
+Lab.runAll();
+</script>
 </body>
 </html>

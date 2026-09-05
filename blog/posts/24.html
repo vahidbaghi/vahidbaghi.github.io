@@ -1,166 +1,137 @@
-
 <!DOCTYPE html>
-<html dir="rtl" lang="fa">
+<html lang="fa">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
-   <title>وبلاگ وحید باقی</title>
-   <style>
-       body {
-           font-family: Vazirmatn, sans-serif;
-           line-height: 1.6;
-           max-width: 900px;
-           margin: 0 auto;
-           padding: 20px;
-           background-color: #f7f7f7;
-       }
-
-.notebook-container {
-       background: white;
-       border: 1px solid #e1e4e8;
-       border-radius: 4px;
-       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-   }
-
-   .header {
-       padding: 20px;
-       border-bottom: 1px solid #e1e4e8;
-       background-color: #f6f8fa;
-   }
-
-   .post-title {
-       font-size: 2em;
-       margin: 0;
-       color: #24292e;
-   }
-
-   .post-meta {
-       color: #586069;
-       font-size: 0.9em;
-       margin-top: 10px;
-   }
-
-   .featured-image {
-       width: 100%;
-       max-height: 400px;
-       object-fit: cover;
-   }
-
-   .content {
-       padding: 20px;
-   }
-
-   .cell {
-       margin: 20px 0;
-       padding: 10px;
-       border-radius: 3px;
-       background-color: #f8f9fa;
-       text-align: right;
-   }
-
-   code {
-       background-color: #f6f8fa;
-       padding: 2px 5px;
-       border-radius: 3px;
-       font-family: Monaco, Consolas, monospace;
-   }
-
-   .link-center {
-       text-align: center;
-   }
-   
-   
-   .wp-block-image {
-       text-align: center; 
-   }
-
-   .wp-block-image img {
-       max-width: 100%; 
-       height: auto; 
-       display: block; 
-       margin-left: auto;
-       margin-right: auto;
-   }
-   .has-text-align-center{
-    text-align: center;
-   }
-   
-   .cell pre {
-  word-break: break-all;
-  overflow-wrap: break-word; 
-  overflow-x: auto; 
-}
-
-
- 
-   </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>اسنپ‌فود چند رستوران فعال دارد؟! — وحید باقی</title>
+<meta name="description" content="اگر دقت کنید، در اپلیکیشن اسنپ‌فود تعداد رستوران های باز رو مینویسه. این سوال برای من به وجود اومد که در ساعات مختلف شبانه روز چند تا رستوران فعال وجود دار">
+<meta property="og:title" content="اسنپ‌فود چند رستوران فعال دارد؟!">
+<meta property="og:description" content="اگر دقت کنید، در اپلیکیشن اسنپ‌فود تعداد رستوران های باز رو مینویسه. این سوال برای من به وجود اومد که در ساعات مختلف شبانه روز چند تا رستوران فعال وجود دار">
+<meta property="og:type" content="article">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css">
+<style>
+.meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;color:var(--jp-ui-font-color2);
+  font-size:12.5px;margin:-.2em 0 1.5em;max-width:none}
+.meta .dot{width:3px;height:3px;border-radius:50%;background:var(--jp-border2);flex:0 0 3px}
+.meta .tag{border:1px solid var(--jp-border2);border-radius:2px;padding:0 7px;font-size:11.5px}
+.meta .mono{direction:ltr;font-family:"JetBrains Mono",Menlo,monospace}
+.mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
+.figout{margin:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.figout img{max-width:min(100%,720px);height:auto;border:1px solid var(--jp-border1);
+  border-radius:2px;display:block;margin:0 auto 6px}
+.figout img:last-of-type{margin-bottom:0}
+.figout figcaption{color:var(--jp-ui-font-color2);font-size:12px;padding-top:8px;
+  max-width:60ch;text-align:center}
+.tblout{overflow-x:auto;max-width:100%}
+.jp-md p.ctr{text-align:center}
+.jp-md p.embed a{display:inline-block;border:1px solid var(--jp-border2);border-radius:3px;
+  padding:8px 13px;text-decoration:none;background:var(--jp-editor-bg)}
+.jp-md p.embed a:hover{border-color:var(--jp-brand1)}
+</style>
 </head>
 <body>
-   <div class="notebook-container">
-       <article class="main-article post-594 post type-post status-publish format-standard has-post-thumbnail hentry category-1 category-40">       
-       <header class="header">
-           <h1 class="post-title">اسنپ‌فود چند رستوران فعال دارد؟!</h1>
-           <div class="post-meta">
-               <span class="date">۱۴۰۱/۰۳/۰۹</span>
-           </div>
-       </header>
-
-<section class="content">
-    <div class="cell">
-        <p>اگر دقت کنید، در اپلیکیشن اسنپ‌فود تعداد رستوران های باز رو مینویسه. این سوال برای من به وجود اومد که در ساعات مختلف شبانه روز چند تا رستوران فعال وجود داره؟! با استفاده از لینک زیر میتونید تعداد رستوران های فعال و باز (آماده خدمت) رو مشاهده کنید :</p>
+<div id="cells" hidden>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h1>اسنپ‌فود چند رستوران فعال دارد؟!</h1>
+      <div class="meta"><span class="mono">۱۴۰۱/۰۳/۰۹</span><span class="dot"></span><span class="tag">تپه‌نوردی</span><span class="tag">وب‌نوردی</span><span class="dot"></span><span>اسنپ</span></div>
     </div>
-    <div class="cell">
-        <pre class="has-text-align-center">https://snappfood.ir/search/api/v1/desktop/vendors-list?optionalClient=WEBSITE&amp;client=WEBSITE&amp;deviceType=WEBSITE&amp;appVersion=8.1.1&amp;UDID=ae5ce34d-6f87-43d7-9ea0-e2a956c363cd&amp;page=1&amp;page_size=20&amp;filters={}&amp;query=&amp;sp_alias=restaurant&amp;city_name=tehran</pre>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>اگر دقت کنید، در اپلیکیشن اسنپ‌فود تعداد رستوران های باز رو مینویسه. این سوال برای من به وجود اومد که در ساعات مختلف شبانه روز چند تا رستوران فعال وجود داره؟! با استفاده از لینک زیر میتونید تعداد رستوران های فعال و باز (آماده خدمت) رو مشاهده کنید :</p>
     </div>
-    <div class="cell">
-        <p>اون آخر من اسم شهر رو tehran گذاشتم. نتیجه‌ای که برمیگردونه چیزی شبیه به تصویر زیره :</p>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      https://snappfood.ir/search/api/v1/desktop/vendors-list?optionalClient=WEBSITE&amp;client=WEBSITE&amp;deviceType=WEBSITE&amp;appVersion=8.1.1&amp;UDID=ae5ce34d-6f87-43d7-9ea0-e2a956c363cd&amp;page=1&amp;page_size=20&amp;filters={}&amp;query=&amp;sp_alias=restaurant&amp;city_name=tehran
     </div>
-    <div class="cell">
-        <div class="wp-block-image">
-            <figure class="aligncenter"><img decoding="async" src="images/24-1.jpg" alt=""></figure>
-        </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>اون آخر من اسم شهر رو tehran گذاشتم. نتیجه‌ای که برمیگردونه چیزی شبیه به تصویر زیره :</p>
     </div>
-    <div class="cell">
-        <p>چیزی که به نظر میرسه count تعداد رستوران های فعال رو نشون میده. یعنی رستوران هایی که در حال حاضر با اسنپ‌فود همکاری میکنن و open_count تعداد رستوران های باز (آماده خدمت) رو نشون میده. من اومدم یه برنامه روی سرور گذاشتم و از تاریخ ۲۰ اردیبهشت تا ۸ خرداد ۱۴۰۱، هر یک ساعت تعداد رستوران های باز و فعال رو جمع آوری کردم. البته نه فقط برای شهر تهران! برای تمام شهر هایی که اسنپ فود ساپورت میکنه! اسم این شهر ها در پایین سایت <a href="https://snappfood.ir">https://snappfood.ir</a> نوشته شده :</p>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[1]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/24-1.jpg" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>چیزی که به نظر میرسه count تعداد رستوران های فعال رو نشون میده. یعنی رستوران هایی که در حال حاضر با اسنپ‌فود همکاری میکنن و open_count تعداد رستوران های باز (آماده خدمت) رو نشون میده. من اومدم یه برنامه روی سرور گذاشتم و از تاریخ ۲۰ اردیبهشت تا ۸ خرداد ۱۴۰۱، هر یک ساعت تعداد رستوران های باز و فعال رو جمع آوری کردم. البته نه فقط برای شهر تهران! برای تمام شهر هایی که اسنپ فود ساپورت میکنه! اسم این شهر ها در پایین سایت <a href="https://snappfood.ir" target="_blank" rel="noopener">https://snappfood.ir</a> نوشته شده :</p>
     </div>
-    <div class="cell">
-        <div class="wp-block-image">
-            <figure class="aligncenter"><img decoding="async" src="images/24-2.jpg" alt=""></figure>
-        </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[2]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/24-2.jpg" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>مثلا تعداد رستوران های فعال در تهران به صورت زیره :</p>
     </div>
-        <div class="cell">
-    <p>مثلا تعداد رستوران های فعال در تهران به صورت زیره :</p>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[3]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/24-3.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>تعداد رستوران های باز هم در تهران به صورت زیر :</p>
     </div>
-        <div class="cell">
-            <div class="wp-block-image">
-                <figure class="aligncenter"><img decoding="async" src="images/24-3.png" alt=""></figure>
-            </div>
-        </div>
-            <div class="cell">
-    <p>تعداد رستوران های باز هم در تهران به صورت زیر :</p>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[4]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/24-4.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>در توییتی که نوشته بودم حواسم نبود که باید ۴.۵ ساعت به زمان سرور اضافه کنم تا ساعت تهران رو نشون بده. اما دیتای بالا درسته اما اینکه واقعا اون ساعت از شبانه‌روز واقعا اون تعداد رستوران باز بوده یا نه رو نمیدونم. چون دیتا رو از API اسنپ‌فود گرفتم.</p>
     </div>
-        <div class="cell">
-            <div class="wp-block-image">
-                <figure class="aligncenter"><img decoding="async" src="images/24-4.png" alt=""></figure>
-            </div>
-        </div>
-    <div class="cell">
-        <p>در توییتی که نوشته بودم حواسم نبود که باید ۴.۵ ساعت به زمان سرور اضافه کنم تا ساعت تهران رو نشون بده. اما دیتای بالا درسته اما اینکه واقعا اون ساعت از شبانه‌روز واقعا اون تعداد رستوران باز بوده یا نه رو نمیدونم. چون دیتا رو از API اسنپ‌فود گرفتم.</p>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[5]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/24-5.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[6]:</div>
+        <div class="jp-editor"><pre>nb<span class="o">.</span><span class="f">neighbours</span>()</pre></div></div>
+      <div class="jp-io"><div class="jp-prompt out">Out[6]:</div>
+        <div class="jp-outputs"><table class="dataframe"><thead><tr><th></th><th>title</th><th>date</th></tr></thead><tbody><tr><th class="l mono">prev</th><td><a href="/blog/posts/23.html">کاله در توییتر چه می‌کند؟!</a></td><td class="num">۱۴۰۱/۰۳</td></tr><tr><th class="l mono">next</th><td><a href="/blog/posts/25.html">کبریت توکلی در توییتر چه می‌کند؟!</a></td><td class="num">۱۴۰۱/۰۳</td></tr></tbody></table></div></div>
     </div>
-        <div class="cell">
-            <div class="wp-block-image">
-                <figure class="aligncenter"><img decoding="async" src="images/24-5.png" alt=""></figure>
-            </div>
-        </div>
-
-</section>
-   </article>
-
-
- 
-   </div>
+  </div>
+</div>
+<script src="/assets/lab.js"></script>
+<script>
+Lab.chrome({ active:'post', tab:{ name:'post_24.ipynb', href:'/blog/posts/24.html' } });
+Lab.wire();
+Lab.kernel(false);
+</script>
 </body>
 </html>
-
-

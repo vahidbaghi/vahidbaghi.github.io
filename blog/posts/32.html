@@ -1,198 +1,209 @@
-
 <!DOCTYPE html>
-<html dir="rtl" lang="fa">
+<html lang="fa">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
-   <title>وبلاگ وحید باقی</title>
-   <style>
-       body {
-           font-family: Vazirmatn, sans-serif;
-           line-height: 1.6;
-           max-width: 900px;
-           margin: 0 auto;
-           padding: 20px;
-           background-color: #f7f7f7;
-       }
-
-.notebook-container {
-       background: white;
-       border: 1px solid #e1e4e8;
-       border-radius: 4px;
-       box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-   }
-
-   .header {
-       padding: 20px;
-       border-bottom: 1px solid #e1e4e8;
-       background-color: #f6f8fa;
-   }
-
-   .post-title {
-       font-size: 2em;
-       margin: 0;
-       color: #24292e;
-   }
-
-   .post-meta {
-       color: #586069;
-       font-size: 0.9em;
-       margin-top: 10px;
-   }
-
-   .featured-image {
-       width: 100%;
-       max-height: 400px;
-       object-fit: cover;
-   }
-
-   .content {
-       padding: 20px;
-   }
-
-   .cell {
-       margin: 20px 0;
-       padding: 10px;
-       border-radius: 3px;
-       background-color: #f8f9fa;
-       text-align: right;
-   }
-
-   code {
-       background-color: #f6f8fa;
-       padding: 2px 5px;
-       border-radius: 3px;
-       font-family: Monaco, Consolas, monospace;
-   }
-
-   .link-center {
-       text-align: center;
-   }
-   
-   
-   .wp-block-image {
-       text-align: center; 
-   }
-
-   .wp-block-image img {
-       max-width: 100%; 
-       height: auto; 
-       display: block; 
-       margin-left: auto;
-       margin-right: auto;
-   }
-   .has-text-align-center{
-    text-align: center;
-   }
-   
-   .cell pre {
-  word-break: break-all;
-  overflow-wrap: break-word; 
-  overflow-x: auto; 
-}
-
-
- 
-   </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>داده کاوی کلوچه محور! — وحید باقی</title>
+<meta name="description" content="داستان از اینجا شروع شد که من همیشه با خودم بیسکویت، کلوچه یا … می‌بردم که موقع کار ضعف نکنم. به صورت تجربی همیشه بیسکویت دایجستیو شکلاتی شیرین عسل رو می‌خ">
+<meta property="og:title" content="داده کاوی کلوچه محور!">
+<meta property="og:description" content="داستان از اینجا شروع شد که من همیشه با خودم بیسکویت، کلوچه یا … می‌بردم که موقع کار ضعف نکنم. به صورت تجربی همیشه بیسکویت دایجستیو شکلاتی شیرین عسل رو می‌خ">
+<meta property="og:type" content="article">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css">
+<style>
+.meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;color:var(--jp-ui-font-color2);
+  font-size:12.5px;margin:-.2em 0 1.5em;max-width:none}
+.meta .dot{width:3px;height:3px;border-radius:50%;background:var(--jp-border2);flex:0 0 3px}
+.meta .tag{border:1px solid var(--jp-border2);border-radius:2px;padding:0 7px;font-size:11.5px}
+.meta .mono{direction:ltr;font-family:"JetBrains Mono",Menlo,monospace}
+.mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
+.figout{margin:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.figout img{max-width:min(100%,720px);height:auto;border:1px solid var(--jp-border1);
+  border-radius:2px;display:block;margin:0 auto 6px}
+.figout img:last-of-type{margin-bottom:0}
+.figout figcaption{color:var(--jp-ui-font-color2);font-size:12px;padding-top:8px;
+  max-width:60ch;text-align:center}
+.tblout{overflow-x:auto;max-width:100%}
+.jp-md p.ctr{text-align:center}
+.jp-md p.embed a{display:inline-block;border:1px solid var(--jp-border2);border-radius:3px;
+  padding:8px 13px;text-decoration:none;background:var(--jp-editor-bg)}
+.jp-md p.embed a:hover{border-color:var(--jp-brand1)}
+</style>
 </head>
 <body>
-   <div class="notebook-container">
-       <article class="main-article post-594 post type-post status-publish format-standard has-post-thumbnail hentry category-1 category-40">       
-       <header class="header">
-           <h1 class="post-title">داده کاوی کلوچه محور!</h1>
-           <div class="post-meta">
-               <span class="date">24/11/1401</span>
-           </div>
-       </header>
-
-<section class="content">
-           <div class="cell">
-               <p>داستان از اینجا شروع شد که من همیشه با خودم بیسکویت، کلوچه یا … می‌بردم که موقع کار ضعف نکنم. به صورت تجربی همیشه بیسکویت دایجستیو شکلاتی شیرین عسل رو می‌خریدم. بیسکویت های این مدلی که به همشون می‌گیم ساقه طلایی انواع و اقسام مختلفی دارن مثل شکلاتی، معمولی، چند غله و …</p>
-           </div>
-           <div class="cell">
-               <p>حالا چرا این رو انتخاب کرده بودم؟ مدل های معمولی (بدون شکلات) واقعا خشکه و از گلو پایین نمیره. حتما باید چایی باشه که بتونیم بخوریم. اما شکلاتی ها رو خالی هم میشه خورد و خوشمزه تر هم هست. یکی از شعبه های شیرین عسل هم نزدیک خونه ما بود و تخفیف هم میداد. منم آدمی هستم که وقتی یه چیزی می‌خرم همیشه به بقیه تعارف می‌کنم. اصلا یه جوری شده بود که اگر یه روز بیسکویت نمیاوردم بچه ها شاکی می‌شدن 🙂 وگرنه میشه مثلا نانی برد که قیمتش خیلی کمتره! بنابراین گزینه های زیادی وجود داره ولی معیار هایی که من دارم اینه که انرژی زیادی داشته باشه، بشه به بقیه تعارف کرد، حملش ساده باشه و قیمت مناسبی هم داشته باشه. خوشمزه بودن و خشک نبودن هم مهمه. بعضی از بچه ها هم میگفتن مثلا خودت کیک درست کن که با سبک زندگی من سازگار نیست. نمیشه که هر روز درگیر این باشم که برای فردا کیک درست کنم! یه چیز جمع و جور می‌خواستم.</p>
-           </div>
-           <div class="cell">
-               <p>پارسال قیمت این بیسکویت تقریبا ۵ هزار تومن بود. به مرور گرون شد. ۷ هزار تومن. ۹ هزار تومن. ۱۲ هزار تومن و الان هم شده ۱۴ هزار تومن. منم هر روز دو بسته می‌بردم. از روزی که قیمتش از ۵ هزار تومن شد ۷ هزار تومن من ذهنم مشغول شده بود. گفتم حتما بازم گرون تر میشه. اون موقع حدودا ۹۰۰ هزار تومن حقوق (سربازی) می‌گرفتم و نصفش فقط داشت برای بیسکویت می‌رفت! حقوق ها زیاد شد؟ زکی! خب قیمت بیسکویت هم بیشتر شد. قیمت کرایه ها هم بیشتر شد. قیمت همه چیز بیشتر شد. ساقه طلایی شکلاتی شد ۲۰ هزار تومن که تازه اگر فقط یه بسته ببرم میشه ماهی ۶۰۰ هزار تومن! دیدم دیگه نمیشه. باید یه چیز دیگه پیدا کنم که ارزون تر باشه. راستش از ساقه طلایی هم خسته شده بودم.</p>
-           </div>
-           <div class="cell">
-               <p>اون موقع که توییت زیر رو نوشتم هدفم این بود که یه بیسکویت/کلوچه مقرون به صرفه پیدا کنم. بعد گفتم حالا چرا فقط بیسکویت؟ دیتای همه محصولات سوپرمارکتی رو استخراج کنم. این شد یه تپه جدید برای فتح کردن!</p>
-           </div>
-           <div class="cell">
-               <div class="wp-block-image">
-                   <figure class="aligncenter"><img decoding="async" src="images/32-1.png" alt=""></figure>
-               </div>
-           </div>
-            <div class="cell">
-                <p>پروژه رو تا جای خوبی انجام دادم. یعنی یه شبکه عصبی train کردم که لوگو سیب سلامت رو شناسایی کنه. تعداد زیادی تصویر بهش دادم و تصاویری که لوگو داشتند رو پیدا کردم. مرحله بعدی این بود که اطلاعات جدول ارزش غذایی از روی تصاویر استخراج بشه. روش های مختلفی رو امتحان کردم که به صورت اتوماتیک این کار رو انجام بشه. اما خطای زیادی داشت. چرا؟ چون به صورت کلی جدول ارزش غذایی خیلی کوچیکه و اگر تصویر هم با کیفیت نباشه کار رو سخت میکنه. بنابراین به این نتیجه رسیدم که باید اطلاعات رو دستی استخراج کرد. حدودا ۸۰۰۰ هزار عکس بود. گفتم خب خودم انجام میدم. یه ذره که جلو رفتم دیدم حوصله زیادی می‌خواد و یه نفری نمی‌تونم.</p>
-            </div>
-             <div class="cell">
-                <p>توی توییتر مطرح کردم و یه ربات تلگرامی درست کردم که بچه ها هم کمک کنند. قرار شد اگر دیتابیس تکمیل شد، چون با مشارکت عمومی تکمیل شده به صورت رایگان منتشر کنم. اما حالا به هر دلیلی (شاید سخت بودن وارد کردن اطلاعات در ربات) خیلی استقبال نشد. فقط ۵۰۰ تا عکس تکمیل شد که ۲۰۰ تاش رو فقط خودم تکمیل کرده بودم! در صورتی که ۷۵۰۰ تا عکس دیگه مونده بود. البته بعدا تصاویر بیشتری پیدا کردم و در مجموع ۹۰۰۰ تا عکس شد. منم خیلی حوصله نداشتم و پروژه رو کنار گذاشتم. بازم به صورت تجربی چیز های مختلف رو امتحان کردم. یه مدتی کوکی جودوسر دلاتو رو می‌خریدم :</p>
-            </div>
-            <div class="cell">
-              <div class="wp-block-image">
-                   <figure class="aligncenter"><img decoding="async" src="images/32-2.jpg" alt=""></figure>
-               </div>
-            </div>
-            <div class="cell">
-                <p>این قیمتش ۱۵ هزار تومن بود و ۱۵۰ گرم وزن داشت و توی هر بسته حدودا ۱۴-۱۵ تا دونه کوکی وجود داشت که هر کوکی هم ۴۰ کیلوکاری انرژی داشت. بد نبود ولی قیمتش نسبت به حجمش زیاد بود.</p>
-            </div>
-            <div class="cell">
-               <p>بعد از مدتی مدیر یه مجموعه‌ای به من پیام که ما از نیرو هامون برای تکمیل این دیتابیس استفاده می‌کنیم. منم یه سایت بالا آوردم که بشه اطلاعات رو راحت تر تکمیل کرد و اینجوری شد که ۹۰۰۰ تا عکس تکمیل شد. منم قرار شد دیتابیس رو منتشر نکنم. فقط چند تا توییت و یه بلاگ پست در موردش بنویسم. حالا بریم سراغ پیدا کردن بیسکویت/کلوچه به کمک داده کاوی!</p>
-            </div>
-            <div class="cell">
-                <p>من دسته‌بندی های <strong>کیک و کلوچه</strong> و <strong>بیسکویت و ویفر</strong> رو انتخاب کردم. اولین کاری که انجام دادم این بود که کالری (انرژی) رو نرمال کردم. یعنی چی؟ جدول ارزش غذایی دو تا محصول زیر رو در نظر بگیرید :</p>
-            </div>
-           <div class="cell">
-               <div class="wp-block-image">
-                   <figure class="aligncenter"><img decoding="async" src="images/32-3.jpg" alt=""></figure>
-               </div>
-           </div>
-            <div class="cell">
-               <div class="wp-block-image">
-                   <figure class="aligncenter"><img decoding="async" src="images/32-4.jpg" alt=""></figure>
-               </div>
-           </div>
-            <div class="cell">
-               <p>یکی توی ۳۰ گرم ۱۰۲ کیلوکالری انرژی داره و دیگری توی ۳۵ گرم ۱۲۹ کیلوکالری انرژی داره. خب اینجوری نمیشه مقایسه کرد. من اومدم انرژی رو بر وزن تقسیم کردم که انرژی ۱ گرم پیدا بشه. برای کیک ایندو توت فرنگی میشه ۳.۴ کیلوکالری و برای دونینی کاکائویی میشه ۳.۶ کیلوکالری به ازای هر ۱ گرم. حالا عددی که به دست اومده رو در وزن کل بسته ضرب میکنم. اینجوری متوجه میشیم یه بسته کامل چند کیلوکالری انرژی داره. هر محصول یه قیمتی داره. حالا اگر قیمت محصول رو بر انرژی کل بسته تقسیم کنیم، قیمت هر ۱ کیلوکالری به دست میاد. اینجوری می‌تونیم بین محصولات مختلف مقایسه ساده‌تری داشته باشیم. اسم این ستون جدیدی که محاسبه کردم رو میذارم value و حالا سطر های جدول رو بر اساس این ستون به صورت نزولی مرتب می‌کنم. یه محدودیت دیگه هم میخوام بذارم. من حداکثر ۲۰ هزار تومن می‌خوام خرج کنم. پس محصولات با قیمت بیشتر از ۲۰ هزار تومن رو حذف کردم.</p>
-           </div>
-           <div class="cell">
-               <p>با انجام این کار ۶۲ تا محصول از بین ۹۰۰۰ محصول انتخاب میشه. حالا می‌تونید بر اساس سلیقه‌تون یکی از این محصولات رو انتخاب کنید. یه نکته مهمی که وجود داره اینه که ممکنه کلوچه ها و بیسکویت های بهتری هم وجود داشته باشه. اما به این دلیل که یا تصویری از جدول سیب سلامتش وجود نداشته یا در دیجی‌کالا ناموجود بوده من حذفش کردم. به هر حال من مینی کوکی های نادری رو انتخاب کردم :</p>
-           </div>
-           <div class="cell">
-              <div class="wp-block-image">
-                   <figure class="aligncenter"><img decoding="async" src="images/32-5.webp" alt=""></figure>
-               </div>
-            </div>
-            <div class="cell">
-                <p>دلایل انتخابم :</p>
-            </div>
-            <div class="cell">
-                <p>-تنوع طعم (شکلاتی – خرمایی – نارگیلی – گردویی). تنوع طعم باعث میشه مزه تکراری نشه. اتفاقی که برای ساقه طلایی بردنم افتاد. انقدر ساقه طلایی خورده بودم که دیگه زده شده بودم. حقیقتا میخواستم تا جای ممکن دیگه بیسکویت نباشه. چون خرد شدن بیسکویت و ویفر هم روی مخم بود.</p>
-            </div>
-           <div class="cell">
-                <p>-قیمت مناسب – قیمتش ۸ هزار تومنه و من هر دفعه دو بسته می‌برم</p>
-           </div>
-           <div class="cell">
-                <p>-امکان خرید عمده این محصول از طریق <a href="http://pro.snapp.market">http://pro.snapp.market</a> یکی از مهم ترین دلایلیه که دارم. با تخفیفی که داره قیمتش حتی کمتر از ۸ هزار تومن هم میشه.</p>
-           </div>
-           <div class="cell">
-               <p>-تعدادش زیاده و میشه به بقیه هم تعارف کرد</p>
-            </div>
-            <div class="cell">
-                <p>-اگر کهنه نباشه میشه بدون چایی هم خورد. یعنی مثل ساقه طلایی معمولی نیست که خشک باشه</p>
-            </div>
-             <div class="cell">
-                <p>فایل اون ۶۲ تا محصول رو در لینک زیر قرار دادم :</p>
-            </div>
-            <div class="cell">
-                <pre class="has-text-align-center"><a href="files/products.xlsx">products</a></pre>
-            </div>
-       </section>
-   </article>
-   </div>
+<div id="cells" hidden>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h1>داده کاوی کلوچه محور!</h1>
+      <div class="meta"><span class="mono">۱۴۰۱/۱۱/۲۴</span><span class="dot"></span><span class="tag">تپه‌نوردی</span><span class="dot"></span><span>بازار و مصرف</span></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>داستان از اینجا شروع شد که من همیشه با خودم بیسکویت، کلوچه یا … می‌بردم که موقع کار ضعف نکنم. به صورت تجربی همیشه بیسکویت دایجستیو شکلاتی شیرین عسل رو می‌خریدم. بیسکویت های این مدلی که به همشون می‌گیم ساقه طلایی انواع و اقسام مختلفی دارن مثل شکلاتی، معمولی، چند غله و …</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>حالا چرا این رو انتخاب کرده بودم؟ مدل های معمولی (بدون شکلات) واقعا خشکه و از گلو پایین نمیره. حتما باید چایی باشه که بتونیم بخوریم. اما شکلاتی ها رو خالی هم میشه خورد و خوشمزه تر هم هست. یکی از شعبه های شیرین عسل هم نزدیک خونه ما بود و تخفیف هم میداد. منم آدمی هستم که وقتی یه چیزی می‌خرم همیشه به بقیه تعارف می‌کنم. اصلا یه جوری شده بود که اگر یه روز بیسکویت نمیاوردم بچه ها شاکی می‌شدن 🙂 وگرنه میشه مثلا نانی برد که قیمتش خیلی کمتره! بنابراین گزینه های زیادی وجود داره ولی معیار هایی که من دارم اینه که انرژی زیادی داشته باشه، بشه به بقیه تعارف کرد، حملش ساده باشه و قیمت مناسبی هم داشته باشه. خوشمزه بودن و خشک نبودن هم مهمه. بعضی از بچه ها هم میگفتن مثلا خودت کیک درست کن که با سبک زندگی من سازگار نیست. نمیشه که هر روز درگیر این باشم که برای فردا کیک درست کنم! یه چیز جمع و جور می‌خواستم.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>پارسال قیمت این بیسکویت تقریبا ۵ هزار تومن بود. به مرور گرون شد. ۷ هزار تومن. ۹ هزار تومن. ۱۲ هزار تومن و الان هم شده ۱۴ هزار تومن. منم هر روز دو بسته می‌بردم. از روزی که قیمتش از ۵ هزار تومن شد ۷ هزار تومن من ذهنم مشغول شده بود. گفتم حتما بازم گرون تر میشه. اون موقع حدودا ۹۰۰ هزار تومن حقوق (سربازی) می‌گرفتم و نصفش فقط داشت برای بیسکویت می‌رفت! حقوق ها زیاد شد؟ زکی! خب قیمت بیسکویت هم بیشتر شد. قیمت کرایه ها هم بیشتر شد. قیمت همه چیز بیشتر شد. ساقه طلایی شکلاتی شد ۲۰ هزار تومن که تازه اگر فقط یه بسته ببرم میشه ماهی ۶۰۰ هزار تومن! دیدم دیگه نمیشه. باید یه چیز دیگه پیدا کنم که ارزون تر باشه. راستش از ساقه طلایی هم خسته شده بودم.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>اون موقع که توییت زیر رو نوشتم هدفم این بود که یه بیسکویت/کلوچه مقرون به صرفه پیدا کنم. بعد گفتم حالا چرا فقط بیسکویت؟ دیتای همه محصولات سوپرمارکتی رو استخراج کنم. این شد یه تپه جدید برای فتح کردن!</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[1]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/32-1.png" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>پروژه رو تا جای خوبی انجام دادم. یعنی یه شبکه عصبی train کردم که لوگو سیب سلامت رو شناسایی کنه. تعداد زیادی تصویر بهش دادم و تصاویری که لوگو داشتند رو پیدا کردم. مرحله بعدی این بود که اطلاعات جدول ارزش غذایی از روی تصاویر استخراج بشه. روش های مختلفی رو امتحان کردم که به صورت اتوماتیک این کار رو انجام بشه. اما خطای زیادی داشت. چرا؟ چون به صورت کلی جدول ارزش غذایی خیلی کوچیکه و اگر تصویر هم با کیفیت نباشه کار رو سخت میکنه. بنابراین به این نتیجه رسیدم که باید اطلاعات رو دستی استخراج کرد. حدودا ۸۰۰۰ هزار عکس بود. گفتم خب خودم انجام میدم. یه ذره که جلو رفتم دیدم حوصله زیادی می‌خواد و یه نفری نمی‌تونم.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>توی توییتر مطرح کردم و یه ربات تلگرامی درست کردم که بچه ها هم کمک کنند. قرار شد اگر دیتابیس تکمیل شد، چون با مشارکت عمومی تکمیل شده به صورت رایگان منتشر کنم. اما حالا به هر دلیلی (شاید سخت بودن وارد کردن اطلاعات در ربات) خیلی استقبال نشد. فقط ۵۰۰ تا عکس تکمیل شد که ۲۰۰ تاش رو فقط خودم تکمیل کرده بودم! در صورتی که ۷۵۰۰ تا عکس دیگه مونده بود. البته بعدا تصاویر بیشتری پیدا کردم و در مجموع ۹۰۰۰ تا عکس شد. منم خیلی حوصله نداشتم و پروژه رو کنار گذاشتم. بازم به صورت تجربی چیز های مختلف رو امتحان کردم. یه مدتی کوکی جودوسر دلاتو رو می‌خریدم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[2]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/32-2.jpg" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>این قیمتش ۱۵ هزار تومن بود و ۱۵۰ گرم وزن داشت و توی هر بسته حدودا ۱۴-۱۵ تا دونه کوکی وجود داشت که هر کوکی هم ۴۰ کیلوکاری انرژی داشت. بد نبود ولی قیمتش نسبت به حجمش زیاد بود.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>بعد از مدتی مدیر یه مجموعه‌ای به من پیام که ما از نیرو هامون برای تکمیل این دیتابیس استفاده می‌کنیم. منم یه سایت بالا آوردم که بشه اطلاعات رو راحت تر تکمیل کرد و اینجوری شد که ۹۰۰۰ تا عکس تکمیل شد. منم قرار شد دیتابیس رو منتشر نکنم. فقط چند تا توییت و یه بلاگ پست در موردش بنویسم. حالا بریم سراغ پیدا کردن بیسکویت/کلوچه به کمک داده کاوی!</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>من دسته‌بندی های <strong>کیک و کلوچه</strong> و <strong>بیسکویت و ویفر</strong> رو انتخاب کردم. اولین کاری که انجام دادم این بود که کالری (انرژی) رو نرمال کردم. یعنی چی؟ جدول ارزش غذایی دو تا محصول زیر رو در نظر بگیرید :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[3]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/32-3.jpg" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[4]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/32-4.jpg" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>یکی توی ۳۰ گرم ۱۰۲ کیلوکالری انرژی داره و دیگری توی ۳۵ گرم ۱۲۹ کیلوکالری انرژی داره. خب اینجوری نمیشه مقایسه کرد. من اومدم انرژی رو بر وزن تقسیم کردم که انرژی ۱ گرم پیدا بشه. برای کیک ایندو توت فرنگی میشه ۳.۴ کیلوکالری و برای دونینی کاکائویی میشه ۳.۶ کیلوکالری به ازای هر ۱ گرم. حالا عددی که به دست اومده رو در وزن کل بسته ضرب میکنم. اینجوری متوجه میشیم یه بسته کامل چند کیلوکالری انرژی داره. هر محصول یه قیمتی داره. حالا اگر قیمت محصول رو بر انرژی کل بسته تقسیم کنیم، قیمت هر ۱ کیلوکالری به دست میاد. اینجوری می‌تونیم بین محصولات مختلف مقایسه ساده‌تری داشته باشیم. اسم این ستون جدیدی که محاسبه کردم رو میذارم value و حالا سطر های جدول رو بر اساس این ستون به صورت نزولی مرتب می‌کنم. یه محدودیت دیگه هم میخوام بذارم. من حداکثر ۲۰ هزار تومن می‌خوام خرج کنم. پس محصولات با قیمت بیشتر از ۲۰ هزار تومن رو حذف کردم.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>با انجام این کار ۶۲ تا محصول از بین ۹۰۰۰ محصول انتخاب میشه. حالا می‌تونید بر اساس سلیقه‌تون یکی از این محصولات رو انتخاب کنید. یه نکته مهمی که وجود داره اینه که ممکنه کلوچه ها و بیسکویت های بهتری هم وجود داشته باشه. اما به این دلیل که یا تصویری از جدول سیب سلامتش وجود نداشته یا در دیجی‌کالا ناموجود بوده من حذفش کردم. به هر حال من مینی کوکی های نادری رو انتخاب کردم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[5]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/32-5.webp" alt="" loading="lazy"></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>دلایل انتخابم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>-تنوع طعم (شکلاتی – خرمایی – نارگیلی – گردویی). تنوع طعم باعث میشه مزه تکراری نشه. اتفاقی که برای ساقه طلایی بردنم افتاد. انقدر ساقه طلایی خورده بودم که دیگه زده شده بودم. حقیقتا میخواستم تا جای ممکن دیگه بیسکویت نباشه. چون خرد شدن بیسکویت و ویفر هم روی مخم بود.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>-قیمت مناسب – قیمتش ۸ هزار تومنه و من هر دفعه دو بسته می‌برم</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>-امکان خرید عمده این محصول از طریق <a href="http://pro.snapp.market" target="_blank" rel="noopener">http://pro.snapp.market</a> یکی از مهم ترین دلایلیه که دارم. با تخفیفی که داره قیمتش حتی کمتر از ۸ هزار تومن هم میشه.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>-تعدادش زیاده و میشه به بقیه هم تعارف کرد</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>-اگر کهنه نباشه میشه بدون چایی هم خورد. یعنی مثل ساقه طلایی معمولی نیست که خشک باشه</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>فایل اون ۶۲ تا محصول رو در لینک زیر قرار دادم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <a href="files/products.xlsx">products</a>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[6]:</div>
+        <div class="jp-editor"><pre>nb<span class="o">.</span><span class="f">neighbours</span>()</pre></div></div>
+      <div class="jp-io"><div class="jp-prompt out">Out[6]:</div>
+        <div class="jp-outputs"><table class="dataframe"><thead><tr><th></th><th>title</th><th>date</th></tr></thead><tbody><tr><th class="l mono">prev</th><td><a href="/blog/posts/31.html">۲. چالش دانیلا با تابع ReLU!</a></td><td class="num">۱۴۰۱/۱۰</td></tr><tr><th class="l mono">next</th><td><a href="/blog/posts/33.html">خانه‌کاوی در دیوار!</a></td><td class="num">۱۴۰۱/۱۲</td></tr></tbody></table></div></div>
+    </div>
+  </div>
+</div>
+<script src="/assets/lab.js"></script>
+<script>
+Lab.chrome({ active:'post', tab:{ name:'post_32.ipynb', href:'/blog/posts/32.html' } });
+Lab.wire();
+Lab.kernel(false);
+</script>
 </body>
 </html>
-
-

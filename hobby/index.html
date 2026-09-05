@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>کارهای تعاملی — وحید باقی</title>
+<meta name="description" content="نقشه‌ها، نمودارها و ابزارهای تعاملی وحید باقی — مترو تهران، مدارس تهران، اسنپ، گنجور و چند ابزار کوچک.">
+<meta property="og:title" content="کارهای تعاملی — وحید باقی">
+<meta property="og:type" content="website">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css">
+<style>
+.mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
+table.dataframe td.tt{text-align:right;max-width:420px}
+table.dataframe td.ds{text-align:right;max-width:440px;color:var(--jp-ui-font-color2);
+  font-size:12.5px}
+.tag{display:inline-block;font-size:11px;padding:0 6px;border-radius:2px;
+  border:1px solid var(--jp-border2);color:var(--jp-ui-font-color2);white-space:nowrap}
+.tblwrap{overflow-x:auto}
+</style>
+</head>
+<body>
+<div id="cells" hidden>
+
+  <div class="jp-cell sel">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h1>کارهای تعاملی</h1>
+      <p>نقشه‌ها و نمودارهایی که به‌جای عکس، خودشان باز می‌شوند و می‌شود در آن‌ها گشت — به‌علاوهٔ
+         چند ابزار کوچک. هرکدام یک صفحهٔ مستقل است.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell" data-exec="ls">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io">
+        <div class="jp-prompt">[1]:</div>
+        <div class="jp-editor"><pre>cu<span class="o">.</span><span class="f">interactive</span>()<span class="o">.</span><span class="f">sort_values</span>(<span class="s">"kind"</span>)</pre></div>
+      </div>
+      <div class="jp-io res">
+        <div class="jp-prompt out">Out[1]:</div>
+        <div class="jp-outputs"><div class="tblwrap" id="o-list"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>نقشه‌های بزرگ چند ثانیه طول می‌کشند تا لود شوند.</p>
+    </div>
+  </div>
+
+</div>
+
+<script src="/assets/lab.js"></script>
+<script>
+var fa = Lab.fa;
+var WORKS = [
+  ['هیت‌مپ مرکزیت ایستگاه‌های مترو تهران',
+   'کدام ایستگاه گلوگاه شبکه است؟ مرکزیت بینابینی روی کل گراف مترو.',
+   'نقشه', 'plotly', '/hobby/tehran_metro_stations_betweenness_heatmap.html'],
+  ['نقشهٔ مدارس تهران',
+   'موقعیت تک‌تک مدارس شهر، روی نقشهٔ قابل بزرگ‌نمایی.',
+   'نقشه', 'leaflet', '/hobby/tehran_schools.html'],
+  ['هیت‌مپ مبدأ–مقصد اسنپ',
+   'الگوی سفرهای شهر: از کجا به کجا.',
+   'نقشه', 'leaflet', '/hobby/snapp_s-t_heatmap.html'],
+  ['نقشهٔ محصولات کاله در اسنپ',
+   'کدام محصول در کدام محله موجود است.',
+   'نقشه', 'leaflet', '/hobby/kalleh_snapp_products.html'],
+  ['ابر واژگان گنجور',
+   'پرتکرارترین واژه‌های شعر فارسی، از کل گنجور.',
+   'نمودار', 'wordcloud', '/hobby/ganjoor_wordcloud.html'],
+  ['شبیه‌ساز کرون‌جاب',
+   'عبارت cron را بنویس و ببین کِی اجرا می‌شود.',
+   'ابزار', 'js', '/hobby/cron.html'],
+  ['سیستم نوبت‌دهی مطب',
+   'یک نمونهٔ کامل مدیریت نوبت.',
+   'ابزار', 'js', '/hobby/clinic-appointment.html'],
+  ['مقایسهٔ ابعاد کیس کامپیوتر',
+   'ابعاد چند کیس را کنار هم بگذار و مقایسه کن.',
+   'ابزار', 'd3', '/hobby/compare-boxes.html']
+];
+document.getElementById('o-list').innerHTML =
+  '<table class="dataframe"><thead><tr><th></th><th>title</th><th>kind</th>' +
+  '<th class="hide-sm">built_with</th><th class="hide-sm">about</th></tr></thead><tbody>' +
+  WORKS.map(function(w,i){
+    return '<tr><th class="l mono">'+i+'</th>' +
+      '<td class="tt"><a href="'+w[4]+'">'+w[0]+'</a></td>' +
+      '<td><span class="tag">'+w[2]+'</span></td>' +
+      '<td class="l mono hide-sm">'+w[3]+'</td>' +
+      '<td class="ds hide-sm">'+w[1]+'</td></tr>';
+  }).join('') +
+  '</tbody></table><div class="df-shape code">8 rows × 4 columns</div>';
+
+Lab.chrome({ active: 'hobby', tab: { name: 'index.ipynb', href: '/hobby/' } });
+Lab.wire();
+Lab.runAll();
+</script>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177888668-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-177888668-1');
+</script>
+</body>
+</html>

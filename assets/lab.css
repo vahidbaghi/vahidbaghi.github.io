@@ -1,0 +1,309 @@
+/* vahidbaghi.ir — the site as a notebook.
+   Colour tokens follow @jupyterlab/theme-light-extension and -dark-extension
+   so the chrome reads as the real application in both themes. */
+:root{
+  --jp-layout0:#ffffff; --jp-layout1:#ffffff; --jp-layout2:#eeeeee; --jp-layout3:#bdbdbd;
+  --jp-border1:#e0e0e0; --jp-border2:#bdbdbd;
+  --jp-ui-font-color1:rgba(0,0,0,.87); --jp-ui-font-color2:rgba(0,0,0,.54);
+  --jp-ui-font-color3:rgba(0,0,0,.38);
+  --jp-content-font-color1:rgba(0,0,0,.87); --jp-content-font-color3:rgba(0,0,0,.38);
+  --jp-brand1:#2196f3; --jp-brand2:#42a5f5;
+  --jp-editor-bg:#f7f7f7; --jp-editor-border:#cfcfcf;
+  --jp-in-prompt:#307fc1; --jp-out-prompt:#bf5b3d;
+  --jp-toolbar-bg:#ffffff; --jp-toolbar-border:#e0e0e0;
+  --jp-warn:#e08e00; --jp-hover:rgba(0,0,0,.06);
+  --jp-cell-hover:#f5f5f5; --jp-active-bar:#2196f3;
+  --cm-kw:#008000; --cm-str:#ba2121; --cm-com:#408080; --cm-num:#666666;
+  --cm-def:#0000ff; --cm-op:#aa22ff; --cm-builtin:#008000; --cm-var:#212121;
+  --mpl-c0:#1f77b4; --mpl-c1:#ff7f0e; --mpl-c2:#2ca02c; --mpl-c3:#d62728;
+  --mpl-axis:rgba(0,0,0,.7); --mpl-grid:rgba(0,0,0,.10); --mpl-fig:#ffffff;
+  --hm0:#f7fbff; --hm1:#deebf7; --hm2:#c6dbef; --hm3:#9ecae1;
+  --hm4:#6baed6; --hm5:#3182bd; --hm6:#08519c;
+  --hm-ink-lo:#08306b; --hm-ink-hi:#ffffff;
+  --scrim:rgba(0,0,0,.42);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --jp-layout0:#111111; --jp-layout1:#212121; --jp-layout2:#424242; --jp-layout3:#616161;
+  --jp-border1:#616161; --jp-border2:#757575;
+  --jp-ui-font-color1:rgba(255,255,255,.87); --jp-ui-font-color2:rgba(255,255,255,.54);
+  --jp-ui-font-color3:rgba(255,255,255,.38);
+  --jp-content-font-color1:rgba(255,255,255,.87); --jp-content-font-color3:rgba(255,255,255,.38);
+  --jp-editor-bg:#212121; --jp-editor-border:#464646;
+  --jp-in-prompt:#68a9e0; --jp-out-prompt:#d98060;
+  --jp-toolbar-bg:#212121; --jp-toolbar-border:#464646;
+  --jp-warn:#f0b429; --jp-hover:rgba(255,255,255,.08); --jp-cell-hover:#1b1b1b;
+  --cm-kw:#7ec699; --cm-str:#e5928a; --cm-com:#7fb2b2; --cm-num:#b8b8b8;
+  --cm-def:#79b8ff; --cm-op:#c792ea; --cm-builtin:#7ec699; --cm-var:#e0e0e0;
+  --mpl-c0:#5fa8dd; --mpl-c1:#ffa14a; --mpl-c2:#5ec25e; --mpl-c3:#ef5f60;
+  --mpl-axis:rgba(255,255,255,.72); --mpl-grid:rgba(255,255,255,.13); --mpl-fig:#212121;
+  --hm0:#1b232c; --hm1:#22374b; --hm2:#2a4a68; --hm3:#356090;
+  --hm4:#4179b8; --hm5:#5596d6; --hm6:#7ab6ec;
+  --hm-ink-lo:#a7c6e2; --hm-ink-hi:#0c1a26;
+  --scrim:rgba(0,0,0,.62);
+}}
+:root[data-theme="dark"]{
+  --jp-layout0:#111111; --jp-layout1:#212121; --jp-layout2:#424242; --jp-layout3:#616161;
+  --jp-border1:#616161; --jp-border2:#757575;
+  --jp-ui-font-color1:rgba(255,255,255,.87); --jp-ui-font-color2:rgba(255,255,255,.54);
+  --jp-ui-font-color3:rgba(255,255,255,.38);
+  --jp-content-font-color1:rgba(255,255,255,.87); --jp-content-font-color3:rgba(255,255,255,.38);
+  --jp-editor-bg:#212121; --jp-editor-border:#464646;
+  --jp-in-prompt:#68a9e0; --jp-out-prompt:#d98060;
+  --jp-toolbar-bg:#212121; --jp-toolbar-border:#464646;
+  --jp-warn:#f0b429; --jp-hover:rgba(255,255,255,.08); --jp-cell-hover:#1b1b1b;
+  --cm-kw:#7ec699; --cm-str:#e5928a; --cm-com:#7fb2b2; --cm-num:#b8b8b8;
+  --cm-def:#79b8ff; --cm-op:#c792ea; --cm-builtin:#7ec699; --cm-var:#e0e0e0;
+  --mpl-c0:#5fa8dd; --mpl-c1:#ffa14a; --mpl-c2:#5ec25e; --mpl-c3:#ef5f60;
+  --mpl-axis:rgba(255,255,255,.72); --mpl-grid:rgba(255,255,255,.13); --mpl-fig:#212121;
+  --hm0:#1b232c; --hm1:#22374b; --hm2:#2a4a68; --hm3:#356090;
+  --hm4:#4179b8; --hm5:#5596d6; --hm6:#7ab6ec;
+  --hm-ink-lo:#a7c6e2; --hm-ink-hi:#0c1a26;
+  --scrim:rgba(0,0,0,.62);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--jp-layout1);color:var(--jp-content-font-color1);
+  font-family:Vazirmatn,system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:14px;line-height:1.6;overflow:hidden;-webkit-font-smoothing:antialiased;
+  -webkit-text-size-adjust:100%}
+/* Vazirmatn sits in the mono stack on purpose: without it every Persian run in a
+   code cell falls back to a face with no Arabic shaping and comes out as
+   spaced-apart letterforms. */
+.code,code,pre{font-family:"JetBrains Mono",Menlo,Consolas,"DejaVu Sans Mono",
+  Vazirmatn,monospace;font-size:13px;line-height:1.3077;font-variant-ligatures:none}
+.rtl{direction:rtl;text-align:right}
+a{color:var(--jp-brand1)}
+
+/* ─── app shell ─────────────────────────────────────────────── */
+.jp-app{display:flex;height:100%;background:var(--jp-layout1)}
+
+.jp-bar{width:48px;flex:0 0 48px;background:var(--jp-layout2);border-right:1px solid var(--jp-border1);
+  display:flex;flex-direction:column;align-items:center;padding-top:4px;gap:2px}
+.jp-bar button{width:40px;height:40px;display:grid;place-items:center;background:transparent;
+  border:0;border-left:2px solid transparent;cursor:pointer;color:var(--jp-ui-font-color2);padding:0}
+.jp-bar button:hover{background:var(--jp-hover);color:var(--jp-ui-font-color1)}
+.jp-bar button.on{background:var(--jp-layout1);border-left-color:var(--jp-brand1);
+  color:var(--jp-ui-font-color1)}
+.jp-bar button:focus-visible{outline:1px solid var(--jp-brand1);outline-offset:-3px}
+.jp-bar .gap{flex:1}
+.jp-bar svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round}
+
+.jp-side{width:214px;flex:0 0 214px;background:var(--jp-layout1);
+  border-right:1px solid var(--jp-border1);display:flex;flex-direction:column;overflow:hidden}
+.jp-side.hide{display:none}
+.jp-side h3{margin:0;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--jp-ui-font-color2);padding:11px 12px 9px;border-bottom:1px solid var(--jp-border1);
+  display:flex;align-items:center;justify-content:space-between}
+.jp-side h3 button{display:none;background:transparent;border:0;color:var(--jp-ui-font-color2);
+  font-size:18px;line-height:1;cursor:pointer;padding:0 4px}
+.jp-tree{overflow-y:auto;padding:4px 0;flex:1;font-size:13px;-webkit-overflow-scrolling:touch}
+.jp-tree a,.jp-tree .dir{display:flex;align-items:center;gap:7px;padding:5px 12px;
+  color:var(--jp-ui-font-color1);text-decoration:none;white-space:nowrap}
+.jp-tree a:hover,.jp-tree .dir:hover{background:var(--jp-hover)}
+.jp-tree a.on{background:var(--jp-brand1);color:#fff}
+.jp-tree a:focus-visible{outline:1px solid var(--jp-brand1);outline-offset:-1px}
+.jp-tree .ind{padding-left:26px}
+.jp-tree svg{width:15px;height:15px;flex:0 0 15px}
+.ic-dir{fill:var(--jp-ui-font-color2)}
+.ic-file{fill:var(--jp-ui-font-color3)}
+.jp-side .foot{border-top:1px solid var(--jp-border1);padding:8px 12px;font-size:11px;
+  color:var(--jp-ui-font-color3)}
+.jp-scrim{display:none;position:fixed;inset:0;background:var(--scrim);z-index:19}
+.jp-scrim.on{display:block}
+
+.jp-main{flex:1;display:flex;flex-direction:column;min-width:0;background:var(--jp-layout1)}
+
+/* tab bar */
+.jp-tabs{display:flex;background:var(--jp-layout2);border-bottom:1px solid var(--jp-border1);
+  min-height:29px;flex:0 0 auto;align-items:stretch;overflow-x:auto;scrollbar-width:none}
+.jp-tabs::-webkit-scrollbar{display:none}
+.jp-tab{display:flex;align-items:center;gap:7px;padding:0 8px 0 11px;font-size:12.5px;
+  color:var(--jp-ui-font-color2);border-right:1px solid var(--jp-border1);background:transparent;
+  cursor:pointer;white-space:nowrap;border-top:2px solid transparent;text-decoration:none;
+  max-width:56vw;overflow:hidden}
+.jp-tab.on{background:var(--jp-layout1);color:var(--jp-ui-font-color1);
+  border-top-color:var(--jp-brand1);margin-bottom:-1px}
+.jp-tab:hover{background:var(--jp-layout1)}
+.jp-tab .nm{overflow:hidden;text-overflow:ellipsis}
+.jp-tab svg{width:14px;height:14px;flex:0 0 14px}
+.jp-tab .x{opacity:.45;font-size:15px;line-height:1;padding:2px 4px;border-radius:2px;flex:0 0 auto}
+.jp-tab .x:hover{opacity:1;background:var(--jp-hover)}
+
+/* toolbar */
+.jp-toolbar{display:flex;align-items:center;gap:1px;min-height:33px;flex:0 0 auto;padding:0 5px;
+  background:var(--jp-toolbar-bg);border-bottom:1px solid var(--jp-toolbar-border)}
+.jp-tb{width:28px;height:26px;display:grid;place-items:center;background:transparent;border:0;
+  border-radius:2px;cursor:pointer;color:var(--jp-ui-font-color1);padding:0;flex:0 0 auto}
+.jp-tb:hover{background:var(--jp-hover)}
+.jp-tb:focus-visible{outline:1px solid var(--jp-brand1);outline-offset:-1px}
+.jp-tb svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round}
+.jp-tb.fill svg{fill:currentColor;stroke:none}
+.jp-sep{width:1px;height:18px;background:var(--jp-border1);margin:0 5px;flex:0 0 auto}
+.jp-ctype{font:inherit;font-size:12px;height:24px;padding:0 6px;border:1px solid var(--jp-border2);
+  border-radius:2px;background:var(--jp-layout1);color:var(--jp-ui-font-color1);cursor:pointer}
+.jp-toolbar .sp{flex:1}
+.jp-kernel{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--jp-ui-font-color2);
+  padding-right:6px;white-space:nowrap}
+.jp-kdot{width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor;flex:0 0 9px}
+.jp-kernel.busy .jp-kdot{background:currentColor;animation:kb 1.05s ease-in-out infinite}
+@keyframes kb{50%{opacity:.3}}
+#jp-menu{display:none}
+
+/* ─── notebook ──────────────────────────────────────────────── */
+.jp-nb{flex:1;overflow-y:auto;overflow-x:hidden;background:var(--jp-layout1);
+  padding:12px 0 22vh;-webkit-overflow-scrolling:touch}
+.jp-cell{display:flex;padding:0 12px;position:relative}
+.jp-cellrun{position:absolute;top:3px;left:22px;width:22px;height:22px;display:none;
+  place-items:center;border:1px solid var(--jp-border2);border-radius:3px;cursor:pointer;
+  background:var(--jp-layout1);color:var(--jp-ui-font-color2);padding:0;z-index:2}
+.jp-cell:hover .jp-cellrun,.jp-cell.sel .jp-cellrun{display:grid}
+.jp-cell[data-manual] .jp-cellrun{display:grid;color:var(--jp-brand1);border-color:var(--jp-brand1)}
+@media (hover:none){ .jp-cellrun{display:grid} }
+.jp-cellrun:hover{color:var(--jp-brand1);border-color:var(--jp-brand1)}
+.jp-cellrun svg{width:11px;height:11px;fill:currentColor;stroke:none}
+.jp-cell:hover .jp-collapser{background:var(--jp-layout3)}
+.jp-cell.sel .jp-collapser{background:var(--jp-active-bar)}
+.jp-collapser{width:8px;flex:0 0 8px;background:transparent;border-radius:2px;margin:2px 0;
+  cursor:pointer;transition:background .12s}
+.jp-inner{flex:1;min-width:0;padding:2px 0}
+.jp-io{display:flex;align-items:flex-start}
+/* a class selector outranks the user-agent [hidden] rule, so say it here */
+.jp-io[hidden]{display:none}
+.jp-prompt{flex:0 0 64px;width:64px;text-align:right;padding:5px 8px 0 0;
+  font-family:"JetBrains Mono",Menlo,Consolas,monospace;font-size:12px;line-height:1.3077;
+  color:var(--jp-in-prompt);user-select:none;overflow:hidden;white-space:nowrap}
+.jp-prompt.out{color:var(--jp-out-prompt)}
+.jp-editor{flex:1;min-width:0;background:var(--jp-editor-bg);border:1px solid var(--jp-editor-border);
+  border-radius:2px;padding:4px 8px;overflow-x:auto}
+.jp-cell.sel .jp-editor{border-color:var(--jp-brand1)}
+.jp-editor pre{margin:0;white-space:pre;color:var(--cm-var)}
+/* Persian inside a left-to-right code line has to be isolated or the line
+   reorders itself; every Persian run in a cell is wrapped in <bdi>. */
+.jp-editor bdi{direction:rtl;unicode-bidi:isolate}
+.jp-outputs{flex:1;min-width:0;padding:4px 0 2px;overflow-x:auto}
+.jp-out-txt{margin:0;white-space:pre-wrap;color:var(--jp-content-font-color1);
+  unicode-bidi:plaintext;display:inline-block;max-width:100%;vertical-align:top}
+.jp-out-repr{margin:0;white-space:pre-wrap;color:var(--jp-content-font-color3);font-size:12px}
+
+/* markdown cell */
+.jp-md{flex:1;min-width:0;padding:5px 0 5px 64px}
+.jp-md h1{font-size:29px;font-weight:600;margin:.1em 0 .35em;line-height:1.3;text-wrap:balance}
+.jp-md h2{font-size:22px;font-weight:600;margin:1.1em 0 .4em;line-height:1.35}
+.jp-md h3{font-size:17px;font-weight:600;margin:1em 0 .35em}
+/* JupyterLab lets markdown run the full width; at desktop widths that is a
+   120-character line, so prose is capped at a readable measure. */
+.jp-md p,.jp-md li,.jp-md blockquote,.jp-md .note{max-width:74ch}
+.jp-md p{margin:0 0 .85em}
+.jp-md p:last-child{margin-bottom:0}
+.jp-md ul,.jp-md ol{margin:0 0 .85em;padding-inline-start:1.6em}
+.jp-md li{margin-bottom:.25em}
+.jp-md code{background:var(--jp-editor-bg);border:1px solid var(--jp-editor-border);
+  border-radius:2px;padding:0 4px}
+.jp-md blockquote{margin:0 0 .9em;padding:2px 14px;border-inline-start:3px solid var(--jp-border2);
+  color:var(--jp-ui-font-color2)}
+.jp-md hr{border:0;border-top:1px solid var(--jp-border1);margin:1.4em 0}
+.jp-md img{max-width:100%;height:auto;border-radius:2px}
+.jp-md figure{margin:0}
+.jp-md figcaption{color:var(--jp-ui-font-color2);font-size:12px;padding-top:7px;text-align:center;
+  max-width:none}
+
+/* syntax */
+.k{color:var(--cm-kw);font-weight:600}
+.s{color:var(--cm-str)}
+.c{color:var(--cm-com);font-style:italic}
+.n{color:var(--cm-num)}
+.b{color:var(--cm-builtin)}
+.o{color:var(--cm-op)}
+.f{color:var(--cm-def)}
+
+/* ─── pandas dataframe repr ────────────────────────────────── */
+table.dataframe{border-collapse:collapse;border:none;font-size:13px;
+  font-family:Vazirmatn,system-ui,sans-serif}
+table.dataframe thead th{border-bottom:1px solid var(--jp-content-font-color1);
+  padding:.35em .6em;text-align:right;font-weight:700;vertical-align:bottom;white-space:nowrap}
+table.dataframe tbody th{padding:.28em .6em;text-align:right;font-weight:600;
+  color:var(--jp-ui-font-color2);white-space:nowrap}
+table.dataframe tbody td{padding:.28em .6em;text-align:right;vertical-align:middle}
+/* mixed Persian/Latin cells take their direction from their own first letter */
+table.dataframe td,table.dataframe th{unicode-bidi:plaintext}
+table.dataframe .num,table.dataframe .mono{direction:ltr;unicode-bidi:isolate}
+table.dataframe tbody tr:nth-child(odd){background:var(--jp-cell-hover)}
+table.dataframe tbody tr:hover{background:var(--jp-hover)}
+table.dataframe td.l,table.dataframe th.l{text-align:left}
+table.dataframe .num{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px;
+  font-variant-numeric:tabular-nums}
+table.dataframe a{color:var(--jp-brand1);text-decoration:none}
+table.dataframe a:hover{text-decoration:underline}
+.df-shape{color:var(--jp-content-font-color3);font-size:12px;padding-top:6px}
+/* some exported tables compare pictures rather than numbers */
+table.dataframe img.thumb{max-width:150px;height:auto;border-radius:2px;display:block;
+  margin:2px auto}
+
+/* ─── ipywidgets ───────────────────────────────────────────── */
+.w-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap}
+.w-lab{font-size:13px;color:var(--jp-content-font-color1);min-width:62px;text-align:right}
+.w-sel,.w-txt{font:inherit;font-size:16px;height:32px;padding:0 8px;border-radius:2px;
+  border:1px solid var(--jp-border2);background:var(--jp-layout1);color:var(--jp-ui-font-color1)}
+@media (min-width:700px){ .w-sel,.w-txt{font-size:13px;height:28px} }
+.w-sel:focus,.w-txt:focus{outline:none;border-color:var(--jp-brand1);
+  box-shadow:0 0 0 2px rgba(33,150,243,.2)}
+.w-tog{display:flex;border:1px solid var(--jp-border2);border-radius:2px;overflow:hidden}
+.w-tog button{font:inherit;font-size:13px;min-height:30px;padding:0 12px;border:0;cursor:pointer;
+  background:var(--jp-layout1);color:var(--jp-ui-font-color1);border-right:1px solid var(--jp-border2)}
+.w-tog button:last-child{border-right:0}
+.w-tog button:hover{background:var(--jp-hover)}
+.w-tog button.on{background:var(--jp-brand1);color:#fff}
+.w-btn{font:inherit;font-size:13px;min-height:30px;padding:0 13px;border-radius:2px;cursor:pointer;
+  border:1px solid var(--jp-border2);background:var(--jp-layout1);color:var(--jp-ui-font-color1)}
+.w-btn:hover{background:var(--jp-hover)}
+
+/* ─── figures ──────────────────────────────────────────────── */
+.fig{background:var(--mpl-fig);display:inline-block;max-width:100%;border-radius:2px}
+.fig svg{display:block;max-width:100%;height:auto}
+.fig text{font-family:"DejaVu Sans",Vazirmatn,system-ui,sans-serif}
+
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--jp-layout3);border-radius:6px;
+  border:3px solid var(--jp-layout1)}
+::-webkit-scrollbar-thumb:hover{background:var(--jp-ui-font-color3)}
+
+/* ─── phone and small tablet ───────────────────────────────── */
+@media (max-width:900px){
+  .jp-bar{display:none}
+  #jp-menu{display:grid}
+  /* the file browser becomes a drawer over the notebook */
+  .jp-side{position:fixed;top:0;bottom:0;left:0;width:262px;max-width:82vw;z-index:20;
+    transform:translateX(-101%);transition:transform .22s cubic-bezier(.4,0,.2,1);
+    box-shadow:2px 0 22px rgba(0,0,0,.28);display:flex}
+  .jp-side.open{transform:translateX(0)}
+  .jp-side.hide{display:flex}
+  .jp-side h3 button{display:block}
+  .jp-tree a,.jp-tree .dir{padding:9px 14px;font-size:14px}
+}
+@media (max-width:700px){
+  .jp-toolbar{padding:0 3px}
+  .jp-toolbar .opt{display:none}         /* editing buttons no phone user will press */
+  .jp-kernel span:not(.jp-kdot){display:none}
+  .jp-ctype{display:none}
+  .jp-cell{padding:0 8px}
+  .jp-collapser{width:5px;flex-basis:5px}
+  /* wide enough for Out[12]: — a narrower gutter clips the prompt */
+  .jp-prompt{flex-basis:52px;width:52px;font-size:10px;padding-right:6px}
+  .jp-md{padding-left:52px}
+  .jp-md h1{font-size:23px}
+  .jp-md h2{font-size:19px}
+  .jp-cellrun{left:14px;width:20px;height:20px}
+  /* a figure shrunk to phone width is unreadable, so it keeps its size and the
+     output area scrolls sideways instead */
+  .fig svg{max-width:none}
+  .jp-outputs{overflow-x:auto}
+  .jp-nb{padding-bottom:30vh}
+  table.dataframe{font-size:12.5px}
+  table.dataframe thead th,table.dataframe tbody th,table.dataframe tbody td{padding:.3em .45em}
+  .hide-sm{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
