@@ -64,6 +64,7 @@ var Lab = (function () {
   function chrome(o) {
     o = o || {};
     var act = o.active;
+    if (act) document.body.classList.add('pg-' + act);
     var tabs = BASE_TABS.slice();
     if (o.tab) tabs.push({ name: o.tab.name, href: o.tab.href, id: act, extra: true });
     var closed = closedTabs();

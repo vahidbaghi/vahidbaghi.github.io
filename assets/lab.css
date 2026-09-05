@@ -189,14 +189,27 @@ a{color:var(--jp-brand1)}
 .jp-out-repr{margin:0;white-space:pre-wrap;color:var(--jp-content-font-color3);font-size:12px}
 
 /* markdown cell */
-.jp-md{flex:1;min-width:0;padding:5px 0 5px 64px}
+.jp-md{flex:1;min-width:0;padding:5px 0 5px 64px;overflow-wrap:anywhere}
 .jp-md h1{font-size:29px;font-weight:600;margin:.1em 0 .35em;line-height:1.3;text-wrap:balance}
 .jp-md h2{font-size:22px;font-weight:600;margin:1.1em 0 .4em;line-height:1.35}
 .jp-md h3{font-size:17px;font-weight:600;margin:1em 0 .35em}
 /* JupyterLab lets markdown run the full width; at desktop widths that is a
    120-character line, so prose is capped at a readable measure. */
-.jp-md p,.jp-md li,.jp-md blockquote,.jp-md .note{max-width:74ch}
-.jp-md p{margin:0 0 .85em}
+.jp-md,.jp-outputs{--col:680px}
+.jp-md p,.jp-md li,.jp-md blockquote,.jp-md .note{max-width:var(--col)}
+.jp-md p{margin:0 0 .85em;text-align:justify;overflow-wrap:anywhere}
+/* figures and embeds share the prose column and its right edge, so a post reads
+   as one aligned column instead of text hugging the right and images floating mid-cell */
+.jp-outputs .figout{width:100%;max-width:var(--col);margin:0 0 0 auto}
+.jp-outputs .figout img{max-width:100%}
+.jp-outputs .embed{width:100%;max-width:var(--col);margin:0 0 0 auto;border:1px solid var(--jp-border1);
+  border-radius:2px;background:#fff;overflow:hidden}
+.jp-outputs .embed iframe{width:100%;border:0;display:block}
+/* inside a post every output sits on the prose column; elsewhere tables keep
+   JupyterLab's left placement */
+.pg-post .jp-outputs>table.dataframe{margin-left:auto}
+.jp-outputs .embed .open{display:block;text-align:right;font-size:12px;padding:5px 8px;
+  border-top:1px solid var(--jp-border1);color:var(--jp-brand1);background:var(--jp-layout2)}
 .jp-md p:last-child{margin-bottom:0}
 .jp-md ul,.jp-md ol{margin:0 0 .85em;padding-inline-start:1.6em}
 .jp-md li{margin-bottom:.25em}
