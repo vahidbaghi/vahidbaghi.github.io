@@ -4,22 +4,48 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>وحید باقی</title>
-<meta name="description" content="چیزهای دوروبرم را اندازه می‌گیرم و نتیجه‌اش را می‌نویسم — خیابان‌های تهران، ارقام عدد پی، قیمت بسته‌های اینترنت، و هر چیزی که بشود شمرد.">
+<meta name="description" content="با داده کار می‌کنم؛ مدل می‌سازم و سامانه‌های هوش مصنوعی را از نوت‌بوک تا پروداکشن می‌برم. راه‌های ارتباطی همین‌جاست.">
 <meta property="og:title" content="وحید باقی">
-<meta property="og:description" content="چیزهای دوروبرم را اندازه می‌گیرم و نتیجه‌اش را می‌نویسم.">
+<meta property="og:description" content="با داده کار می‌کنم؛ مدل می‌سازم و سامانه‌های هوش مصنوعی را سرِ پا نگه می‌دارم.">
 <meta property="og:type" content="website">
 <link rel="icon" href="/favicon.ico">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="/assets/lab.css">
 <style>
-/* the social row: one monospace mark per platform, so the column reads as a
-   single system instead of eight mismatched logos */
-.lnk-tile{display:inline-grid;place-items:center;width:23px;height:23px;border-radius:3px;
-  border:1px solid var(--jp-border2);font-family:"JetBrains Mono",monospace;font-size:10px;
-  font-weight:500;color:var(--jp-ui-font-color2);letter-spacing:-.03em;flex:0 0 23px;direction:ltr}
-tr:hover .lnk-tile{border-color:var(--jp-brand1);color:var(--jp-brand1)}
-.lnk-cell{display:flex;align-items:center;gap:9px;justify-content:flex-start;direction:rtl}
-.lnk-cell .nm{direction:ltr}
+/* the intro: a lede that reads a size larger than the body text */
+/* a 74ch measure at this size is a very long line; the lede reads narrower */
+.jp-md p.lede{font-size:16.5px;line-height:1.85;max-width:54ch}
+.lede strong{font-weight:600}
+@media (max-width:700px){ .jp-md p.lede{font-size:15px} }
+
+/* the contact row: the real platform mark, drawn in the platform's own colour */
+.lnk-tile{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:7px;
+  border:1px solid var(--jp-border1);background:var(--jp-editor-bg);color:var(--bc,var(--jp-ui-font-color2));
+  flex:0 0 28px;transition:border-color .14s,background .14s,transform .14s}
+.lnk-tile svg{width:15px;height:15px;fill:currentColor;display:block}
+tr:hover .lnk-tile{border-color:var(--bc);background:var(--bcs);transform:translateY(-1px)}
+.lnk-cell{display:flex;align-items:center;gap:10px;justify-content:flex-start;direction:rtl;
+  text-decoration:none}
+.lnk-cell .nm{direction:ltr;font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
+tr:hover .lnk-cell .nm{text-decoration:underline}
+
+/* one hue per platform; the two near-black marks flip with the theme so they
+   never disappear into the page */
+.b-github  {--bc:#24292f;--bcs:rgba(36,41,47,.09)}
+.b-kaggle  {--bc:#20a7e0;--bcs:rgba(32,167,224,.12)}
+.b-linkedin{--bc:#0a66c2;--bcs:rgba(10,102,194,.12)}
+.b-twitter {--bc:#0f1419;--bcs:rgba(15,20,25,.09)}
+.b-telegram{--bc:#229ed9;--bcs:rgba(34,158,217,.12)}
+.b-youtube {--bc:#e62117;--bcs:rgba(230,33,23,.12)}
+.b-instagram{--bc:#d6266b;--bcs:rgba(214,38,107,.12)}
+.b-email   {--bc:#ea4335;--bcs:rgba(234,67,53,.12)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .b-github,
+  :root:not([data-theme="light"]) .b-twitter{--bc:#e6edf3;--bcs:rgba(230,237,243,.12)}
+}
+:root[data-theme="dark"] .b-github,:root[data-theme="dark"] .b-twitter{
+  --bc:#e6edf3;--bcs:rgba(230,237,243,.12)}
+
 .mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
 .jp-editor .live{outline:none;display:inline-block;min-width:9ch;direction:rtl}
 .jp-editor .live:focus{background:var(--jp-layout1);box-shadow:0 0 0 3px rgba(33,150,243,.14)}
@@ -33,13 +59,16 @@ tr:hover .lnk-tile{border-color:var(--jp-brand1);color:var(--jp-brand1)}
     <div class="jp-collapser"></div>
     <div class="jp-md rtl">
       <h1>وحید باقی</h1>
-      <p>چیزهای دوروبرم را اندازه می‌گیرم و نتیجه‌اش را می‌نویسم — خیابان‌های تهران، ارقام عدد پی،
+      <p class="lede">با داده کار می‌کنم: مدل آموزش می‌دهم، سامانه‌های <strong>هوش مصنوعی</strong> می‌سازم
+         و آن‌ها را از یک نوت‌بوکِ شلوغ تا چیزی که روی سرور سرِ پا می‌ماند می‌برم.</p>
+      <p class="lede">بقیهٔ وقتم صرف اندازه‌گیریِ چیزهای دوروبرم می‌شود — خیابان‌های تهران، ارقام عدد پی،
          قیمت بسته‌های اینترنت، و هر چیزی که بشود شمرد.</p>
+      <p>این صفحه خودش یک نوت‌بوک است؛ سلول‌ها را می‌شود اجرا کرد — آخری را بگذار برای خودت.</p>
       <hr>
     </div>
   </div>
 
-  <div class="jp-cell" data-exec="profile">
+  <div class="jp-cell" data-exec="links">
     <div class="jp-collapser"></div>
     <div class="jp-inner">
       <div class="jp-io">
@@ -48,78 +77,11 @@ tr:hover .lnk-tile{border-color:var(--jp-brand1);color:var(--jp-brand1)}
 <span class="k">import</span> curiosity <span class="k">as</span> cu
 
 me <span class="o">=</span> cu<span class="o">.</span><span class="f">load</span>(<span class="s">"vahidbaghi.ir"</span>)
-me<span class="o">.</span>profile</pre></div>
+me<span class="o">.</span>contacts<span class="o">.</span><span class="f">sort_values</span>(<span class="s">"platform"</span>)</pre></div>
       </div>
       <div class="jp-io res">
         <div class="jp-prompt out">Out[1]:</div>
-        <div class="jp-outputs"><div id="o-profile"></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="jp-cell" data-exec="links">
-    <div class="jp-collapser"></div>
-    <div class="jp-inner">
-      <div class="jp-io">
-        <div class="jp-prompt">[2]:</div>
-        <div class="jp-editor"><pre>me<span class="o">.</span>links<span class="o">.</span><span class="f">sort_values</span>(<span class="s">"platform"</span>)</pre></div>
-      </div>
-      <div class="jp-io res">
-        <div class="jp-prompt out">Out[2]:</div>
         <div class="jp-outputs"><div id="o-links"></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="jp-cell" data-exec="cal">
-    <div class="jp-collapser"></div>
-    <div class="jp-inner">
-      <div class="jp-io">
-        <div class="jp-prompt">[3]:</div>
-        <div class="jp-editor"><pre><span class="c"># <bdi>کِی می‌نویسم؟ ماه‌های تقویم جلالی در برابر سال</bdi></span>
-cal <span class="o">=</span> me<span class="o">.</span>posts<span class="o">.</span><span class="f">pivot_table</span>(index<span class="o">=</span><span class="s">"year"</span>, columns<span class="o">=</span><span class="s">"month"</span>,
-                            values<span class="o">=</span><span class="s">"id"</span>, aggfunc<span class="o">=</span><span class="s">"count"</span>, fill_value<span class="o">=</span><span class="n">0</span>)
-plt<span class="o">.</span><span class="f">imshow</span>(cal, cmap<span class="o">=</span><span class="s">"Blues"</span>, aspect<span class="o">=</span><span class="s">"auto"</span>)</pre></div>
-      </div>
-      <div class="jp-io res">
-        <div class="jp-prompt out"></div>
-        <div class="jp-outputs">
-          <pre class="jp-out-repr code">&lt;matplotlib.image.AxesImage at 0x7f2a1c4b8e50&gt;</pre>
-          <div class="fig" id="o-cal"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="jp-cell" data-exec="topic">
-    <div class="jp-collapser"></div>
-    <div class="jp-inner">
-      <div class="jp-io">
-        <div class="jp-prompt">[4]:</div>
-        <div class="jp-editor"><pre><span class="c"># <bdi>و دربارهٔ چه چیزهایی؟</bdi></span>
-me<span class="o">.</span>posts<span class="o">.</span>topic<span class="o">.</span><span class="f">value_counts</span>()<span class="o">.</span>plot<span class="o">.</span><span class="f">barh</span>(color<span class="o">=</span><span class="s">"C0"</span>)</pre></div>
-      </div>
-      <div class="jp-io res">
-        <div class="jp-prompt out"></div>
-        <div class="jp-outputs">
-          <pre class="jp-out-repr code">&lt;Axes: ylabel='topic'&gt;</pre>
-          <div class="fig" id="o-topic"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="jp-cell" data-exec="sample">
-    <div class="jp-collapser"></div>
-    <div class="jp-inner">
-      <div class="jp-io">
-        <div class="jp-prompt">[5]:</div>
-        <div class="jp-editor"><pre><span class="c"># <bdi>نمی‌دانی از کجا شروع کنی؟ پنج‌تا شانسی</bdi></span>
-me<span class="o">.</span>posts<span class="o">.</span><span class="f">sample</span>(<span class="n">5</span>)[[<span class="s">"title"</span>, <span class="s">"year"</span>, <span class="s">"topic"</span>]]</pre></div>
-      </div>
-      <div class="jp-io res">
-        <div class="jp-prompt out">Out[5]:</div>
-        <div class="jp-outputs"><div id="o-sample"></div></div>
       </div>
     </div>
   </div>
@@ -128,12 +90,12 @@ me<span class="o">.</span>posts<span class="o">.</span><span class="f">sample</s
     <div class="jp-collapser"></div>
     <div class="jp-inner">
       <div class="jp-io">
-        <div class="jp-prompt">[6]:</div>
+        <div class="jp-prompt">[2]:</div>
         <div class="jp-editor"><pre><span class="c"># <bdi>پیام‌ات را داخل گیومه بنویس، بعد ▶ را بزن</bdi></span>
 me<span class="o">.</span><span class="f">send</span>(<span class="s">"</span><span class="s live" contenteditable="true" role="textbox" aria-label="متن پیام">سلام وحید،</span><span class="s">"</span>)</pre></div>
       </div>
       <div class="jp-io res">
-        <div class="jp-prompt out">Out[6]:</div>
+        <div class="jp-prompt out">Out[2]:</div>
         <div class="jp-outputs"><pre class="jp-out-txt code" id="o-send"></pre></div>
       </div>
     </div>
@@ -142,170 +104,51 @@ me<span class="o">.</span><span class="f">send</span>(<span class="s">"</span><s
 </div>
 
 <script src="/assets/lab.js"></script>
-<script src="/assets/posts.js"></script>
 <script>
-var fa = Lab.fa;
-var YEARS = [1399,1400,1401,1402,1403];
-var MON = ["فرو","ارد","خرد","تیر","مرد","شهر","مهر","آبا","آذر","دی","بهم","اسف"];
+/* brand marks, from the platforms' own logos, on a 24×24 grid */
+var ICON = {
+github:'M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12',
+kaggle:'M18.66 21.16l-6.05-7.62-1.61 1.53v5.73c0 .2-.1.3-.3.3H8.35c-.2 0-.3-.1-.3-.3V2.85c0-.2.1-.3.3-.3h2.35c.2 0 .3.1.3.3v11.32l5.1-5.12c.14-.14.28-.21.42-.21h3.04c.18 0 .29.08.31.24.02.11-.01.2-.09.28l-5.39 5.21 5.63 7.04c.08.1.1.2.06.29-.04.09-.13.14-.25.14h-3.05c-.16 0-.3-.07-.42-.2z',
+linkedin:'M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z',
+twitter:'M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z',
+telegram:'M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z',
+youtube:'M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z',
+instagram:'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z',
+email:'M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z'
+};
+function mark(n){
+  return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="'+ICON[n]+'"/></svg>';
+}
+
 var LINKS = [
-  ["gh","github",   "vahidbaghi",   "https://github.com/vahidbaghi"],
-  ["kg","kaggle",   "johntukey",    "https://www.kaggle.com/johntukey"],
-  ["in","linkedin", "vahid-baghi",  "https://ir.linkedin.com/in/vahid-baghi-0452baa9"],
-  ["tw","twitter",  "vahidbaghi95", "https://twitter.com/vahidbaghi95"],
-  ["tg","telegram", "vahidbaghi",   "https://t.me/vahidbaghi"],
-  ["yt","youtube",  "vahidbaghi",   "https://www.youtube.com/channel/UClT4ufrOX9yg0eIfgvt5Bgg"],
-  ["ig","instagram","vahidbaghi",   "https://www.instagram.com/vahidbaghi/"],
-  ["em","email",    "vbaghi",       "mailto:vbaghi@gmail.com"]
+  ["email",    "vbaghi",       "mailto:vbaghi@gmail.com"],
+  ["github",   "vahidbaghi",   "https://github.com/vahidbaghi"],
+  ["instagram","vahidbaghi",   "https://www.instagram.com/vahidbaghi/"],
+  ["kaggle",   "johntukey",    "https://www.kaggle.com/johntukey"],
+  ["linkedin", "vahid-baghi",  "https://ir.linkedin.com/in/vahid-baghi-0452baa9"],
+  ["telegram", "vahidbaghi",   "https://t.me/vahidbaghi"],
+  ["twitter",  "vahidbaghi95", "https://twitter.com/vahidbaghi95"],
+  ["youtube",  "vahidbaghi",   "https://www.youtube.com/channel/UClT4ufrOX9yg0eIfgvt5Bgg"]
 ];
-var ARTICLES = POSTS.filter(function(r){ return r[5] === "پست" });
 
 /* ── Out[1] ─────────────────────────────────────────────────── */
-var first = ARTICLES[0], last = ARTICLES[ARTICLES.length-1];
-function d3(r){ return fa(r[2])+'/'+fa(('0'+r[3]).slice(-2))+'/'+fa(('0'+r[4]).slice(-2)) }
-var PROFILE = [
-  ["name","وحید باقی"], ["role","تحلیل‌گر داده"], ["base","تهران"],
-  ["first_post", d3(first)], ["last_post", d3(last)],
-  ["posts", fa(ARTICLES.length)],
-  ["interactive", fa(POSTS.length - ARTICLES.length)]
-];
-document.getElementById('o-profile').innerHTML =
-  '<table class="dataframe"><thead><tr><th></th><th>value</th></tr></thead><tbody>' +
-  PROFILE.map(function (r) {
-    var num = /^[۰-۹\/]+$/.test(r[1]);
-    return '<tr><th class="l mono">'+r[0]+'</th><td'+(num?' class="num"':'')+'>'+r[1]+'</td></tr>';
-  }).join('') + '</tbody></table>';
-
-/* ── Out[2] ─────────────────────────────────────────────────── */
 document.getElementById('o-links').innerHTML =
   '<table class="dataframe"><thead><tr><th></th><th>platform</th><th>handle</th>' +
   '<th class="l hide-sm">url</th></tr></thead><tbody>' +
   LINKS.map(function (l, i) {
-    var shown = l[3].replace(/^https?:\/\/(www\.)?/,'').replace(/^mailto:/,'');
-    return '<tr><th class="l mono">'+i+'</th>' +
-      '<td><a href="'+l[3]+'" target="_blank" rel="noopener" class="lnk-cell">' +
-      '<span class="lnk-tile">'+l[0]+'</span><span class="nm">'+l[1]+'</span></a></td>' +
-      '<td class="mono">'+l[2]+'</td>' +
-      '<td class="l mono hide-sm"><a href="'+l[3]+'" target="_blank" rel="noopener">'+shown+'</a></td></tr>';
-  }).join('') + '</tbody></table>';
-
-/* ── matplotlib-flavoured svg ───────────────────────────────── */
-function el(t,a,k){var s='<'+t;for(var p in a)s+=' '+p+'="'+a[p]+'"';return s+'>'+(k||'')+'</'+t+'>'}
-function box(x,y,w,h){return el('rect',{x:x,y:y,width:w,height:h,fill:'none',
-  stroke:'var(--mpl-axis)','stroke-width':.9})}
-function txt(x,y,s,o){o=o||{};return el('text',{x:x,y:y,'font-size':o.size||10.5,
-  fill:o.fill||'var(--mpl-axis)','text-anchor':o.anchor||'middle','font-weight':o.w||400},s)}
-function tick(a,b,c,d){return el('line',{x1:a,y1:b,x2:c,y2:d,stroke:'var(--mpl-axis)','stroke-width':.9})}
-function avail(id){
-  var n = document.getElementById(id).parentNode;
-  return Math.max(300, Math.floor(n.getBoundingClientRect().width) - 4);
-}
-
-/* ── Out[3] activity calendar ───────────────────────────────── */
-var CAL = (function(){
-  var g = []; for (var i=0;i<5;i++) g.push(new Array(12).fill(0));
-  ARTICLES.forEach(function(r){ g[YEARS.indexOf(r[2])][r[3]-1]++ });
-  return g;
-})();
-var CALMAX = Math.max.apply(null, CAL.map(function(r){return Math.max.apply(null,r)}));
-
-function drawCal(){
-  var wide = avail('o-cal') >= 640;
-  /* on a phone the twelve month columns cannot fit, so the grid is transposed:
-     months down the side, years across */
-  var rows = wide ? 5 : 12, cols = wide ? 12 : 5;
-  var rowLab = wide ? YEARS.map(fa) : MON, colLab = wide ? MON : YEARS.map(fa);
-  function val(r,c){ return wide ? CAL[r][c] : CAL[c][r] }
-
-  var pad = wide ? 84 : 52, W = Math.min(avail('o-cal'), wide ? 720 : 420);
-  var right = wide ? 56 : 34;
-  var pw = W - pad - right, cw = pw / cols, ch = wide ? 30 : 22, H = ch * rows;
-  var Y0 = 44, g = '';
-  g += txt(pad + pw/2, 26, 'تعداد پست در هر ماه', {size:12.5, w:600});
-  for (var r=0;r<rows;r++) for (var c=0;c<cols;c++){
-    var v = val(r,c), step = v===0 ? 0 : 1 + Math.round(v/CALMAX*5);
-    g += el('rect',{x:(pad+c*cw).toFixed(1), y:(Y0+r*ch).toFixed(1),
-      width:cw.toFixed(1), height:ch.toFixed(1), fill:'var(--hm'+Math.min(6,step)+')'});
-    if (v) g += txt(pad+c*cw+cw/2, Y0+r*ch+ch/2+3.6, fa(v),
-      {size:10.5, fill: v>=3 ? 'var(--hm-ink-hi)' : 'var(--hm-ink-lo)', w:600});
-  }
-  g += box(pad, Y0, pw, H);
-  for (var c2=0;c2<cols;c2++){
-    g += tick(pad+c2*cw+cw/2, Y0+H, pad+c2*cw+cw/2, Y0+H+3.5);
-    g += txt(pad+c2*cw+cw/2, Y0+H+15, colLab[c2], {size:10});
-  }
-  for (var r2=0;r2<rows;r2++){
-    g += tick(pad-3.5, Y0+r2*ch+ch/2, pad, Y0+r2*ch+ch/2);
-    g += txt(pad-7, Y0+r2*ch+ch/2+3.6, rowLab[r2], {size:10.5, anchor:'end'});
-  }
-  var CB = pad + pw + 18, defs = '<defs><linearGradient id="cbg" x1="0" y1="1" x2="0" y2="0">' +
-    [0,1,2,3,4,5,6].map(function(i){
-      return '<stop offset="'+(i/6*100).toFixed(0)+'%" stop-color="var(--hm'+i+')"/>';
-    }).join('') + '</linearGradient></defs>';
-  g += el('rect',{x:CB, y:Y0, width:13, height:H, fill:'url(#cbg)',
-    stroke:'var(--mpl-axis)','stroke-width':.9});
-  for (var v2=0; v2<=CALMAX; v2++){
-    var yy = Y0 + H - v2/CALMAX*H;
-    g += tick(CB+13, yy, CB+16, yy) + txt(CB+19, yy+3.6, fa(v2), {size:9.5, anchor:'start'});
-  }
-  document.getElementById('o-cal').innerHTML =
-    '<svg viewBox="0 0 '+W+' '+(Y0+H+30)+'" width="'+W+'" role="img" ' +
-    'aria-label="تقویم فعالیت انتشار">' + defs + g + '</svg>';
-}
-
-/* ── Out[4] topics ──────────────────────────────────────────── */
-function drawTopic(){
-  var m = {};
-  POSTS.forEach(function(r){ m[r[7]] = (m[r[7]]||0) + 1 });
-  var rows = Object.keys(m).map(function(k){return [k,m[k]]})
-    .sort(function(a,b){return a[1]-b[1]});          /* barh puts the largest on top */
-  var W = Math.min(avail('o-topic'), 660);
-  var pad = Math.min(150, Math.max(96, W*0.28));
-  var pw = W - pad - 34, max = 10, Y0 = 30, rh = 21, H = rows.length*rh, g = '';
-  g += box(pad, Y0, pw, H);
-  var ticks = pw > 300 ? [0,2,4,6,8,10] : [0,5,10];
-  ticks.forEach(function(v){
-    var xx = pad + v/max*pw;
-    g += el('line',{x1:xx,y1:Y0,x2:xx,y2:Y0+H,stroke:'var(--mpl-grid)','stroke-width':.8});
-    g += tick(xx,Y0+H,xx,Y0+H+3.5) + txt(xx,Y0+H+15,fa(v),{size:10});
-  });
-  rows.forEach(function(r,i){
-    var y = Y0 + H - (i+1)*rh + rh*.2, h = rh*.6;
-    g += el('rect',{x:pad, y:y.toFixed(1), width:(r[1]/max*pw).toFixed(1),
-      height:h.toFixed(1), fill:'var(--mpl-c0)'});
-    g += txt(pad-7, y+h/2+3.6, r[0], {size:10.5, anchor:'end'});
-    g += txt(pad + r[1]/max*pw + 6, y+h/2+3.6, fa(r[1]),
-      {size:10, anchor:'start', fill:'var(--jp-ui-font-color3)'});
-  });
-  g += txt(pad+pw/2, Y0+H+33, 'تعداد پست و نوت‌بوک', {size:10.5});
-  document.getElementById('o-topic').innerHTML =
-    '<svg viewBox="0 0 '+W+' '+(Y0+H+44)+'" width="'+W+'" role="img" ' +
-    'aria-label="موضوع‌ها بر حسب تعداد">' + g + '</svg>';
-}
-
-/* ── Out[5] five at random ──────────────────────────────────── */
-function sample(){
-  var pool = POSTS.slice(), pick = [];
-  for (var i=0; i<5 && pool.length; i++)
-    pick.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);
-  document.getElementById('o-sample').innerHTML =
-    '<table class="dataframe"><thead><tr><th></th><th>title</th><th>year</th>' +
-    '<th class="hide-sm">topic</th></tr></thead><tbody>' +
-    pick.map(function(r){
-      return '<tr><th class="l mono">'+r[0]+'</th>' +
-        '<td><a href="'+r[8]+'">'+r[1]+'</a></td>' +
-        '<td class="num">'+fa(r[2])+'</td><td class="hide-sm">'+r[7]+'</td></tr>';
-    }).join('') + '</tbody></table>';
-}
+    var shown = l[2].replace(/^https?:\/\/(www\.)?/,'').replace(/^mailto:/,'');
+    return '<tr class="b-'+l[0]+'"><th class="l mono">'+i+'</th>' +
+      '<td><a href="'+l[2]+'" target="_blank" rel="noopener" class="lnk-cell">' +
+      '<span class="lnk-tile">'+mark(l[0])+'</span><span class="nm">'+l[0]+'</span></a></td>' +
+      '<td class="mono">'+l[1]+'</td>' +
+      '<td class="l mono hide-sm"><a href="'+l[2]+'" target="_blank" rel="noopener">'+shown+'</a></td></tr>';
+  }).join('') +
+  '</tbody></table><div class="df-shape">' + Lab.fa(LINKS.length) + ' rows × ۳ columns</div>';
 
 /* ── boot ───────────────────────────────────────────────────── */
-function drawAll(){ drawCal(); drawTopic() }
 Lab.chrome({ active: 'home' });
-Lab.wire({ sample: sample, cal: drawCal, topic: drawTopic });
-sample(); drawAll();
+Lab.wire({});
 Lab.runAll();
-
-var rt;
-addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(drawAll, 180) });
 
 var live = document.querySelector('.jp-editor .live');
 live.addEventListener('focus', function(){
@@ -315,7 +158,6 @@ live.addEventListener('keydown', function(e){ if (e.key === 'Enter') e.preventDe
 
 /* the contact cell is the one cell the reader runs; it posts the message on */
 var ENDPOINT = 'https://hello-world-wild-field-dc82.vbaghi.workers.dev/?message=';
-Lab.wire.send = null;
 document.querySelector('[data-exec="send"] .jp-cellrun')
   .addEventListener('click', function(){
     var out = document.getElementById('o-send'), msg = live.textContent.trim();
