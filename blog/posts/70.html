@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>یک چالش وب‌اسکرپینگ که خودش خودش را می‌شکند — وحید باقی</title>
+<meta name="description" content="چند درصد آخر ظرفیت هفتگی Claude مونده بود، گفتم یه کاری کنم که تموم بشه. اومدم باهاش یه چالش web scraping درست کنم: یک صفحه‌ی مقاوم که نشه دیتاش رو را">
+<meta property="og:title" content="یک چالش وب‌اسکرپینگ که خودش خودش را می‌شکند">
+<meta property="og:description" content="چند درصد آخر ظرفیت هفتگی Claude مونده بود، گفتم یه کاری کنم که تموم بشه. اومدم باهاش یه چالش web scraping درست کنم: یک صفحه‌ی مقاوم که نشه دیتاش رو را">
+<meta property="og:type" content="article">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css">
+<style>
+.meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;color:var(--jp-ui-font-color2);
+  font-size:12.5px;margin:-.2em 0 1.5em;max-width:none}
+.meta .dot{width:3px;height:3px;border-radius:50%;background:var(--jp-border2);flex:0 0 3px}
+.meta .tag{border:1px solid var(--jp-border2);border-radius:2px;padding:0 7px;font-size:11.5px}
+.meta .mono{direction:ltr;font-family:"JetBrains Mono",Menlo,monospace}
+.mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
+.figout{margin:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.figout img{max-width:min(100%,720px);height:auto;border:1px solid var(--jp-border1);
+  border-radius:2px;display:block;margin:0 auto}
+.figout figcaption{color:var(--jp-ui-font-color2);font-size:12px;padding-top:8px;
+  max-width:60ch;text-align:center}
+.src-note{border-inline-start:3px solid var(--jp-border2);padding:2px 14px;
+  color:var(--jp-ui-font-color2);font-size:13px}
+.src-note a{color:var(--jp-brand1)}
+</style>
+</head>
+<body>
+<div id="cells" hidden>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h1>یک چالش وب‌اسکرپینگ که خودش خودش را می‌شکند</h1>
+      <div class="meta"><span class="mono">۱۴۰۵/۰۵/۱۶</span><span class="dot"></span><span class="tag">تپه‌نوردی</span><span class="dot"></span><span>امنیت</span></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>چند درصد آخر ظرفیت هفتگی Claude مونده بود، گفتم یه کاری کنم که تموم بشه. اومدم باهاش یه چالش web scraping درست کنم: یک صفحه‌ی مقاوم که نشه دیتاش رو راحت برداشت.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>البته از اول هم می‌دونستم هیچ راهی در مقابل OCR وجود نداره. فقط می‌شه کار رو سخت کرد که طول بکشه طرف اسکرین‌شات بگیره و بعد OCR کنه. یا نهایتاً می‌تونی rate limit سختی بذاری که هر اکانت مثلاً ۱۰ تا رکورد بتونه ببینه.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>روال کار این شد: بهش می‌گفتم می‌خوام فتح پرچم انجام بدی. می‌رفت خودش رو دو ساعت پاره می‌کرد و بعد موفق می‌شد. نتایج رو دوباره تو یه سشن دیگه می‌دادم به خودش و می‌گفتم در مقابل این هم مقاومش کن. این کار رو بارها به شکل‌های مختلف انجام دادم — یعنی خودش attack طراحی می‌کرد و خودش در مقابل همون attack مقاومش می‌کرد.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>اما هنوز هم تو یک سشن دیگه که بهش می‌گم پرچم رو فتح کن، دوباره موفق می‌شه.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>برام کلاً سؤال شده که تا کجا می‌خواد ادامه بده. یعنی چقدر سوراخ وجود داره که هنوز پیداشون نکرده.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <div class="src-note"><p style="margin:0">این کار را اول در <a href="https://t.me/Dataphil/658" target="_blank" rel="noopener">کانال تلگرام</a> گذاشتم؛ این نوشته همان است، کمی کامل‌تر.</p></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[1]:</div>
+        <div class="jp-editor"><pre>nb<span class="o">.</span><span class="f">neighbours</span>()</pre></div></div>
+      <div class="jp-io"><div class="jp-prompt out">Out[1]:</div>
+        <div class="jp-outputs"><table class="dataframe"><thead><tr><th></th><th>title</th><th>date</th></tr></thead><tbody><tr><th class="l mono">prev</th><td><a href="/blog/posts/69.html">مردم کِی دلار می‌خرند؟</a></td><td class="num">۱۴۰۵/۰۴</td></tr></tbody></table></div></div>
+    </div>
+  </div>
+</div>
+<script src="/assets/lab.js"></script>
+<script>
+Lab.chrome({ active:'post', tab:{ name:'post_70.ipynb', href:'/blog/posts/70.html' } });
+Lab.wire();
+Lab.kernel(false);
+</script>
+</body>
+</html>

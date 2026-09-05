@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ژانرهای IMDb زیر ذره‌بین! — وحید باقی</title>
+<meta name="description" content="دیتاست عمومی IMDb رو برداشتم و رفتم سراغ یه سؤال ساده: میانگین امتیاز فیلم‌ها و سریال‌ها در ژانرهای مختلف چقدره؟ فایل‌هایی که استفاده کردم اینا بودن:">
+<meta property="og:title" content="ژانرهای IMDb زیر ذره‌بین!">
+<meta property="og:description" content="دیتاست عمومی IMDb رو برداشتم و رفتم سراغ یه سؤال ساده: میانگین امتیاز فیلم‌ها و سریال‌ها در ژانرهای مختلف چقدره؟ فایل‌هایی که استفاده کردم اینا بودن:">
+<meta property="og:type" content="article">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css">
+<style>
+.meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;color:var(--jp-ui-font-color2);
+  font-size:12.5px;margin:-.2em 0 1.5em;max-width:none}
+.meta .dot{width:3px;height:3px;border-radius:50%;background:var(--jp-border2);flex:0 0 3px}
+.meta .tag{border:1px solid var(--jp-border2);border-radius:2px;padding:0 7px;font-size:11.5px}
+.meta .mono{direction:ltr;font-family:"JetBrains Mono",Menlo,monospace}
+.mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
+.figout{margin:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.figout img{max-width:min(100%,720px);height:auto;border:1px solid var(--jp-border1);
+  border-radius:2px;display:block;margin:0 auto}
+.figout figcaption{color:var(--jp-ui-font-color2);font-size:12px;padding-top:8px;
+  max-width:60ch;text-align:center}
+.src-note{border-inline-start:3px solid var(--jp-border2);padding:2px 14px;
+  color:var(--jp-ui-font-color2);font-size:13px}
+.src-note a{color:var(--jp-brand1)}
+</style>
+</head>
+<body>
+<div id="cells" hidden>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h1>ژانرهای IMDb زیر ذره‌بین!</h1>
+      <div class="meta"><span class="mono">۱۴۰۴/۰۲/۱۴</span><span class="dot"></span><span class="tag">تپه‌نوردی</span><span class="tag">وب‌نوردی</span><span class="dot"></span><span>رسانه</span></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>دیتاست عمومی IMDb رو برداشتم و رفتم سراغ یه سؤال ساده: میانگین امتیاز فیلم‌ها و سریال‌ها در ژانرهای مختلف چقدره؟ فایل‌هایی که استفاده کردم اینا بودن:</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt">[1]:</div>
+      <div class="jp-editor"><pre>https://datasets.imdbws.com/title.episode.tsv.gz
+https://datasets.imdbws.com/title.ratings.tsv.gz</pre></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>در نمودار زیر، رنگ قرمز سریال‌هاست و رنگ آبی که زیر نمودار قرمز قرار گرفته، فیلم‌ها. یعنی تقریباً در هر ژانری، سریال‌ها امتیاز بالاتری می‌گیرن.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[1]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/64-1.jpg" alt="میانگین امتیاز فیلم‌ها و سریال‌ها به تفکیک ژانر" loading="lazy"><figcaption>میانگین امتیاز فیلم‌ها و سریال‌ها به تفکیک ژانر</figcaption></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>میانگین به‌تنهایی گول‌زننده‌ست، پس همین امتیازها رو از دید Box Plot هم نگاه کردم که ببینم میانه و پراکندگی در ژانرهای مختلف چه شکلیه:</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[2]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/64-2.jpg" alt="توزیع امتیازها در هر ژانر" loading="lazy"><figcaption>توزیع امتیازها در هر ژانر</figcaption></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>و آخرین چیزی که برام جالب بود، روند میانگین امتیازها در طول زمان بود:</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[3]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/64-3.jpg" alt="روند میانگین امتیاز ژانرها در طول سال‌ها" loading="lazy"><figcaption>روند میانگین امتیاز ژانرها در طول سال‌ها</figcaption></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <div class="src-note"><p style="margin:0">این کار را اول در <a href="https://t.me/Dataphil/255" target="_blank" rel="noopener">کانال تلگرام</a> گذاشتم؛ این نوشته همان است، کمی کامل‌تر.</p></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[2]:</div>
+        <div class="jp-editor"><pre>nb<span class="o">.</span><span class="f">neighbours</span>()</pre></div></div>
+      <div class="jp-io"><div class="jp-prompt out">Out[4]:</div>
+        <div class="jp-outputs"><table class="dataframe"><thead><tr><th></th><th>title</th><th>date</th></tr></thead><tbody><tr><th class="l mono">prev</th><td><a href="/blog/posts/63.html">سریال‌هایی که هر فصلشان بهتر تمام می‌شود</a></td><td class="num">۱۴۰۴/۰۱</td></tr><tr><th class="l mono">next</th><td><a href="/blog/posts/65.html">ارزان‌ترین و گران‌ترین کالای دیجی‌کالا، هر ۱۲ ساعت</a></td><td class="num">۱۴۰۴/۰۲</td></tr></tbody></table></div></div>
+    </div>
+  </div>
+</div>
+<script src="/assets/lab.js"></script>
+<script>
+Lab.chrome({ active:'post', tab:{ name:'post_64.ipynb', href:'/blog/posts/64.html' } });
+Lab.wire();
+Lab.kernel(false);
+</script>
+</body>
+</html>

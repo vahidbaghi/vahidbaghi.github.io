@@ -116,7 +116,11 @@ cu<span class="o">.</span><span class="f">title_patterns</span>(df)</pre></div>
 })();
 
 var fa = Lab.fa;
-var YEARS = [1399,1400,1401,1402,1403];
+/* derived, so a post from a new year needs no edit here */
+var YEARS = (function(){
+  var s = {}; POSTS.forEach(function(r){ s[r[2]] = 1 });
+  return Object.keys(s).map(Number).sort(function(a,b){return a-b});
+})();
 var CATS  = ["تپه‌نوردی","وب‌نوردی","توییتر نوردی","کاربردی","حل تمرین"];
 var TYPES = ["پست","نقشه","ابزار","نمودار"];
 /* recurring title formulas, found by n-gram over the real titles */
@@ -243,7 +247,9 @@ function crossfilter(){
   function sy(i){ return Y0+H-i/seq.length*H }
   g += txt(X0+PW/2, 19, 'پست‌های انباشته در طول زمان', {size:11.5,w:600});
   g += box(X0,Y0,PW,H);
-  [0,25,50].forEach(function(v){
+  var step = seq.length > 80 ? 50 : seq.length > 40 ? 25 : 10, yticks = [];
+  for (var v0 = 0; v0 <= seq.length; v0 += step) yticks.push(v0);
+  yticks.forEach(function(v){
     var yy=sy(v);
     g += el('line',{x1:X0,y1:yy,x2:X0+PW,y2:yy,stroke:'var(--mpl-grid)','stroke-width':.8});
     g += tick(X0-3.5,yy,X0,yy) + txt(X0-6,yy+3.6,fa(v),{size:10,anchor:'end'});

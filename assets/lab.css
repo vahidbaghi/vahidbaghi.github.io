@@ -241,6 +241,9 @@ table.dataframe a:hover{text-decoration:underline}
 /* some exported tables compare pictures rather than numbers */
 table.dataframe img.thumb{max-width:150px;height:auto;border-radius:2px;display:block;
   margin:2px auto}
+/* a caption sits inside the left-to-right output area, so it has to declare its
+   own direction or a Latin phrase in the middle reorders the sentence */
+.figout figcaption{unicode-bidi:plaintext}
 
 /* ─── ipywidgets ───────────────────────────────────────────── */
 .w-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;flex-wrap:wrap}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>هیت‌مپ آدم‌های اطرافِ تلگرام در تهران — وحید باقی</title>
+<meta name="description" content="همون‌طور که می‌دونید تلگرام یه قسمتی داشت به اسم Find People Nearby که افرادی که اطراف شما بودن و این گزینه رو فعال کرده بودن نشون می‌داد. چیزی که کمت">
+<meta property="og:title" content="هیت‌مپ آدم‌های اطرافِ تلگرام در تهران">
+<meta property="og:description" content="همون‌طور که می‌دونید تلگرام یه قسمتی داشت به اسم Find People Nearby که افرادی که اطراف شما بودن و این گزینه رو فعال کرده بودن نشون می‌داد. چیزی که کمت">
+<meta property="og:type" content="article">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css">
+<style>
+.meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;color:var(--jp-ui-font-color2);
+  font-size:12.5px;margin:-.2em 0 1.5em;max-width:none}
+.meta .dot{width:3px;height:3px;border-radius:50%;background:var(--jp-border2);flex:0 0 3px}
+.meta .tag{border:1px solid var(--jp-border2);border-radius:2px;padding:0 7px;font-size:11.5px}
+.meta .mono{direction:ltr;font-family:"JetBrains Mono",Menlo,monospace}
+.mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
+.figout{margin:0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.figout img{max-width:min(100%,720px);height:auto;border:1px solid var(--jp-border1);
+  border-radius:2px;display:block;margin:0 auto}
+.figout figcaption{color:var(--jp-ui-font-color2);font-size:12px;padding-top:8px;
+  max-width:60ch;text-align:center}
+.src-note{border-inline-start:3px solid var(--jp-border2);padding:2px 14px;
+  color:var(--jp-ui-font-color2);font-size:13px}
+.src-note a{color:var(--jp-brand1)}
+</style>
+</head>
+<body>
+<div id="cells" hidden>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h1>هیت‌مپ آدم‌های اطرافِ تلگرام در تهران</h1>
+      <div class="meta"><span class="mono">۱۴۰۳/۰۲/۲۸</span><span class="dot"></span><span class="tag">تپه‌نوردی</span><span class="tag">وب‌نوردی</span><span class="dot"></span><span>تهران و نقشه</span></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>همون‌طور که می‌دونید تلگرام یه قسمتی داشت به اسم Find People Nearby که افرادی که اطراف شما بودن و این گزینه رو فعال کرده بودن نشون می‌داد. چیزی که کمتر کسی بهش فکر می‌کرد این بود که این «اطراف» یه نقطه‌ی ثابت نیست — هر جا که باشی، لیستِ خودش رو می‌ده.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>من با API تلگرام به مدت ۱۲ ساعت دیتای کل تهران رو جمع کردم و نتیجه این هیت‌مپ شد.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[1]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/54-1.jpg" alt="تراکم افرادی که Find People Nearby را روشن گذاشته بودند" loading="lazy"><figcaption>تراکم افرادی که Find People Nearby را روشن گذاشته بودند</figcaption></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>نکته‌ی نگران‌کننده‌تر این بود که تلگرام فاصله‌ی تقریبی هر نفر رو هم می‌ده. یعنی با تکنیکی مثل trilaterate — سه بار اندازه‌گیری از سه نقطه‌ی مختلف — می‌شه مختصات تقریبی خودِ فرد رو پیدا کرد. من این کار رو نکردم، ولی شدنی بود.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>پ.ن. مدتی بعد تلگرام کلاً این فیچر رو حذف کرد. نمی‌دونم ربطی داشت یا نه 😁</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <div class="src-note"><p style="margin:0">این کار را اول در <a href="https://t.me/Dataphil/112" target="_blank" rel="noopener">کانال تلگرام</a> و <a href="https://x.com/vahidbaghi95/status/1791399886144852361" target="_blank" rel="noopener">توییت</a> گذاشتم؛ این نوشته همان است، کمی کامل‌تر.</p></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[1]:</div>
+        <div class="jp-editor"><pre>nb<span class="o">.</span><span class="f">neighbours</span>()</pre></div></div>
+      <div class="jp-io"><div class="jp-prompt out">Out[2]:</div>
+        <div class="jp-outputs"><table class="dataframe"><thead><tr><th></th><th>title</th><th>date</th></tr></thead><tbody><tr><th class="l mono">prev</th><td><a href="/blog/posts/50.html">آب رو نریزید اونجا که می‌سوزه!</a></td><td class="num">۱۴۰۳/۰۲</td></tr><tr><th class="l mono">next</th><td><a href="/blog/posts/55.html">بازی‌ای که برنده‌اش هیچ‌کس نیست</a></td><td class="num">۱۴۰۳/۰۳</td></tr></tbody></table></div></div>
+    </div>
+  </div>
+</div>
+<script src="/assets/lab.js"></script>
+<script>
+Lab.chrome({ active:'post', tab:{ name:'post_54.ipynb', href:'/blog/posts/54.html' } });
+Lab.wire();
+Lab.kernel(false);
+</script>
+</body>
+</html>
