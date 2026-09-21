@@ -351,10 +351,101 @@ questions <span class="o">=</span> {
 
   <div class="jp-cell">
     <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p><strong>آپدیت دوشنبه، ۳۰ شهریور ۱۴۰۵ :</strong></p>
+      <h2>Laya چی؟</h2>
+      <p>یه مدل دیگه هم هست به اسم <a href="https://huggingface.co/convaiinnovations/laya" target="_blank" rel="noopener">Laya</a> از شرکت Convai Innovations که دقیقا همون کار Jev رو میکنه. همون شکل سوال ها (بله/خیر، چند گزینه‌ای و نمره) و همون جواب عددی بین ۰ تا ۱. فرقش اینه که متن‌بازه و میشه روی کامپیوتر خودتون اجراش کنید. یعنی بعد از اینکه دانلودش کردید نه اینترنت میخواد نه پول 🙂 توی صفحه‌ش هم ادعا کرده ۶ تا ۸ برابر از Jev سریع‌تره و روی چند تا بنچمارک هم دقیق‌تره.</p>
+      <p>گفتم خب اینم بذارم کنار بقیه! دو تا نسخه داره، یه نسخه انگلیسی و یه نسخه چندزبانه. یه ابزار کوچیک هم کنارش داده که خودش تشخیص میده متن انگلیسیه یا نه و میفرستش سمت نسخه مناسب. من همون ۶۶۶ تا نمونه رو با همون سوال های انگلیسی که به Jev داده بودم، تک به تک بهش دادم. پس باید با ستون «Jev با متن ساده» مقایسه‌ش کرد :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[10]:</div>
+      <div class="jp-outputs"><table class="dataframe">
+        <thead><tr><th></th><th class="fa">Jev با متن ساده</th><th>Laya</th></tr></thead>
+        <tbody>
+          <tr><th>چک کردن درستی ایمیل، تاریخ و … (۵۳۴ تا)</th><td class="num">۷۷.۹</td><td class="num">۵۰.۶</td></tr>
+          <tr><th>پیدا کردن شماره، ایمیل و لینک توی پیام (۱۳۲ تا)</th><td class="num">۱۰۰</td><td class="num">۳۰.۳</td></tr>
+        </tbody>
+      </table></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>یعنی چی؟ یعنی توی چک کردن درستی عملا شیر یا خط انداخت. توی پیام ها هم از شیر یا خط بدتر شد! چرا؟ چون تقریبا به هر سوالی گفت «بله». از اون ۱۳۲ تا سوال فقط جواب ۳۱ تاش «بله» بود ولی Laya به ۱۱۷ تاش گفت «بله». جدول زیر چند تا نمونه رو نشون میده. عدد ها احتمال «بله» هستن :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[11]:</div>
+      <div class="jp-outputs"><table class="dataframe">
+        <thead><tr><th>متن</th><th>سوال</th><th>جواب درست</th><th>Jev</th><th>Laya</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">ali.rezaei@gmail.com</td><td>ایمیل درسته؟</td><td>آره</td><td class="num ok">۰.۹۴</td><td class="num no">۰.۱۰</td></tr>
+          <tr><td class="mono">9:05</td><td>ساعت به شکل HH:MM هست؟</td><td>نه</td><td class="num no">۰.۹۳</td><td class="num ok">۰.۳۶</td></tr>
+          <tr><td>0912 123 4567 واتساپ دارم</td><td>ایمیل داره؟</td><td>نه</td><td class="num ok">۰.۰۱</td><td class="num no">۱.۰۰</td></tr>
+          <tr><td>صفر نهصد و دوازده، صد و بیست و سه، چهل و پنج، شصت و هفت شماره منه</td><td>لینک داره؟</td><td>نه</td><td class="num ok">۰.۰۱</td><td class="num no">۱.۰۰</td></tr>
+          <tr><td>ali.rezaei ات جیمیل دات کام</td><td>شماره داره؟</td><td>نه</td><td class="num ok">۰.۰۲</td><td class="num no">۱.۰۰</td></tr>
+          <tr><td>ali.rezaei [at] gmail [dot] com</td><td>ایمیل داره؟</td><td>آره</td><td class="num ok">۰.۹۹</td><td class="num no">۰.۳۰</td></tr>
+        </tbody>
+      </table></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>همونطور که می‌بینید یه جا که Jev سوتی داده بود رو درست گفت، ولی یه ایمیل کاملا سالم رو رد کرد و به پیامی که فقط شماره موبایل توشه با اطمینان کامل گفت ایمیل داره :/</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>نکنه من اشتباه تنظیمش کرده بودم؟</h2>
+      <p>اول باید مطمئن میشدم که مشکل از تنظیمات من نیست. برای همین مثال خود صفحه‌ش رو اجرا کردم (یه ایمیل که مشتری میگه دو بار ازش پول کم شده و باید بگه مال کدوم بخشه) و درست جواب داد. بعد ۸ تا تیتر خبری ساده بهش دادم، ۴ تا انگلیسی و ۴ تا فارسی، که بگه ورزشیه یا اقتصادی یا فناوری یا بین‌الملل. هر ۸ تا رو درست گفت. پس مدل سالمه و موضوع کلی یه متن رو می‌فهمه، ولی وقتی پای یه قانون دقیق وسط میاد (مثل همین آزمون ها) کم میاره.</p>
+      <p>نکته جالبش اینه که خود صفحه‌ش هم یه جا صادقانه نوشته که نسخه پایه، بدون اینکه روی داده خودتون آموزش ببینه، نزدیک شیر یا خط جواب میده. اون دقت بالایی که اعلام کرده مال نسخه‌ایه که روی همون بنچمارک آموزش دیده. عدد های Jev توی جدول مقایسه‌شون رو هم خودشون اندازه نگرفتن و از جای دیگه آوردن.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>سرعتش چی؟</h2>
+      <p>اینجا دیگه Laya برنده‌ست. هر سوال روی کارت گرافیک (RTX 3090) حدود ۲۱ میلی‌ثانیه طول کشید و روی CPU (Ryzen 9 7900X) حدود ۲۲۰ میلی‌ثانیه. اگه همون حساب ۱ میلیون تا رو بکنیم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[12]:</div>
+      <div class="jp-outputs"><table class="dataframe">
+        <thead><tr><th></th><th>زمان برای ۱ میلیون</th><th>هزینه برای ۱ میلیون</th></tr></thead>
+        <tbody>
+          <tr><th class="fa">regex (روی یه هسته CPU)</th><td>۰.۱۸ ثانیه</td><td>تقریبا صفر</td></tr>
+          <tr><th class="fa">Jev تک به تک، یکی بعد از دیگری</th><td>۸ روز</td><td>۱۶.۶ دلار</td></tr>
+          <tr><th class="fa">Laya تک به تک روی کارت گرافیک</th><td>۶ ساعت</td><td>مجانی</td></tr>
+          <tr><th class="fa">Laya تک به تک روی CPU</th><td>۲.۵ روز</td><td>مجانی</td></tr>
+        </tbody>
+      </table></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>البته Jev رو از ایران و با پروکسی صدا میزدم و حدود ۰.۵ ثانیه‌ش فقط رفت و برگشت اینترنت بود، پس بیشتر این فرق مال شبکه‌ست. ولی خب سرعت به چه دردی میخوره وقتی جواب درست نیست؟ 🙂</p>
+      <p>خلاصه اینکه Laya سریعه و مجانیه، ولی بدون اینکه روی داده خودتون آموزشش بدید، حداقل برای این کار ها به درد نمی‌خوره.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
     <div class="jp-inner">
-      <div class="jp-io"><div class="jp-prompt">[10]:</div>
+      <div class="jp-io"><div class="jp-prompt">[13]:</div>
         <div class="jp-editor"><pre>nb<span class="o">.</span><span class="f">neighbours</span>()</pre></div></div>
-      <div class="jp-io"><div class="jp-prompt out">Out[10]:</div>
+      <div class="jp-io"><div class="jp-prompt out">Out[13]:</div>
         <div class="jp-outputs"><table class="dataframe"><thead><tr><th></th><th>title</th><th>date</th></tr></thead><tbody><tr><th class="l mono">prev</th><td><a href="/blog/posts/70.html">یک چالش وب‌اسکرپینگ که خودش خودش را می‌شکند</a></td><td class="num">۱۴۰۵/۰۵</td></tr></tbody></table></div></div>
     </div>
   </div>
