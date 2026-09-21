@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>هوش مصنوعی جای regex رو میگیره؟! — وحید باقی</title>
+<meta name="description" content="چند روز پیش یه مدل جدید به اسم Jev به OpenRouter اضافه شد که متن نمی‌نویسه. یه متن بهش میدید و یه سوال بله/خیر می‌پرسید، اونم یه عدد بین ۰ تا ۱ برمی‌گردونه. گفتم ببینم میتونه جای regex رو بگیره یا نه.">
+<meta property="og:title" content="هوش مصنوعی جای regex رو میگیره؟!">
+<meta property="og:description" content="چند روز پیش یه مدل جدید به اسم Jev به OpenRouter اضافه شد که متن نمی‌نویسه. یه متن بهش میدید و یه سوال بله/خیر می‌پرسید، اونم یه عدد بین ۰ تا ۱ برمی‌گردونه. گفتم ببینم میتونه جای regex رو بگیره یا نه.">
+<meta property="og:type" content="article">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css">
+<style>
+.meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;color:var(--jp-ui-font-color2);
+  font-size:12.5px;margin:-.2em 0 1.5em;max-width:none}
+.meta .dot{width:3px;height:3px;border-radius:50%;background:var(--jp-border2);flex:0 0 3px}
+.meta .tag{border:1px solid var(--jp-border2);border-radius:2px;padding:0 7px;font-size:11.5px}
+.meta .mono{direction:ltr;font-family:"JetBrains Mono",Menlo,monospace}
+.mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
+/* +98, #fff and $ keep their order inside Persian sentences */
+.jp-md code,table.dataframe code{direction:ltr;unicode-bidi:isolate}
+/* cells that start with a Latin word but read as Persian */
+table.dataframe td.fa,table.dataframe th.fa{direction:rtl;unicode-bidi:isolate}
+table.dataframe td.ok{color:var(--mpl-c2)}
+table.dataframe td.no{color:var(--mpl-c3)}
+/* pandas Styler.bar, drawn from the right edge like the rest of the post */
+table.dataframe td.bar{background:linear-gradient(to left,
+  color-mix(in srgb,var(--mpl-c0) 30%,transparent) var(--w),transparent var(--w))}
+table.dataframe td.bar.c1{background:linear-gradient(to left,
+  color-mix(in srgb,var(--mpl-c1) 34%,transparent) var(--w),transparent var(--w))}
+</style>
+</head>
+<body>
+<div id="cells" hidden>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h1>هوش مصنوعی جای regex رو میگیره؟!</h1>
+      <div class="meta"><span class="mono">۱۴۰۵/۰۶/۳۰</span><span class="dot"></span><span class="tag">تپه‌نوردی</span><span class="dot"></span><span>هوش مصنوعی</span></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>چند روز پیش (۲۷ شهریور) یه مدل جدید به اسم Jev از شرکت TypeSafe به OpenRouter اضافه شد. این مدل با ChatGPT و بقیه رفقاش یه فرق اساسی داره. متن نمی‌نویسه! شما یه متن بهش میدید و یه سوال بله/خیر ازش می‌پرسید، اونم فقط یه عدد بین ۰ تا ۱ برمی‌گردونه که یعنی چقدر مطمئنه جواب «بله»ست.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>من میخواستم ببینم این مدل میتونه جای regex رو بگیره یا نه. یعنی به جای اینکه یه الگوی عجیب غریب بنویسیم، ازش بپرسیم «این ایمیل درسته؟» و تمام. اومدم یه بنچمارک درست کردم که سرعت، هزینه و دقتش رو هم در حالت تک به تک و هم در حالت بچ (batch) با regex مقایسه کنم.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>اول بیاید ببینیم regex چیه؟</h2>
+      <p>regex (عبارت منظم) به زبون آدمیزاد یه الگوئه که میگه یه متن باید چه شکلی باشه. مثلا وقتی توی یه سایت شماره موبایلتون رو وارد می‌کنید و میگه «شماره وارد شده صحیح نیست»، معمولا پشتش یه چیزی شبیه این نشسته :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[1]:</div>
+        <div class="jp-editor"><pre>re<span class="o">.</span><span class="f">match</span>(<span class="s">r'^(\+98|0098|98|0)?9\d{9}$'</span>, <span class="s">"09121234567"</span>)</pre></div></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>یعنی چی؟ یعنی اولش میتونه <code>+98</code> یا <code>0098</code> یا <code>98</code> یا <code>0</code> باشه (یا هیچی)، بعدش حتما <code>9</code> و بعدش دقیقا ۹ تا رقم دیگه. به همین سادگی! این الگو ها رو معمولا کسی از اول نمی‌نویسه و از اینترنت کپی میشن. من هم دقیقا همین regex های رایج رو برداشتم، یعنی همونایی که همه جا کپی شدن.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>Jev چه جوری کار میکنه؟</h2>
+      <p>یه درخواست ساده به Jev این شکلیه :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[2]:</div>
+        <div class="jp-editor"><pre>requests<span class="o">.</span><span class="f">post</span>(<span class="s">"https://openrouter.ai/api/alpha/decisions"</span>, headers<span class="o">=</span>headers, json<span class="o">=</span>{
+    <span class="s">"model"</span>: <span class="s">"~typesafe/jev-latest"</span>,
+    <span class="s">"state"</span>: <span class="s">"foo.bar@gmail.com"</span>,
+    <span class="s">"questions"</span>: {
+        <span class="s">"email"</span>: {<span class="s">"type"</span>: <span class="s">"noul"</span>,
+                  <span class="s">"instructions"</span>: <span class="s">"Is the state exactly one syntactically valid email address?"</span>}
+    }
+})<span class="o">.</span><span class="f">json</span>()</pre></div></div>
+      <div class="jp-io"><div class="jp-prompt out">Out[2]:</div>
+        <div class="jp-outputs"><pre class="jp-out-txt">{'model': 'typesafe/jev-1.13-20260917',
+ 'answers': {'email': {'type': 'noul', 'noul': 0.88}},
+ 'usage': {'input_tokens': 283, 'output_tokens': 20, 'cost': 1.1886e-05}}</pre></div></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p><code>state</code> همون متنیه که میخوایم در موردش سوال بپرسیم و <code>questions</code> هم سوال هامونه (<code>noul</code> یعنی سوال بله/خیر). اون <code>0.88</code> یعنی Jev ۸۸ درصد مطمئنه که این یه ایمیل درسته. من هر جا عدد بالای ۰.۵ بود جواب رو «بله» در نظر گرفتم. قیمتش هم اینجوریه که هر ۱ میلیون توکن ورودی ۰.۰۴۲ دلاره و خروجی مجانیه. توکن هم یعنی تیکه های کوچیک متن که مدل ها با اون حساب میکنن، تقریبا اندازه یه کلمه یا کمتر. همین سوال بالا ۲۸۳ توکن شد، یعنی حدود ۰.۰۰۰۰۱۲ دلار.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>چی رو با چی مقایسه کردم؟</h2>
+      <p>دو جور آزمون گذاشتم :</p>
+      <p><strong>۱. چک کردن درستی :</strong> یعنی یه متن رو بدیم و بپرسیم «این ایمیل درسته؟» یا «این تاریخ درسته؟». ۱۲ تا از الگو های رایج رو انتخاب کردم : ایمیل، آدرس سایت، IP، موبایل، کد ملی، تاریخ میلادی، تاریخ شمسی، کد رنگ (مثل <code>#fff</code>)، UUID، ساعت، رمز عبور قوی و «متن فقط فارسی». برای هر کدوم حدود ۴۴ تا نمونه ساختم که در مجموع شد ۵۳۴ تا. بعضیاش رو دستی نوشتم که عمدا تله داشته باشن (مثل <code>ali..rezaei@gmail.com</code> که دو تا نقطه پشت هم داره) و بقیه رو به صورت تصادفی ساختم.</p>
+      <p><strong>۲. پیدا کردن توی پیام :</strong> یعنی یه پیام فارسی بدیم و بپرسیم «توش شماره موبایل هست؟»، «ایمیل هست؟» و «لینک هست؟». ۴۴ تا پیام نوشتم که بعضیاش آدم رو میپیچونن. مثلا «شماره‌ام ۰۹۱۲-۱۲۳-۴۵۶۷ است» یا «ali.rezaei ات جیمیل دات کام». ۴۴ تا پیام ضربدر ۳ تا سوال میشه ۱۳۲ تا سوال.</p>
+      <p>جواب درست نمونه های بخش اول رو با کد معمولی پایتون (نه regex) حساب کردم که مطمئن باشم درسته. جواب پیام ها رو هم دستی زدم. به Jev هم دقیقا همون قانونی که regex چک میکنه رو به زبون انگلیسی گفتم. مثلا برای ایمیل بهش گفتم نقطه نباید اول یا آخر اسم باشه و دو تا نقطه هم نباید پشت هم بیاد.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>تک به تک یا بچ؟</h2>
+      <p>تک به تک یعنی هر بار یه نمونه بفرستیم و جوابش رو بگیریم. بچ یعنی یه جا ۱۰ یا ۱۰۰ یا ۱۰۰۰ تا نمونه رو با هم بفرستیم. مثل اینکه به جای اینکه ۱۰۰ بار تا سوپرمارکت برید و هر بار یه چیز بخرید، یه بار برید و ۱۰۰ تا چیز بخرید. چرا این مهمه؟ چون هر درخواست به Jev یه هزینه ثابت داره، درست مثل کرایه رفت و آمد تا سوپرمارکت. حدود ۲۷۰ تا توکن فقط خرج خود درخواست میشه، حالا چه یه نمونه توش باشه چه هزار تا.</p>
+      <p>نکته‌ای که وجود داره اینه که Jev خودش بچ نداره و هر درخواست فقط یه state (یعنی یه ورودی) میگیره. من اومدم چند تا نمونه رو گذاشتم توی یه JSON و برای هر کدوم یه سوال جدا پرسیدم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[3]:</div>
+        <div class="jp-editor"><pre>state <span class="o">=</span> {
+    <span class="s">"rules"</span>: {<span class="s">"email"</span>: <span class="s">"A valid email address: ..."</span>},
+    <span class="s">"items"</span>: {<span class="s">"i000"</span>: <span class="s">"ali..rezaei@gmail.com"</span>,
+              <span class="s">"i001"</span>: <span class="s">"user+tag@sub.example.co.uk"</span>}
+}
+questions <span class="o">=</span> {
+    <span class="s">"i000"</span>: {<span class="s">"type"</span>: <span class="s">"noul"</span>, <span class="s">"instructions"</span>: <span class="s">"Is items.i000 a valid email address? Apply rules.email strictly."</span>},
+    <span class="s">"i001"</span>: {<span class="s">"type"</span>: <span class="s">"noul"</span>, <span class="s">"instructions"</span>: <span class="s">"Is items.i001 a valid email address? Apply rules.email strictly."</span>}
+}</pre></div></div>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>سرعت و هزینه</h2>
+      <p>فرض کنید یه فایل دارید با ۱ میلیون تا ایمیل یا شماره موبایل و میخواید ببینید کدوماش درسته. جدول زیر نشون میده هر روش چقدر طول میکشه و چقدر خرج داره. البته من ۱ میلیون تا رو واقعا به Jev ندادم. سرعتی که توی آزمون اندازه گرفتم رو برای ۱ میلیون حساب کردم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[4]:</div>
+      <div class="jp-outputs"><table class="dataframe">
+        <thead><tr><th></th><th>زمان برای ۱ میلیون</th><th>هزینه برای ۱ میلیون</th></tr></thead>
+        <tbody>
+          <tr><th class="fa">regex (روی یه هسته CPU)</th><td>۰.۱۸ ثانیه</td><td>تقریبا صفر</td></tr>
+          <tr><th class="fa">Jev تک به تک، یکی بعد از دیگری</th><td>۸ روز</td><td>۱۶.۶ دلار</td></tr>
+          <tr><th class="fa">Jev تک به تک، ۱۶ تا همزمان</th><td>۱۴ ساعت</td><td>۱۶.۶ دلار</td></tr>
+          <tr><th class="fa">Jev، هر درخواست ۵۰۰ تا، ۱۰ درخواست همزمان</th><td>۲۱ دقیقه</td><td>۲.۲ دلار</td></tr>
+        </tbody>
+      </table></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>یعنی تو همون ۰.۶ ثانیه‌ای که Jev به یه سوال جواب میده، regex حدود ۴.۷ میلیون تا نمونه رو چک کرده! اگه بخوام یه جور دیگه بگم، اگه regex برای چک کردن یه چیزی ۱ ثانیه وقت بذاره، Jev تک به تک ۵۴ روز وقت میذاره 🙂</p>
+      <p>البته انصافا از اون ۰.۶ ثانیه، حدود ۰.۵ ثانیه‌ش رفت و برگشت اینترنته. من از ایران و با پروکسی به سرور های Jev توی آمریکا وصل میشدم. ولی حتی اگه شبکه رو کنار بذاریم، باز هم regex صدها هزار برابر سریع‌تره.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>بچ چقدر فرق میکنه؟</h2>
+      <p>حالا بریم سراغ اینکه اندازه بچ چه تاثیری داره. هر بار N تا ایمیل تازه رو توی یه درخواست فرستادم (هر اندازه رو ۳ بار) و زمان جواب و هزینه رو نوشتم. جدول زیر نتیجه‌ست :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[5]:</div>
+      <div class="jp-outputs"><table class="dataframe">
+        <thead><tr><th>تعداد در هر درخواست</th><th>زمان جواب (ثانیه)</th><th>هزینه هر ۱۰۰۰ تا (سنت)</th><th>توکن برای هر نمونه</th></tr></thead>
+        <tbody>
+          <tr><th class="num">۱</th><td class="num bar" style="--w:5%">۰.۴۷</td><td class="num bar c1" style="--w:100%">۱.۸۹</td><td class="num">۴۵۰</td></tr>
+          <tr><th class="num">۱۰</th><td class="num bar" style="--w:10%">۰.۸۹</td><td class="num bar c1" style="--w:20%">۰.۳۹</td><td class="num">۹۲</td></tr>
+          <tr><th class="num">۵۰</th><td class="num bar" style="--w:8%">۰.۶۹</td><td class="num bar c1" style="--w:13%">۰.۲۵</td><td class="num">۶۰</td></tr>
+          <tr><th class="num">۱۰۰</th><td class="num bar" style="--w:16%">۱.۴۳</td><td class="num bar c1" style="--w:12%">۰.۲۳</td><td class="num">۵۶</td></tr>
+          <tr><th class="num">۲۵۰</th><td class="num bar" style="--w:37%">۳.۳۵</td><td class="num bar c1" style="--w:12%">۰.۲۲</td><td class="num">۵۲</td></tr>
+          <tr><th class="num">۵۰۰</th><td class="num bar" style="--w:59%">۵.۳۲</td><td class="num bar c1" style="--w:11%">۰.۲۲</td><td class="num">۵۱</td></tr>
+          <tr><th class="num">۱,۰۰۰</th><td class="num bar" style="--w:100%">۸.۹۶</td><td class="num bar c1" style="--w:11%">۰.۲۱</td><td class="num">۵۱</td></tr>
+          <tr><th class="num">۲,۰۰۰</th><td>خطا داد!</td><td class="num">-</td><td class="num">-</td></tr>
+        </tbody>
+      </table></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>همونطور که می‌بینید از ۱ تا ۵۰، هزینه حدود ۷.۵ برابر کم میشه ولی زمان جواب تقریبا عوض نمیشه. از ۱۰۰ به بعد هزینه دیگه خیلی کم نمیشه ولی زمان جواب پشت سر هم زیاد میشه، به ازای هر نمونه حدود ۹ میلی‌ثانیه. ۲۰۰۰ تا رو هم کلا قبول نکرد و خطای <code>max_tokens_exceeded</code> داد. پس جای خوبش یه جایی بین ۵۰ تا ۱۰۰ تاست. دقتش هم توی بچ ۱۰۰۰ تایی هنوز ۹۸ درصد بود.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>کی درست‌تر جواب داد؟</h2>
+      <p>خب رسیدیم به سوال اصلی. جدول زیر نشون میده هر روش چند درصد جواب ها رو درست داده :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[6]:</div>
+      <div class="jp-outputs"><table class="dataframe">
+        <thead><tr><th></th><th class="fa">regex رایج</th><th class="fa">regex با پیش‌پردازش</th><th class="fa">Jev با متن ساده</th><th class="fa">Jev با ورودی JSON</th><th class="fa">Jev بچ ۱۰ تایی</th></tr></thead>
+        <tbody>
+          <tr><th>چک کردن درستی ایمیل، تاریخ و … (۵۳۴ تا)</th><td class="num">۸۵.۰</td><td class="num">-</td><td class="num">۷۷.۹</td><td class="num">۹۱.۸</td><td class="num">۹۳.۴</td></tr>
+          <tr><th>پیدا کردن شماره، ایمیل و لینک توی پیام (۱۳۲ تا)</th><td class="num">۸۲.۶</td><td class="num">۹۷.۰</td><td class="num">۱۰۰</td><td class="num">۱۰۰</td><td class="num">۹۹.۲</td></tr>
+        </tbody>
+      </table></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>«regex با پیش‌پردازش» یعنی قبل از اینکه regex رو اجرا کنم، متن رو یکدست کردم : ارقام فارسی رو انگلیسی کردم، فاصله و خط تیره وسط عدد ها رو برداشتم و <code>[at]</code> و <code>dot</code> رو به <code>@</code> و <code>.</code> تبدیل کردم. این کار فقط برای پیام ها معنی داره. دو ستون «Jev با متن ساده» و «Jev با ورودی JSON» هر دو تک به تک هستن و فرقشون رو پایین‌تر توضیح میدم.</p>
+      <p>نکته جالبش اینه که توی چک کردن درستی، regex رایج از Jev با متن ساده بهتر بود ولی از Jev با ورودی JSON بدتر. توی پیدا کردن شماره و ایمیل و لینک هم Jev هر ۱۳۲ تا سوال رو درست جواب داد.</p>
+      <p>البته اینم بگم که جواب درست بخش اول رو با کد معمولی پایتون حساب کرده بودم. پس اگه همون کد رو به جای regex استفاده کنید، طبیعتا ۱۰۰ درصد میشه 🙂 و هر بار چک کردن هم زیر ۳ میکروثانیه طول میکشه.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>یه ترفند ساده!</h2>
+      <p>اولش متن رو همونجوری که بود به Jev میدادم و قانون رو توی متن سوال می‌نوشتم. یعنی state فقط خود متن بود. بعد دیدم اگه متن و قانون رو کنار هم توی یه JSON بذارم (همون شکلی که بالاتر برای بچ ساختم)، خیلی بهتر جواب میده. حتی وقتی فقط یه نمونه توش باشه! جدول زیر چند تا نمونه رو نشون میده. عدد ها احتمال «بله» هستن :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[7]:</div>
+      <div class="jp-outputs"><table class="dataframe">
+        <thead><tr><th>متن</th><th>سوال</th><th>جواب درست</th><th class="fa">Jev با متن ساده</th><th class="fa">Jev با ورودی JSON</th></tr></thead>
+        <tbody>
+          <tr><td class="mono"># fff</td><td>کد رنگ درسته؟</td><td>نه</td><td class="num no">۰.۷۴</td><td class="num ok">۰.۰۲</td></tr>
+          <tr><td class="mono">9:05</td><td>ساعت به شکل HH:MM هست؟</td><td>نه</td><td class="num no">۰.۹۳</td><td class="num ok">۰.۰۲</td></tr>
+          <tr><td class="mono">ali rezaei@gmail.com</td><td>ایمیل درسته؟</td><td>نه</td><td class="num no">۰.۹۴</td><td class="num ok">۰.۰۱</td></tr>
+          <tr><td class="mono">ali..rezaei@gmail.com</td><td>ایمیل درسته؟</td><td>نه</td><td class="num no">۰.۸۸</td><td class="num ok">۰.۰۱</td></tr>
+          <tr><td class="mono">#FFFFFFFF</td><td>کد رنگ ۳ یا ۶ رقمی هست؟</td><td>نه</td><td class="num no">۰.۷۰</td><td class="num ok">۰.۰۱</td></tr>
+          <tr><td class="mono">1405/06/30</td><td>تاریخ شمسی واقعیه؟</td><td>آره</td><td class="num ok">۰.۷۱</td><td class="num no">۰.۳۵</td></tr>
+        </tbody>
+      </table></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>همونطور که می‌بینید با JSON خیلی بهتر شد ولی همه جا نه. ۳۰ شهریور ۱۴۰۵ (یعنی امروز!) رو با متن ساده درست گفت ولی با JSON گفت همچین تاریخی وجود نداره :/</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>regex های رایج کجا سوتی دادن؟</h2>
+      <p>این الگو ها رو هزاران نفر کپی کردن ولی ایراد های جالبی دارن :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[8]:</div>
+      <div class="jp-outputs"><table class="dataframe">
+        <thead><tr><th>متن</th><th>regex چی گفت؟</th><th>چرا غلطه؟</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">ali..rezaei@gmail.com</td><td>ایمیل درسته</td><td>دو تا نقطه پشت هم مجاز نیست</td></tr>
+          <tr><td class="mono">2026-02-30</td><td>تاریخ درسته</td><td>فوریه ۳۰ روز نداره</td></tr>
+          <tr><td class="mono">1405/07/31</td><td>تاریخ درسته</td><td>مهر ۳۰ روزه‌ست</td></tr>
+          <tr><td class="mono">09۱۲۱۲۳۴۵۶۷</td><td>شماره درسته</td><td class="fa">نصفش ارقام فارسیه. توی پایتون <code>\d</code> ارقام فارسی رو هم قبول میکنه!</td></tr>
+          <tr><td class="mono">192.168.1.1\n</td><td>IP درسته</td><td class="fa"><code>$</code> یه Enter آخر متن رو نمی‌بینه</td></tr>
+          <tr><td>می‌خواهم کتاب بخرم</td><td>متن فارسی نیست</td><td class="fa">نیم‌فاصله توی بازه <code>\u0600-\u06FF</code> نیست</td></tr>
+          <tr><td>کد پیگیری پرداختم 60379912345678 هست</td><td>شماره موبایل داره</td><td class="fa">وسط یه عدد ۱۴ رقمی، <code>9912345678</code> رو پیدا کرده</td></tr>
+        </tbody>
+      </table></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>راه حلش سخت نیست. به جای <code>$</code> از <code>fullmatch</code> استفاده کنید، به جای <code>\d</code> بنویسید <code>[0-9]</code>، نیم‌فاصله (<code>\u200c</code>) رو به بازه حروف فارسی اضافه کنید و برای تاریخ و کد ملی چند خط کد بنویسید. regex به تنهایی نمی‌تونه بفهمه ۳۱ مهر وجود نداره یا رقم کنترل کد ملی درسته یا نه.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>Jev کجا سوتی داد؟</h2>
+      <p>حتی با ورودی JSON هم چند جا کم آورد :</p>
+      <p><strong>کد ملی :</strong> فرمول رقم کنترل رو کامل بهش دادم ولی بیشتر جواب هاش دور و بر ۰.۵ بود. یعنی عملا شیر یا خط انداخت. بهترین دقتش ۷۵ درصد بود.</p>
+      <p><strong>تاریخ شمسی :</strong> علاوه بر ۳۰ شهریور، <code>1399/12/30</code> رو هم رد کرد، با اینکه بهش گفته بودم ۱۳۹۹ کبیسه‌ست.</p>
+      <p><strong>موبایل بدون صفر :</strong> <code>9121234567</code> طبق همون قانون درسته ولی Jev ردش کرد.</p>
+      <p><strong>نیم‌فاصله :</strong> با اینکه صریحا گفته بودم نیم‌فاصله مجازه، چند تا از متن های فارسیِ نیم‌فاصله‌دار رو رد کرد. یعنی دقیقا همون سوتی regex رو داد!</p>
+      <p>به زبون آدمیزاد، Jev معنی رو خوب میفهمه ولی حساب کتاب و شمردن کاراکتر کارش نیست.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>Jev کجا ترکوند؟</h2>
+      <p>اما توی پیدا کردن شماره و ایمیل و لینک توی پیام ها قضیه برعکس شد. جدول زیر چند تا از پیام هایی رو نشون میده که regex نتونست. عدد های ستون Jev احتمال «بله» هستن :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[9]:</div>
+      <div class="jp-outputs"><table class="dataframe">
+        <thead><tr><th>پیام</th><th>سوال</th><th class="fa">regex رایج</th><th class="fa">regex با پیش‌پردازش</th><th>Jev</th></tr></thead>
+        <tbody>
+          <tr><td>صفر نهصد و دوازده، صد و بیست و سه، چهل و پنج، شصت و هفت شماره منه</td><td>شماره داره؟</td><td class="no">✘</td><td class="no">✘</td><td class="num ok">۰.۶۷ ✔</td></tr>
+          <tr><td>0912 123 4567 واتساپ دارم</td><td>شماره داره؟</td><td class="no">✘</td><td class="ok">✔</td><td class="num ok">۰.۹۲ ✔</td></tr>
+          <tr><td>کد پیگیری پرداختم 60379912345678 هست ولی سفارشم نیومد</td><td>شماره داره؟</td><td class="no">✘</td><td class="ok">✔</td><td class="num ok">۰.۰۴ ✔</td></tr>
+          <tr><td>ali.rezaei ات جیمیل دات کام</td><td>ایمیل داره؟</td><td class="no">✘</td><td class="no">✘</td><td class="num ok">۰.۹۸ ✔</td></tr>
+          <tr><td>ali.rezaei [at] gmail [dot] com</td><td>ایمیل داره؟</td><td class="no">✘</td><td class="ok">✔</td><td class="num ok">۰.۹۹ ✔</td></tr>
+          <tr><td>سایت کتاب‌یار دات کام رو سرچ کن</td><td>لینک داره؟</td><td class="no">✘</td><td class="no">✘</td><td class="num ok">۰.۹۵ ✔</td></tr>
+          <tr><td>sitename[.]ir</td><td>لینک داره؟</td><td class="no">✘</td><td class="ok">✔</td><td class="num ok">۰.۹۷ ✔</td></tr>
+        </tbody>
+      </table></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>یعنی اگه کاربر شماره‌ش رو با حروف بنویسه یا به جای نقطه بنویسه «دات»، regex هیچ جوره نمی‌بینه ولی Jev می‌بینه. البته همه این پیام ها رو خودم نوشتم و ۴۴ تا پیام هم عدد بزرگی نیست. پس ۱۰۰ درصد اینجا به این معنی نیست که روی پیام های واقعی هم همینقدر خوبه.</p>
+      <p>راستی کل این آزمایش با ۲,۲۴۷ تا درخواست و ۲۲,۰۶۱ تا سوال، ۷ سنت خرج برداشت.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>خلاصه اینکه اگه میخواید چک کنید یه ایمیل یا شماره درست وارد شده یا نه، همون regex (با چند خط کد) رو نگه دارید. هم میلیون ها بار سریع‌تره، هم تقریبا مجانیه، هم دقیق‌تره. ولی اگه میخواید بفهمید کسی تو پیامش شماره یا لینک قایم کرده یا نه، Jev می‌ارزه 🙂</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[10]:</div>
+        <div class="jp-editor"><pre>nb<span class="o">.</span><span class="f">neighbours</span>()</pre></div></div>
+      <div class="jp-io"><div class="jp-prompt out">Out[10]:</div>
+        <div class="jp-outputs"><table class="dataframe"><thead><tr><th></th><th>title</th><th>date</th></tr></thead><tbody><tr><th class="l mono">prev</th><td><a href="/blog/posts/70.html">یک چالش وب‌اسکرپینگ که خودش خودش را می‌شکند</a></td><td class="num">۱۴۰۵/۰۵</td></tr></tbody></table></div></div>
+    </div>
+  </div>
+</div>
+<script src="/assets/lab.js"></script>
+<script>
+Lab.chrome({ active:'post', tab:{ name:'post_71.ipynb', href:'/blog/posts/71.html' } });
+Lab.wire();
+Lab.kernel(false);
+</script>
+</body>
+</html>
