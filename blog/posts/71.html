@@ -442,10 +442,139 @@ questions <span class="o">=</span> {
 
   <div class="jp-cell">
     <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>ضمیمه : regex هایی که استفاده کردم</h2>
+      <p>اینم regex هایی که توی آزمون استفاده کردم. همشون با ماژول <code>re</code> پایتون و تنظیمات پیش‌فرضش اجرا شدن. فقط UUID رو با <code>re.I</code> اجرا کردم که حروف بزرگ و کوچیک فرقی نکنن. برای چک کردن درستی از <code>re.match</code> استفاده کردم و همه الگو ها با <code>^</code> شروع و با <code>$</code> تموم میشن. یعنی کل متن باید با الگو جور باشه :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
     <div class="jp-inner">
       <div class="jp-io"><div class="jp-prompt">[13]:</div>
+        <div class="jp-editor"><pre>validate <span class="o">=</span> {
+    <span class="s">"email"</span>:    <span class="s">r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'</span>,
+    <span class="s">"url"</span>:      <span class="s">r'^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&amp;\/=]*)$'</span>,
+    <span class="s">"ipv4"</span>:     <span class="s">r'^((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.){3}(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)$'</span>,
+    <span class="s">"mobile"</span>:   <span class="s">r'^(\+98|0098|98|0)?9\d{9}$'</span>,
+    <span class="s">"nid"</span>:      <span class="s">r'^\d{10}$'</span>,
+    <span class="s">"iso_date"</span>: <span class="s">r'^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$'</span>,
+    <span class="s">"jalali"</span>:   <span class="s">r'^1[34]\d{2}/(0?[1-9]|1[0-2])/(0?[1-9]|[12]\d|3[01])$'</span>,
+    <span class="s">"hex"</span>:      <span class="s">r'^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$'</span>,
+    <span class="s">"uuid"</span>:     <span class="s">r'^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$'</span>,  <span class="c"># re.I</span>
+    <span class="s">"time"</span>:     <span class="s">r'^([01]\d|2[0-3]):([0-5]\d)$'</span>,
+    <span class="s">"password"</span>: <span class="s">r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&amp;])[A-Za-z\d@$!%*?&amp;]{8,}$'</span>,
+    <span class="s">"persian"</span>:  <span class="s">r'^[&#92;u0600-&#92;u06FF\s]+$'</span>,
+}</pre></div></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>جدول زیر نشون میده هر کدوم چی رو چک میکنه، از نمونه هاش چند تا رو درست جواب داد و کجا اشتباه کرد :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[14]:</div>
+      <div class="jp-outputs"><table class="dataframe">
+        <thead><tr><th>چی رو چک میکنه؟</th><th>درست جواب داد</th><th>کجا اشتباه کرد؟</th></tr></thead>
+        <tbody>
+          <tr><th>ایمیل</th><td>۳۱ از ۴۶</td><td class="fa">نقطه اول یا آخر اسم، دو تا نقطه پشت هم، خط تیره اول دامنه، Enter آخر متن</td></tr>
+          <tr><th>آدرس سایت</th><td>۳۴ از ۴۶</td><td class="fa">دو تا نقطه پشت هم، <code>_</code> توی دامنه، خط تیره اول دامنه، پورت بزرگ‌تر از ۶۵۵۳۵</td></tr>
+          <tr><th class="fa">IP</th><td>۴۴ از ۴۶</td><td class="fa">Enter آخر متن، ارقام فارسی</td></tr>
+          <tr><th>شماره موبایل</th><td>۴۳ از ۴۶</td><td class="fa">ارقام فارسی، Enter آخر متن</td></tr>
+          <tr><th>کد ملی</th><td>۲۶ از ۴۰</td><td class="fa">رقم کنترل رو چک نمیکنه، ۱۰ تا رقم یکسان (مثل <code>1111111111</code>)، ارقام فارسی، Enter آخر متن</td></tr>
+          <tr><th>تاریخ میلادی</th><td>۳۸ از ۴۶</td><td class="fa">روز هایی که وجود ندارن، مثل ۳۰ فوریه یا ۳۱ آوریل</td></tr>
+          <tr><th>تاریخ شمسی</th><td>۳۸ از ۴۶</td><td class="fa">روز ۳۱ برای مهر تا اسفند، ۳۰ اسفند توی سال غیر کبیسه</td></tr>
+          <tr><th>کد رنگ</th><td>۴۳ از ۴۴</td><td class="fa">Enter آخر متن</td></tr>
+          <tr><th class="fa">UUID</th><td>۴۱ از ۴۲</td><td class="fa">Enter آخر متن</td></tr>
+          <tr><th>ساعت (HH:MM)</th><td>۴۳ از ۴۴</td><td class="fa">Enter آخر متن</td></tr>
+          <tr><th>رمز عبور قوی</th><td>۴۱ از ۴۴</td><td class="fa">ارقام فارسی، Enter آخر متن</td></tr>
+          <tr><th>متن فقط فارسی</th><td>۳۲ از ۴۴</td><td class="fa">هر متنی که نیم‌فاصله داشت</td></tr>
+        </tbody>
+      </table></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>برای پیدا کردن توی پیام هم از <code>re.search</code> استفاده کردم، یعنی کافیه یه جای پیام با الگو جور باشه. الگو ها هم تقریبا همونان، فقط <code>^</code> و <code>$</code> ندارن :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[15]:</div>
+        <div class="jp-editor"><pre>detect <span class="o">=</span> {
+    <span class="s">"mobile"</span>: <span class="s">r'(?:\+98|0098|0)?9\d{9}'</span>,
+    <span class="s">"email"</span>:  <span class="s">r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'</span>,
+    <span class="s">"link"</span>:   <span class="s">r'https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&amp;\/=]*)'</span>,
+}</pre></div></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>اینم نسخه «با پیش‌پردازش». اول پیام از یکی از این سه تا تابع رد میشه و بعد regex روش اجرا میشه. تابع ها و regex های این بخش رو خودم برای همین آزمون نوشتم :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[16]:</div>
+        <div class="jp-editor"><pre><span class="k">def</span> <span class="f">normalize_phone</span>(s):
+    s <span class="o">=</span> s<span class="o">.</span><span class="f">translate</span>(<span class="b">str</span><span class="o">.</span><span class="f">maketrans</span>(<span class="s">'۰۱۲۳۴۵۶۷۸۹٠١٢٣٤٥٦٧٨٩'</span>, <span class="s">'01234567890123456789'</span>))
+    <span class="k">return</span> re<span class="o">.</span><span class="f">sub</span>(<span class="s">r'(?&lt;=\d)[\s\-.&#92;u200c()]+(?=\d)'</span>, <span class="s">''</span>, s)
+
+<span class="k">def</span> <span class="f">normalize_email</span>(s):
+    s <span class="o">=</span> re<span class="o">.</span><span class="f">sub</span>(<span class="s">r'\s*[\[({]\s*at\s*[\])}]\s*|\s+at\s+'</span>, <span class="s">'@'</span>, s, flags<span class="o">=</span>re<span class="o">.</span>I)
+    <span class="k">return</span> re<span class="o">.</span><span class="f">sub</span>(<span class="s">r'\s*[\[({]\s*dot\s*[\])}]\s*|\s+dot\s+'</span>, <span class="s">'.'</span>, s, flags<span class="o">=</span>re<span class="o">.</span>I)
+
+<span class="k">def</span> <span class="f">normalize_link</span>(s):
+    s <span class="o">=</span> <span class="f">normalize_email</span>(s)
+    <span class="k">return</span> re<span class="o">.</span><span class="f">sub</span>(<span class="s">r'\s*[\[({]\s*(?:dot|\.)\s*[\])}]\s*|\s+dot\s+'</span>, <span class="s">'.'</span>, s, flags<span class="o">=</span>re<span class="o">.</span>I)
+
+detect_norm <span class="o">=</span> {
+    <span class="s">"mobile"</span>: (normalize_phone, <span class="s">r'(?&lt;!\d)(?:\+98|0098|0)?9[0-9]{9}(?!\d)'</span>),
+    <span class="s">"email"</span>:  (normalize_email, <span class="s">r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'</span>),
+    <span class="s">"link"</span>:   (normalize_link,  <span class="s">r'(?i)(?:https?://|www\.)\S+|(?&lt;![@\w.])[a-z0-9-]+(?:\.[a-z0-9-]+)*\.(?:com|ir|net|org|me|io|ly|al|co|app|info|xyz)\b(?:/\S*)?'</span>),
+}</pre></div></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>دو تا نکته ریز داره. توی موبایل، <code>(?&lt;!\d)</code> و <code>(?!\d)</code> یعنی درست قبل و بعد شماره نباید رقم دیگه‌ای باشه. همین باعث شد دیگه وسط کد پیگیری ۱۴ رقمی شماره پیدا نکنه. لینک رو هم اینجوری عوض کردم که لینک بدون <code>http://</code> رو هم پیدا کنه، ولی فقط اگه آخرش یکی از پسوند های این لیست باشه (مثل <code>.com</code> و <code>.ir</code>). جدول زیر نشون میده هر کدوم از ۴۴ تا پیام، چند تا رو درست گفتن :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[17]:</div>
+      <div class="jp-outputs"><table class="dataframe">
+        <thead><tr><th></th><th class="fa">regex رایج</th><th class="fa">regex با پیش‌پردازش</th></tr></thead>
+        <tbody>
+          <tr><th>شماره موبایل</th><td>۳۲ از ۴۴</td><td>۴۲ از ۴۴</td></tr>
+          <tr><th>ایمیل</th><td>۴۰ از ۴۴</td><td>۴۳ از ۴۴</td></tr>
+          <tr><th>لینک</th><td>۳۷ از ۴۴</td><td>۴۳ از ۴۴</td></tr>
+        </tbody>
+      </table></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>اون ۴ تایی هم که با پیش‌پردازش باز درست نشد، همونایی بودن که شماره یا ایمیل یا لینک رو با حروف نوشته بودن. مثل «صفر نهصد و دوازده...» یا «ات جیمیل دات کام». اینا رو دیگه regex به این سادگی نمی‌بینه 🙂</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[18]:</div>
         <div class="jp-editor"><pre>nb<span class="o">.</span><span class="f">neighbours</span>()</pre></div></div>
-      <div class="jp-io"><div class="jp-prompt out">Out[13]:</div>
+      <div class="jp-io"><div class="jp-prompt out">Out[18]:</div>
         <div class="jp-outputs"><table class="dataframe"><thead><tr><th></th><th>title</th><th>date</th></tr></thead><tbody><tr><th class="l mono">prev</th><td><a href="/blog/posts/70.html">یک چالش وب‌اسکرپینگ که خودش خودش را می‌شکند</a></td><td class="num">۱۴۰۵/۰۵</td></tr></tbody></table></div></div>
     </div>
   </div>
