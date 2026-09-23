@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>بلندگوی مدرسه تا کجا صداش میاد؟! — وحید باقی</title>
+<meta name="description" content="یه نقشه از مدارس تهران داشتم که دور هر مدرسه یه دایره ۲۰۰ متری کشیده بود. گفتم بیام دقیقش کنم. صدای بلندگوی هر مدرسه واقعا تا کجا میره و موقع تعطیلی کدوم کوچه ها قفل میشن؟">
+<meta property="og:title" content="بلندگوی مدرسه تا کجا صداش میاد؟!">
+<meta property="og:description" content="یه نقشه از مدارس تهران داشتم که دور هر مدرسه یه دایره ۲۰۰ متری کشیده بود. گفتم بیام دقیقش کنم. صدای بلندگوی هر مدرسه واقعا تا کجا میره و موقع تعطیلی کدوم کوچه ها قفل میشن؟">
+<meta property="og:type" content="article">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css">
+<style>
+.meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;color:var(--jp-ui-font-color2);
+  font-size:12.5px;margin:-.2em 0 1.5em;max-width:none}
+.meta .dot{width:3px;height:3px;border-radius:50%;background:var(--jp-border2);flex:0 0 3px}
+.meta .tag{border:1px solid var(--jp-border2);border-radius:2px;padding:0 7px;font-size:11.5px}
+.meta .mono{direction:ltr;font-family:"JetBrains Mono",Menlo,monospace}
+.mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
+.jp-md code{direction:ltr;unicode-bidi:isolate}
+</style>
+</head>
+<body>
+<div id="cells" hidden>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h1>بلندگوی مدرسه تا کجا صداش میاد؟!</h1>
+      <div class="meta"><span class="mono">۱۴۰۵/۰۷/۰۱</span><span class="dot"></span><span class="tag">تپه‌نوردی</span><span class="dot"></span><span>تهران و نقشه</span></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>امروز اول مهره و مدرسه ها باز شدن. یه مدت پیش یه نقشه از مدارس تهران درست کرده بودم که دور هر مدرسه یه دایره ۲۰۰ متری کشیده بود. میخواستم ببینم کجاهای شهر تا شعاع ۲۰۰ متری هیچ مدرسه‌ای وجود نداره.</p>
+      <p>ولی خب ۲۰۰ متر یه عدد ثابت بود برای همه مدرسه ها. گفتم حالا چرا همه مدرسه ها یه اندازه؟ من فکر میکردم صدای بلندگو توی مدرسه های دبستان و دخترونه بیشتره. یه چیز دیگه هم هست. موقع تعطیل شدن مدرسه، اون خیابون یا کوچه‌ای که به مدرسه میرسه همیشه شلوغه. پس اومدم نقشه رو از اول ساختم که این دو تا رو هم نشون بده. این شد یه تپه جدید برای فتح کردن!</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>اول مدرسه ها رو پیدا کنیم</h2>
+      <p>مدرسه ها رو از OpenStreetMap برداشتم. اونجا ۲,۱۷۰ مدرسه توی محدوده شهر تهران اسم دارن و از روی اسمشون میشه فهمید دبستانه یا دبیرستان، دخترونه‌ست یا پسرونه. مثلا «دبستان دخترانه شهدای کریمی». آموزشگاه زبان و رانندگی و حوزه علمیه و دانشگاه رو هم کنار گذاشتم چون صبحگاه و زنگ تعطیلی ندارن 🙂</p>
+      <p>یه لیست دیگه هم از مدرسه ها داشتم که فقط مختصات داره و اسم نداره. ۲,۴۳۴ تا مدرسه ازش اضافه شد که توی OpenStreetMap نبودن. جمعا شد ۴,۶۰۴ مدرسه. پلیس راهور تهران تعداد مدرسه های شهر رو ۴,۴۹۰ تا اعلام کرده، پس عدد بدی نیست.</p>
+      <p>ساختمون ها جلوی صدا رو میگیرن، پس لازم بود بدونم دور هر مدرسه کجا ساختمون هست. برای همین نقشه ۳۶۶ هزار تا ساختمون تهران رو هم از دیتای Microsoft Building Footprints برداشتم.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>بلندگوی مدرسه چقدر بلنده؟</h2>
+      <p>اول باید میفهمیدم بلندگوی مدرسه چقدر بلنده. دنبال یه اندازه‌گیری از صدای بلندگوی صبحگاه گشتم ولی هیچ جا پیدا نکردم. نه توی ایران، نه خارج از ایران!</p>
+      <p>پس گفتم از اون طرف حساب کنم. بلندگوی صبحگاه برای چیه؟ آفرین! برای اینکه بچه ها تا ته حیاط بشنون چی میگه. سازمان جهانی بهداشت میگه برای اینکه یه جمله کامل فهمیده بشه، صدای حرف باید ۱۵ تا ۱۸ دسی‌بل از صدای اطراف بلندتر باشه. <a href="https://utoronto.scholaris.ca/server/api/core/bitstreams/f6b54379-18d9-4fd3-8643-6835349847e6/content">یه مقاله</a> هم هست که صدای ۹۰ تا مدرسه تهران رو اندازه گرفته و میگه صدای حیاط وقتی کلاس ها برقراره حدود ۶۴ دسی‌بله. پس ته حیاط باید حدود ۷۹ دسی‌بل برسه.</p>
+      <p>اندازه حیاط هر مدرسه رو هم از روی نقشه درآوردم. حیاط بزرگ‌تر یعنی بلندگوی بلندتر. سقفش هم یه بلندگوی شیپوری ۳۰ واتیه که حداکثر ۱۲۷.۸ دسی‌بل در یک متری میده. نتیجه این شد که بلندگوی یه مدرسه معمولی تو تهران حدود ۱۰۹ دسی‌بل در یک متری صدا داره.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>صدا تو راه چقدر کم میشه؟</h2>
+      <p>برای این یه استاندارد هست به اسم ISO 9613-2. به زبون آدمیزاد میگه :</p>
+      <ul>
+        <li>هر بار که فاصله دو برابر میشه، صدا ۶ دسی‌بل کم میشه.</li>
+        <li>هوا هم یه ذره صدا رو میخوره، ولی تو این فاصله ها خیلی کم.</li>
+        <li>آسفالت صدا رو برمیگردونه و ۳ دسی‌بل صدا رو بیشتر میکنه!</li>
+        <li>هر متری که صدا از وسط ساختمون ها رد میشه، ۰.۱ دسی‌بل کم میشه، تا سقف ۱۰ دسی‌بل.</li>
+      </ul>
+      <p>من از هر مدرسه ۷۲ تا خط (هر ۵ درجه یکی) کشیدم و برای هر خط حساب کردم چند متر از مسیرش از وسط ساختمون ها رد میشه. برای همین محدوده ها دیگه دایره نیستن. صدا از سمت خیابونی که جلوی حیاطه دورتر میره و پشت ساختمون ها زودتر خاموش میشه.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[1]:</div>
+        <div class="jp-editor"><pre>L <span class="o">=</span> L1 <span class="o">-</span> <span class="n">20</span> <span class="o">*</span> <span class="f">log10</span>(d) <span class="o">-</span> alpha <span class="o">*</span> d <span class="o">+</span> <span class="n">3</span> <span class="o">-</span> <span class="f">min</span>(<span class="n">0.1</span> <span class="o">*</span> metres_inside_buildings, <span class="n">10</span>)</pre></div></div>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>کجا دیگه شنیده نمیشه؟</h2>
+      <p>جایی که صدای بلندگو برسه به صدای خود محله. اینم خوشبختانه دیتاش هست! شرکت کنترل کیفیت هوای تهران صدای کنار ۳۰۸ تا دبستان و مهدکودک رو اندازه گرفته و <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12552612/">توی این مقاله</a> میانگین هر منطقه اومده. آروم‌ترین منطقه ۲۲ با ۵۸.۷ دسی‌بله و شلوغ‌ترین منطقه ۱۲ با ۷۵.۴ دسی‌بل.</p>
+      <p>نتیجه؟ صدای بلندگوی یه مدرسه معمولی تو تهران تا حدود <b>۸۴ متر</b> واضح شنیده میشه. ولی این عدد خیلی به محله بستگی داره. تو منطقه ۱۲ حدود ۵۰ متر و تو منطقه ۲۲ حدود ۲۱۴ متر. یعنی یه مدرسه تو منطقه ۲۲ چهار برابر دورتر شنیده میشه، چون محله ساکت‌تره.</p>
+      <p>اون سوال اولم هم جواب گرفت. اگر همه مدرسه ها رو با هم حساب کنیم، صدای بلندگو فقط به ۱۶ درصد مساحت شهر میرسه. بقیه‌ش که تو تصویر زیر سبزه، جاییه که صدای هیچ مدرسه‌ای واضح نمیرسه :</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[2]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/72-2.jpg" alt="مرکز تهران. سبز جاییه که صدای بلندگوی هیچ مدرسه‌ای واضح نمیرسه" loading="lazy"><figcaption>مرکز تهران. سبز جاییه که صدای بلندگوی هیچ مدرسه‌ای واضح نمیرسه</figcaption></figure></div>
+    </div></div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>البته حد مجاز صدا برای مناطق مسکونی تو ایران ۵۵ دسی‌بله. اگر این رو ملاک بذاریم، صدای بلندگو ۵۹ درصد شهر رو از حد مجاز رد میکنه. این یکی رو هم تو نقشه با خط‌چین گذاشتم.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>خب دخترونه و دبستان بلندتر بودن یا نه؟</h2>
+      <p>راستش نه! یا حداقل من منبعی پیدا نکردم که اینو بگه. تنها اندازه‌گیری‌ای که تو تهران پیدا کردم (همون مقاله ۹۰ مدرسه) دقیقا برعکس بود. کلاس های پسرونه حدود ۷ دسی‌بل پرسروصداتر بودن (۷۵.۷ در برابر ۶۸.۷). فرق دبستان و دبیرستان هم کم بود و ربطی به سن بچه ها نداشت.</p>
+      <p>البته اون اندازه‌گیری مال کلاسه نه بلندگو. برای همین این فرض رو کلا وارد حساب نکردم. فرق مدرسه ها تو این نقشه فقط از اندازه حیاط و شلوغی محله میاد که هر دوش اندازه‌گیری شده.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>حالا بریم سراغ شلوغی تعطیلی</h2>
+      <p>پلیس راهور تهران همین چند روز پیش گفته <a href="https://fararu.com/fa/news/1003230/">«ترددها در مهرماه حدود ۳۰ درصد افزایش پیدا می‌کند»</a> و مناطق ۳، ۶، ۱۰ و ۱۴ از همه شلوغ‌تره. یه جمله دیگه هم تو همین گزارش هست که خیلی به کار من میومد : «سرویس مدارس به‌درستی اجرا نمی‌شود و بخشی از بی‌نظمی‌ها، تراکم و ترافیک در جلوی مدارس و محورهای اطراف آنها به همین موضوع بازمی‌گردد».</p>
+      <p>حالا جلوی در مدرسه چند متر شلوغ میشه؟ برای این یکی دیتا پیدا نکردم. ولی <a href="https://transportsafety.ir/wp-content/uploads/2019/12/Code267-3.pdf">آیین‌نامه ایمنی راه ها</a> میگه جلوی در مدرسه باید «۱۵ الی ۲۰ متر در هر سمت» توقف ممنوع باشه. خب دقیقا همونجاست که همه وایمیستن که بچه‌شون رو سوار کنن 🙂 پس برای همه مدرسه ها ۲۰ متر از هر طرف در رو هاشور زدم. برای دبستان و پیش‌دبستانی، با این فرض که بچه های کوچیک‌تر رو معمولا یه بزرگتر میاد میبره، ۴۵ متر از هر طرف. این ۴۵ متر هم همون فاصله‌ایه که همین آیین‌نامه برای تابلوی هشدار تو کوچه ها گذاشته.</p>
+      <p>اگر مدرسه تو کوچه باشه، کل مسیر از در مدرسه تا اولین خیابون اصلی رو هم هاشور زدم. چرا؟ چون هر ماشینی که میاد دنبال بچه باید از همین کوچه بیاد و برگرده. ۲,۹۱۴ تا از مدرسه ها همچین کوچه‌ای دارن. جمعا ۵۰۲ کیلومتر خیابون و کوچه هاشور خورد!</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[3]:</div>
+      <div class="jp-outputs"><figure class="figout"><img src="images/72-1.jpg" alt="محدوده صدای بلندگو و خیابون های هاشورخورده اطراف چند مدرسه" loading="lazy"><figcaption>آبی دبستان، نارنجی متوسطه، خاکستری نامشخص. هاشور بنفش هم شلوغی موقع تعطیلی</figcaption></figure></div>
+    </div></div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>چیزایی که باید با احتیاط خوند</h2>
+      <ul>
+        <li>صدای بلندگو محاسبه‌ست، نه اندازه‌گیری. چون کسی اندازه نگرفته بود!</li>
+        <li>عددی که برای صدای هر محله گذاشتم کنار خود مدرسه ها اندازه گرفته شده و صدای ماشین ها رو هم داره. کوچه های آروم از این ساکت‌ترن، پس اونجا صدای بلندگو احتمالا دورتر هم میره.</li>
+        <li>خود استاندارد میگه دقتش حدود ۳ دسی‌بله. یعنی شعاع ها میتونن تا حدود ۴۰ درصد کم یا زیاد باشن.</li>
+        <li>۲,۴۳۴ تا از مدرسه ها اسم ندارن، پس نمیدونم دبستانن یا دبیرستان.</li>
+      </ul>
+      <p>روی هر مدرسه تو نقشه بزنید، همه عددهاش رو نشون میده. مثلا همون «دبستان دخترانه شهدای کریمی» تو منطقه ۱۵ صدای بلندگوش تا ۶۰ متر میره و کوچه‌ش تا خیابون اصلی ۱۷۵ متره.</p>
+      <p>نقشه رو از لینک زیر ببینید :</p>
+      <p class="link-center"><a href="/hobby/tehran_schools.html">نقشه مدارس تهران : صدا و شلوغی</a></p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[4]:</div>
+        <div class="jp-editor"><pre>nb<span class="o">.</span><span class="f">neighbours</span>()</pre></div></div>
+      <div class="jp-io"><div class="jp-prompt out">Out[4]:</div>
+        <div class="jp-outputs"><table class="dataframe"><thead><tr><th></th><th>title</th><th>date</th></tr></thead><tbody><tr><th class="l mono">prev</th><td><a href="/blog/posts/71.html">هوش مصنوعی جای regex رو میگیره؟!</a></td><td class="num">۱۴۰۵/۰۶</td></tr></tbody></table></div></div>
+    </div>
+  </div>
+</div>
+<script src="/assets/lab.js"></script>
+<script>
+Lab.chrome({ active:'post', tab:{ name:'post_72.ipynb', href:'/blog/posts/72.html' } });
+Lab.wire();
+Lab.kernel(false);
+</script>
+</body>
+</html>
