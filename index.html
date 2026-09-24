@@ -50,6 +50,77 @@ tr:hover .lnk-cell .nm{text-decoration:underline}
 .jp-editor .live{outline:none;display:inline-block;min-width:9ch;direction:rtl}
 .jp-editor .live:focus{background:var(--jp-layout1);box-shadow:0 0 0 3px rgba(33,150,243,.14)}
 .ok{color:#2ca02c}
+
+/* ── Out[2]: the message goes through a small data pass on its way out ── */
+:root{--pp-err-bg:#fdd;--pp-bar:#2ca02c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--pp-err-bg:rgba(239,95,96,.16);--pp-bar:#5ec25e}}
+:root[data-theme="dark"]{--pp-err-bg:rgba(239,95,96,.16);--pp-bar:#5ec25e}
+.pipe{font-family:"JetBrains Mono",Menlo,Consolas,Vazirmatn,monospace;font-size:12.5px;
+  line-height:1.45;max-width:560px}
+.pp-step{margin:0 0 10px;animation:pp-in .25s ease-out both}
+@keyframes pp-in{from{opacity:0;transform:translateY(3px)}}
+.pp-h{display:flex;align-items:center;gap:7px;color:var(--jp-ui-font-color2);white-space:nowrap}
+.pp-h .fn{color:var(--jp-content-font-color1)}
+.pp-h .res{margin-left:auto;color:var(--jp-ui-font-color3);overflow:hidden;text-overflow:ellipsis}
+.pp-st{width:10px;height:10px;flex:0 0 10px;border-radius:50%;border:1.5px solid var(--jp-border2);
+  border-top-color:var(--jp-brand1);animation:pp-spin .7s linear infinite}
+@keyframes pp-spin{to{transform:rotate(360deg)}}
+.pp-step.done .pp-st,.pp-step.bad .pp-st{animation:none;border:0;display:grid;place-items:center;color:#2ca02c}
+.pp-step.done .pp-st::before{content:"✓";font-size:12px;line-height:1}
+.pp-step.bad .pp-st{color:var(--mpl-c3)}
+.pp-step.bad .pp-st::before{content:"✗";font-size:12px;line-height:1}
+.pp-step.bad .res{color:var(--mpl-c3)}
+.pp-b{padding:6px 0 0 17px}
+
+/* 1 · tokenize: the sentence splits apart into indexed tokens */
+.tok-row{display:flex;flex-wrap:wrap;align-items:flex-end;font-family:Vazirmatn,system-ui,sans-serif;
+  font-size:13.5px;line-height:1.5;row-gap:12px}
+.tok{position:relative;padding:1px 0;margin:0 .14em;border:1px solid transparent;border-radius:3px;
+  transition:padding .3s,margin .3s,background .3s,border-color .3s}
+.tok sub{position:absolute;bottom:-15px;left:50%;transform:translateX(-50%);font:9px "JetBrains Mono",monospace;
+  color:var(--jp-ui-font-color3);opacity:0;transition:opacity .3s}
+.tok-row.split{padding-bottom:13px}
+.tok.on{padding:1px 6px;margin:0 3px;background:var(--jp-editor-bg);border-color:var(--jp-editor-border)}
+.tok.on sub{opacity:1}
+.tok.more{color:var(--jp-ui-font-color3);border-style:dashed}
+
+/* 2 · embed: one row of colour per token */
+.emb{display:grid;grid-template-columns:minmax(0,78px) repeat(12,14px);gap:2px;align-items:center}
+.emb .lab{font-family:Vazirmatn,system-ui,sans-serif;font-size:12px;direction:rtl;text-align:right;
+  padding-right:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--jp-ui-font-color2)}
+.emb i{height:14px;border-radius:2px;transform:scale(.2);opacity:0;transition:transform .28s,opacity .28s}
+.emb i.on{transform:none;opacity:1}
+.emb .dots{grid-column:1/-1;color:var(--jp-ui-font-color3);text-align:center;font-size:11px;line-height:1}
+
+/* 3 · PCA: the vectors fall into a plane */
+.pca{display:block;width:100%;max-width:330px;height:auto;background:var(--mpl-fig)}
+.pca .ax{stroke:var(--mpl-axis);stroke-width:1;fill:none}
+.pca .gr{stroke:var(--mpl-grid);stroke-width:1}
+.pca .tl{font:10px "DejaVu Sans",system-ui,sans-serif;fill:var(--mpl-axis)}
+.pca .pt{transition:transform .75s cubic-bezier(.2,.8,.2,1)}
+.pca .pt circle{fill:var(--mpl-c0);fill-opacity:.85;stroke:var(--mpl-fig);stroke-width:1}
+.pca .pt text{font:11px Vazirmatn,system-ui,sans-serif;fill:var(--jp-content-font-color1);opacity:0;
+  transition:opacity .35s .55s;paint-order:stroke;stroke:var(--mpl-fig);stroke-width:3px}
+.pca.landed .pt text{opacity:1}
+
+/* 4 · describe */
+.pipe table.dataframe{font-family:"JetBrains Mono",Menlo,monospace;font-size:12px}
+
+/* 5 · encode + upload */
+.hex{color:var(--jp-ui-font-color2);word-break:break-all;white-space:normal;min-height:1.45em}
+.hex b{font-weight:400;color:var(--cm-num)}
+.tq{margin-top:6px;background:var(--pp-err-bg);padding:3px 6px;border-radius:2px;
+  display:flex;gap:8px;align-items:center;white-space:nowrap}
+.tq .bar{flex:1;min-width:60px;height:9px;border:1px solid var(--jp-border2);border-radius:1px;overflow:hidden}
+.tq .bar i{display:block;height:100%;width:0;background:var(--pp-bar);transition:width .18s linear}
+.pp-ok{font-family:Vazirmatn,system-ui,sans-serif;font-size:14px;direction:rtl;text-align:right;
+  display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;animation:pp-in .3s ease-out both}
+.pp-ok .sig{font:11.5px "JetBrains Mono",monospace;color:var(--jp-ui-font-color3);direction:ltr}
+@media (max-width:700px){
+  .pipe{font-size:11.5px}
+  .pp-b{padding-left:0}
+  .emb{grid-template-columns:minmax(0,60px) repeat(12,minmax(9px,14px))}
+}
 </style>
 </head>
 <body>
@@ -87,12 +158,11 @@ me<span class="o">.</span>contacts<span class="o">.</span><span class="f">sort_v
     <div class="jp-inner">
       <div class="jp-io">
         <div class="jp-prompt">[2]:</div>
-        <div class="jp-editor"><pre><span class="c"># <bdi>پیام‌ات را داخل گیومه بنویس، بعد ▶ را بزن</bdi></span>
-me<span class="o">.</span><span class="f">send</span>(<span class="s">"</span><span class="s live" contenteditable="true" role="textbox" aria-label="متن پیام">سلام وحید،</span><span class="s">"</span>)</pre></div>
+        <div class="jp-editor"><pre>me<span class="o">.</span><span class="f">send</span>(<span class="s">"</span><span class="s live" contenteditable="true" role="textbox" aria-label="متن پیام"></span><span class="s">"</span>)</pre></div>
       </div>
       <div class="jp-io res">
         <div class="jp-prompt out">Out[2]:</div>
-        <div class="jp-outputs"><pre class="jp-out-txt code" id="o-send"></pre></div>
+        <div class="jp-outputs"><div class="pipe" id="o-pipe"></div><pre class="jp-out-txt code" id="o-send"></pre></div>
       </div>
     </div>
   </div>
@@ -141,37 +211,283 @@ document.getElementById('o-links').innerHTML =
   }).join('') +
   '</tbody></table><div class="df-shape">' + Lab.fa(LINKS.length) + ' rows × ۳ columns</div>';
 
-/* ── boot ───────────────────────────────────────────────────── */
-Lab.chrome({ active: 'home' });
-Lab.wire({});
-Lab.runAll();
+/* ── Out[2]: the message runs through a small data pass on its way out ── */
+var PIPE = (function () {
+  var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, reduce ? 0 : ms) }) }
+  function frame() { return new Promise(function (r) { requestAnimationFrame(function () { r() }) }) }
+  function esc(s) {
+    return s.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c] });
+  }
+  var TOK = /[\p{L}\p{M}\p{N}\u200c]+|[^\s\p{L}\p{M}\p{N}\u200c]+/gu,
+      WORD = /[\p{L}\p{N}]/u, DIM = 12;
 
+  /* a stable pseudo-embedding: the same word always lands on the same vector */
+  function seed(s) {
+    var x = 2166136261;
+    for (var i = 0; i < s.length; i++) { x ^= s.charCodeAt(i); x = Math.imul(x, 16777619) }
+    return x >>> 0;
+  }
+  function embed(w) {
+    var a = seed(w), v = [];
+    for (var i = 0; i < DIM; i++) {
+      a = a + 0x6D2B79F5 | 0;
+      var t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      v.push(((t ^ t >>> 14) >>> 0) / 2147483648 - 1);
+    }
+    return v;
+  }
+
+  /* the first two principal components, by power iteration, and the share of
+     variance each one carries */
+  function pca(X) {
+    var n = X.length, mu = [], j;
+    for (j = 0; j < DIM; j++) mu.push(X.reduce(function (s, r) { return s + r[j] }, 0) / n);
+    var C = X.map(function (r) { return r.map(function (v, j) { return v - mu[j] }) });
+    var total = C.reduce(function (s, r) { return s + r.reduce(function (q, v) { return q + v * v }, 0) }, 0) || 1;
+    function comp(prev) {
+      var w = [];
+      for (j = 0; j < DIM; j++) w.push(Math.sin(j + (prev ? 5 : 1)));
+      for (var it = 0; it < 60; it++) {
+        var z = new Array(DIM).fill(0);
+        C.forEach(function (r) {
+          var p = 0; for (j = 0; j < DIM; j++) p += r[j] * w[j];
+          for (j = 0; j < DIM; j++) z[j] += p * r[j];
+        });
+        if (prev) {
+          var q = 0; for (j = 0; j < DIM; j++) q += z[j] * prev[j];
+          for (j = 0; j < DIM; j++) z[j] -= q * prev[j];
+        }
+        var nn = Math.hypot.apply(null, z) || 1;
+        w = z.map(function (v) { return v / nn });
+      }
+      return w;
+    }
+    var a = comp(), b = comp(a);
+    var P = C.map(function (r) {
+      var x = 0, y = 0;
+      for (j = 0; j < DIM; j++) { x += r[j] * a[j]; y += r[j] * b[j] }
+      return [x, y];
+    });
+    function ev(k) { return P.reduce(function (s, p) { return s + p[k] * p[k] }, 0) / total }
+    return { P: P, ev: [ev(0), ev(1)] };
+  }
+
+  function sha(bytes) {
+    function hex(b) { return Array.from(new Uint8Array(b), function (x) { return x.toString(16).padStart(2, '0') }).join('') }
+    try { return crypto.subtle.digest('SHA-256', bytes).then(hex) }
+    catch (e) { return Promise.resolve(seed(String.fromCharCode.apply(null, bytes)).toString(16)) }
+  }
+
+  function step(root, n, fn) {
+    var s = document.createElement('div');
+    s.className = 'pp-step';
+    s.innerHTML = '<div class="pp-h"><span class="pp-st"></span><span>[' + n + '/5]</span>' +
+      '<span class="fn">' + fn + '</span><span class="res"></span></div><div class="pp-b"></div>';
+    root.appendChild(s);
+    s.scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
+    return {
+      body: s.querySelector('.pp-b'),
+      done: function (res, bad) {
+        s.classList.add(bad ? 'bad' : 'done');
+        s.querySelector('.res').textContent = res || '';
+      }
+    };
+  }
+
+  async function run(root, msg, sent) {
+    root.innerHTML = '';
+    var toks = msg.match(TOK) || [msg];
+    var words = toks.filter(function (t) { return WORD.test(t) });
+    if (!words.length) words = toks;
+
+    /* 1 · tokenize — the sentence splits into indexed tokens */
+    var s1 = step(root, 1, 'tokenize(msg)'), MAXT = 28;
+    var shown = toks.slice(0, MAXT);
+    s1.body.innerHTML = '<div class="tok-row" dir="auto">' + shown.map(function (t, i) {
+      return '<span class="tok">' + esc(t) + '<sub>' + i + '</sub></span>';
+    }).join('') + (toks.length > MAXT ? '<span class="tok more" dir="ltr">+' + (toks.length - MAXT) + '</span>' : '') + '</div>';
+    await wait(380);
+    var row = s1.body.firstChild, chips = row.children, gap = Math.min(45, 650 / chips.length);
+    row.classList.add('split');
+    for (var i = 0; i < chips.length; i++) { chips[i].classList.add('on'); await wait(gap) }
+    s1.done(toks.length + ' tokens');
+    await wait(260);
+
+    /* 2 · embed — one strip of colour per word */
+    var s2 = step(root, 2, 'embed(tokens)'), MAXR = 7;
+    var X = words.map(embed), rows = words.slice(0, MAXR);
+    s2.body.innerHTML = '<div class="emb">' + rows.map(function (w, r) {
+      return '<span class="lab">' + esc(w) + '</span>' + X[r].map(function (v, c) {
+        var bin = Math.min(6, Math.floor((v + 1) / 2 * 7));
+        return '<i style="background:var(--hm' + bin + ');transition-delay:' + (c * 32 + r * 45) + 'ms"></i>';
+      }).join('');
+    }).join('') + (words.length > MAXR ? '<span class="dots">⋮ +' + (words.length - MAXR) + '</span>' : '') + '</div>';
+    await frame(); await frame();
+    [].forEach.call(s2.body.querySelectorAll('.emb i'), function (c) { c.classList.add('on') });
+    await wait(12 * 32 + rows.length * 45 + 300);
+    s2.done('shape (' + words.length + ', ' + DIM + ')');
+    await wait(200);
+
+    /* 3 · PCA — the vectors fall into a plane */
+    var s3 = step(root, 3, 'PCA(n_components=2)');
+    var uniq = [], Xu = [];
+    words.forEach(function (w, k) { if (uniq.indexOf(w) < 0 && uniq.length < 40) { uniq.push(w); Xu.push(X[k]) } });
+    var fit = uniq.length > 1 ? pca(Xu) : { P: [[0, 0]], ev: [1, 0] };
+    var m = fit.P.reduce(function (s, p) { return Math.max(s, Math.abs(p[0]), Math.abs(p[1])) }, 0) || 1;
+    var W = 330, H = 196, L = 38, R = 318, T = 10, B = 164, cx = (L + R) / 2, cy = (T + B) / 2;
+    function sx(v) { return cx + v / m * (R - L) / 2 * .86 }
+    function sy(v) { return cy - v / m * (B - T) / 2 * .8 }
+    var svg = '<svg class="pca" viewBox="0 0 ' + W + ' ' + H + '">';
+    [-1, 0, 1].forEach(function (t) {
+      var x = cx + t * (R - L) / 2 * .86, y = cy - t * (B - T) / 2 * .8;
+      svg += '<line class="gr" x1="' + x + '" x2="' + x + '" y1="' + T + '" y2="' + B + '"/>' +
+             '<line class="gr" x1="' + L + '" x2="' + R + '" y1="' + y + '" y2="' + y + '"/>' +
+             '<text class="tl" x="' + x + '" y="' + (B + 13) + '" text-anchor="middle">' + t.toFixed(1) + '</text>' +
+             '<text class="tl" x="' + (L - 5) + '" y="' + (y + 3) + '" text-anchor="end">' + t.toFixed(1) + '</text>';
+    });
+    svg += '<rect class="ax" x="' + L + '" y="' + T + '" width="' + (R - L) + '" height="' + (B - T) + '"/>' +
+      '<text class="tl" x="' + cx + '" y="' + (H - 4) + '" text-anchor="middle">PC1</text>' +
+      '<text class="tl" transform="translate(10 ' + cy + ') rotate(-90)" text-anchor="middle">PC2</text>';
+    /* a word is labelled only where its label fits beside the point without
+       running into another label or off the axes */
+    var boxes = [], lag = Math.min(28, 500 / fit.P.length);
+    function label(x, y, w) {
+      var lw = w.length * 6.2 + 2, tries = [[6, 'start', x + 6], [-6, 'end', x - 6 - lw]];
+      for (var t = 0; t < 2; t++) {
+        var bx = tries[t][2], by = y - 16;
+        if (bx < L + 2 || bx + lw > R - 2 || by < T) continue;
+        if (boxes.some(function (o) { return bx < o[0] + o[2] && o[0] < bx + lw && by < o[1] + 13 && o[1] < by + 13 })) continue;
+        boxes.push([bx, by, lw]);
+        return '<text x="' + tries[t][0] + '" y="-5" text-anchor="' + tries[t][1] + '">' + esc(w) + '</text>';
+      }
+      return '';
+    }
+    fit.P.forEach(function (p, k) {
+      var x = sx(p[0]), y = sy(p[1]);
+      svg += '<g class="pt" data-x="' + x.toFixed(1) + '" data-y="' + y.toFixed(1) + '"' +
+        ' style="transform:translate(' + cx + 'px,' + cy + 'px);transition-delay:' + Math.round(k * lag) + 'ms">' +
+        '<circle r="4"/>' + (boxes.length < 14 ? label(x, y, uniq[k]) : '') + '</g>';
+    });
+    s3.body.innerHTML = svg + '</svg>';
+    var plot = s3.body.firstChild;
+    await frame(); await frame();
+    [].forEach.call(plot.querySelectorAll('.pt'), function (g) {
+      g.style.transform = 'translate(' + g.dataset.x + 'px,' + g.dataset.y + 'px)';
+    });
+    plot.classList.add('landed');
+    await wait(900 + fit.P.length * lag);
+    s3.done('explained var ' + Math.round(fit.ev[0] * 100) + '% · ' + Math.round(fit.ev[1] * 100) + '%');
+    await wait(200);
+
+    /* 4 · describe — a few real numbers about the text */
+    var s4 = step(root, 4, 'msg.describe()');
+    var chars = Array.from(msg), freq = {}, letters = 0, fa = 0;
+    chars.forEach(function (c) {
+      freq[c] = (freq[c] || 0) + 1;
+      if (/\p{L}/u.test(c)) { letters++; if (/[\u0600-\u06FF]/.test(c)) fa++ }
+    });
+    var Hs = 0;
+    for (var c in freq) { var p = freq[c] / chars.length; Hs -= p * Math.log2(p) }
+    var F = [
+      ['chars', chars.length, 0],
+      ['words', words.length, 0],
+      ['unique_ratio', new Set(words).size / words.length, 2],
+      ['entropy_bits', Hs, 2],
+      ['persian_share', letters ? fa / letters : 0, 2]
+    ];
+    s4.body.innerHTML = '<table class="dataframe"><thead><tr><th></th><th>value</th></tr></thead><tbody>' +
+      F.map(function (f) { return '<tr><th class="l">' + f[0] + '</th><td class="num">0</td></tr>' }).join('') +
+      '</tbody></table>';
+    var cells = s4.body.querySelectorAll('td'), t0 = performance.now(), DUR = reduce ? 0 : 600;
+    await new Promise(function (done) {
+      (function tick(now) {
+        var k = DUR ? Math.min(1, (now - t0) / DUR) : 1, e = 1 - Math.pow(1 - k, 3);
+        F.forEach(function (f, i) { cells[i].textContent = (f[1] * e).toFixed(f[2]) });
+        if (k < 1) requestAnimationFrame(tick); else done();
+      })(t0);
+    });
+    s4.done('5 features');
+    await wait(260);
+
+    /* 5 · encode and upload — the real request has been in flight all along */
+    var s5 = step(root, 5, 'me.send(msg.encode("utf-8"))');
+    var bytes = new TextEncoder().encode(msg), SHOW = 36;
+    s5.body.innerHTML = '<div class="hex"></div><div class="tq"><span>upload</span>' +
+      '<span class="pct">0%</span><span class="bar"><i></i></span><span class="cnt"></span></div>';
+    var hx = s5.body.querySelector('.hex');
+    for (var b = 0; b < Math.min(bytes.length, SHOW); b += 3) {
+      hx.innerHTML = Array.from(bytes.slice(0, b + 3), function (x) { return '<b>' + x.toString(16).padStart(2, '0') + '</b>' }).join(' ') +
+        (b + 3 < bytes.length ? ' …' : '');
+      await wait(22);
+    }
+    if (bytes.length > SHOW) hx.innerHTML += ' <span>(+' + (bytes.length - SHOW) + ' B)</span>';
+    var bar = s5.body.querySelector('.bar i'), pct = s5.body.querySelector('.pct'),
+        cnt = s5.body.querySelector('.cnt'), N = bytes.length;
+    function prog(f) {
+      bar.style.width = (f * 100) + '%';
+      pct.textContent = Math.round(f * 100) + '%';
+      cnt.textContent = Math.round(f * N) + '/' + N + ' B';
+    }
+    for (var k = 1; k <= 9; k++) { prog(k / 10); await wait(70) }
+    var ok = await sent;
+    var digest = await sha(bytes);
+    if (!ok) { s5.done('failed', true); return { ok: false } }
+    prog(1);
+    await wait(180);
+    s5.done('200 OK');
+    return { ok: true, sig: 'sha256:' + digest.slice(0, 8) + '…' + digest.slice(-4) + ' · ' + N + ' B' };
+  }
+
+  return { run: run };
+})();
+
+/* ── boot ───────────────────────────────────────────────────── */
 var live = document.querySelector('.jp-editor .live');
-live.addEventListener('focus', function(){
-  if (live.textContent === 'سلام وحید،') live.textContent = '';
-});
-live.addEventListener('keydown', function(e){ if (e.key === 'Enter') e.preventDefault() });
+var ENDPOINT = 'https://hello-world-wild-field-dc82.vbaghi.workers.dev/?message=';
+function post(msg) {
+  return fetch(ENDPOINT + encodeURIComponent(msg))
+    .then(function (r) { return r.ok }, function () { return false });
+}
 
 /* the contact cell is the one cell the reader runs; it posts the message on */
-var ENDPOINT = 'https://hello-world-wild-field-dc82.vbaghi.workers.dev/?message=';
-document.querySelector('[data-exec="send"] .jp-cellrun')
-  .addEventListener('click', function(){
-    var out = document.getElementById('o-send'), msg = live.textContent.trim();
-    if (!msg || msg === 'سلام وحید،') {
-      out.innerHTML = '<span style="color:var(--jp-warn)">!</span> اول یک پیام بنویس.';
-      live.focus(); return;
-    }
-    out.textContent = 'در حال ارسال…';
-    fetch(ENDPOINT + encodeURIComponent(msg))
-      .then(function(r){
-        out.innerHTML = r.ok
-          ? '<span class="ok">✓</span> پیام رسید.'
-          : '<span style="color:var(--jp-warn)">!</span> نرسید — به vbaghi@gmail.com ایمیل بزن.';
-      })
-      .catch(function(){
-        out.innerHTML = '<span style="color:var(--jp-warn)">!</span> نرسید — به vbaghi@gmail.com ایمیل بزن.';
-      });
+var sending = false;
+function sendCell() {
+  var cell = document.querySelector('[data-exec="send"]'),
+      inP = cell.querySelector('.jp-prompt:not(.out)'), n = inP.innerHTML,
+      out = document.getElementById('o-send'), pipe = document.getElementById('o-pipe'),
+      msg = live.textContent.trim();
+  if (sending) return;
+  if (!msg) {
+    pipe.innerHTML = '';
+    out.innerHTML = '<span style="color:var(--jp-warn)">!</span> اول یک پیام بنویس.';
+    live.focus(); return;
+  }
+  sending = true;
+  out.textContent = '';
+  inP.innerHTML = '[*]:';
+  setTimeout(function () { Lab.kernel(true) });
+  var fail = '<span style="color:var(--jp-warn)">!</span> نرسید — به vbaghi@gmail.com ایمیل بزن.';
+  var sent = post(msg);
+  PIPE.run(pipe, msg, sent).catch(function () {
+    /* a broken animation must not misreport the message: ask the request itself */
+    return sent.then(function (ok) { return { ok: ok, sig: '' } });
+  }).then(function (r) {
+    out.innerHTML = r.ok
+      ? '<div class="pp-ok"><span><span class="ok">✓</span> پیام رسید.</span><span class="sig">' + r.sig + '</span></div>'
+      : fail;
+  }).then(function () {
+    sending = false; inP.innerHTML = n; Lab.kernel(false);
+    out.scrollIntoView({ block: 'nearest' });
   });
+}
+
+Lab.chrome({ active: 'home' });
+Lab.wire({ send: sendCell });
+Lab.runAll();
+
+live.addEventListener('keydown', function(e){ if (e.key === 'Enter') e.preventDefault() });
 </script>
 
 <!-- Google Analytics -->
