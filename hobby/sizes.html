@@ -102,7 +102,7 @@ button, input, select { font: inherit; color: inherit; }
 .more { display: block; width: 100%; margin-top: 12px; padding: 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); cursor: pointer; }
 .empty, .loading { color: var(--muted); padding: 28px 0; text-align: center; }
 
-.bar { position: fixed; inset: auto 0 0 0; display: flex; justify-content: center; padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+.bar { position: fixed; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
   background: linear-gradient(to top, var(--bg) 65%, transparent); pointer-events: none; }
 .bar .btn { pointer-events: auto; box-shadow: 0 6px 20px rgba(0,0,0,.18); }
 
@@ -110,14 +110,13 @@ button, input, select { font: inherit; color: inherit; }
 .stage { position: relative; height: min(64vh, 560px); min-height: 340px; border-radius: 16px; overflow: hidden;
   background: var(--scene); border: 1px solid var(--line); }
 .stage canvas { display: block; width: 100%; height: 100%; touch-action: none; }
-.tags { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.tags { position: absolute; top: 0; right: 0; bottom: 0; left: 0; pointer-events: none; overflow: hidden; }
 .tag { position: absolute; transform: translate(-50%, -100%); white-space: nowrap; font-size: 12px; line-height: 1.5;
   background: var(--bg); border: 1px solid var(--line); border-inline-start: 3px solid var(--c); border-radius: 6px; padding: 1px 7px; }
-.seg { position: absolute; top: 10px; inset-inline-start: 10px; display: flex; background: var(--bg); border: 1px solid var(--line);
+.seg { position: absolute; top: 10px; right: 10px; display: flex; background: var(--bg); border: 1px solid var(--line);
   border-radius: 10px; padding: 2px; }
 .seg button { border: 0; background: none; padding: 3px 10px; border-radius: 8px; cursor: pointer; font-size: 13px; }
 .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-.drag { position: absolute; bottom: 8px; inset-inline-end: 12px; font-size: 12px; color: var(--muted); }
 .results { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; }
 .result { display: grid; grid-template-columns: 12px minmax(0, 1fr) auto; gap: 10px; align-items: center;
   border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; }
@@ -283,9 +282,9 @@ footer { color: var(--muted); font-size: 12px; margin-top: 48px; }
   function getJSON(url) {
     var attempt = 0;
     function go() {
-      var ctrl = new AbortController();
-      var timer = setTimeout(function () { ctrl.abort(); }, 8000 + attempt * 7000);
-      return fetch(url + (attempt ? '?r=' + attempt : ''), { signal: ctrl.signal })
+      var ctrl = window.AbortController ? new AbortController() : null;
+      var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 8000 + attempt * 7000);
+      return fetch(url + (attempt ? '?r=' + attempt : ''), ctrl ? { signal: ctrl.signal } : {})
         .then(function (r) { clearTimeout(timer); if (!r.ok) throw new Error(r.status); return r.json(); })
         .catch(function (e) { clearTimeout(timer); if (++attempt < 3) return go(); throw e; });
     }
@@ -522,10 +521,13 @@ footer { color: var(--muted); font-size: 12px; margin-top: 48px; }
     scene.add(group);
     v = new THREE.Vector3();
     scene.background = new THREE.Color(css('--scene'));
-    new ResizeObserver(resize).observe(stage);
-    if (window.matchMedia) matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
-      scene.background = new THREE.Color(css('--scene')); updateScene();
-    });
+    // older iOS WebViews have no ResizeObserver and only addListener on media queries
+    if (window.ResizeObserver) new ResizeObserver(resize).observe(stage);
+    else window.addEventListener('resize', resize);
+    var dark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)');
+    var onTheme = function () { scene.background = new THREE.Color(css('--scene')); updateScene(); };
+    if (dark && dark.addEventListener) dark.addEventListener('change', onTheme);
+    else if (dark && dark.addListener) dark.addListener(onTheme);
     (function loop() { requestAnimationFrame(loop); if (controls.update()) render(); })();
   }
 
@@ -639,7 +641,6 @@ footer { color: var(--muted); font-size: 12px; margin-top: 48px; }
   });
 
   // ---------- start ----------
-  if (window.THREE && THREE.OrbitControls) initScene();
   getJSON(DATA + 'index.json').then(function (data) {
     index = data;
     renderCats();
@@ -652,6 +653,13 @@ footer { color: var(--muted); font-size: 12px; margin-top: 48px; }
   }).catch(function () {
     $('cats').innerHTML = '<div class="empty">بارگذاری نشد. صفحه را دوباره باز کنید.</div>';
   });
+  // the 3D view is extra: if this browser can't run it, the rest of the page still works
+  try {
+    if (window.THREE && THREE.OrbitControls) initScene();
+  } catch (e) {
+    renderer = null;
+  }
+  if (!renderer) $('stage').innerHTML = '<div class="empty" style="padding-top:120px">نمای سه‌بعدی در این مرورگر باز نشد؛ نتیجه‌ها پایین صفحه است.</div>';
 })();
 </script>
 </body>
