@@ -72,6 +72,9 @@ button, input, select { font: inherit; color: inherit; }
 .btn:disabled { opacity: .35; cursor: default; }
 .btn.ghost { background: none; color: var(--ink); border-color: var(--line); }
 .btn.ghost:hover { border-color: var(--ink); }
+.actions.one-row { flex-wrap: nowrap; gap: 8px; }
+.actions.one-row .btn { flex: 1 1 0; min-width: 0; padding: 9px 6px; white-space: nowrap; font-size: 14px; }
+@media (min-width: 560px) { .actions.one-row .btn { flex: 0 0 auto; padding: 10px 22px; font-size: 15px; } }
 
 /* step 3: products */
 .tools { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
@@ -205,7 +208,7 @@ footer { color: var(--muted); font-size: 12px; margin-top: 48px; }
       </div>
     </div>
     <ul class="results" id="results"></ul>
-    <div class="actions">
+    <div class="actions one-row">
       <button class="btn ghost" id="addMore">+ کالای دیگر</button>
       <button class="btn ghost" id="editSpace">تغییر اندازهٔ جا</button>
       <button class="btn ghost" id="restart">از اول</button>
