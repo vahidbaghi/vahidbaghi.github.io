@@ -5,7 +5,7 @@
    "key": "fridge",
    "title": "یخچال و فریزر",
    "group": 1,
-   "count": 6,
+   "count": 9,
    "listed": 1000,
    "checked": 28,
    "updated": "2026-10-15 18:18 UTC"
@@ -158,7 +158,7 @@
    "key": "monitor",
    "title": "مانیتور",
    "group": 3,
-   "count": 23,
+   "count": 24,
    "listed": 300,
    "checked": 35,
    "updated": "2026-10-15 18:23 UTC"

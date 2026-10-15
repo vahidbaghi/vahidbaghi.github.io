@@ -42,7 +42,7 @@ IMAGE_PREFIX = "https://image.torob.com/base/images/"
 #   given the order Torob writes is length × width × height (PC cases)
 # size is the range (mm) the largest side must fall in, to reject typos and wrong units.
 CATEGORIES = [
-    {"key": "fridge", "title": "یخچال و فریزر", "group": 1, "cats": [212, 207, 209, 208, 213], "shape": "tall", "size": (400, 2300), "per_source": 200},
+    {"key": "fridge", "title": "یخچال و فریزر", "group": 1, "cats": [212, 207, 209, 208, 213], "shape": "tall", "size": (200, 2300), "per_source": 200},
     {"key": "washer", "title": "ماشین لباسشویی", "group": 1, "cats": [201], "shape": "tall", "size": (400, 1300)},
     {"key": "dishwasher", "title": "ماشین ظرفشویی", "group": 1, "cats": [202], "shape": "tall", "size": (300, 1000)},
     {"key": "oven", "title": "فر توکار و رومیزی", "group": 1, "cats": [2520], "shape": "wide", "size": (250, 1000)},
@@ -119,7 +119,7 @@ SKIP_KEY = re.compile(r"بسته|کارتن|نمایشگر|صفحه|حسگر|ع�
                       r"داخل|مخزن|یونیت خارجی|کمپرسور|ساب|بلندگو|کابینت|برش|نصب|تنظیم|برآمدگی|درب باز|"
                       r"پشتی|کفی|حداقل|حداکثر|سفارشی|انتخابی|انواع")
 SIDE = {"ارتفاع": "h", "عرض": "w", "پهنا": "w", "عمق": "d", "طول": "l"}
-LABELLED = re.compile(r"(ارتفاع|عرض|پهنا|عمق|طول)\s*[:：]?\s*(\d+(?:\.\d+)?)")
+LABELLED = re.compile(r"(ارتفاع|عرض|پهنا|عمق|طول)[^\d]{0,15}?(\d+(?:\.\d+)?)")  # "ارتفاع با پایه 790"
 
 
 def normalize(text):
@@ -210,21 +210,21 @@ def find_dims(specs, cat):
     if mm:
         return mm
     # 2) one "a × b × c" entry; for TVs and monitors prefer the one without the stand
-    dim_keys = [k for k in keys if re.search("ابعاد|سایز|اندازه|طول", k)]
+    dim_keys = [k for k in keys if re.search("ابعاد|سایز|اندازه|طول|عرض|ارتفاع|عمق", k)]
     dim_keys.sort(key=lambda k: (0 if "بدون پایه" in k else 2 if "پایه" in k else 1))
     for k in dim_keys:
         v = normalize(specs[k])
-        nums = [float(n) for n in NUM.findall(v)]
-        if len(nums) != 3:
-            continue
         labelled = {}
-        for word, n in LABELLED.findall(v):  # "عرض 60 ارتفاع 99 عمق 72"
+        for word, n in LABELLED.findall(v):  # "عرض 60 ارتفاع 99 عمق 72", also inside longer text
             labelled.setdefault(SIDE[word], (float(n), None))
-        if len(labelled) == 3:
+        if len(labelled) >= 3:
             unit = unit_factor(k + " " + v)
             mm = from_sides({s: (n, unit) for s, (n, _) in labelled.items()}, cat)
             if mm:
                 return mm
+        nums = [float(n) for n in NUM.findall(v)]
+        if len(nums) != 3:
+            continue
         mm = fit_unit(nums, unit_factor(k + " " + v), cat["size"])
         if mm:
             return orient(mm, cat["shape"])
@@ -261,7 +261,7 @@ def run(key):
     try:
         if state.get("list_date") != today:
             if not cursor or cursor["date"] != today:
-                cursor = {"date": today, "source": 0, "page": 1, "ids": []}
+                cursor = {"date": today, "source": 0, "page": 1, "ids": []}  # ids: one list per source
             srcs = sources(cat)
             while cursor["source"] < len(srcs):
                 page = cursor["page"]
@@ -273,15 +273,23 @@ def run(key):
                     p = products.setdefault(prk, {"first_seen": today})
                     p.update(name=r.get("name1") or "", price=r.get("price") or 0,
                              image=r.get("image_url") or "", url=r.get("web_client_absolute_url") or "")
-                    cursor["ids"].append(prk)
+                    if len(cursor["ids"]) <= cursor["source"]:
+                        cursor["ids"].append([])
+                    cursor["ids"][cursor["source"]].append(prk)
                 log(f"list {srcs[cursor['source']][:40]} page {page}: {len(results)}")
                 if not results or page * PAGE_SIZE >= min(cat.get("per_source", PER_SOURCE), data.get("count") or 0):
                     cursor["source"] += 1
                     cursor["page"] = 1
                 else:
                     cursor["page"] += 1
-            seen = set()
-            order = [i for i in cursor["ids"] if not (i in seen or seen.add(i))]
+            # take the sources in turn, so one weak sub-category doesn't use up the first runs
+            seen, order = set(), []
+            lists = [l if isinstance(l, list) else [l] for l in cursor["ids"]]
+            for row in range(max(map(len, lists), default=0)):
+                for l in lists:
+                    if row < len(l) and l[row] not in seen:
+                        seen.add(l[row])
+                        order.append(l[row])
             state["list_date"], cursor = today, None
             log(f"list done: {len(order)} products")
     except Blocked as e:
