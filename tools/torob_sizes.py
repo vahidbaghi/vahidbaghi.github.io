@@ -4,10 +4,11 @@ Torob's API does not allow cross-origin calls from the browser, so a GitHub
 Action runs this script per category and the page only reads the files it
 writes. Torob shows an "are you a robot?" page (HTTP 490) after ~40 calls
 from one IP, so every run takes a small bite: the most popular products of
-each category are listed once a day, and each product's detail page (where
-the dimensions are) is read once and remembered.
+each category are listed once a week, and each product's detail page (where
+the dimensions are) is read once and remembered. Once a category is filled,
+its job only runs again for the weekly listing.
 
-    python tools/torob_sizes.py --keys            # category keys, as JSON (CI matrix)
+    python tools/torob_sizes.py --keys            # categories that have work to do, as JSON (CI matrix)
     python tools/torob_sizes.py fridge            # one category
     python tools/torob_sizes.py --index           # rebuild hobby/data/sizes/index.json
     BUDGET=5 python tools/torob_sizes.py fridge   # quick local test
@@ -73,6 +74,7 @@ PER_SOURCE = int(os.environ.get("PER_SOURCE", "300"))  # most popular products l
 BUDGET = int(os.environ.get("BUDGET", "38"))            # Torob calls per run, under the ~40 that trip the block
 DELAY = float(os.environ.get("DELAY", "4"))
 RECHECK_DAYS = 30  # a product without dimensions is read again after this many days
+LIST_DAYS = 7      # the product list (names, prices, new models) is refreshed weekly
 PAGE_SIZE = 100
 
 SEARCH = "https://api.torob.com/v4/base-product/search/?page={page}&sort=popularity&size={size}&source=next_desktop&rank_offset={offset}"
@@ -248,6 +250,25 @@ def sources(cat):
     return ["&q=" + urllib.parse.quote(cat["q"])]
 
 
+def days_since(date):
+    return (datetime.date.today() - datetime.date.fromisoformat(date)).days if date else 10 ** 6
+
+
+def pending(state):
+    """Products whose detail page still has to be read."""
+    products = state.get("products", {})
+    return [i for i in state.get("order", []) if i in products and ("checked" not in products[i] or
+            (products[i].get("dims") is None and days_since(products[i]["checked"]) >= RECHECK_DAYS))]
+
+
+def needs_work(key):
+    f = DATA / "state" / f"{key}.json"
+    if not f.exists():
+        return True
+    state = json.loads(f.read_text(encoding="utf-8"))
+    return bool(state.get("cursor") or days_since(state.get("list_date")) >= LIST_DAYS or pending(state))
+
+
 def run(key):
     cat = BY_KEY[key]
     today = datetime.date.today().isoformat()
@@ -257,10 +278,10 @@ def run(key):
     order = state.get("order", [])        # ids in popularity order (last complete listing)
     cursor = state.get("cursor")          # listing in progress: {"date", "source", "page", "ids"}
 
-    # 1) listing: once a day, resumable across runs
+    # 1) listing: once a week, resumable across runs
     try:
-        if state.get("list_date") != today:
-            if not cursor or cursor["date"] != today:
+        if cursor or days_since(state.get("list_date")) >= LIST_DAYS:
+            if not cursor or days_since(cursor["date"]) > 2:
                 cursor = {"date": today, "source": 0, "page": 1, "ids": []}  # ids: one list per source
             srcs = sources(cat)
             while cursor["source"] < len(srcs):
@@ -296,9 +317,8 @@ def run(key):
         log(f"list paused: {e}")
 
     # 2) detail pages, most popular first
-    cutoff = (datetime.date.today() - datetime.timedelta(days=RECHECK_DAYS)).isoformat()
-    todo = [i for i in order if i in products and ("checked" not in products[i] or
-            (products[i].get("dims") is None and products[i]["checked"] < cutoff))]
+    state.update(products=products, order=order)
+    todo = pending(state)
     read = 0
     try:
         for prk in todo:
@@ -310,9 +330,11 @@ def run(key):
         log(f"details paused after {read}: {e}")
     log(f"details read {read}, {max(len(todo) - read, 0)} left")
 
-    state.update(products=products, order=order, cursor=cursor,
-                 updated=datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
-                 last_run=RUN)
+    state.update(products=products, order=order, cursor=cursor, last_run=RUN)
+    if RUN["calls"]:  # an idle run leaves the files as they were, so nothing gets committed
+        state["updated"] = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    else:
+        return
     (DATA / "state").mkdir(parents=True, exist_ok=True)
     state_file.write_text(json.dumps(state, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     write_page_file(cat, state)
@@ -365,7 +387,7 @@ def build_index():
 if __name__ == "__main__":
     arg = sys.argv[1] if len(sys.argv) > 1 else ""
     if arg == "--keys":
-        print(json.dumps([c["key"] for c in CATEGORIES]))
+        print(json.dumps([c["key"] for c in CATEGORIES if needs_work(c["key"])]))
     elif arg == "--index":
         build_index()
     elif arg == "--reparse":

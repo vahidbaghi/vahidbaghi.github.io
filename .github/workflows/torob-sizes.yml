@@ -2,8 +2,8 @@ name: Torob sizes data
 
 # Fills hobby/data/sizes/ for hobby/sizes.html. Torob blocks an IP after ~40
 # calls, so each category runs as its own job (its own runner IP) and takes a
-# small bite per run; the files fill up over a few days and then only the
-# daily listing and new products cost calls.
+# small bite per run. The files fill up over a few days; after that a category
+# only gets a job again for its weekly listing (and any new products in it).
 on:
   schedule:
     - cron: "23 */2 * * *"
@@ -33,6 +33,7 @@ jobs:
 
   fetch:
     needs: plan
+    if: needs.plan.outputs.keys != '[]'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -50,8 +51,8 @@ jobs:
             hobby/data/sizes/state/${{ matrix.key }}.json
 
   collect:
-    needs: fetch
-    if: always()
+    needs: [plan, fetch]
+    if: always() && needs.plan.outputs.keys != '[]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

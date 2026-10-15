@@ -5,174 +5,216 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <title>جا می‌شه؟ — مقایسهٔ ابعاد کالاها</title>
-<meta name="description" content="ابعاد واقعی یخچال، لباسشویی، کمد و ده‌ها کالای دیگر از ترب، سه‌بعدی و کنار هم؛ با فضای خالی خانه‌تان مقایسه کنید.">
+<meta name="description" content="ابعاد واقعی یخچال، لباسشویی، کمد و ده‌ها کالای دیگر از ترب، سه‌بعدی و کنار هم؛ با جای خالی خانه‌تان مقایسه کنید.">
 <script>try { var t = localStorage.getItem('vb_theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #ffffff; --surface: #f6f6f4; --line: #e4e4e0; --ink: #1c1c1a; --muted: #75756f;
-  --accent: #1f6feb; --accent-ink: #ffffff; --ok: #1a7f37; --bad: #c62828;
-  --scene: #f3f3f0; --grid: #d8d8d2; --grid2: #e8e8e3; --edge: #33332f;
+  --bg: #ffffff; --surface: #f6f6f3; --line: #e6e6e1; --ink: #1c1c1a; --muted: #77776f;
+  --accent: #1f6feb; --ok: #1a7f37; --ok-bg: #e9f6ec; --bad: #c62828; --bad-bg: #fbeaea;
+  --scene: #f3f3f0; --grid: #d8d8d2; --grid2: #e8e8e3;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
-  --bg: #111111; --surface: #1b1b1b; --line: #2e2e2e; --ink: #ececea; --muted: #9a9a94;
-  --accent: #5b9dff; --accent-ink: #0b1220; --ok: #5ec27a; --bad: #ef6b6b;
-  --scene: #171717; --grid: #3a3a3a; --grid2: #262626; --edge: #e8e8e4;
+  --bg: #111111; --surface: #1a1a1a; --line: #2c2c2c; --ink: #ececea; --muted: #9a9a94;
+  --accent: #5b9dff; --ok: #5ec27a; --ok-bg: #16281c; --bad: #ef6b6b; --bad-bg: #2e1616;
+  --scene: #171717; --grid: #3a3a3a; --grid2: #262626;
 } }
 :root[data-theme="dark"] {
-  --bg: #111111; --surface: #1b1b1b; --line: #2e2e2e; --ink: #ececea; --muted: #9a9a94;
-  --accent: #5b9dff; --accent-ink: #0b1220; --ok: #5ec27a; --bad: #ef6b6b;
-  --scene: #171717; --grid: #3a3a3a; --grid2: #262626; --edge: #e8e8e4;
+  --bg: #111111; --surface: #1a1a1a; --line: #2c2c2c; --ink: #ececea; --muted: #9a9a94;
+  --accent: #5b9dff; --ok: #5ec27a; --ok-bg: #16281c; --bad: #ef6b6b; --bad-bg: #2e1616;
+  --scene: #171717; --grid: #3a3a3a; --grid2: #262626;
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.7 Vazirmatn, system-ui, sans-serif; }
 button, input, select { font: inherit; color: inherit; }
-a { color: inherit; }
-.wrap { max-width: 1240px; margin: 0 auto; padding: 0 16px 96px; }
+[hidden] { display: none !important; }
+.wrap { max-width: 980px; margin: 0 auto; padding: 0 16px 120px; }
 
-header { padding: 32px 0 20px; }
-header h1 { margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -.2px; }
-header p { margin: 4px 0 0; color: var(--muted); }
+/* top */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 0 8px; }
+.brand { font-weight: 700; font-size: 17px; }
+.steps { display: flex; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.steps li { width: 26px; height: 4px; border-radius: 2px; background: var(--line); }
+.steps li.on { background: var(--ink); }
+.back { border: 0; background: none; color: var(--muted); cursor: pointer; padding: 4px 0; display: inline-flex; align-items: center; gap: 4px; }
+.back:hover { color: var(--ink); }
 
-.groups { display: grid; gap: 14px; margin: 8px 0 24px; }
-.group h2 { margin: 0 0 6px; font-size: 13px; font-weight: 500; color: var(--muted); }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.chip { border: 1px solid var(--line); background: var(--bg); border-radius: 999px; padding: 4px 12px;
-  cursor: pointer; white-space: nowrap; transition: border-color .15s, background .15s; }
-.chip:hover { border-color: var(--muted); }
-.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.chip small { color: var(--muted); margin-inline-start: 4px; font-size: 12px; }
-.chip[aria-pressed="true"] small { color: inherit; opacity: .7; }
-.chip:disabled { opacity: .4; cursor: default; }
+.step h1 { font-size: 26px; line-height: 1.4; margin: 18px 0 4px; }
+.step .lead { color: var(--muted); margin: 0 0 22px; }
 
-.layout { display: grid; gap: 24px; }
-@media (min-width: 980px) {
-  .layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); align-items: start; }
-  .viewer { position: sticky; top: 16px; }
-}
+/* step 1: categories */
+.group-title { font-size: 13px; color: var(--muted); margin: 18px 0 8px; font-weight: 500; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 10px; }
+@media (max-width: 480px) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; } }
+.card { display: grid; justify-items: center; gap: 6px; padding: 16px 8px 12px; border: 1px solid var(--line); border-radius: 14px;
+  background: var(--bg); cursor: pointer; text-align: center; transition: border-color .15s, transform .15s; }
+.card:hover { border-color: var(--ink); transform: translateY(-1px); }
+.card svg { width: 44px; height: 44px; }
+.card span { font-size: 13.5px; line-height: 1.5; }
+.card small { color: var(--muted); font-size: 11.5px; line-height: 1; }
+.card:disabled { opacity: .35; cursor: default; transform: none; border-color: var(--line); }
 
-.tools { display: flex; gap: 8px; margin-bottom: 10px; }
-.tools input { flex: 1; min-width: 0; }
-.tools input, .tools select, .space input { background: var(--bg); border: 1px solid var(--line); border-radius: 10px;
-  padding: 8px 12px; outline: none; }
-.tools input:focus, .space input:focus { border-color: var(--accent); }
+/* step 2: space */
+.space-box { display: grid; gap: 18px; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 720px) { .space-box { grid-template-columns: 1fr 260px; } }
+.fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.fields label { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+.fields input { width: 100%; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); padding: 12px; font-size: 20px;
+  text-align: center; direction: ltr; outline: none; }
+.fields input:focus { border-color: var(--accent); }
+.unit { color: var(--muted); font-size: 13px; margin: 8px 0 0; }
+.space-art { color: var(--muted); }
+.space-art svg { width: 100%; max-width: 260px; height: auto; display: block; margin: 0 auto; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
+.btn { border: 1px solid var(--ink); background: var(--ink); color: var(--bg); border-radius: 999px; padding: 10px 22px; cursor: pointer; }
+.btn:disabled { opacity: .35; cursor: default; }
+.btn.ghost { background: none; color: var(--ink); border-color: var(--line); }
+.btn.ghost:hover { border-color: var(--ink); }
+
+/* step 3: products */
+.tools { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+.tools input { flex: 1 1 200px; min-width: 0; }
+.tools input, .tools select { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; outline: none; }
+.tools input:focus { border-color: var(--accent); }
+.toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); cursor: pointer; user-select: none; }
 .meta { color: var(--muted); font-size: 13px; margin: 0 0 6px; }
-
 .list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
-.item { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 12px; align-items: center;
-  padding: 10px 2px; border-bottom: 1px solid var(--line); }
-.item img { width: 52px; height: 52px; object-fit: contain; border-radius: 8px; background: #fff; }
-.item .name { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-decoration: none; }
-.item .name:hover { text-decoration: underline; }
-.item .sub { color: var(--muted); font-size: 13px; display: flex; gap: 12px; flex-wrap: wrap; }
-.item .dims { color: var(--ink); direction: rtl; }
-.add { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--bg);
-  cursor: pointer; font-size: 20px; line-height: 1; display: grid; place-items: center; }
-.add:hover { border-color: var(--ink); }
-.add[aria-pressed="true"] { background: var(--sel, var(--accent)); border-color: transparent; color: #fff; font-size: 16px; }
-.more { display: block; width: 100%; margin-top: 12px; padding: 10px; border: 1px solid var(--line); border-radius: 10px;
-  background: var(--bg); cursor: pointer; }
-.empty { color: var(--muted); padding: 24px 0; text-align: center; }
+.item { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 10px 2px;
+  border-bottom: 1px solid var(--line); cursor: pointer; }
+.item img { width: 56px; height: 56px; object-fit: contain; border-radius: 10px; background: #fff; }
+.item .name { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.item .sub { color: var(--muted); font-size: 13px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.item .dims { color: var(--ink); }
+.badge { font-size: 11.5px; border-radius: 999px; padding: 0 8px; line-height: 1.8; }
+.badge.ok { color: var(--ok); background: var(--ok-bg); }
+.badge.bad { color: var(--bad); background: var(--bad-bg); }
+.add { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--bg); cursor: pointer;
+  font-size: 20px; line-height: 1; display: grid; place-items: center; pointer-events: none; }
+.item:hover .add { border-color: var(--ink); }
+.add[aria-pressed="true"] { background: var(--sel); border-color: transparent; color: #fff; font-size: 16px; }
+.more { display: block; width: 100%; margin-top: 12px; padding: 10px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); cursor: pointer; }
+.empty, .loading { color: var(--muted); padding: 28px 0; text-align: center; }
 
-.viewer { display: grid; gap: 12px; }
-.stage { position: relative; height: min(62vh, 540px); min-height: 320px; border-radius: 14px; overflow: hidden;
+.bar { position: fixed; inset: auto 0 0 0; display: flex; justify-content: center; padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  background: linear-gradient(to top, var(--bg) 65%, transparent); pointer-events: none; }
+.bar .btn { pointer-events: auto; box-shadow: 0 6px 20px rgba(0,0,0,.18); }
+
+/* step 4: compare */
+.stage { position: relative; height: min(64vh, 560px); min-height: 340px; border-radius: 16px; overflow: hidden;
   background: var(--scene); border: 1px solid var(--line); }
 .stage canvas { display: block; width: 100%; height: 100%; touch-action: none; }
-.stage .hint { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--muted);
-  padding: 24px; pointer-events: none; }
 .tags { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .tag { position: absolute; transform: translate(-50%, -100%); white-space: nowrap; font-size: 12px; line-height: 1.5;
-  background: var(--bg); border: 1px solid var(--line); border-inline-start: 3px solid var(--c); border-radius: 6px;
-  padding: 1px 7px; color: var(--ink); }
+  background: var(--bg); border: 1px solid var(--line); border-inline-start: 3px solid var(--c); border-radius: 6px; padding: 1px 7px; }
 .seg { position: absolute; top: 10px; inset-inline-start: 10px; display: flex; background: var(--bg); border: 1px solid var(--line);
   border-radius: 10px; padding: 2px; }
 .seg button { border: 0; background: none; padding: 3px 10px; border-radius: 8px; cursor: pointer; font-size: 13px; }
 .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-
-.picked { display: flex; flex-wrap: wrap; gap: 6px; }
-.pick { display: flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 999px; padding: 2px 4px 2px 10px;
-  font-size: 13px; max-width: 100%; }
-.pick i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
-.pick span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 220px; }
-.pick button { border: 0; background: none; cursor: pointer; color: var(--muted); padding: 0 4px; font-size: 15px; }
-
-.space { border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
-.space h3 { margin: 0 0 2px; font-size: 15px; }
-.space p { margin: 0 0 10px; color: var(--muted); font-size: 13px; }
-.space .row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-.space label { font-size: 12px; color: var(--muted); display: grid; gap: 2px; }
-.space input { width: 100%; padding: 6px 10px; direction: ltr; text-align: center; }
-.fits { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 4px; font-size: 13px; }
-.fits li { display: flex; gap: 8px; align-items: baseline; }
-.fits b { flex: none; font-weight: 500; }
-.fits .ok b { color: var(--ok); }
-.fits .bad b { color: var(--bad); }
-.fits span { color: var(--muted); }
-
-.bar { position: fixed; inset: auto 0 0 0; display: none; justify-content: center; padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-  background: linear-gradient(to top, var(--bg) 60%, transparent); }
-.bar button { border: 0; border-radius: 999px; background: var(--ink); color: var(--bg); padding: 10px 22px; cursor: pointer; }
-@media (max-width: 979px) { .bar.show { display: flex; } }
-
-footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
-.loading { color: var(--muted); padding: 24px 0; text-align: center; }
+.drag { position: absolute; bottom: 8px; inset-inline-end: 12px; font-size: 12px; color: var(--muted); }
+.results { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; }
+.result { display: grid; grid-template-columns: 12px minmax(0, 1fr) auto; gap: 10px; align-items: center;
+  border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; }
+.result i { width: 12px; height: 12px; border-radius: 3px; }
+.result .n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.result .d { color: var(--muted); font-size: 13px; }
+.result .x { border: 0; background: none; color: var(--muted); cursor: pointer; font-size: 18px; padding: 0 4px; }
+.result.ok .d b { color: var(--ok); font-weight: 500; }
+.result.bad .d b { color: var(--bad); font-weight: 500; }
+footer { color: var(--muted); font-size: 12px; margin-top: 48px; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <h1>جا می‌شه؟</h1>
-    <p>ابعاد واقعی کالاها از ترب، سه‌بعدی و کنار هم. اندازهٔ جای خالی خانه‌تان را هم بدهید.</p>
-  </header>
-
-  <nav class="groups" id="groups"><div class="loading">در حال بارگذاری…</div></nav>
-
-  <div class="layout">
-    <section>
-      <div class="tools">
-        <input id="q" type="search" placeholder="جستجو در این دسته…" autocomplete="off">
-        <select id="sort" aria-label="مرتب‌سازی">
-          <option value="pop">محبوب‌ترین</option>
-          <option value="cheap">ارزان‌ترین</option>
-          <option value="dear">گران‌ترین</option>
-          <option value="small">کوچک‌ترین</option>
-          <option value="big">بزرگ‌ترین</option>
-        </select>
-      </div>
-      <p class="meta" id="meta"></p>
-      <ul class="list" id="list"></ul>
-      <button class="more" id="more" hidden>بیشتر</button>
-    </section>
-
-    <section class="viewer" id="viewer">
-      <div class="stage" id="stage">
-        <div class="seg" id="mode">
-          <button data-mode="side" aria-pressed="true">کنار هم</button>
-          <button data-mode="overlap">روی هم</button>
-        </div>
-        <div class="tags" id="tags"></div>
-        <div class="hint" id="hint">با <b>&nbsp;+&nbsp;</b> کالاها را به مقایسه اضافه کنید.</div>
-      </div>
-      <div class="picked" id="picked"></div>
-      <div class="space">
-        <h3>جای خالی من</h3>
-        <p>اندازهٔ فضایی که کالا باید در آن جا شود، به سانتی‌متر.</p>
-        <div class="row">
-          <label>عرض<input id="sw" inputmode="decimal" placeholder="—"></label>
-          <label>ارتفاع<input id="sh" inputmode="decimal" placeholder="—"></label>
-          <label>عمق<input id="sd" inputmode="decimal" placeholder="—"></label>
-        </div>
-        <ul class="fits" id="fits"></ul>
-      </div>
-    </section>
+  <div class="top">
+    <span class="brand">جا می‌شه؟</span>
+    <ol class="steps" id="steps"><li></li><li></li><li></li><li></li></ol>
   </div>
+  <button class="back" id="back" hidden>→ برگشت</button>
+
+  <!-- 1 -->
+  <section class="step" id="s1">
+    <h1>چی می‌خوای بخری؟</h1>
+    <p class="lead">ابعاد واقعی کالاها را از ترب می‌آوریم و سه‌بعدی کنار هم می‌گذاریم.</p>
+    <div id="cats"><div class="loading">در حال بارگذاری…</div></div>
+  </section>
+
+  <!-- 2 -->
+  <section class="step" id="s2" hidden>
+    <h1>جاش چقدره؟</h1>
+    <p class="lead">اندازهٔ جایی که <span id="s2what">کالا</span> باید در آن قرار بگیرد. هر کدام را نمی‌دانید خالی بگذارید.</p>
+    <div class="space-box">
+      <div>
+        <div class="fields">
+          <label>عرض<input id="sw" inputmode="decimal" placeholder="—" autocomplete="off"></label>
+          <label>ارتفاع<input id="sh" inputmode="decimal" placeholder="—" autocomplete="off"></label>
+          <label>عمق<input id="sd" inputmode="decimal" placeholder="—" autocomplete="off"></label>
+        </div>
+        <p class="unit">به سانتی‌متر</p>
+      </div>
+      <div class="space-art" aria-hidden="true">
+        <svg viewBox="0 0 260 180" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M70 40 L190 40 L190 150 L70 150 Z" stroke-dasharray="6 5"/>
+          <path d="M70 40 L100 20 L220 20 L190 40 M220 20 L220 130 L190 150" stroke-dasharray="6 5"/>
+          <path d="M70 165 L190 165 M70 160 v10 M190 160 v10"/>
+          <path d="M55 40 L55 150 M50 40 h10 M50 150 h10"/>
+          <path d="M200 160 L228 141 M197 155 l6 9 M225 136 l6 9"/>
+          <text x="130" y="178" font-size="12" fill="currentColor" stroke="none" text-anchor="middle">عرض</text>
+          <text x="44" y="99" font-size="12" fill="currentColor" stroke="none" text-anchor="middle" transform="rotate(-90 44 95)">ارتفاع</text>
+          <text x="238" y="160" font-size="12" fill="currentColor" stroke="none" text-anchor="middle">عمق</text>
+        </svg>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn" id="s2next">ادامه</button>
+      <button class="btn ghost" id="s2skip">اندازه ندارم، فقط مقایسه</button>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="step" id="s3" hidden>
+    <h1>کدوم‌ها رو مقایسه کنیم؟</h1>
+    <p class="lead" id="s3lead">تا ۶ کالا انتخاب کنید.</p>
+    <div class="tools">
+      <input id="q" type="search" placeholder="جستجوی مدل یا برند…" autocomplete="off">
+      <select id="sort" aria-label="مرتب‌سازی">
+        <option value="pop">محبوب‌ترین</option>
+        <option value="cheap">ارزان‌ترین</option>
+        <option value="dear">گران‌ترین</option>
+        <option value="small">کوچک‌ترین</option>
+        <option value="big">بزرگ‌ترین</option>
+      </select>
+    </div>
+    <label class="toggle" id="fitToggle" hidden><input type="checkbox" id="onlyFit" checked> فقط آن‌هایی که جا می‌شوند</label>
+    <p class="meta" id="meta"></p>
+    <ul class="list" id="list"></ul>
+    <button class="more" id="more" hidden>بیشتر</button>
+  </section>
+
+  <!-- 4 -->
+  <section class="step" id="s4" hidden>
+    <h1 id="s4title">مقایسه</h1>
+    <p class="lead">بچرخانید، بزرگ و کوچک کنید.</p>
+    <div class="stage" id="stage">
+      <div class="tags" id="tags"></div>
+      <div class="seg" id="mode">
+        <button data-mode="side" aria-pressed="true">کنار هم</button>
+        <button data-mode="overlap">روی هم</button>
+      </div>
+    </div>
+    <ul class="results" id="results"></ul>
+    <div class="actions">
+      <button class="btn ghost" id="addMore">+ کالای دیگر</button>
+      <button class="btn ghost" id="editSpace">تغییر اندازهٔ جا</button>
+      <button class="btn ghost" id="restart">از اول</button>
+    </div>
+  </section>
 
   <footer id="footer">داده‌ها از torob.com؛ ابعاد همان است که فروشنده‌ها در ترب ثبت کرده‌اند.</footer>
 </div>
-<div class="bar" id="bar"><button id="barBtn"></button></div>
+<div class="bar" id="bar" hidden><button class="btn" id="barBtn"></button></div>
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
@@ -183,16 +225,49 @@ footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
   // (tools/torob_sizes.py) copies the data into these files and the page only reads them.
   var DATA = '/hobby/data/sizes/';
   var GROUPS = { 1: 'باید جای مشخصی جا بشه', 2: 'وسایل بزرگ خانه', 3: 'روی میز و کابینت، یا داخل چیز دیگر' };
-  var COLORS = ['#3b82f6', '#f59e0b', '#10b981', '#ef4444', '#8b5cf6', '#ec4899', '#14b8a6', '#f97316'];
-  var PAGE = 30;
+  var COLORS = ['#3b82f6', '#f59e0b', '#10b981', '#ef4444', '#8b5cf6', '#ec4899'];
+  var MAX = 6, PAGE = 30;
+
+  // one line icon per category, 48×48, drawn with currentColor
+  var ICONS = {
+    'fridge': '<rect x="13" y="4" width="22" height="40" rx="3"/><path d="M13 18h22M18 9v5M18 22v8M16 44v2M32 44v2"/>',
+    'washer': '<rect x="8" y="5" width="32" height="38" rx="3"/><path d="M8 13h32"/><circle cx="24" cy="28" r="9"/><path d="M19 29a5 5 0 0 0 10 0"/><circle cx="13" cy="9" r="1"/><circle cx="17" cy="9" r="1"/><path d="M28 9h7"/>',
+    'dishwasher': '<rect x="8" y="5" width="32" height="38" rx="3"/><path d="M8 13h32M16 18h16"/><circle cx="13" cy="9" r="1"/><circle cx="17" cy="9" r="1"/><path d="M28 9h7M13 36l4-5 4 5 4-5 4 5 4-5 2 2"/>',
+    'oven': '<rect x="7" y="7" width="34" height="34" rx="3"/><path d="M7 15h34M15 19h18"/><rect x="12" y="22" width="24" height="14" rx="2"/><circle cx="12" cy="11" r="1.4"/><circle cx="18" cy="11" r="1.4"/><path d="M27 11h9"/>',
+    'boiler': '<rect x="12" y="4" width="24" height="33" rx="4"/><rect x="18" y="11" width="12" height="7" rx="1.5"/><circle cx="24" cy="26" r="3"/><path d="M18 37v7M24 37v7M30 37v7"/>',
+    'water-heater': '<rect x="14" y="4" width="20" height="37" rx="10"/><circle cx="24" cy="15" r="3.5"/><path d="M24 15l2-2M19 41v5M29 41v5M20 28h8"/>',
+    'radiator': '<rect x="5" y="12" width="38" height="24" rx="2"/><path d="M11 16v16M17 16v16M23 16v16M29 16v16M35 16v16M9 36v4M39 36v4M43 18h3"/>',
+    'wardrobe': '<rect x="9" y="4" width="30" height="38" rx="2"/><path d="M24 4v38M21 19v6M27 19v6M12 42v3M36 42v3"/>',
+    'drawer': '<rect x="8" y="9" width="32" height="31" rx="2"/><path d="M8 19.5h32M8 30h32M21 14h6M21 24.5h6M21 35h6M12 40v4M36 40v4"/>',
+    'shoe-cabinet': '<rect x="8" y="17" width="32" height="25" rx="2"/><path d="M8 29.5h32M20 22h8M20 34.5h8M12 42v3M36 42v3"/><path d="M14 17v-6h5l2 3 6 1a2 2 0 0 1 2 2"/>',
+    'bookcase': '<rect x="10" y="4" width="28" height="40" rx="2"/><path d="M10 15h28M10 26h28M10 37h28M14 15V8M17 15V9M20 15V8M25 15l3-6M15 26v-7M18 26v-6M28 26v-7M31 26v-6M14 37v-6M24 37v-7M27 37v-6"/>',
+    'tv-stand': '<rect x="15" y="8" width="18" height="12" rx="1.5"/><path d="M24 20v5"/><rect x="5" y="25" width="38" height="13" rx="2"/><path d="M24 25v13M20 31.5h1M27 31.5h1M9 38v3M39 38v3"/>',
+    'tv': '<rect x="4" y="8" width="40" height="26" rx="2"/><path d="M12 34l-3 6M36 34l3 6M7 40h4M37 40h4"/>',
+    'ac': '<rect x="4" y="11" width="40" height="15" rx="4"/><path d="M9 21h30M38 15.5h1M14 31q2 3 0 6t0 6M24 31q2 3 0 6t0 6M34 31q2 3 0 6t0 6"/>',
+    'gas-heater': '<rect x="8" y="9" width="32" height="30" rx="3"/><rect x="13" y="15" width="22" height="18" rx="2"/><path d="M24 30c-4 0-5-3-3-6 1 2 2 2 2 0 0-2 1-4 3-5-1 3 2 4 2 7 0 2-2 4-4 4zM12 39v4M36 39v4"/>',
+    'aquarium': '<rect x="6" y="10" width="36" height="28" rx="2"/><path d="M6 16q4.5-2 9 0t9 0 9 0 9 0"/><path d="M15 28q5-6 11 0q-6 6-11 0zM26 28l4-3v6z"/><circle cx="33" cy="21" r="1.2"/><circle cx="36" cy="18" r="0.9"/><path d="M10 38v3M38 38v3"/>',
+    'microwave': '<rect x="5" y="11" width="38" height="26" rx="3"/><rect x="9" y="15" width="22" height="18" rx="1.5"/><path d="M35 11v26"/><circle cx="39" cy="18" r="1.3"/><circle cx="39" cy="24" r="1.3"/><path d="M38 30h2"/>',
+    'monitor': '<rect x="5" y="7" width="38" height="25" rx="2"/><path d="M24 32v6M16 41h16"/>',
+    'printer': '<path d="M14 18V6h20v12"/><rect x="6" y="18" width="36" height="16" rx="3"/><rect x="14" y="29" width="20" height="13" rx="1"/><path d="M18 34h12M18 38h8"/><circle cx="36" cy="23" r="1.3"/>',
+    'pc-case': '<rect x="13" y="4" width="22" height="40" rx="2"/><circle cx="24" cy="10" r="2"/><path d="M18 16h12"/><circle cx="24" cy="30" r="6"/><path d="M24 26v8M20 30h8"/>',
+    'psu': '<rect x="5" y="13" width="38" height="24" rx="2"/><circle cx="18" cy="25" r="7.5"/><path d="M12.7 19.7l10.6 10.6M23.3 19.7L12.7 30.3"/><rect x="31" y="18" width="8" height="6" rx="1"/><rect x="32" y="28" width="6" height="4" rx="1"/>',
+    'soundbar': '<rect x="3" y="20" width="42" height="11" rx="5.5"/><circle cx="12" cy="25.5" r="2"/><circle cx="24" cy="25.5" r="2"/><circle cx="36" cy="25.5" r="2"/><path d="M15 15q9-5 18 0M18 11q6-3 12 0"/>',
+    'safe': '<rect x="7" y="7" width="34" height="33" rx="3"/><rect x="11" y="11" width="26" height="25" rx="2"/><circle cx="24" cy="23.5" r="5"/><path d="M24 18.5v2M24 26.5v2M19 23.5h2M27 23.5h2M33 20v7M11 40v3M37 40v3"/>',
+    'car-battery': '<rect x="6" y="14" width="36" height="26" rx="3"/><rect x="10" y="9" width="7" height="5" rx="1"/><rect x="31" y="9" width="7" height="5" rx="1"/><path d="M11 25h6M14 22v6M31 25h6"/>'
+  };
+  var icon = function (key) {
+    return '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+      (ICONS[key] || '<rect x="8" y="8" width="32" height="32" rx="3"/>') + '</svg>';
+  };
 
   var $ = function (id) { return document.getElementById(id); };
   var fa = function (n, d) { return Number(n).toLocaleString('fa-IR', { maximumFractionDigits: d == null ? 1 : d }); };
-  var cm = function (mm) { return fa(Math.round(mm / 10 * 10) / 10 / 1); };
+  var cm = function (mm) { return fa(Math.round(mm) / 10); };
   var esc = function (s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
+  var shortName = function (n) { return n.length > 60 ? n.slice(0, 58) + '…' : n; };
 
-  var index = null, current = null, rows = [], shown = PAGE;
-  var picked = [];          // {id, name, w, h, d, color, cat}
+  var index = null, current = null, rows = [], shown = PAGE, step = 1;
+  var picked = [];          // {id, name, w, h, d, color}
   var mode = 'side';
   var cache = {};
 
@@ -210,21 +285,6 @@ footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
     return go();
   }
 
-  function loadIndex() {
-    return getJSON(DATA + 'index.json').then(function (data) {
-      index = data;
-      renderGroups();
-      var want = location.hash.slice(1);
-      var first = index.categories.find(function (c) { return c.key === want && c.count; }) ||
-                  index.categories.find(function (c) { return c.count; });
-      if (first) openCategory(first.key);
-      var up = formatUpdated(index.updated);
-      if (up) $('footer').textContent += ' آخرین به‌روزرسانی: ' + up + '.';
-    }).catch(function () {
-      $('groups').innerHTML = '<div class="empty">بارگذاری نشد. صفحه را دوباره باز کنید.</div>';
-    });
-  }
-
   function loadCategory(key) {
     if (!cache[key]) {
       cache[key] = getJSON(DATA + key + '.json').then(function (data) {
@@ -232,7 +292,7 @@ footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
           return { id: r[0], name: r[1], price: r[2],
                    image: r[3] && r[3].indexOf('http') !== 0 ? data.image_prefix + r[3] : r[3],
                    url: 'https://torob.com/p/' + r[0] + '/' + (r[4] ? encodeURIComponent(r[4]) + '/' : ''),
-                   w: r[5], h: r[6], d: r[7], rank: i, cat: key };
+                   w: r[5], h: r[6], d: r[7], rank: i };
         });
       }).catch(function (e) { delete cache[key]; throw e; });
     }
@@ -243,140 +303,73 @@ footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
   function formatUpdated(text) {
     var m = /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})/.exec(text || '');
     if (!m) return '';
-    var d = new Date(Date.UTC(+m[1], m[2] - 1, +m[3], +m[4], +m[5]));
     try {
-      return new Intl.DateTimeFormat('fa-IR-u-ca-persian', { timeZone: 'Asia/Tehran', year: 'numeric',
-        month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(d);
+      return new Intl.DateTimeFormat('fa-IR-u-ca-persian', { timeZone: 'Asia/Tehran', year: 'numeric', month: 'long',
+        day: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(new Date(Date.UTC(+m[1], m[2] - 1, +m[3], +m[4], +m[5])));
     } catch (e) { return ''; }
   }
 
-  // ---------- categories ----------
-  function renderGroups() {
+  // ---------- steps ----------
+  function go(n, push) {
+    step = n;
+    [1, 2, 3, 4].forEach(function (i) { $('s' + i).hidden = i !== n; });
+    document.querySelectorAll('#steps li').forEach(function (li, i) { li.classList.toggle('on', i < n); });
+    $('back').hidden = n === 1;
+    updateBar();
+    if (push !== false) history.pushState({ step: n, cat: current }, '', '#' + (current || ''));
+    window.scrollTo(0, 0);
+    if (n === 3) renderList();
+    if (n === 4) { renderResults(); requestAnimationFrame(function () { resize(); updateScene(); }); }
+  }
+  window.addEventListener('popstate', function (e) {
+    var s = e.state || { step: 1 };
+    if (s.cat && s.cat !== current) chooseCategory(s.cat, false);
+    go(s.cat ? s.step : 1, false);
+  });
+  $('back').addEventListener('click', function () { history.back(); });
+
+  function updateBar() {
+    var show = step === 3 && picked.length > 0;
+    $('bar').hidden = !show;
+    if (show) $('barBtn').textContent = 'مقایسهٔ ' + fa(picked.length, 0) + ' کالا ←';
+  }
+  $('barBtn').addEventListener('click', function () { go(4); });
+
+  // ---------- 1: categories ----------
+  function renderCats() {
     var html = '';
     [1, 2, 3].forEach(function (g) {
       var cats = index.categories.filter(function (c) { return c.group === g; });
-      html += '<div class="group"><h2>' + GROUPS[g] + '</h2><div class="chips">' +
-        cats.map(function (c) {
-          return '<button class="chip" data-key="' + c.key + '" aria-pressed="false"' + (c.count ? '' : ' disabled') + '>' +
-            esc(c.title) + (c.count ? '<small>' + fa(c.count, 0) + '</small>' : '') + '</button>';
-        }).join('') + '</div></div>';
+      html += '<div class="group-title">' + GROUPS[g] + '</div><div class="cards">' + cats.map(function (c) {
+        return '<button class="card" data-key="' + c.key + '"' + (c.count ? '' : ' disabled') + '>' + icon(c.key) +
+          '<span>' + esc(c.title) + '</span><small>' + (c.count ? fa(c.count, 0) + ' مدل' : 'به‌زودی') + '</small></button>';
+      }).join('') + '</div>';
     });
-    $('groups').innerHTML = html;
+    $('cats').innerHTML = html;
   }
-
-  $('groups').addEventListener('click', function (e) {
-    var b = e.target.closest('.chip');
-    if (b && !b.disabled) openCategory(b.dataset.key);
+  $('cats').addEventListener('click', function (e) {
+    var b = e.target.closest('.card');
+    if (b && !b.disabled) { chooseCategory(b.dataset.key); go(2); }
   });
 
-  function openCategory(key) {
+  function chooseCategory(key, reset) {
+    if (key !== current && reset !== false) picked = [];
     current = key;
-    history.replaceState(null, '', '#' + key);
-    document.querySelectorAll('.chip').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.key === key); });
+    var cat = index.categories.find(function (c) { return c.key === key; });
+    $('s2what').textContent = cat ? cat.title : 'کالا';
+    $('s4title').textContent = cat ? 'مقایسهٔ ' + cat.title : 'مقایسه';
+    rows = []; shown = PAGE;
     $('list').innerHTML = '<li class="loading">در حال بارگذاری…</li>';
-    $('meta').textContent = '';
-    $('more').hidden = true;
     loadCategory(key).then(function (r) {
       if (current !== key) return;
-      rows = r; shown = PAGE; renderList();
+      rows = r;
+      if (step === 3) renderList();
     }).catch(function () {
       if (current === key) $('list').innerHTML = '<li class="empty">بارگذاری نشد. دوباره امتحان کنید.</li>';
     });
   }
 
-  // ---------- list ----------
-  function filtered() {
-    var words = $('q').value.trim().toLowerCase().split(/\s+/).filter(Boolean);
-    var list = rows.filter(function (p) {
-      var t = p.name.toLowerCase();
-      return words.every(function (w) { return t.indexOf(w) !== -1; });
-    });
-    var vol = function (p) { return p.w * p.h * p.d; };
-    var price = function (p) { return p.price > 0 ? p.price : Infinity; };
-    var by = {
-      pop: function (a, b) { return a.rank - b.rank; },
-      cheap: function (a, b) { return price(a) - price(b); },
-      dear: function (a, b) { return (b.price || 0) - (a.price || 0); },
-      small: function (a, b) { return vol(a) - vol(b); },
-      big: function (a, b) { return vol(b) - vol(a); }
-    }[$('sort').value];
-    return list.sort(by);
-  }
-
-  function dimsText(p) { return cm(p.w) + ' × ' + cm(p.h) + ' × ' + cm(p.d); }
-
-  function renderList() {
-    var list = filtered();
-    var cat = index.categories.find(function (c) { return c.key === current; });
-    $('meta').textContent = fa(list.length, 0) + ' کالا · عرض × ارتفاع × عمق، سانتی‌متر' +
-      (cat && cat.checked < cat.listed ? ' · در حال تکمیل' : '');
-    if (!list.length) {
-      $('list').innerHTML = '<li class="empty">چیزی پیدا نشد.</li>';
-      $('more').hidden = true;
-      return;
-    }
-    $('list').innerHTML = list.slice(0, shown).map(function (p) {
-      var sel = picked.find(function (x) { return x.id === p.id; });
-      return '<li class="item">' +
-        '<img src="' + esc(p.image) + '" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'">' +
-        '<div style="min-width:0"><a class="name" href="' + esc(p.url) + '" target="_blank" rel="noopener" title="' + esc(p.name) + '">' + esc(p.name) + '</a>' +
-        '<div class="sub"><span class="dims">' + dimsText(p) + '</span>' +
-        (p.price ? '<span>' + fa(p.price, 0) + ' تومان</span>' : '') + '</div></div>' +
-        '<button class="add" data-id="' + p.id + '" aria-pressed="' + !!sel + '"' +
-        (sel ? ' style="--sel:' + sel.color + '"' : '') + ' aria-label="مقایسه">' + (sel ? '✓' : '+') + '</button></li>';
-    }).join('');
-    $('more').hidden = list.length <= shown;
-  }
-
-  $('list').addEventListener('click', function (e) {
-    var b = e.target.closest('.add');
-    if (!b) return;
-    var p = rows.find(function (r) { return r.id === b.dataset.id; });
-    if (p) toggle(p);
-  });
-  $('more').addEventListener('click', function () { shown += PAGE; renderList(); });
-  $('q').addEventListener('input', function () { shown = PAGE; renderList(); });
-  $('sort').addEventListener('change', function () { shown = PAGE; renderList(); });
-
-  // ---------- picked ----------
-  function toggle(p) {
-    var i = picked.findIndex(function (x) { return x.id === p.id; });
-    if (i >= 0) picked.splice(i, 1);
-    else {
-      var used = picked.map(function (x) { return x.color; });
-      var color = COLORS.find(function (c) { return used.indexOf(c) < 0; }) || COLORS[picked.length % COLORS.length];
-      picked.push({ id: p.id, name: p.name, w: p.w, h: p.h, d: p.d, color: color });
-    }
-    renderPicked();
-    renderList();
-    updateScene();
-  }
-
-  function renderPicked() {
-    $('picked').innerHTML = picked.map(function (p) {
-      return '<div class="pick"><i style="background:' + p.color + '"></i><span title="' + esc(p.name) + '">' + esc(p.name) +
-        '</span><button data-id="' + p.id + '" aria-label="حذف">×</button></div>';
-    }).join('');
-    $('hint').style.display = picked.length || space() ? 'none' : '';
-    $('bar').classList.toggle('show', picked.length > 0 && !viewerSeen);
-    $('barBtn').textContent = 'مقایسهٔ ' + fa(picked.length, 0) + ' کالا';
-    renderFits();
-  }
-
-  $('picked').addEventListener('click', function (e) {
-    var b = e.target.closest('button');
-    if (!b) return;
-    picked = picked.filter(function (p) { return p.id !== b.dataset.id; });
-    renderPicked(); renderList(); updateScene();
-  });
-  var viewerSeen = false;
-  if (window.IntersectionObserver) new IntersectionObserver(function (e) {
-    viewerSeen = e[0].isIntersecting;
-    $('bar').classList.toggle('show', picked.length > 0 && !viewerSeen);
-  }, { threshold: 0.25 }).observe($('viewer'));
-  $('barBtn').addEventListener('click', function () { $('viewer').scrollIntoView({ behavior: 'smooth' }); });
-
-  // ---------- my space ----------
+  // ---------- 2: my space ----------
   function num(id) {
     var v = $(id).value.replace(/[۰-۹]/g, function (c) { return '۰۱۲۳۴۵۶۷۸۹'.indexOf(c); }).replace(/[٫,]/g, '.');
     var n = parseFloat(v);
@@ -386,31 +379,122 @@ footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
     var s = { w: num('sw'), h: num('sh'), d: num('sd') };
     return s.w || s.h || s.d ? s : null;
   }
+  $('s2next').addEventListener('click', function () { go(3); });
+  $('s2skip').addEventListener('click', function () { ['sw', 'sh', 'sd'].forEach(function (id) { $(id).value = ''; }); go(3); });
   ['sw', 'sh', 'sd'].forEach(function (id) {
-    $(id).addEventListener('input', function () { renderPicked(); updateScene(); });
+    $(id).addEventListener('keydown', function (e) { if (e.key === 'Enter') go(3); });
   });
 
-  function renderFits() {
-    var s = space();
-    if (!s || !picked.length) { $('fits').innerHTML = ''; return; }
-    var axes = [['w', 'عرض'], ['h', 'ارتفاع'], ['d', 'عمق']];
-    $('fits').innerHTML = picked.map(function (p) {
-      var over = axes.filter(function (a) { return s[a[0]] && p[a[0]] > s[a[0]]; });
-      var free = axes.filter(function (a) { return s[a[0]]; }).map(function (a) {
-        return a[1] + ' ' + cm(Math.abs(s[a[0]] - p[a[0]]));
-      });
-      if (over.length) {
-        return '<li class="bad"><b>جا نمی‌شه</b><span>' + esc(shortName(p.name)) + ' — ' +
-          over.map(function (a) { return a[1] + ' ' + cm(p[a[0]] - s[a[0]]) + ' سانت بیشتر'; }).join('، ') + '</span></li>';
-      }
-      return '<li class="ok"><b>جا می‌شه</b><span>' + esc(shortName(p.name)) + ' — فضای اضافه: ' + free.join('، ') + ' سانت</span></li>';
-    }).join('');
+  function fitOf(p, s) {
+    if (!s) return null;
+    var over = [['w', 'عرض'], ['h', 'ارتفاع'], ['d', 'عمق']].filter(function (a) { return s[a[0]] && p[a[0]] > s[a[0]]; });
+    return { ok: !over.length, over: over };
   }
-  function shortName(n) { return n.length > 48 ? n.slice(0, 46) + '…' : n; }
+
+  // ---------- 3: products ----------
+  function filtered() {
+    var s = space(), onlyFit = s && $('onlyFit').checked;
+    var words = $('q').value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    var list = rows.filter(function (p) {
+      var t = p.name.toLowerCase();
+      return words.every(function (w) { return t.indexOf(w) !== -1; }) && (!onlyFit || fitOf(p, s).ok);
+    });
+    var vol = function (p) { return p.w * p.h * p.d; };
+    var price = function (p) { return p.price > 0 ? p.price : Infinity; };
+    return list.sort({
+      pop: function (a, b) { return a.rank - b.rank; },
+      cheap: function (a, b) { return price(a) - price(b); },
+      dear: function (a, b) { return (b.price || 0) - (a.price || 0); },
+      small: function (a, b) { return vol(a) - vol(b); },
+      big: function (a, b) { return vol(b) - vol(a); }
+    }[$('sort').value]);
+  }
+
+  function renderList() {
+    var s = space();
+    $('fitToggle').hidden = !s;
+    $('s3lead').textContent = s
+      ? 'جای شما: ' + [['w', 'عرض'], ['h', 'ارتفاع'], ['d', 'عمق']].filter(function (a) { return s[a[0]]; })
+          .map(function (a) { return a[1] + ' ' + cm(s[a[0]]); }).join('، ') + ' سانتی‌متر. تا ۶ کالا انتخاب کنید.'
+      : 'تا ۶ کالا انتخاب کنید.';
+    if (!rows.length) return;
+    var list = filtered();
+    $('meta').textContent = fa(list.length, 0) + ' مدل · ابعاد به سانتی‌متر: عرض × ارتفاع × عمق';
+    if (!list.length) {
+      $('list').innerHTML = '<li class="empty">' + (s && $('onlyFit').checked ? 'هیچ مدلی در این اندازه جا نمی‌شود.' : 'چیزی پیدا نشد.') + '</li>';
+      $('more').hidden = true;
+      return;
+    }
+    $('list').innerHTML = list.slice(0, shown).map(function (p) {
+      var sel = picked.find(function (x) { return x.id === p.id; });
+      var fit = fitOf(p, s);
+      return '<li class="item" data-id="' + p.id + '">' +
+        '<img src="' + esc(p.image) + '" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'">' +
+        '<div style="min-width:0"><span class="name" title="' + esc(p.name) + '">' + esc(p.name) + '</span>' +
+        '<div class="sub"><span class="dims">' + cm(p.w) + ' × ' + cm(p.h) + ' × ' + cm(p.d) + '</span>' +
+        (p.price ? '<span>' + fa(p.price, 0) + ' تومان</span>' : '') +
+        (fit ? '<span class="badge ' + (fit.ok ? 'ok">جا می‌شه' : 'bad">جا نمی‌شه') + '</span>' : '') + '</div></div>' +
+        '<span class="add" aria-pressed="' + !!sel + '"' + (sel ? ' style="--sel:' + sel.color + '"' : '') + '>' + (sel ? '✓' : '+') + '</span></li>';
+    }).join('');
+    $('more').hidden = list.length <= shown;
+  }
+
+  $('list').addEventListener('click', function (e) {
+    var li = e.target.closest('.item');
+    if (!li) return;
+    var p = rows.find(function (r) { return r.id === li.dataset.id; });
+    if (p) toggle(p);
+  });
+  $('more').addEventListener('click', function () { shown += PAGE; renderList(); });
+  $('q').addEventListener('input', function () { shown = PAGE; renderList(); });
+  $('sort').addEventListener('change', function () { shown = PAGE; renderList(); });
+  $('onlyFit').addEventListener('change', function () { shown = PAGE; renderList(); });
+
+  function toggle(p) {
+    var i = picked.findIndex(function (x) { return x.id === p.id; });
+    if (i >= 0) picked.splice(i, 1);
+    else if (picked.length < MAX) {
+      var used = picked.map(function (x) { return x.color; });
+      picked.push({ id: p.id, name: p.name, url: p.url, w: p.w, h: p.h, d: p.d,
+                    color: COLORS.find(function (c) { return used.indexOf(c) < 0; }) });
+    }
+    renderList();
+    updateBar();
+  }
+
+  // ---------- 4: compare ----------
+  function renderResults() {
+    var s = space();
+    $('results').innerHTML = picked.map(function (p) {
+      var fit = fitOf(p, s), d;
+      if (!fit) d = cm(p.w) + ' × ' + cm(p.h) + ' × ' + cm(p.d) + ' سانتی‌متر';
+      else if (fit.ok) {
+        d = '<b>جا می‌شه</b> · فضای اضافه: ' + [['w', 'عرض'], ['h', 'ارتفاع'], ['d', 'عمق']].filter(function (a) { return s[a[0]]; })
+          .map(function (a) { return a[1] + ' ' + cm(s[a[0]] - p[a[0]]); }).join('، ') + ' سانت';
+      } else {
+        d = '<b>جا نمی‌شه</b> · ' + fit.over.map(function (a) { return a[1] + ' ' + cm(p[a[0]] - s[a[0]]) + ' سانت بیشتر'; }).join('، ');
+      }
+      return '<li class="result ' + (fit ? (fit.ok ? 'ok' : 'bad') : '') + '"><i style="background:' + p.color + '"></i>' +
+        '<div style="min-width:0"><div class="n"><a href="' + esc(p.url) + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">' +
+        esc(shortName(p.name)) + '</a></div><div class="d">' + d + '</div></div>' +
+        '<button class="x" data-id="' + p.id + '" aria-label="حذف">×</button></li>';
+    }).join('') || '<li class="empty">کالایی انتخاب نشده.</li>';
+  }
+  $('results').addEventListener('click', function (e) {
+    var b = e.target.closest('.x');
+    if (!b) return;
+    picked = picked.filter(function (p) { return p.id !== b.dataset.id; });
+    renderResults(); updateScene();
+  });
+  $('addMore').addEventListener('click', function () { go(3); });
+  $('editSpace').addEventListener('click', function () { go(2); });
+  $('restart').addEventListener('click', function () {
+    picked = []; ['sw', 'sh', 'sd'].forEach(function (id) { $(id).value = ''; }); go(1);
+  });
 
   // ---------- 3D ----------
-  var renderer, scene, camera, controls, group, grid;
-  var css = function (v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); };
+  var renderer, scene, camera, controls, group, grid, tags = [], v;
+  var css = function (name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); };
 
   function initScene() {
     var stage = $('stage');
@@ -419,7 +503,6 @@ footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
     stage.insertBefore(renderer.domElement, stage.firstChild);
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(40, 1, 10, 100000);
-    camera.position.set(2000, 1600, 2600);
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.maxPolarAngle = Math.PI / 2 - 0.02;
@@ -430,15 +513,17 @@ footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
     scene.add(sun);
     group = new THREE.Group();
     scene.add(group);
-    applyTheme();
+    v = new THREE.Vector3();
+    scene.background = new THREE.Color(css('--scene'));
     new ResizeObserver(resize).observe(stage);
-    if (window.matchMedia) matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { applyTheme(); updateScene(); });
+    if (window.matchMedia) matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+      scene.background = new THREE.Color(css('--scene')); updateScene();
+    });
     (function loop() { requestAnimationFrame(loop); if (controls.update()) render(); })();
   }
 
-  function applyTheme() { scene.background = new THREE.Color(css('--scene')); render(); }
-
   function resize() {
+    if (!renderer) return;
     var r = $('stage').getBoundingClientRect();
     if (!r.width || !r.height) return;
     renderer.setSize(r.width, r.height, false);
@@ -447,19 +532,15 @@ footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
     render();
   }
 
-  var tags = [];  // {el, at: Vector3} labels drawn as HTML so they stay sharp
-  var v = new THREE.Vector3();
+  // labels are HTML so they stay sharp; each is lifted above any neighbour it would cover
   function render() {
     if (!renderer) return;
     renderer.render(scene, camera);
-    var w = renderer.domElement.clientWidth, h = renderer.domElement.clientHeight;
-    var placed = [];
+    var w = renderer.domElement.clientWidth, h = renderer.domElement.clientHeight, placed = [];
     tags.forEach(function (t) {
       v.copy(t.at).project(camera);
       t.el.style.display = v.z > 1 ? 'none' : '';
-      var x = (v.x + 1) / 2 * w, y = (1 - v.y) / 2 * h - 6;
-      var tw = t.el.offsetWidth, th = t.el.offsetHeight;
-      // lift a label above any neighbour it would cover
+      var x = (v.x + 1) / 2 * w, y = (1 - v.y) / 2 * h - 6, tw = t.el.offsetWidth, th = t.el.offsetHeight;
       for (var moved = true; moved;) {
         moved = false;
         placed.forEach(function (o) {
@@ -472,18 +553,16 @@ footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
     });
   }
 
-  function box(item, x, z, color, wire) {
-    var geo = new THREE.BoxGeometry(item.w, item.h, item.d);
-    var g = new THREE.Group();
-    if (!wire) {
-      var mat = new THREE.MeshStandardMaterial({ color: color, transparent: true, opacity: mode === 'overlap' ? 0.35 : 0.85,
-        roughness: 0.8, metalness: 0, depthWrite: mode !== 'overlap' });
-      g.add(new THREE.Mesh(geo, mat));
+  function box(item, x, z, color) {
+    var geo = new THREE.BoxGeometry(item.w, item.h, item.d), g = new THREE.Group();
+    if (color) {
+      g.add(new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: color, transparent: true,
+        opacity: mode === 'overlap' ? 0.35 : 0.85, roughness: 0.8, metalness: 0, depthWrite: mode !== 'overlap' })));
     }
-    var edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo),
-      wire ? new THREE.LineDashedMaterial({ color: css('--ink'), dashSize: 40, gapSize: 25 })
-           : new THREE.LineBasicMaterial({ color: new THREE.Color(color).multiplyScalar(0.6) }));
-    if (wire) edges.computeLineDistances();
+    var edges = new THREE.LineSegments(new THREE.EdgesGeometry(geo), color
+      ? new THREE.LineBasicMaterial({ color: new THREE.Color(color).multiplyScalar(0.6) })
+      : new THREE.LineDashedMaterial({ color: css('--ink'), dashSize: 40, gapSize: 25 }));
+    if (!color) edges.computeLineDistances();
     g.add(edges);
     g.position.set(x, item.h / 2, z);
     group.add(g);
@@ -492,41 +571,37 @@ footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
   function updateScene() {
     if (!renderer) return;
     while (group.children.length) {
-      var o = group.children.pop();
-      o.traverse(function (n) { if (n.geometry) n.geometry.dispose(); if (n.material) { if (n.material.map) n.material.map.dispose(); n.material.dispose(); } });
+      group.children.pop().traverse(function (n) { if (n.geometry) n.geometry.dispose(); if (n.material) n.material.dispose(); });
     }
-    var s = space();
-    var items = picked.slice();
-    var all = (s ? [{ w: s.w || 1, h: s.h || 1, d: s.d || 1, space: true }] : []).concat(items);
-    if (!all.length) { render(); return; }
-    var labels = [];
     $('tags').innerHTML = '';
     tags = [];
+    var s = space();
+    // an unknown side of my space takes the largest item's size, so the box still makes sense
+    var maxOf = function (k) { return Math.max.apply(null, picked.map(function (p) { return p[k]; }).concat([300])); };
+    var all = (s ? [{ w: s.w || maxOf('w'), h: s.h || maxOf('h'), d: s.d || maxOf('d'), space: true }] : []).concat(picked);
+    if (!all.length) { render(); return; }
+    var labels = [];
     if (mode === 'side') {
       var gap = Math.max(60, Math.max.apply(null, all.map(function (i) { return i.w; })) * 0.12);
-      var total = all.reduce(function (t, i) { return t + i.w; }, 0) + gap * (all.length - 1);
-      var x = total / 2;  // right to left, like the page
+      var x = (all.reduce(function (t, i) { return t + i.w; }, 0) + gap * (all.length - 1)) / 2;  // right to left, like the page
       all.forEach(function (i) {
         var cx = x - i.w / 2;
-        if (i.space) box(i, cx, 0, null, true); else box(i, cx, 0, i.color);
-        labels.push({ i: i, x: cx, z: 0 });
+        box(i, cx, 0, i.space ? null : i.color);
+        labels.push({ i: i, x: cx });
         x -= i.w + gap;
       });
     } else {
       // every box shares its back-left-bottom corner with the others (and with my space)
-      all.forEach(function (i) {
-        var cx = -i.w / 2, cz = i.d / 2;
-        if (i.space) box(i, cx, cz, null, true); else box(i, cx, cz, i.color);
-      });
+      all.forEach(function (i) { box(i, -i.w / 2, i.d / 2, i.space ? null : i.color); });
     }
     var bounds = new THREE.Box3().setFromObject(group);
     var size = bounds.getSize(new THREE.Vector3()), center = bounds.getCenter(new THREE.Vector3());
     var span = Math.max(size.x, size.y, size.z);
 
     if (grid) { scene.remove(grid); grid.geometry.dispose(); }
-    var step = span > 3000 ? 500 : span > 1200 ? 200 : span > 500 ? 100 : 50;  // grid lines every 5/10/20/50 cm
-    var gsize = Math.ceil((Math.max(size.x, size.z) * 1.6 + 400) / step) * step;
-    grid = new THREE.GridHelper(gsize, gsize / step, new THREE.Color(css('--grid')), new THREE.Color(css('--grid2')));
+    var cell = span > 3000 ? 500 : span > 1200 ? 200 : span > 500 ? 100 : 50;  // grid lines every 5/10/20/50 cm
+    var gsize = Math.ceil((Math.max(size.x, size.z) * 1.6 + 400) / cell) * cell;
+    grid = new THREE.GridHelper(gsize, gsize / cell, new THREE.Color(css('--grid')), new THREE.Color(css('--grid2')));
     grid.position.set(center.x, 0, center.z);
     scene.add(grid);
 
@@ -534,12 +609,14 @@ footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
       var i = l.i, el = document.createElement('div');
       el.className = 'tag';
       el.style.setProperty('--c', i.space ? css('--ink') : i.color);
-      el.textContent = i.space ? 'جای خالی من' : cm(i.w) + ' × ' + cm(i.h) + ' × ' + cm(i.d);
+      el.textContent = i.space ? 'جای شما' : cm(i.w) + ' × ' + cm(i.h) + ' × ' + cm(i.d);
       $('tags').appendChild(el);
-      tags.push({ el: el, at: new THREE.Vector3(l.x, i.h, l.z) });
+      tags.push({ el: el, at: new THREE.Vector3(l.x, i.h, 0) });
     });
 
-    var dist = span * 1.9 + 300;
+    // far enough that the whole scene fits the narrower of the two view angles (phones are tall and narrow)
+    var vfov = camera.fov * Math.PI / 180, hfov = 2 * Math.atan(Math.tan(vfov / 2) * camera.aspect);
+    var dist = (size.length() / 2) / Math.sin(Math.min(vfov, hfov) / 2) * 1.05;
     camera.position.set(center.x + dist * 0.55, center.y + dist * 0.45, center.z + dist * 0.75);
     controls.target.copy(center);
     controls.update();
@@ -555,10 +632,19 @@ footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
   });
 
   // ---------- start ----------
-  loadIndex();
   if (window.THREE && THREE.OrbitControls) initScene();
-  else $('hint').textContent = 'نمای سه‌بعدی بارگذاری نشد.';
-  if (document.fonts) document.fonts.ready.then(updateScene);
+  getJSON(DATA + 'index.json').then(function (data) {
+    index = data;
+    renderCats();
+    var up = formatUpdated(index.updated);
+    if (up) $('footer').textContent += ' آخرین به‌روزرسانی: ' + up + '.';
+    var want = location.hash.slice(1), cat = index.categories.find(function (c) { return c.key === want && c.count; });
+    history.replaceState({ step: 1 }, '', location.pathname);
+    if (cat) { chooseCategory(cat.key); go(2); }
+    else go(1, false);
+  }).catch(function () {
+    $('cats').innerHTML = '<div class="empty">بارگذاری نشد. صفحه را دوباره باز کنید.</div>';
+  });
 })();
 </script>
 </body>
