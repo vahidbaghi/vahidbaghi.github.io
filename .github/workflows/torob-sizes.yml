@@ -1,0 +1,72 @@
+name: Torob sizes data
+
+# Fills hobby/data/sizes/ for hobby/sizes.html. Torob blocks an IP after ~40
+# calls, so each category runs as its own job (its own runner IP) and takes a
+# small bite per run; the files fill up over a few days and then only the
+# daily listing and new products cost calls.
+on:
+  schedule:
+    - cron: "23 */2 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - tools/torob_sizes.py
+      - .github/workflows/torob-sizes.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: torob-sizes
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      keys: ${{ steps.keys.outputs.keys }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: keys
+        run: echo "keys=$(python3 tools/torob_sizes.py --keys)" >> "$GITHUB_OUTPUT"
+
+  fetch:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        key: ${{ fromJSON(needs.plan.outputs.keys) }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/torob_sizes.py ${{ matrix.key }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sizes-${{ matrix.key }}
+          path: |
+            hobby/data/sizes/${{ matrix.key }}.json
+            hobby/data/sizes/state/${{ matrix.key }}.json
+
+  collect:
+    needs: fetch
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: hobby/data/sizes
+          pattern: sizes-*
+          merge-multiple: true
+      - name: Commit the data files
+        run: |
+          python3 tools/torob_sizes.py --index
+          git config user.name "github-actions[bot]"
+          git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+          git add hobby/data/sizes
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Torob sizes data: $(date -u +'%Y-%m-%d %H:%M') UTC"
+          git pull --rebase origin main
+          git push origin HEAD:main

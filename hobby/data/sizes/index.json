@@ -1,0 +1,221 @@
+{
+ "updated": "2026-10-15 17:54 UTC",
+ "categories": [
+  {
+   "key": "fridge",
+   "title": "یخچال و فریزر",
+   "group": 1,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "washer",
+   "title": "ماشین لباسشویی",
+   "group": 1,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "dishwasher",
+   "title": "ماشین ظرفشویی",
+   "group": 1,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "oven",
+   "title": "فر توکار و رومیزی",
+   "group": 1,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "boiler",
+   "title": "پکیج گرمایشی",
+   "group": 1,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "water-heater",
+   "title": "آبگرمکن",
+   "group": 1,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "radiator",
+   "title": "رادیاتور",
+   "group": 1,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "wardrobe",
+   "title": "کمد و بوفه",
+   "group": 2,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "drawer",
+   "title": "دراور",
+   "group": 2,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "shoe-cabinet",
+   "title": "جاکفشی",
+   "group": 2,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "bookcase",
+   "title": "کتابخانه",
+   "group": 2,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "tv-stand",
+   "title": "میز تلویزیون",
+   "group": 2,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "tv",
+   "title": "تلویزیون",
+   "group": 2,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "ac",
+   "title": "کولر گازی (یونیت داخلی)",
+   "group": 2,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "gas-heater",
+   "title": "بخاری گازی",
+   "group": 2,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "aquarium",
+   "title": "آکواریوم",
+   "group": 2,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "microwave",
+   "title": "مایکروویو",
+   "group": 3,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "monitor",
+   "title": "مانیتور",
+   "group": 3,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "printer",
+   "title": "پرینتر",
+   "group": 3,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "pc-case",
+   "title": "کیس کامپیوتر",
+   "group": 3,
+   "count": 83,
+   "listed": 1100,
+   "checked": 114,
+   "updated": "2026-10-15 17:54 UTC"
+  },
+  {
+   "key": "psu",
+   "title": "پاور کامپیوتر",
+   "group": 3,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "soundbar",
+   "title": "ساندبار",
+   "group": 3,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "safe",
+   "title": "گاوصندوق",
+   "group": 3,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  },
+  {
+   "key": "car-battery",
+   "title": "باتری خودرو",
+   "group": 3,
+   "count": 0,
+   "listed": 0,
+   "checked": 0,
+   "updated": null
+  }
+ ]
+}
