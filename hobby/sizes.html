@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<title>جا می‌شه؟ — مقایسهٔ ابعاد کالاها</title>
+<title>مقایسهٔ ابعاد کالاها</title>
 <meta name="description" content="ابعاد واقعی یخچال، لباسشویی، کمد و ده‌ها کالای دیگر از ترب، سه‌بعدی و کنار هم؛ با جای خالی خانه‌تان مقایسه کنید.">
 <script>try { var t = localStorage.getItem('vb_theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,8 +34,7 @@ button, input, select { font: inherit; color: inherit; }
 .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px 120px; }
 
 /* top */
-.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 0 8px; }
-.brand { font-weight: 700; font-size: 17px; }
+.top { display: flex; align-items: center; justify-content: flex-start; gap: 12px; padding: 18px 0 8px; }
 .steps { display: flex; gap: 6px; list-style: none; margin: 0; padding: 0; }
 .steps li { width: 26px; height: 4px; border-radius: 2px; background: var(--line); }
 .steps li.on { background: var(--ink); }
@@ -131,7 +130,6 @@ footer { color: var(--muted); font-size: 12px; margin-top: 48px; }
 <body>
 <div class="wrap">
   <div class="top">
-    <span class="brand">جا می‌شه؟</span>
     <ol class="steps" id="steps"><li></li><li></li><li></li><li></li></ol>
   </div>
   <button class="back" id="back" hidden>→ برگشت</button>
