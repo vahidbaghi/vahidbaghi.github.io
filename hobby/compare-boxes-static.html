@@ -656,29 +656,46 @@
         const DATA_URL = '/hobby/data/torob-cases.json';
         let allCases = null;
         let dataUpdated = '';
+        let dataPromise = null;
 
-        async function loadData() {
-            if (allCases) return allCases;
-            try {
-                const res = await fetch(DATA_URL, { cache: 'no-cache' });
-                if (!res.ok) return null;
-                const data = await res.json();
-                const checked = data.dims || {};
-                allCases = (data.cases || []).map(function(c) {
-                    // only products whose detail page was read have a known answer
-                    if (checked[c.id]) cachedProducts[c.id] = { dims: parseDimensionString(c.dim_raw) };
-                    return {
-                        random_key: c.id, name1: c.name, name2: c.name2, price: c.price,
-                        price_text: c.price_text, image_url: c.image, more_info_url: c.url,
-                        rank: c.rank, first_seen: c.first_seen
-                    };
-                });
-                dataUpdated = data.updated || '';
-                return allCases;
-            } catch (e) {
-                return null;
+        // Some routes to the CDN stall without ever answering, so give each try a few
+        // seconds and retry on a fresh request instead of waiting on a dead one.
+        async function fetchData() {
+            for (let attempt = 0; attempt < 3; attempt++) {
+                const ctrl = new AbortController();
+                const timer = setTimeout(function() { ctrl.abort(); }, 8000 + attempt * 7000);
+                try {
+                    const res = await fetch(DATA_URL + (attempt ? '?r=' + attempt : ''), { signal: ctrl.signal });
+                    if (res.ok) return await res.json();
+                } catch (e) { /* timed out or failed, try again */ }
+                finally { clearTimeout(timer); }
             }
+            return null;
         }
+
+        // rows: [id, name, name2, price, price_text, image, url slug, first_seen, dims]
+        // dims is Torob's text, 0 when Torob has none, null when not read yet
+        function loadData() {
+            if (!dataPromise) {
+                dataPromise = fetchData().then(function(data) {
+                    if (!data) { dataPromise = null; return null; }
+                    const prefix = data.image_prefix || '';
+                    allCases = (data.cases || []).map(function(r, i) {
+                        if (r[8] !== null) cachedProducts[r[0]] = { dims: r[8] ? parseDimensionString(r[8]) : null };
+                        return {
+                            random_key: r[0], name1: r[1], name2: r[2], price: r[3], price_text: r[4],
+                            image_url: r[5] && r[5].indexOf('http') !== 0 ? prefix + r[5] : r[5],
+                            more_info_url: '/p/' + r[0] + '/' + (r[6] ? encodeURIComponent(r[6]) + '/' : ''),
+                            rank: i, first_seen: r[7]
+                        };
+                    });
+                    dataUpdated = data.updated || '';
+                    return allCases;
+                });
+            }
+            return dataPromise;
+        }
+        loadData();  // start downloading right away, not when the list is asked for
 
         // "2026-10-15 17:34 UTC" -> Shamsi date, Tehran time
         function formatUpdated(text) {
@@ -1533,6 +1550,7 @@
         // ========== Init ==========
         window.addEventListener('load', function() {
             initThreeJS();
+            loadAllCases(1);
             document.getElementById('search-query').addEventListener('keydown', function(e) {
                 if (e.key === 'Enter') searchCases(1);
             });

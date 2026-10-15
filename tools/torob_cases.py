@@ -6,6 +6,8 @@ is slow on purpose: a few seconds between calls, a cap on detail pages per
 run, and it stops at the first 429/403/490 and keeps what it already has.
 Dimensions never change, so each product's detail page is fetched once and
 remembered; later runs only refresh the list (names, prices, order).
+Everything the script tracks lives in torob-state.json; the page gets a slim
+copy (torob-cases.json, rows instead of objects) so it loads fast.
 
     python tools/torob_cases.py              # full list + up to 120 detail pages
     MAX_DETAILS=3 MAX_PAGES=1 python tools/torob_cases.py   # quick local test
@@ -17,10 +19,13 @@ import pathlib
 import random
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-OUT = ROOT / "hobby" / "data" / "torob-cases.json"
+OUT = ROOT / "hobby" / "data" / "torob-cases.json"  # what the page reads
+STATE = ROOT / "hobby" / "data" / "torob-state.json"  # everything the script remembers
+IMAGE_PREFIX = "https://image.torob.com/base/images/"
 
 CATEGORY = 239  # کیس کامپیوتر
 PAGE_SIZE = 100
@@ -88,7 +93,8 @@ def find_dims(detail):
 
 def main():
     today = datetime.date.today().isoformat()
-    old = json.loads(OUT.read_text(encoding="utf-8")) if OUT.exists() else {}
+    src = STATE if STATE.exists() else OUT  # OUT held the full state before the split
+    old = json.loads(src.read_text(encoding="utf-8")) if src.exists() else {}
     old_cases = {c["id"]: c for c in old.get("cases", [])}
     dims = old.get("dims", {})  # prk -> {"raw": str|None, "checked": date}
 
@@ -175,7 +181,29 @@ def main():
         "dims": dims,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    STATE.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    write_page_file(out)
+
+
+def write_page_file(state):
+    """One row per case, in popularity order:
+    [id, name, name2, price, price_text, image, url, first_seen, dims]
+    image drops the common Torob prefix, url is the decoded product slug, and
+    dims is Torob's text, 0 if Torob has none, or null if not read yet."""
+    rows = []
+    for c in state["cases"]:
+        image = c["image"]
+        if image.startswith(IMAGE_PREFIX):
+            image = image[len(IMAGE_PREFIX):]
+        url = urllib.parse.unquote(c["url"])
+        prefix = f"/p/{c['id']}/"
+        if url.startswith(prefix):
+            url = url[len(prefix):].strip("/")
+        checked = c["id"] in state["dims"]
+        rows.append([c["id"], c["name"], c["name2"], c["price"], c["price_text"], image, url,
+                     c["first_seen"], c["dim_raw"] or (0 if checked else None)])
+    page = {"updated": state["updated"], "image_prefix": IMAGE_PREFIX, "cases": rows}
+    OUT.write_text(json.dumps(page, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
 
 if __name__ == "__main__":

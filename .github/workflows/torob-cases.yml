@@ -1,6 +1,7 @@
 name: Torob cases data
 
-# Fills hobby/data/torob-cases.json for hobby/compare-boxes-static.html.
+# Fills hobby/data/torob-cases.json (and the script's own torob-state.json)
+# for hobby/compare-boxes-static.html.
 # Torob blocks after a handful of calls per IP, so each run takes a small bite
 # and the file fills up over several runs.
 on:
@@ -35,7 +36,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
-          git add hobby/data/torob-cases.json
+          git add hobby/data/torob-cases.json hobby/data/torob-state.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Torob cases data: $(date -u +'%Y-%m-%d %H:%M') UTC"
           git pull --rebase origin main
