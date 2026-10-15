@@ -92,10 +92,17 @@ def main():
     old_cases = {c["id"]: c for c in old.get("cases", [])}
     dims = old.get("dims", {})  # prk -> {"raw": str|None, "checked": date}
 
-    # 1) the list, in Torob's popularity order
+    # 1) the list, in Torob's popularity order; once a day is enough, so a later
+    #    run that day spends its whole budget on detail pages instead
     listed, total, complete, blocked = [], None, False, False
+    list_date = old.get("list_date")
+    fresh = old.get("list_complete") and list_date == today
+    if fresh:
+        listed = sorted(old_cases.values(), key=lambda c: c["rank"])
+        total, complete = old.get("torob_count"), True
+        log(f"list already fetched today, {len(listed)} cases")
     try:
-        for page in range(1, MAX_PAGES + 1):
+        for page in ([] if fresh else range(1, MAX_PAGES + 1)):
             data = get_json(SEARCH.format(page=page, size=PAGE_SIZE, cat=CATEGORY,
                                           offset=(page - 1) * PAGE_SIZE))
             total = data.get("count") or 0
@@ -115,7 +122,7 @@ def main():
                     "url": r.get("web_client_absolute_url") or "",
                 })
             if not results or page * PAGE_SIZE >= total:
-                complete = True
+                complete, list_date = True, today
                 break
             pause()
     except Blocked as e:
@@ -161,6 +168,7 @@ def main():
         "updated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
         "torob_count": total,
         "list_complete": complete,
+        "list_date": list_date,
         "details_pending": max(len(todo) - fetched, 0),
         "last_run": RUN,
         "cases": cases,
