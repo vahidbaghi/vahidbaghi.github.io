@@ -85,7 +85,7 @@ button, input, select { font: inherit; color: inherit; }
 .item { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 10px 2px;
   border-bottom: 1px solid var(--line); cursor: pointer; }
 .item img { width: 56px; height: 56px; object-fit: contain; border-radius: 10px; background: #fff; }
-.item .name { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.item .name { display: block; line-height: 1.6; overflow-wrap: anywhere; }
 .item .sub { color: var(--muted); font-size: 13px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 .item .dims { color: var(--ink); }
 .badge { font-size: 11.5px; border-radius: 999px; padding: 0 8px; line-height: 1.8; }
@@ -118,7 +118,7 @@ button, input, select { font: inherit; color: inherit; }
 .result { display: grid; grid-template-columns: 12px minmax(0, 1fr) auto; gap: 10px; align-items: center;
   border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; }
 .result i { width: 12px; height: 12px; border-radius: 3px; }
-.result .n { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.result .n { line-height: 1.6; overflow-wrap: anywhere; }
 .result .d { color: var(--muted); font-size: 13px; }
 .result .x { border: 0; background: none; color: var(--muted); cursor: pointer; font-size: 18px; padding: 0 4px; }
 .result.ok .d b { color: var(--ok); font-weight: 500; }
@@ -264,7 +264,6 @@ footer { color: var(--muted); font-size: 12px; margin-top: 48px; }
   var fa = function (n, d) { return Number(n).toLocaleString('fa-IR', { maximumFractionDigits: d == null ? 1 : d }); };
   var cm = function (mm) { return fa(Math.round(mm) / 10); };
   var esc = function (s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; };
-  var shortName = function (n) { return n.length > 60 ? n.slice(0, 58) + '…' : n; };
 
   var index = null, current = null, rows = [], shown = PAGE, step = 1;
   var picked = [];          // {id, name, w, h, d, color}
@@ -430,10 +429,10 @@ footer { color: var(--muted); font-size: 12px; margin-top: 48px; }
       var fit = fitOf(p, s);
       return '<li class="item" data-id="' + p.id + '">' +
         '<img src="' + esc(p.image) + '" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'">' +
-        '<div style="min-width:0"><span class="name" title="' + esc(p.name) + '">' + esc(p.name) + '</span>' +
+        '<div style="min-width:0"><span class="name">' + esc(p.name) + '</span>' +
         '<div class="sub"><span class="dims">' + cm(p.w) + ' × ' + cm(p.h) + ' × ' + cm(p.d) + '</span>' +
         (p.price ? '<span>' + fa(p.price, 0) + ' تومان</span>' : '') +
-        (fit ? '<span class="badge ' + (fit.ok ? 'ok">جا می‌شه' : 'bad">جا نمی‌شه') + '</span>' : '') + '</div></div>' +
+        (fit && !fit.ok ? '<span class="badge bad">جا نمی‌شه</span>' : '') + '</div></div>' +
         '<span class="add" aria-pressed="' + !!sel + '"' + (sel ? ' style="--sel:' + sel.color + '"' : '') + '>' + (sel ? '✓' : '+') + '</span></li>';
     }).join('');
     $('more').hidden = list.length <= shown;
@@ -476,7 +475,7 @@ footer { color: var(--muted); font-size: 12px; margin-top: 48px; }
       }
       return '<li class="result ' + (fit ? (fit.ok ? 'ok' : 'bad') : '') + '"><i style="background:' + p.color + '"></i>' +
         '<div style="min-width:0"><div class="n"><a href="' + esc(p.url) + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">' +
-        esc(shortName(p.name)) + '</a></div><div class="d">' + d + '</div></div>' +
+        esc(p.name) + '</a></div><div class="d">' + d + '</div></div>' +
         '<button class="x" data-id="' + p.id + '" aria-label="حذف">×</button></li>';
     }).join('') || '<li class="empty">کالایی انتخاب نشده.</li>';
   }
