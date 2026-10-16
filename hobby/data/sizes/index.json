@@ -1,14 +1,14 @@
 {
- "updated": "2026-10-16 08:42 UTC",
+ "updated": "2026-10-16 10:35 UTC",
  "categories": [
   {
    "key": "fridge",
    "title": "یخچال و فریزر",
    "group": 1,
-   "count": 159,
+   "count": 168,
    "listed": 999,
-   "checked": 360,
-   "updated": "2026-10-16 08:42 UTC"
+   "checked": 379,
+   "updated": "2026-10-16 10:34 UTC"
   },
   {
    "key": "washer",
@@ -50,10 +50,10 @@
    "key": "water-heater",
    "title": "آبگرمکن",
    "group": 1,
-   "count": 80,
+   "count": 86,
    "listed": 600,
-   "checked": 368,
-   "updated": "2026-10-16 08:42 UTC"
+   "checked": 406,
+   "updated": "2026-10-16 10:35 UTC"
   },
   {
    "key": "radiator",
@@ -167,19 +167,19 @@
    "key": "printer",
    "title": "پرینتر",
    "group": 3,
-   "count": 184,
+   "count": 194,
    "listed": 600,
-   "checked": 368,
-   "updated": "2026-10-16 08:42 UTC"
+   "checked": 406,
+   "updated": "2026-10-16 10:35 UTC"
   },
   {
    "key": "pc-case",
    "title": "کیس کامپیوتر",
    "group": 3,
-   "count": 349,
+   "count": 369,
    "listed": 1100,
-   "checked": 494,
-   "updated": "2026-10-16 08:42 UTC"
+   "checked": 532,
+   "updated": "2026-10-16 10:35 UTC"
   },
   {
    "key": "psu",
