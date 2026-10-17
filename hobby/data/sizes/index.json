@@ -1,14 +1,14 @@
 {
- "updated": "2026-10-17 02:40 UTC",
+ "updated": "2026-10-17 04:36 UTC",
  "categories": [
   {
    "key": "fridge",
    "title": "یخچال و فریزر",
    "group": 1,
-   "count": 256,
+   "count": 268,
    "listed": 999,
-   "checked": 683,
-   "updated": "2026-10-17 02:40 UTC"
+   "checked": 721,
+   "updated": "2026-10-17 04:36 UTC"
   },
   {
    "key": "washer",
@@ -176,10 +176,10 @@
    "key": "pc-case",
    "title": "کیس کامپیوتر",
    "group": 3,
-   "count": 490,
+   "count": 501,
    "listed": 1100,
-   "checked": 836,
-   "updated": "2026-10-17 02:40 UTC"
+   "checked": 874,
+   "updated": "2026-10-17 04:36 UTC"
   },
   {
    "key": "psu",
