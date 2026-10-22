@@ -1,14 +1,14 @@
 {
- "updated": "2026-10-22 04:38 UTC",
+ "updated": "2026-10-22 06:52 UTC",
  "categories": [
   {
    "key": "fridge",
    "title": "یخچال و فریزر",
    "group": 1,
-   "count": 305,
+   "count": 311,
    "listed": 1000,
-   "checked": 850,
-   "updated": "2026-10-22 04:38 UTC"
+   "checked": 888,
+   "updated": "2026-10-22 06:52 UTC"
   },
   {
    "key": "washer",
@@ -50,10 +50,10 @@
    "key": "water-heater",
    "title": "آبگرمکن",
    "group": 1,
-   "count": 104,
+   "count": 112,
    "listed": 600,
-   "checked": 531,
-   "updated": "2026-10-22 04:38 UTC"
+   "checked": 569,
+   "updated": "2026-10-22 06:52 UTC"
   },
   {
    "key": "radiator",
@@ -95,10 +95,10 @@
    "key": "bookcase",
    "title": "کتابخانه",
    "group": 2,
-   "count": 133,
+   "count": 134,
    "listed": 300,
-   "checked": 298,
-   "updated": "2026-10-22 04:38 UTC"
+   "checked": 300,
+   "updated": "2026-10-22 06:48 UTC"
   },
   {
    "key": "tv-stand",
@@ -167,10 +167,10 @@
    "key": "printer",
    "title": "پرینتر",
    "group": 3,
-   "count": 250,
+   "count": 274,
    "listed": 600,
-   "checked": 492,
-   "updated": "2026-10-22 04:38 UTC"
+   "checked": 530,
+   "updated": "2026-10-22 06:52 UTC"
   },
   {
    "key": "pc-case",
@@ -194,10 +194,10 @@
    "key": "soundbar",
    "title": "ساندبار",
    "group": 3,
-   "count": 38,
+   "count": 43,
    "listed": 300,
-   "checked": 252,
-   "updated": "2026-10-22 04:38 UTC"
+   "checked": 290,
+   "updated": "2026-10-22 06:52 UTC"
   },
   {
    "key": "safe",
