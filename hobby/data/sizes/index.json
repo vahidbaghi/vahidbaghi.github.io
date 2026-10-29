@@ -1,14 +1,14 @@
 {
- "updated": "2026-10-29 10:30 UTC",
+ "updated": "2026-10-29 12:35 UTC",
  "categories": [
   {
    "key": "fridge",
    "title": "یخچال و فریزر",
    "group": 1,
-   "count": 351,
+   "count": 355,
    "listed": 1000,
-   "checked": 984,
-   "updated": "2026-10-29 10:30 UTC"
+   "checked": 1000,
+   "updated": "2026-10-29 12:35 UTC"
   },
   {
    "key": "washer",
