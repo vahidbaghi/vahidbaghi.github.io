@@ -287,6 +287,21 @@ table.dataframe img.thumb{max-width:150px;height:auto;border-radius:2px;display:
 .fig svg{display:block;max-width:100%;height:auto}
 .fig text{font-family:"DejaVu Sans",Vazirmatn,system-ui,sans-serif}
 
+/* ─── image viewer ─────────────────────────────────────────── */
+/* any picture in a cell opens full screen; a click there zooms to the point */
+.jp-nb img.lb-able{cursor:zoom-in}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.94);display:none;overflow:auto;
+  overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.lb.on{display:grid;place-items:center}
+.lb img{display:block;max-width:calc(100vw - 32px);max-height:calc(100vh - 32px);
+  max-height:calc(100dvh - 32px);width:auto;height:auto;cursor:zoom-in;background:#fff}
+.lb.zoom{display:block}
+.lb.zoom img{max-width:none;max-height:none;margin:16px;cursor:zoom-out}
+.lb-x{position:fixed;top:10px;right:10px;width:40px;height:40px;border-radius:50%;border:0;
+  background:rgba(0,0,0,.55);color:#fff;font-size:24px;line-height:1;cursor:pointer;z-index:51}
+.lb-x:hover{background:rgba(0,0,0,.8)}
+.lb-x:focus-visible{outline:2px solid var(--jp-brand2);outline-offset:2px}
+
 ::-webkit-scrollbar{width:11px;height:11px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--jp-layout3);border-radius:6px;

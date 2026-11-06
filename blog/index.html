@@ -16,10 +16,11 @@
   margin-bottom:12px;background:var(--jp-layout1);max-width:660px}
 .hit{cursor:pointer}
 .hit:hover{opacity:.82}
-table.dataframe td.tt{text-align:right;max-width:460px}
-.tag{display:inline-block;font-size:11px;padding:0 6px;border-radius:2px;
-  border:1px solid var(--jp-border2);color:var(--jp-ui-font-color2);margin-inline-start:4px;
-  white-space:nowrap}
+table.dataframe td.tt{text-align:right;max-width:460px;line-height:1.7}
+/* room around a tag, so a wrapped title never touches it */
+.tag{display:inline-block;font-size:11px;padding:0 6px;border-radius:2px;line-height:1.6;
+  border:1px solid var(--jp-border2);color:var(--jp-ui-font-color2);margin:3px 0;
+  margin-inline-start:8px;white-space:nowrap;vertical-align:middle}
 .tag.k{border-color:var(--jp-brand1);color:var(--jp-brand1)}
 .q-live{color:var(--cm-str)}
 .nores{color:var(--jp-ui-font-color2);padding:12px 0}

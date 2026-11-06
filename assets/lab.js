@@ -187,6 +187,8 @@ var Lab = (function () {
     /* the web font is wider than the fallback, so measure again once it is in */
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTitles);
 
+    viewer();
+
     /* selecting a cell, the way the real thing does */
     document.getElementById('jp-nb').addEventListener('click', function (e) {
       var c = e.target.closest('.jp-cell'); if (!c) return;
@@ -212,6 +214,61 @@ var Lab = (function () {
         h.style.fontSize = size + 'px';
       }
       if (h.scrollWidth > h.clientWidth) h.title = h.textContent.trim();
+    });
+  }
+
+  /* a picture in a cell opens full screen. A click on it zooms in to that
+     point (to its own size, or 2× the fitted size when it is already shown
+     near its own size) and
+     the viewer scrolls to pan; the back button, Esc, × or the dark area close it. */
+  function viewer() {
+    var nb = document.getElementById('jp-nb'), box, pic, x, back;
+    function able(t) {
+      return t.tagName === 'IMG' && !t.closest('a') && t.naturalWidth >= 120;
+    }
+    function mark(t) { if (able(t)) t.classList.add('lb-able') }
+    [].forEach.call(nb.querySelectorAll('img'), function (t) {
+      if (t.complete) mark(t); else t.addEventListener('load', function () { mark(t) });
+    });
+    function build() {
+      box = document.createElement('div');
+      box.className = 'lb';
+      box.setAttribute('role', 'dialog');
+      box.setAttribute('aria-modal', 'true');
+      box.innerHTML = '<img alt=""><button class="lb-x" aria-label="بستن">×</button>';
+      document.body.appendChild(box);
+      pic = box.querySelector('img'); x = box.querySelector('.lb-x');
+      x.addEventListener('click', function () { close() });
+      box.addEventListener('click', function (e) { if (e.target === box) close() });
+      pic.addEventListener('click', function (e) {
+        if (box.classList.contains('zoom')) { box.classList.remove('zoom'); pic.style.width = ''; return }
+        var r = pic.getBoundingClientRect(), fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
+        var w = pic.naturalWidth > r.width * 1.4 ? pic.naturalWidth : r.width * 2;
+        box.classList.add('zoom'); pic.style.width = w + 'px';
+        box.scrollLeft = 16 + fx * w - e.clientX;
+        box.scrollTop = 16 + fy * pic.offsetHeight - e.clientY;
+      });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && box.classList.contains('on')) close() });
+      addEventListener('popstate', function () { if (box.classList.contains('on')) close(true) });
+    }
+    function open(t) {
+      if (!box) build();
+      back = document.activeElement;
+      pic.src = t.currentSrc || t.src; pic.alt = t.alt || '';
+      box.classList.remove('zoom'); pic.style.width = '';
+      box.classList.add('on');
+      /* on a phone the back button closes the picture rather than the page */
+      try { history.pushState({ lb: 1 }, '') } catch (e) {}
+      x.focus();
+    }
+    function close(fromHistory) {
+      box.classList.remove('on', 'zoom'); pic.style.width = ''; pic.removeAttribute('src');
+      if (!fromHistory && history.state && history.state.lb) history.back();
+      if (back && back.focus) back.focus();
+    }
+    nb.addEventListener('click', function (e) {
+      if (!able(e.target)) return;
+      e.preventDefault(); open(e.target);
     });
   }
 
