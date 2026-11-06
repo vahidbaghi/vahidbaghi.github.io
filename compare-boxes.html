@@ -519,7 +519,7 @@
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 1.4em; }
+            h1 { font-size: min(1.4em, 4.6vw); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
             .products-grid {
                 grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             }

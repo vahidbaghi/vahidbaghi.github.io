@@ -155,7 +155,9 @@ a{color:var(--jp-brand1)}
 /* ─── notebook ──────────────────────────────────────────────── */
 .jp-nb{flex:1;overflow-y:auto;overflow-x:hidden;background:var(--jp-layout1);
   padding:12px 0 22vh;-webkit-overflow-scrolling:touch}
-.jp-cell{display:flex;padding:0 12px;position:relative}
+/* the prompt gutter sits on the left, so the right edge, where Persian text
+   starts, gets its own margin */
+.jp-cell{display:flex;padding:0 32px 0 12px;position:relative}
 .jp-cellrun{position:absolute;top:3px;left:22px;width:22px;height:22px;display:none;
   place-items:center;border:1px solid var(--jp-border2);border-radius:3px;cursor:pointer;
   background:var(--jp-layout1);color:var(--jp-ui-font-color2);padding:0;z-index:2}
@@ -190,9 +192,13 @@ a{color:var(--jp-brand1)}
 
 /* markdown cell */
 .jp-md{flex:1;min-width:0;padding:5px 0 5px 64px;overflow-wrap:anywhere}
-.jp-md h1{font-size:29px;font-weight:600;margin:.1em 0 .35em;line-height:1.3;text-wrap:balance}
+.jp-md h1{font-size:29px;font-weight:600;margin:.1em 0 .35em;line-height:1.3}
 .jp-md h2{font-size:22px;font-weight:600;margin:1.1em 0 .4em;line-height:1.35}
 .jp-md h3{font-size:17px;font-weight:600;margin:1em 0 .35em}
+/* a heading never wraps: Lab.fitTitles shrinks a long one until it fits on
+   one line, and only one still too long at the smallest size is cut short */
+.jp-md h1,.jp-md h2,.jp-md h3{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  overflow-wrap:normal}
 /* JupyterLab lets markdown run the full width; at desktop widths that is a
    120-character line, so prose is capped at a readable measure. */
 .jp-md,.jp-outputs{--col:680px}
@@ -293,9 +299,9 @@ table.dataframe img.thumb{max-width:150px;height:auto;border-radius:2px;display:
   #jp-menu{display:grid}
   /* the file browser becomes a drawer over the notebook */
   .jp-side{position:fixed;top:0;bottom:0;left:0;width:262px;max-width:82vw;z-index:20;
-    transform:translateX(-101%);transition:transform .22s cubic-bezier(.4,0,.2,1);
-    box-shadow:2px 0 22px rgba(0,0,0,.28);display:flex}
-  .jp-side.open{transform:translateX(0)}
+    transform:translateX(-101%);transition:transform .22s cubic-bezier(.4,0,.2,1);display:flex}
+  /* the shadow only while open, or it shows as a grey band on the left edge */
+  .jp-side.open{transform:translateX(0);box-shadow:2px 0 22px rgba(0,0,0,.28)}
   .jp-side.hide{display:flex}
   .jp-side h3 button{display:block}
   .jp-tree a,.jp-tree .dir{padding:9px 14px;font-size:14px}
@@ -305,11 +311,13 @@ table.dataframe img.thumb{max-width:150px;height:auto;border-radius:2px;display:
   .jp-toolbar .opt{display:none}         /* editing buttons no phone user will press */
   .jp-kernel span:not(.jp-kdot){display:none}
   .jp-ctype{display:none}
-  .jp-cell{padding:0 8px}
+  .jp-cell{padding:0 18px 0 8px}
   .jp-collapser{width:5px;flex-basis:5px}
   /* wide enough for Out[12]: — a narrower gutter clips the prompt */
   .jp-prompt{flex-basis:52px;width:52px;font-size:10px;padding-right:6px}
   .jp-md{padding-left:52px}
+  /* a heading may run into the empty prompt gutter so it can stay larger */
+  .jp-md.rtl h1,.jp-md.rtl h2,.jp-md.rtl h3{margin-left:-44px}
   .jp-md h1{font-size:23px}
   .jp-md h2{font-size:19px}
   .jp-cellrun{left:14px;width:20px;height:20px}

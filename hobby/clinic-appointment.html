@@ -249,6 +249,26 @@
         .data-management button {
             width: 100%;
         }
+
+        header { gap: 10px; }
+        header h1, h2, h3 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .board-container, .sidebar { min-width: 0; }
+
+        /* phones and tablets: the sidebar moves under the board, since beside it
+           it is too narrow for its own headings */
+        @media (max-width: 900px) {
+            .main-content { flex-direction: column; }
+        }
+        /* phones: the header stacks too */
+        @media (max-width: 700px) {
+            body { padding: 10px; }
+            .container { padding: 14px; }
+            header h1 { font-size: 1.4rem; flex: 1 0 100%; }
+            .date-navigation { gap: 6px; flex-wrap: wrap; }
+            .date-navigation input { width: 100px; min-width: 0; }
+            #appointment-board { grid-template-columns: minmax(0, 1fr); }
+            h2 { font-size: min(1.15rem, 4.6vw); }
+        }
     </style>
 </head>
 <body>

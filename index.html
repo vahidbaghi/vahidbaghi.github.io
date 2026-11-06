@@ -47,8 +47,17 @@ tr:hover .lnk-cell .nm{text-decoration:underline}
   --bc:#e6edf3;--bcs:rgba(230,237,243,.12)}
 
 .mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
-.jp-editor .live{outline:none;display:inline-block;min-width:9ch;direction:rtl}
+/* the message is a triple-quoted string: Enter adds a line, Shift+Enter runs */
+.jp-editor .live{display:block;width:100%;margin:2px 0;padding:2px 4px;border:0;border-radius:2px;
+  outline:none;resize:none;overflow:hidden;background:transparent;color:var(--cm-str);
+  font:inherit;line-height:inherit;white-space:pre-wrap;overflow-wrap:anywhere;
+  font-family:Vazirmatn,system-ui,sans-serif}
+.jp-editor .live::placeholder{color:var(--jp-ui-font-color3)}
+/* an empty box has no letter to take its direction from */
+.jp-editor .live:placeholder-shown{direction:rtl}
 .jp-editor .live:focus{background:var(--jp-layout1);box-shadow:0 0 0 3px rgba(33,150,243,.14)}
+/* below 16px iOS zooms the page on focus */
+@media (max-width:700px){ .jp-editor .live{font-size:16px;line-height:1.5} }
 .ok{color:#2ca02c}
 
 /* ── Out[2]: the message goes through a small data pass on its way out ── */
@@ -129,7 +138,6 @@ tr:hover .lnk-cell .nm{text-decoration:underline}
   <div class="jp-cell sel">
     <div class="jp-collapser"></div>
     <div class="jp-md rtl">
-      <h1>وحید باقی</h1>
       <p class="lede">من وحید باقی هستم، کارم بازی با داده‌هاست.</p>
       <hr>
     </div>
@@ -158,7 +166,7 @@ me<span class="o">.</span>contacts<span class="o">.</span><span class="f">sort_v
     <div class="jp-inner">
       <div class="jp-io">
         <div class="jp-prompt">[2]:</div>
-        <div class="jp-editor"><pre>me<span class="o">.</span><span class="f">send</span>(<span class="s">"</span><span class="s live" contenteditable="true" role="textbox" aria-label="متن پیام"></span><span class="s">"</span>)</pre></div>
+        <div class="jp-editor"><pre>me<span class="o">.</span><span class="f">send</span>(<span class="s">"""</span><textarea class="live" rows="1" dir="auto" spellcheck="false" aria-label="متن پیام" placeholder="پیامت رو این‌جا بنویس…"></textarea><span class="s">"""</span>)</pre></div>
       </div>
       <div class="jp-io res">
         <div class="jp-prompt out">Out[2]:</div>
@@ -457,7 +465,7 @@ function sendCell() {
   var cell = document.querySelector('[data-exec="send"]'),
       inP = cell.querySelector('.jp-prompt:not(.out)'), n = inP.innerHTML,
       out = document.getElementById('o-send'), pipe = document.getElementById('o-pipe'),
-      msg = live.textContent.trim();
+      msg = live.value.trim();
   if (sending) return;
   if (!msg) {
     pipe.innerHTML = '';
@@ -487,7 +495,16 @@ Lab.chrome({ active: 'home' });
 Lab.wire({ send: sendCell });
 Lab.runAll();
 
-live.addEventListener('keydown', function(e){ if (e.key === 'Enter') e.preventDefault() });
+/* the box grows with the message, and typing in it selects its cell so
+   Shift+Enter runs this one */
+function grow() { live.style.height = 'auto'; live.style.height = live.scrollHeight + 'px' }
+live.addEventListener('input', grow);
+live.addEventListener('focus', function () {
+  var cell = live.closest('.jp-cell');
+  [].forEach.call(document.querySelectorAll('.jp-cell.sel'), function (x) { x.classList.remove('sel') });
+  cell.classList.add('sel');
+});
+addEventListener('resize', grow);
 </script>
 
 <!-- Google Analytics -->

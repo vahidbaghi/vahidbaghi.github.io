@@ -174,11 +174,44 @@ var Lab = (function () {
       x.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') shut(e) });
     });
 
+    fitTitles();
+    var fitQueued = false;
+    function refit() {
+      if (fitQueued) return;
+      fitQueued = true;
+      requestAnimationFrame(function () { fitQueued = false; fitTitles() });
+    }
+    /* the notebook also changes width when the file browser opens or closes */
+    if (window.ResizeObserver) new ResizeObserver(refit).observe(document.getElementById('jp-nb'));
+    else addEventListener('resize', refit);
+    /* the web font is wider than the fallback, so measure again once it is in */
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitTitles);
+
     /* selecting a cell, the way the real thing does */
     document.getElementById('jp-nb').addEventListener('click', function (e) {
       var c = e.target.closest('.jp-cell'); if (!c) return;
       [].forEach.call(document.querySelectorAll('.jp-cell.sel'), function (x) { x.classList.remove('sel') });
       c.classList.add('sel');
+    });
+  }
+
+  /* every heading stays on one line: a long one shrinks to fit, down to a floor,
+     and past the floor it ends in an ellipsis with the full text as a tooltip */
+  var TITLE_MIN = { H1: 16, H2: 15, H3: 14 };
+  function fitTitles() {
+    [].forEach.call(document.querySelectorAll('.jp-md h1,.jp-md h2,.jp-md h3'), function (h) {
+      h.style.fontSize = '';
+      h.removeAttribute('title');
+      var w = h.clientWidth;
+      if (!w || h.scrollWidth <= w) return;
+      var max = parseFloat(getComputedStyle(h).fontSize), min = TITLE_MIN[h.tagName];
+      var size = Math.max(min, Math.floor(max * w / h.scrollWidth * 2) / 2);
+      h.style.fontSize = size + 'px';
+      while (h.scrollWidth > h.clientWidth && size > min) {
+        size = Math.max(min, size - .5);
+        h.style.fontSize = size + 'px';
+      }
+      if (h.scrollWidth > h.clientWidth) h.title = h.textContent.trim();
     });
   }
 
@@ -256,7 +289,7 @@ var Lab = (function () {
   }
 
   return { chrome: chrome, runAll: runAll, runCell: runCell, kernel: kernel,
-           wire: wire, fa: fa, svg: svg };
+           wire: wire, fa: fa, svg: svg, fitTitles: fitTitles };
 })();
 
 /* apply the remembered theme before first paint where possible */
