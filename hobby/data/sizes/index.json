@@ -1,14 +1,14 @@
 {
- "updated": "2026-11-12 02:30 UTC",
+ "updated": "2026-11-12 04:30 UTC",
  "categories": [
   {
    "key": "fridge",
    "title": "یخچال و فریزر",
    "group": 1,
-   "count": 359,
+   "count": 371,
    "listed": 1000,
-   "checked": 899,
-   "updated": "2026-11-12 02:30 UTC"
+   "checked": 937,
+   "updated": "2026-11-12 04:30 UTC"
   },
   {
    "key": "washer",
@@ -52,8 +52,8 @@
    "group": 1,
    "count": 98,
    "listed": 600,
-   "checked": 560,
-   "updated": "2026-11-12 02:30 UTC"
+   "checked": 598,
+   "updated": "2026-11-12 04:30 UTC"
   },
   {
    "key": "radiator",
@@ -167,10 +167,10 @@
    "key": "printer",
    "title": "پرینتر",
    "group": 3,
-   "count": 279,
+   "count": 281,
    "listed": 600,
-   "checked": 592,
-   "updated": "2026-11-12 02:30 UTC"
+   "checked": 600,
+   "updated": "2026-11-12 04:27 UTC"
   },
   {
    "key": "pc-case",
