@@ -1,158 +1,158 @@
 {
- "updated": "2026-11-05 10:26 UTC",
+ "updated": "2026-11-12 00:51 UTC",
  "categories": [
   {
    "key": "fridge",
    "title": "یخچال و فریزر",
    "group": 1,
-   "count": 376,
+   "count": 348,
    "listed": 1000,
-   "checked": 1000,
-   "updated": "2026-11-05 10:26 UTC"
+   "checked": 861,
+   "updated": "2026-11-12 00:51 UTC"
   },
   {
    "key": "washer",
    "title": "ماشین لباسشویی",
    "group": 1,
-   "count": 181,
+   "count": 184,
    "listed": 300,
-   "checked": 300,
-   "updated": "2026-11-05 00:48 UTC"
+   "checked": 298,
+   "updated": "2026-11-12 00:47 UTC"
   },
   {
    "key": "dishwasher",
    "title": "ماشین ظرفشویی",
    "group": 1,
-   "count": 142,
+   "count": 137,
    "listed": 300,
-   "checked": 300,
-   "updated": "2026-11-05 02:28 UTC"
+   "checked": 291,
+   "updated": "2026-11-12 00:47 UTC"
   },
   {
    "key": "oven",
    "title": "فر توکار و رومیزی",
    "group": 1,
-   "count": 168,
+   "count": 164,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-05 02:28 UTC"
+   "updated": "2026-11-12 00:47 UTC"
   },
   {
    "key": "boiler",
    "title": "پکیج گرمایشی",
    "group": 1,
-   "count": 71,
+   "count": 70,
    "listed": 300,
-   "checked": 300,
-   "updated": "2026-11-05 02:30 UTC"
+   "checked": 274,
+   "updated": "2026-11-12 00:50 UTC"
   },
   {
    "key": "water-heater",
    "title": "آبگرمکن",
    "group": 1,
-   "count": 114,
+   "count": 93,
    "listed": 600,
-   "checked": 600,
-   "updated": "2026-11-05 06:34 UTC"
+   "checked": 522,
+   "updated": "2026-11-12 00:47 UTC"
   },
   {
    "key": "radiator",
    "title": "رادیاتور",
    "group": 1,
-   "count": 64,
+   "count": 60,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-05 02:29 UTC"
+   "updated": "2026-11-12 00:47 UTC"
   },
   {
    "key": "wardrobe",
    "title": "کمد و بوفه",
    "group": 2,
-   "count": 67,
+   "count": 68,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-05 02:28 UTC"
+   "updated": "2026-11-12 00:47 UTC"
   },
   {
    "key": "drawer",
    "title": "دراور",
    "group": 2,
-   "count": 135,
+   "count": 126,
    "listed": 300,
-   "checked": 300,
-   "updated": "2026-11-05 02:28 UTC"
+   "checked": 293,
+   "updated": "2026-11-12 00:47 UTC"
   },
   {
    "key": "shoe-cabinet",
    "title": "جاکفشی",
    "group": 2,
-   "count": 123,
+   "count": 116,
    "listed": 300,
-   "checked": 300,
-   "updated": "2026-11-05 02:30 UTC"
+   "checked": 284,
+   "updated": "2026-11-12 00:47 UTC"
   },
   {
    "key": "bookcase",
    "title": "کتابخانه",
    "group": 2,
-   "count": 128,
+   "count": 120,
    "listed": 300,
-   "checked": 300,
-   "updated": "2026-11-05 02:30 UTC"
+   "checked": 281,
+   "updated": "2026-11-12 00:47 UTC"
   },
   {
    "key": "tv-stand",
    "title": "میز تلویزیون",
    "group": 2,
-   "count": 115,
+   "count": 104,
    "listed": 300,
-   "checked": 300,
-   "updated": "2026-11-05 02:28 UTC"
+   "checked": 292,
+   "updated": "2026-11-12 00:48 UTC"
   },
   {
    "key": "tv",
    "title": "تلویزیون",
    "group": 2,
-   "count": 178,
+   "count": 175,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-05 00:44 UTC"
+   "updated": "2026-11-12 00:46 UTC"
   },
   {
    "key": "ac",
    "title": "کولر گازی (یونیت داخلی)",
    "group": 2,
-   "count": 80,
+   "count": 87,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-05 02:28 UTC"
+   "updated": "2026-11-12 00:47 UTC"
   },
   {
    "key": "gas-heater",
    "title": "بخاری گازی",
    "group": 2,
-   "count": 87,
+   "count": 89,
    "listed": 300,
-   "checked": 300,
-   "updated": "2026-11-05 02:30 UTC"
+   "checked": 287,
+   "updated": "2026-11-12 00:47 UTC"
   },
   {
    "key": "aquarium",
    "title": "آکواریوم",
    "group": 2,
-   "count": 55,
+   "count": 59,
    "listed": 300,
-   "checked": 300,
-   "updated": "2026-11-05 02:29 UTC"
+   "checked": 286,
+   "updated": "2026-11-12 00:47 UTC"
   },
   {
    "key": "microwave",
    "title": "مایکروویو",
    "group": 3,
-   "count": 101,
+   "count": 99,
    "listed": 300,
-   "checked": 300,
-   "updated": "2026-11-05 02:31 UTC"
+   "checked": 269,
+   "updated": "2026-11-12 00:47 UTC"
   },
   {
    "key": "monitor",
@@ -160,8 +160,8 @@
    "group": 3,
    "count": 181,
    "listed": 300,
-   "checked": 300,
-   "updated": "2026-11-05 02:28 UTC"
+   "checked": 297,
+   "updated": "2026-11-12 00:47 UTC"
   },
   {
    "key": "printer",
@@ -169,8 +169,8 @@
    "group": 3,
    "count": 261,
    "listed": 600,
-   "checked": 600,
-   "updated": "2026-11-05 06:36 UTC"
+   "checked": 554,
+   "updated": "2026-11-12 00:47 UTC"
   },
   {
    "key": "pc-case",
@@ -179,43 +179,43 @@
    "count": 221,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-05 00:44 UTC"
+   "updated": "2026-11-12 00:44 UTC"
   },
   {
    "key": "psu",
    "title": "پاور کامپیوتر",
    "group": 3,
-   "count": 187,
+   "count": 192,
    "listed": 300,
-   "checked": 300,
-   "updated": "2026-11-05 02:29 UTC"
+   "checked": 299,
+   "updated": "2026-11-12 00:50 UTC"
   },
   {
    "key": "soundbar",
    "title": "ساندبار",
    "group": 3,
-   "count": 54,
+   "count": 40,
    "listed": 300,
-   "checked": 300,
-   "updated": "2026-11-05 02:30 UTC"
+   "checked": 274,
+   "updated": "2026-11-12 00:47 UTC"
   },
   {
    "key": "safe",
    "title": "گاوصندوق",
    "group": 3,
-   "count": 170,
+   "count": 158,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-05 02:29 UTC"
+   "updated": "2026-11-12 00:47 UTC"
   },
   {
    "key": "car-battery",
    "title": "باتری خودرو",
    "group": 3,
-   "count": 85,
+   "count": 78,
    "listed": 300,
-   "checked": 300,
-   "updated": "2026-11-05 02:28 UTC"
+   "checked": 298,
+   "updated": "2026-11-12 00:47 UTC"
   }
  ]
 }
