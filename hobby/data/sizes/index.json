@@ -1,23 +1,23 @@
 {
- "updated": "2026-11-14 04:29 UTC",
+ "updated": "2026-11-14 06:34 UTC",
  "categories": [
   {
    "key": "fridge",
    "title": "یخچال و فریزر",
    "group": 1,
-   "count": 384,
+   "count": 385,
    "listed": 1000,
    "checked": 1000,
-   "updated": "2026-11-14 04:26 UTC"
+   "updated": "2026-11-14 06:34 UTC"
   },
   {
    "key": "washer",
    "title": "ماشین لباسشویی",
    "group": 1,
-   "count": 188,
+   "count": 189,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-14 04:26 UTC"
+   "updated": "2026-11-14 06:31 UTC"
   },
   {
    "key": "dishwasher",
@@ -44,7 +44,7 @@
    "count": 74,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-14 04:29 UTC"
+   "updated": "2026-11-14 06:30 UTC"
   },
   {
    "key": "water-heater",
@@ -53,7 +53,7 @@
    "count": 99,
    "listed": 600,
    "checked": 600,
-   "updated": "2026-11-14 04:29 UTC"
+   "updated": "2026-11-14 06:30 UTC"
   },
   {
    "key": "radiator",
@@ -116,7 +116,7 @@
    "count": 177,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-14 04:26 UTC"
+   "updated": "2026-11-14 06:31 UTC"
   },
   {
    "key": "ac",
@@ -152,7 +152,7 @@
    "count": 111,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-14 04:26 UTC"
+   "updated": "2026-11-14 06:30 UTC"
   },
   {
    "key": "monitor",
@@ -179,7 +179,7 @@
    "count": 218,
    "listed": 299,
    "checked": 299,
-   "updated": "2026-11-14 04:26 UTC"
+   "updated": "2026-11-14 06:31 UTC"
   },
   {
    "key": "psu",
@@ -194,10 +194,10 @@
    "key": "soundbar",
    "title": "ساندبار",
    "group": 3,
-   "count": 47,
+   "count": 52,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-14 04:29 UTC"
+   "updated": "2026-11-14 06:33 UTC"
   },
   {
    "key": "safe",
