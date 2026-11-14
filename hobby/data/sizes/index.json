@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-14 06:34 UTC",
+ "updated": "2026-11-14 08:28 UTC",
  "categories": [
   {
    "key": "fridge",
@@ -8,7 +8,7 @@
    "count": 385,
    "listed": 1000,
    "checked": 1000,
-   "updated": "2026-11-14 06:34 UTC"
+   "updated": "2026-11-14 08:25 UTC"
   },
   {
    "key": "washer",
@@ -149,10 +149,10 @@
    "key": "microwave",
    "title": "مایکروویو",
    "group": 3,
-   "count": 111,
+   "count": 117,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-14 06:30 UTC"
+   "updated": "2026-11-14 08:28 UTC"
   },
   {
    "key": "monitor",
@@ -197,7 +197,7 @@
    "count": 52,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-14 06:33 UTC"
+   "updated": "2026-11-14 08:25 UTC"
   },
   {
    "key": "safe",
