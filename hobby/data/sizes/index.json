@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-14 08:28 UTC",
+ "updated": "2026-11-14 10:27 UTC",
  "categories": [
   {
    "key": "fridge",
@@ -149,10 +149,10 @@
    "key": "microwave",
    "title": "مایکروویو",
    "group": 3,
-   "count": 117,
+   "count": 118,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-14 08:28 UTC"
+   "updated": "2026-11-14 10:27 UTC"
   },
   {
    "key": "monitor",
