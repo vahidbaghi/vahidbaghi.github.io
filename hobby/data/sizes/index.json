@@ -1,14 +1,14 @@
 {
- "updated": "2026-11-15 00:50 UTC",
+ "updated": "2026-11-15 02:31 UTC",
  "categories": [
   {
    "key": "fridge",
    "title": "یخچال و فریزر",
    "group": 1,
-   "count": 389,
+   "count": 391,
    "listed": 1000,
    "checked": 1000,
-   "updated": "2026-11-15 00:49 UTC"
+   "updated": "2026-11-15 02:31 UTC"
   },
   {
    "key": "washer",
@@ -41,19 +41,19 @@
    "key": "boiler",
    "title": "پکیج گرمایشی",
    "group": 1,
-   "count": 74,
+   "count": 75,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-15 00:46 UTC"
+   "updated": "2026-11-15 02:30 UTC"
   },
   {
    "key": "water-heater",
    "title": "آبگرمکن",
    "group": 1,
-   "count": 100,
+   "count": 101,
    "listed": 600,
    "checked": 600,
-   "updated": "2026-11-15 00:49 UTC"
+   "updated": "2026-11-15 02:31 UTC"
   },
   {
    "key": "radiator",
@@ -71,7 +71,7 @@
    "count": 69,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-15 00:49 UTC"
+   "updated": "2026-11-15 02:28 UTC"
   },
   {
    "key": "drawer",
@@ -125,7 +125,7 @@
    "count": 99,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-15 00:49 UTC"
+   "updated": "2026-11-15 02:28 UTC"
   },
   {
    "key": "gas-heater",
@@ -143,7 +143,7 @@
    "count": 63,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-15 00:49 UTC"
+   "updated": "2026-11-15 02:28 UTC"
   },
   {
    "key": "microwave",
@@ -167,10 +167,10 @@
    "key": "printer",
    "title": "پرینتر",
    "group": 3,
-   "count": 289,
+   "count": 293,
    "listed": 600,
    "checked": 600,
-   "updated": "2026-11-15 00:49 UTC"
+   "updated": "2026-11-15 02:31 UTC"
   },
   {
    "key": "pc-case",
@@ -215,7 +215,7 @@
    "count": 84,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-15 00:49 UTC"
+   "updated": "2026-11-15 02:27 UTC"
   }
  ]
 }
