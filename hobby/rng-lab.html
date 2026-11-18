@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>
+/* apply the remembered site theme before first paint (same key as the rest of the site) */
+(function(){try{var t=localStorage.getItem('vb_theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+<title>آزمایشگاه پیش‌بینی عدد تصادفی — وحید باقی</title>
+<meta name="description" content="یک آزمایشگاه تعاملی. از روی چند عددِ مولدِ معمولی یک کپی از آن بساز، عددهای بعدی را زودتر از سرور بگو و ببین همین کار روی مولدِ امن جواب نمی‌دهد.">
+<meta property="og:title" content="آزمایشگاه پیش‌بینی عدد تصادفی">
+<meta property="og:description" content="از روی چند عدد یک کپی از مولد بساز و عددهای بعدیِ سرور را زودتر از خودش بگو.">
+<meta property="og:type" content="website">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css?v=1">
+<style>
+/* the lab's own tokens; light first, then the site's two dark-mode switches */
+:root{
+  --srv:#1976d2; --srv-bg:rgba(25,118,210,.07); --srv-bd:rgba(25,118,210,.32);
+  --atk:#c2410c; --atk-bg:rgba(194,65,12,.06); --atk-bd:rgba(194,65,12,.30);
+  --ok:#1a7f37; --ok-bg:rgba(26,127,55,.09); --ok-bd:rgba(26,127,55,.45);
+  --bad:#cf222e; --bad-bg:rgba(207,34,46,.07); --bad-bd:rgba(207,34,46,.42);
+  --card:#ffffff; --soft:#f6f7f9; --track:#e6e8eb; --shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.05);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --srv:#6cb2f0; --srv-bg:rgba(108,178,240,.08); --srv-bd:rgba(108,178,240,.30);
+  --atk:#f0915a; --atk-bg:rgba(240,145,90,.07); --atk-bd:rgba(240,145,90,.30);
+  --ok:#4ac26b; --ok-bg:rgba(74,194,107,.10); --ok-bd:rgba(74,194,107,.45);
+  --bad:#ff7b72; --bad-bg:rgba(255,123,114,.08); --bad-bd:rgba(255,123,114,.42);
+  --card:#1b1b1b; --soft:#262626; --track:#3a3a3a; --shadow:none;
+}}
+:root[data-theme="dark"]{
+  --srv:#6cb2f0; --srv-bg:rgba(108,178,240,.08); --srv-bd:rgba(108,178,240,.30);
+  --atk:#f0915a; --atk-bg:rgba(240,145,90,.07); --atk-bd:rgba(240,145,90,.30);
+  --ok:#4ac26b; --ok-bg:rgba(74,194,107,.10); --ok-bd:rgba(74,194,107,.45);
+  --bad:#ff7b72; --bad-bg:rgba(255,123,114,.08); --bad-bd:rgba(255,123,114,.42);
+  --card:#1b1b1b; --soft:#262626; --track:#3a3a3a; --shadow:none;
+}
+
+body{overflow:auto;background:var(--jp-layout0)}
+.mono{font-family:"JetBrains Mono",Menlo,monospace;direction:ltr;unicode-bidi:isolate}
+.wrap{max-width:1040px;margin:0 auto;padding:22px 16px 14vh}
+
+/* header */
+.top{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.top h1{font-size:26px;font-weight:700;margin:0;line-height:1.35;flex:1;min-width:0}
+.top a.back{font-size:13px;color:var(--jp-brand1);text-decoration:none;white-space:nowrap}
+.themebtn{width:36px;height:36px;flex:0 0 36px;display:grid;place-items:center;border-radius:8px;
+  border:1px solid var(--jp-border1);background:var(--card);color:var(--jp-ui-font-color1);cursor:pointer}
+.themebtn:hover{background:var(--jp-hover)}
+.themebtn svg{width:18px;height:18px}
+.lede{color:var(--jp-ui-font-color2);font-size:14.5px;line-height:1.9;margin:6px 0 20px;max-width:760px}
+.lede b{color:var(--jp-content-font-color1);font-weight:600}
+
+/* generator tabs */
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.tab{font:inherit;text-align:right;cursor:pointer;border:1px solid var(--jp-border1);background:var(--card);
+  border-radius:10px;padding:11px 13px;color:var(--jp-ui-font-color1);transition:border-color .15s,background .15s;
+  display:flex;flex-direction:column;gap:2px;min-width:0}
+.tab:hover{border-color:var(--jp-border2)}
+.tab .t1{font-size:14.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tab .t2{font-size:11.5px;color:var(--jp-ui-font-color2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tab[aria-selected="true"]{border-color:var(--jp-brand1);background:var(--srv-bg);box-shadow:inset 0 -3px 0 var(--jp-brand1)}
+.tab:focus-visible,.btn:focus-visible,.seg button:focus-visible{outline:2px solid var(--jp-brand1);outline-offset:2px}
+
+/* main stage */
+.stage{border:1px solid var(--jp-border1);border-radius:14px;background:var(--card);box-shadow:var(--shadow);overflow:hidden}
+.stage-head{padding:16px 18px 14px;border-bottom:1px solid var(--jp-border1);display:flex;gap:14px;align-items:flex-start}
+.stage-head .txt{flex:1;min-width:0}
+.stage-head h2{margin:0 0 3px;font-size:18px;font-weight:700;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.stage-head h2 .chip{font-size:11.5px;font-weight:500;border:1px solid var(--jp-border2);border-radius:20px;
+  padding:0 9px;color:var(--jp-ui-font-color2);font-family:"JetBrains Mono",monospace;direction:ltr;unicode-bidi:isolate}
+.stage-head p{margin:0;font-size:13.5px;line-height:1.85;color:var(--jp-ui-font-color2)}
+.reset{font:inherit;font-size:12.5px;border:0;background:transparent;color:var(--jp-ui-font-color2);cursor:pointer;
+  padding:4px 6px;border-radius:6px;white-space:nowrap}
+.reset:hover{background:var(--jp-hover);color:var(--jp-ui-font-color1)}
+
+/* stepper */
+.steps{display:flex;align-items:center;gap:0;padding:14px 18px;background:var(--soft);border-bottom:1px solid var(--jp-border1)}
+.step{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--jp-ui-font-color2);white-space:nowrap}
+.step .n{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12.5px;font-weight:700;
+  border:1.5px solid var(--jp-border2);background:var(--card);color:var(--jp-ui-font-color2);flex:0 0 26px;transition:all .2s}
+.step.active{color:var(--jp-content-font-color1);font-weight:600}
+.step.active .n{border-color:var(--jp-brand1);color:var(--jp-brand1);box-shadow:0 0 0 4px var(--srv-bg)}
+.step.done .n{background:var(--ok);border-color:var(--ok);color:#fff}
+.step.fail .n{background:var(--bad);border-color:var(--bad);color:#fff}
+.step.done{color:var(--jp-content-font-color1)}
+.step.fail{color:var(--bad)}
+.steps .bar{flex:1;height:2px;background:var(--track);margin:0 12px;min-width:18px;border-radius:2px;position:relative;overflow:hidden}
+.steps .bar i{position:absolute;inset:0;background:var(--ok);transform:scaleX(0);transform-origin:right;transition:transform .35s}
+.steps .bar.on i{transform:scaleX(1)}
+
+/* duel */
+.duel{display:grid;grid-template-columns:1fr 1fr}
+.side{padding:16px 18px 18px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.side.srv{border-inline-end:1px solid var(--jp-border1)}
+.side-h{display:flex;align-items:center;gap:10px}
+.side-h .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;flex:0 0 34px}
+.side.srv .ic{background:var(--srv-bg);color:var(--srv);border:1px solid var(--srv-bd)}
+.side.atk .ic{background:var(--atk-bg);color:var(--atk);border:1px solid var(--atk-bd)}
+.side-h .ic svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.side-h b{font-size:15px;display:block}
+.side-h small{font-size:12px;color:var(--jp-ui-font-color2);display:block;line-height:1.5}
+
+.seg{display:flex;border:1px solid var(--jp-border2);border-radius:9px;overflow:hidden;background:var(--card)}
+.seg button{font:inherit;font-size:13px;flex:1;padding:7px 10px;border:0;cursor:pointer;background:transparent;
+  color:var(--jp-ui-font-color1);border-inline-end:1px solid var(--jp-border2);line-height:1.5}
+.seg button:last-child{border-inline-end:0}
+.seg button.on{background:var(--jp-brand1);color:#fff}
+.seg.mode button.on.secure{background:var(--ok);}
+.modenote{font-size:12px;color:var(--jp-ui-font-color2);margin-top:-4px}
+.modenote .mono{font-size:11.5px}
+
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.btn{font:inherit;font-size:13.5px;font-weight:600;min-height:38px;padding:0 16px;border-radius:9px;cursor:pointer;
+  border:1px solid transparent;transition:filter .12s,background .12s;display:inline-flex;align-items:center;gap:7px}
+.btn.srv{background:var(--srv);color:#fff}
+.btn.atk{background:var(--atk);color:#fff}
+.btn.ghost{background:var(--card);border-color:var(--jp-border2);color:var(--jp-ui-font-color1);font-weight:500}
+.btn:hover{filter:brightness(1.07)}
+.btn.ghost:hover{background:var(--jp-hover);filter:none}
+.btn:disabled{opacity:.4;cursor:default;filter:none}
+:root[data-theme="dark"] .btn.srv,:root[data-theme="dark"] .btn.atk,
+:root[data-theme="dark"] .step.done .n,:root[data-theme="dark"] .step.fail .n,
+:root[data-theme="dark"] .seg.mode button.on.secure{color:#111}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .btn.srv,:root:not([data-theme="light"]) .btn.atk,
+  :root:not([data-theme="light"]) .step.done .n,:root:not([data-theme="light"]) .step.fail .n,
+  :root:not([data-theme="light"]) .seg.mode button.on.secure{color:#111}}
+
+.meter{display:flex;flex-direction:column;gap:6px}
+.meter .lab{display:flex;justify-content:space-between;font-size:12.5px;color:var(--jp-ui-font-color2)}
+.meter .lab b{color:var(--jp-content-font-color1);font-family:"JetBrains Mono",monospace;font-weight:600}
+.track{height:8px;border-radius:8px;background:var(--track);overflow:hidden}
+.track i{display:block;height:100%;width:0;background:var(--srv);border-radius:8px;transition:width .3s;margin-inline-start:0}
+.track.full i{background:var(--ok)}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px;min-height:30px;align-content:flex-start;direction:rtl;justify-content:flex-start}
+.chips .c{font-family:"JetBrains Mono",monospace;font-size:12px;direction:ltr;unicode-bidi:isolate;padding:3px 8px;border-radius:6px;
+  background:var(--soft);border:1px solid var(--jp-border1);color:var(--jp-content-font-color1)}
+.chips .c.new{animation:pop .35s ease-out}
+.chips .more{font-size:12px;color:var(--jp-ui-font-color2);align-self:center;direction:rtl}
+.chips .empty{font-size:12.5px;color:var(--jp-ui-font-color3);direction:rtl;align-self:center}
+@keyframes pop{from{transform:scale(.8);opacity:0}to{transform:none;opacity:1}}
+
+.status{border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.8;border:1px dashed var(--jp-border2);
+  color:var(--jp-ui-font-color2);background:var(--soft)}
+.status.ok{border:1px solid var(--ok-bd);background:var(--ok-bg);color:var(--jp-content-font-color1)}
+.status.bad{border:1px solid var(--bad-bd);background:var(--bad-bg);color:var(--jp-content-font-color1)}
+.status .h{font-weight:700;display:block}
+.status.ok .h{color:var(--ok)}
+.status.bad .h{color:var(--bad)}
+.status .mono{font-size:12px}
+
+.extra{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--jp-ui-font-color2);flex-wrap:wrap}
+.extra .seg{flex:0 0 auto}
+.extra .seg button{flex:0 0 auto;padding:5px 11px;font-size:12.5px}
+
+/* prediction cards */
+.preds{padding:16px 18px 18px;border-top:1px solid var(--jp-border1);background:var(--soft)}
+.preds-h{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.preds-h b{font-size:14.5px}
+.preds-h .sum{margin-inline-start:auto;font-size:13.5px;font-weight:700;padding:3px 12px;border-radius:20px;display:none}
+.preds-h .sum.ok{display:inline-block;color:var(--ok);background:var(--ok-bg);border:1px solid var(--ok-bd)}
+.preds-h .sum.bad{display:inline-block;color:var(--bad);background:var(--bad-bg);border:1px solid var(--bad-bd)}
+.cards{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.cards.k3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.pc{border:1px solid var(--jp-border1);border-radius:10px;background:var(--card);overflow:hidden;
+  display:flex;flex-direction:column;transition:border-color .25s,box-shadow .25s}
+.pc .r{padding:7px 9px;display:flex;flex-direction:column;gap:1px;min-width:0}
+.pc .r small{font-size:10.5px;color:var(--jp-ui-font-color2)}
+.pc .r .v{font-family:"JetBrains Mono",monospace;font-size:12.5px;direction:ltr;text-align:left;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pc .r.p small{color:var(--atk)}
+.pc .r.a{border-top:1px dashed var(--jp-border1);background:var(--soft)}
+.pc .r.a small{color:var(--srv)}
+.pc .r.a .v{color:var(--jp-ui-font-color3)}
+.pc .mark{font-size:12px;font-weight:700;padding:3px 9px;text-align:center;color:var(--jp-ui-font-color3);
+  border-top:1px solid var(--jp-border1)}
+.pc.hit{border-color:var(--ok-bd);box-shadow:0 0 0 3px var(--ok-bg)}
+.pc.hit .r.a .v{color:var(--jp-content-font-color1)}
+.pc.hit .mark{color:var(--ok);background:var(--ok-bg)}
+.pc.miss{border-color:var(--bad-bd);box-shadow:0 0 0 3px var(--bad-bg)}
+.pc.miss .r.a .v{color:var(--jp-content-font-color1)}
+.pc.miss .mark{color:var(--bad);background:var(--bad-bg)}
+.pc.flip{animation:flip .4s ease-out}
+@keyframes flip{0%{transform:rotateX(0)}50%{transform:rotateX(80deg)}100%{transform:rotateX(0)}}
+.preds .note{font-size:12.5px;color:var(--jp-ui-font-color2);margin-top:12px;line-height:1.8}
+.preds .note b{color:var(--jp-content-font-color1)}
+.preds .idle{font-size:13px;color:var(--jp-ui-font-color3);padding:4px 0}
+
+/* how + code */
+.below{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+/* a grid item would otherwise grow to its longest code line and push the page sideways */
+.box{border:1px solid var(--jp-border1);border-radius:12px;background:var(--card);padding:15px 16px;min-width:0}
+.code2>div{min-width:0}
+.box h3{margin:0 0 10px;font-size:14.5px;font-weight:700}
+.box ol{margin:0;padding-inline-start:1.3em;list-style-type:persian;font-size:13.5px;line-height:1.9;color:var(--jp-content-font-color1)}
+.box ol li{margin-bottom:4px}
+.code2{display:flex;flex-direction:column;gap:10px}
+.code2 .lbl{font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.code2 .lbl.bad{color:var(--bad)} .code2 .lbl.good{color:var(--ok)}
+.code2 pre{margin:0;direction:ltr;text-align:left;font-family:"JetBrains Mono",Menlo,monospace;font-size:12px;
+  line-height:1.65;background:var(--jp-editor-bg);border:1px solid var(--jp-editor-border);border-radius:8px;
+  padding:9px 11px;overflow-x:auto;color:var(--jp-content-font-color1);white-space:pre;
+  display:grid;grid-template-columns:max-content auto;grid-auto-flow:row dense;column-gap:16px}
+.code2 pre .cd{grid-column:1}
+.code2 pre .cm{grid-column:2;color:var(--cm-com)}
+.code2 pre.bad{border-inline-end:3px solid var(--bad)}
+.code2 pre.good{border-inline-end:3px solid var(--ok)}
+
+.foot{text-align:center;color:var(--jp-ui-font-color3);font-size:12px;margin-top:26px}
+.foot a{color:var(--jp-brand1);text-decoration:none}
+
+/* phone and small tablet */
+@media (max-width:860px){
+  .tabs{grid-template-columns:repeat(2,1fr)}
+  .cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .below{grid-template-columns:1fr}
+}
+@media (max-width:680px){
+  .wrap{padding:16px 16px 12vh}
+  .tab .t1,.tab .t2{white-space:normal}
+  .top h1{font-size:21px}
+  .duel{grid-template-columns:1fr}
+  .side.srv{border-inline-end:0;border-bottom:1px solid var(--jp-border1)}
+  .steps{padding:12px 14px}
+  .step .t{display:none}
+  .step.active .t{display:inline}
+  .stage-head,.side,.preds{padding-left:14px;padding-right:14px}
+  .cards,.cards.k3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* code: one column, the comment as a label above its line, long lines wrap */
+  .code2 pre{grid-template-columns:minmax(0,1fr);white-space:pre-wrap;overflow-wrap:anywhere;overflow-x:visible}
+  .code2 pre .cd,.code2 pre .cm{grid-column:1}
+  .code2 pre .cm{font-size:11px;margin-top:7px}
+  .code2 pre .cm:first-child{margin-top:0}
+  .code2 pre .cm:empty{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>آزمایشگاه پیش‌بینی عدد تصادفی</h1>
+    <a class="back" href="/blog/posts/73.html">← پست آموزشی</a>
+    <button class="themebtn" id="theme" title="تم روشن یا تاریک" aria-label="تغییر تم">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="7"/><path d="M10 3a7 7 0 000 14z" fill="currentColor" stroke="none"/></svg>
+    </button>
+  </div>
+  <p class="lede">
+    یک سرور عدد «تصادفی» می‌سازد. یک مهاجم فقط همان عددها را می‌بیند. اینجا تو مهاجمی: چند عدد از سرور جمع کن، با آن‌ها یک <b>کپی</b> از مولد بساز و عددهای بعدیِ سرور را <b>زودتر از خودش</b> بگو. بعد سرور را روی <b>مولد امن</b> بگذار و ببین همین کار دیگر جواب نمی‌دهد. همه‌چیز در مرورگر خودت اجرا می‌شود.
+  </p>
+
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="stage" id="stage" role="tabpanel"></div>
+  <div class="below" id="below"></div>
+
+  <div class="foot">همه‌چیز در مرورگر خودت اجرا شد و هیچ داده‌ای جایی نرفت. · <a href="/blog/posts/73.html">خواندن پست کامل</a> · <a href="/">وحید باقی</a></div>
+</div>
+
+<script>
+/* kept apart from the lab: an engine without BigInt cannot even parse the lab
+   script, and the theme switch and this notice should still work there */
+(function(){
+  document.getElementById('theme').addEventListener('click',function(){
+    var r=document.documentElement;
+    var cur=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+    var next=cur==='dark'?'light':'dark';
+    r.setAttribute('data-theme',next);
+    try{localStorage.setItem('vb_theme',next);}catch(e){}
+  });
+  if(typeof BigInt!=='function'||!window.crypto||!crypto.getRandomValues){
+    document.getElementById('stage').innerHTML='<div class="stage-head"><div class="txt"><h2>مرورگرت خیلی قدیمی است</h2>'+
+      '<p>این آزمایشگاه به <span class="mono">BigInt</span> نیاز دارد. با نسخهٔ تازهٔ <bdi>Chrome</bdi> یا <bdi>Firefox</bdi> یا <bdi>Safari</bdi> بازش کن.</p></div></div>';
+  }
+})();
+</script>
+<script>
+'use strict';
+const FA='۰۱۲۳۴۵۶۷۸۹';
+const fa=n=>String(n).replace(/\d/g,d=>FA[+d]);
+/* a count with the Persian thousands separator, like ۶۵٬۵۳۶ */
+const faN=n=>fa(Number(n).toLocaleString('en-US').replace(/,/g,'٬'));
+const $=(s,r)=>(r||document).querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const reduced=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+function u32(){const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0];}
+
+/* ═══════════════ engines (each one cross-checked against the real language) ═══════════════ */
+
+/* MT19937 — CPython random / PHP mt_rand / Ruby rand */
+const MTN=624,MTM=397;
+class MT{
+  constructor(){this.mt=new Array(MTN).fill(0);this.i=MTN;}
+  seed(s){this.mt[0]=s>>>0;for(let k=1;k<MTN;k++)this.mt[k]=(Math.imul(1812433253,this.mt[k-1]^(this.mt[k-1]>>>30))+k)>>>0;this.i=MTN;return this;}
+  setState(st){this.mt=st.slice();this.i=MTN;return this;}
+  gen(){const mt=this.mt;for(let k=0;k<MTN;k++){const y=(mt[k]&0x80000000)|(mt[(k+1)%MTN]&0x7fffffff);let v=mt[(k+MTM)%MTN]^(y>>>1);if(y&1)v^=0x9908b0df;mt[k]=v>>>0;}this.i=0;}
+  next(){if(this.i>=MTN)this.gen();let y=this.mt[this.i++];y^=y>>>11;y^=(y<<7)&0x9d2c5680;y^=(y<<15)&0xefc60000;y^=y>>>18;return y>>>0;}
+}
+function untemper(y){
+  y^=y>>>18; y^=(y<<15)&0xefc60000;
+  let t=y;for(let i=0;i<5;i++)t=y^((t<<7)&0x9d2c5680);y=t>>>0;
+  t=y;for(let i=0;i<3;i++)t=y^(t>>>11);
+  return t>>>0;
+}
+
+/* java.util.Random — 48-bit LCG */
+const JMUL=0x5DEECE66Dn,JADD=0xBn,JMASK=(1n<<48n)-1n;
+const jstep=s=>(s*JMUL+JADD)&JMASK;
+const jout=s=>Number(BigInt.asIntN(32,s>>16n));
+
+/* V8 Math.random — xorshift128+, output = top 53 bits of state0 (current V8: (state0 >> 11) / 2^53) */
+const M64=(1n<<64n)-1n;
+function xnext(st){let s1=st.s0;const s0=st.s1;st.s0=s0;s1^=(s1<<23n)&M64;s1^=s1>>17n;s1^=s0;s1^=s0>>26n;st.s1=s1&M64;return st.s0;}
+function xsolve(mants){
+  /* every state bit is tracked as a 128-bit mask over the unknown starting bits */
+  let s0=[],s1=[];
+  for(let j=0;j<64;j++){s0.push(1n<<BigInt(j));s1.push(1n<<BigInt(64+j));}
+  const shl=(a,n)=>{const r=new Array(64).fill(0n);for(let j=0;j+n<64;j++)r[j+n]=a[j];return r;};
+  const shr=(a,n)=>{const r=new Array(64).fill(0n);for(let j=n;j<64;j++)r[j-n]=a[j];return r;};
+  const xr=(a,b)=>a.map((v,j)=>v^b[j]);
+  const rows=[];
+  for(const m of mants){
+    let a=s0;const b=s1;
+    a=xr(a,shl(a,23));a=xr(a,shr(a,17));a=xr(a,b);a=xr(a,shr(b,26));
+    s0=b;s1=a;
+    const big=BigInt(m);                     /* m = the 53 bits the double shows = state0 >> 11 */
+    for(let k=0;k<53;k++)rows.push({a:s0[k+11],b:(big>>BigInt(k))&1n});
+  }
+  const piv=new Array(128).fill(-1);let rank=0;
+  for(let col=0;col<128;col++){
+    const bit=1n<<BigInt(col);let pr=-1;
+    for(let i=0;i<rows.length;i++)if(!rows[i].u&&(rows[i].a&bit)){pr=i;break;}
+    if(pr<0)continue;
+    rows[pr].u=true;piv[col]=pr;rank++;
+    for(let i=0;i<rows.length;i++)if(i!==pr&&(rows[i].a&bit)){rows[i].a^=rows[pr].a;rows[i].b^=rows[pr].b;}
+  }
+  let inconsistent=false;
+  for(const r of rows)if(!r.u&&r.a===0n&&r.b)inconsistent=true;
+  let r0=0n,r1=0n;
+  for(let col=0;col<128;col++)if(piv[col]>=0&&rows[piv[col]].b){if(col<64)r0|=1n<<BigInt(col);else r1|=1n<<BigInt(col-64);}
+  return {s0:r0,s1:r1,rank,inconsistent};
+}
+
+/* the time-seed demo: a plain LCG (Numerical Recipes constants) seeded with Date.now() */
+const LA=1664525,LC=1013904223,LMOD=4294967296;
+function lcg(seed){let s=seed%LMOD;return ()=>{s=(s*LA+LC)%LMOD;return 100000+(s%900000);};}
+const clock=t=>{const d=new Date(t);const p=(n,w)=>String(n).padStart(w,'0');
+  return fa(p(d.getHours(),2)+':'+p(d.getMinutes(),2)+':'+p(d.getSeconds(),2)+'.'+p(d.getMilliseconds(),3));};
+
+/* ═══════════════ the four labs ═══════════════ */
+const ICON_SRV='<svg viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="5.5" rx="1.5"/><rect x="3" y="11.5" width="14" height="5.5" rx="1.5"/><path d="M6 5.75h.01M6 14.25h.01"/></svg>';
+const ICON_ATK='<svg viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="5"/><path d="M12.3 12.3L17 17"/></svg>';
+
+const LABS={
+mt:{
+  name:'Mersenne Twister',chip:'MT19937',langs:'Python · PHP · Ruby',
+  intro:'این مولد پشتِ <span class="mono">random</span> در <bdi>Python</bdi>، <span class="mono">mt_rand</span> در <bdi>PHP</bdi> و <span class="mono">rand</span> در <bdi>Ruby</bdi> است. حافظه‌اش یک دفترچهٔ ۶۲۴ خانه‌ای است. هر عددی که بیرون می‌دهد، یکی از همین خانه‌هاست که کمی به‌هم ریخته شده.',
+  need:624,k:6,
+  weak:'random.getrandbits(32)',secure:'secrets.randbits(32)',
+  draws:[{n:1,t:'یک عدد بگیر'},{n:100,t:'۱۰۰ عدد بگیر'},{fill:true,t:'تا ۶۲۴ پر کن'}],
+  cloneLabel:'دفترچه را بازسازی کن',
+  newServer(mode){
+    if(mode==='secure')return {next:u32};
+    const m=new MT().seed(u32());return {next:()=>m.next()};
+  },
+  show:v=>String(v),
+  clone(samples){
+    /* any 624 consecutive outputs, untempered, are a complete state; take the
+       first 624 and replay the rest to catch up with the server */
+    const c=new MT().setState(samples.slice(0,624).map(untemper));c.i=MTN;
+    let bad=0;for(let i=624;i<samples.length;i++)if(c.next()!==samples[i])bad++;
+    if(bad)return {ok:false,head:'دفترچه با این عددها جور نیست',body:fa(bad)+' عدد از '+fa(samples.length-624)+' عددِ بعد از ۶۲۴ با این دفترچه نمی‌خوانند. پس این عددها از این مولد نیامده‌اند.'};
+    return {ok:true,next:()=>c.next(),head:'دفترچهٔ ۶۲۴ خانه‌ای ساخته شد',
+      body:'به‌هم‌ریختگیِ هر عدد را برعکس کردیم و از هرکدام یک خانهٔ دفترچه به دست آمد. اگر این عددها واقعاً از همین مولد آمده باشند، حالا یک کپیِ دقیق از مولدِ سرور داری. پیش‌بینی نشان می‌دهد که آمده‌اند یا نه.'};
+  },
+  how:['به‌هم‌ریختگیِ هر عددِ سرور را با تابع <span class="mono">untemper</span> برعکس می‌کنیم. این‌طوری عددِ داخلِ همان خانهٔ دفترچه به دست می‌آید.',
+       '۶۲۴ عددِ پشت سر هم یعنی همهٔ خانه‌های دفترچه.',
+       'با دفترچهٔ کامل، همان فرمولِ مولد را خودمان اجرا می‌کنیم. پس هر عدد بعدی را زودتر از سرور می‌دانیم.',
+       'این ۶۲۴ برای عددِ کامل است. کدِ شش‌رقمی فقط بخشی از هر عدد را نشان می‌دهد. آنجا باید کدهای بیشتری ببینی، حدود هزار تا، و حسابش سخت‌تر است. ولی باز هم شدنی است.',
+       'در <bdi>PHP</bdi> راه کوتاه‌تری هم هست. عدد شروعِ این مولد (عددی که مولد کارش را با آن شروع می‌کند) فقط حدود ۴ میلیارد حالت دارد. ابزار <span class="mono">php_mt_seed</span> همه را در چند دقیقه امتحان می‌کند و با یکی دو عدد، عدد شروع را پیدا می‌کند.',
+       'در <bdi>WordPress</bdi>، تابع <span class="mono">wp_rand</span> از نسخهٔ ۴٫۴ امن است. خطر در افزونه‌هایی است که خودشان <span class="mono">mt_rand</span> یا <span class="mono">rand</span> را صدا می‌زنند.'],
+  bad:'random.randint(100000, 999999)    <c># Python</c>\nmt_rand(100000, 999999)           <c>// PHP</c>\nrand(100000..999999)              <c># Ruby</c>',
+  good:'secrets.randbelow(900000) + 100000   <c># Python</c>\nrandom_int(100000, 999999)           <c>// PHP</c>\nwp_rand(100000, 999999)              <c>// WordPress 4.4+</c>\nSecureRandom.random_number(100000..999999)   <c># Ruby</c>'
+},
+jv:{
+  name:'Java',chip:'LCG 48-bit',langs:'Java · java.util.Random',
+  intro:'در <bdi>Java</bdi>، کلاس <span class="mono">java.util.Random</span> فقط ۴۸ بیت حافظه دارد. هر بار که <span class="mono">nextInt()</span> صدا زده می‌شود، ۳۲ بیت از همین حافظه مستقیم بیرون می‌آید. فقط ۱۶ بیت پنهان می‌ماند.',
+  need:2,k:6,
+  weak:'new Random().nextInt()',secure:'new SecureRandom().nextInt()',
+  draws:[{n:1,t:'یک <span class="mono">nextInt()</span> بگیر'}],
+  cloneLabel:'۱۶ بیتِ پنهان را پیدا کن',
+  newServer(mode){
+    if(mode==='secure')return {next:()=>u32()|0};
+    let s=((BigInt(u32())<<16n)|BigInt(u32()&0xffff))&JMASK;
+    return {next:()=>{s=jstep(s);return jout(s);}};
+  },
+  show:v=>String(v),
+  clone(samples){
+    const hi=BigInt(samples[0]>>>0)<<16n;let st=null,tries=0;
+    for(let low=0;low<65536;low++){tries++;const c=hi|BigInt(low);if(jout(jstep(c))===samples[1]){st=c;break;}}
+    if(st===null)return {ok:false,head:'با این عددها هیچ حافظه‌ای جور نشد',
+      body:'هر ۶۵٬۵۳۶ حالتِ آن ۱۶ بیت امتحان شد و هیچ‌کدام عددِ دوم را نساخت. پس این عددها از این مولد نیامده‌اند.'};
+    for(let i=1;i<samples.length;i++){st=jstep(st);if(jout(st)!==samples[i])return {ok:false,head:'حافظه با بقیهٔ عددها جور نیست',body:'عددِ '+fa(i+1)+' با حافظهٔ پیداشده نمی‌خواند.'};}
+    return {ok:true,next:()=>{st=jstep(st);return jout(st);},head:'حافظهٔ ۴۸ بیتی پیدا شد',
+      body:'بعد از <b>'+faN(tries)+'</b> امتحان از ۶۵٬۵۳۶ حالت، حالتی پیدا شد که عددِ دوم را دقیقاً می‌سازد.'};
+  },
+  how:['هر <span class="mono">nextInt()</span> همان ۳۲ بیتِ بالای حافظهٔ ۴۸ بیتی است.',
+       'پس فقط ۱۶ بیتِ پایین پنهان است. یعنی ۶۵٬۵۳۶ حالت که در کسری از ثانیه امتحان می‌شود.',
+       'حالتی که عددِ دوم را درست بسازد، همان حافظهٔ سرور است.',
+       'در <bdi>C#</bdi>، اگر به <span class="mono">Random</span> عدد شروع بدهی، مثل <span class="mono">new Random(42)</span>، مولدی قدیمی می‌گیری که با ۵۵ عدد کپی می‌شود. اگر عدد شروع ندهی، نسخه‌های جدید مولد بهتری می‌دهند، ولی آن هم برای کار امنیتی ساخته نشده.'],
+  bad:'new Random().nextInt(900000) + 100000     <c>// Java</c>\nnew Random(seed).Next(100000, 1000000)    <c>// C#</c>',
+  good:'new SecureRandom().nextInt(900000) + 100000          <c>// Java</c>\nRandomNumberGenerator.GetInt32(100000, 1000000)    <c>// C#</c>'
+},
+xs:{
+  name:'Math.random',chip:'xorshift128+',langs:'JavaScript · Chrome · Node',
+  intro:'این همان <span class="mono">Math.random</span> در <bdi>Chrome</bdi> و <bdi>Node</bdi> است. حافظه‌اش فقط ۱۲۸ بیت است و فرمولش خیلی ساده است. آن‌قدر ساده که با حل یک دستگاه معادله، از روی ۴ عدد کل حافظه پیدا می‌شود.',
+  need:4,k:6,
+  weak:'Math.random()',secure:'crypto.getRandomValues()',
+  draws:[{n:1,t:'یک <span class="mono">Math.random()</span> بگیر'}],
+  cloneLabel:'دستگاه معادله را حل کن',
+  newServer(mode){
+    const P53=9007199254740992;
+    if(mode==='secure')return {next:()=>((u32()>>>11)*4294967296+u32())/P53};
+    const st={s0:(BigInt(u32())<<32n|BigInt(u32())),s1:(BigInt(u32())<<32n|BigInt(u32()))||1n};
+    return {next:()=>Number(xnext(st)>>11n)/P53};
+  },
+  show:v=>v.toFixed(6),
+  chipShow:v=>String(v),
+  clone(samples){
+    /* the attacker only has the doubles; each one is exactly (state0 >> 11) / 2^53 */
+    const P53=9007199254740992;
+    const m=samples.map(d=>d*P53);
+    const r=xsolve(m);
+    const st={s0:r.s0,s1:r.s1};let bad=0;
+    for(const v of m)if(Number(xnext(st)>>11n)!==v)bad++;
+    if(r.rank<128||r.inconsistent||bad)return {ok:false,head:'این عددها با هیچ حافظه‌ای جور نیستند',
+      body:fa(m.length*53)+' معادله نوشته شد، ولی هیچ حافظهٔ ۱۲۸ بیتی‌ای همهٔ این عددها را نمی‌سازد. پس این عددها از این مولد نیامده‌اند.'};
+    return {ok:true,next:()=>Number(xnext(st)>>11n)/P53,head:'هر ۱۲۸ بیتِ حافظه پیدا شد',
+      body:fa(m.length*53)+' معادله با ۱۲۸ مجهول نوشته و حل شد. حافظهٔ به‌دست‌آمده همهٔ '+fa(m.length)+' عدد را درست می‌سازد.'};
+  },
+  how:['هر عددِ <span class="mono">Math.random()</span> ۵۳ بیت از حافظه را نشان می‌دهد.',
+       'هر بیت یک معادله با ۱۲۸ مجهول است. ۴ عدد یعنی ۲۱۲ معادله.',
+       'این معادله‌ها با روش <bdi>Gaussian elimination</bdi> حل می‌شوند. با ۳ عدد هنوز ۱۱ بیت معلوم نیست. با ۴ عدد همه معلوم می‌شوند.',
+       'در خودِ <bdi>Chrome</bdi> عددها در دسته‌های ۶۴تایی ساخته می‌شوند و از آخر به اول بیرون می‌آیند. اینجا برای سادگی به ترتیب جلو می‌رویم.'],
+  bad:'Math.floor(Math.random() * 900000) + 100000',
+  good:'crypto.randomInt(100000, 1000000)                <c>// Node</c>\ncrypto.getRandomValues(new Uint32Array(1))       <c>// browser</c>'
+},
+ts:{
+  name:'عدد شروع از ساعت',chip:'time seed',langs:'هر زبانی · اشتباه رایج',
+  intro:'سرور برای ساختنِ کدِ تو، مولد را با ساعتِ همان لحظه شروع می‌کند. کدِ تو اولین عددِ این مولد است. کدهایی که بعد از تو برای بقیه فرستاده می‌شود، عددهای بعدی‌اند.',
+  need:1,k:3,
+  weak:'seed(Date.now())',secure:'crypto.getRandomValues()',
+  draws:[{n:1,t:'برای خودم کد بگیر',fresh:true}],
+  cloneLabel:'عدد شروع را در بازهٔ زمانی پیدا کن',
+  windows:[{ms:1000,t:'±۰٫۵ ثانیه'},{ms:4000,t:'±۲ ثانیه'},{ms:10000,t:'±۵ ثانیه'}],winDefault:4000,
+  newServer(mode){
+    /* t0 is the attacker's own clock when the request went out; the server's
+       clock is off by up to ±1.8 s, as two real machines would be */
+    const t0=Date.now();
+    if(mode==='secure')return {next:()=>100000+(u32()%900000),t0};
+    const skew=(u32()%3601)-1800;
+    return {next:lcg(t0+skew),t0};
+  },
+  show:v=>fa(v),
+  waitNote:st=>st.server.t0&&st.samples.length?'درخواستت ساعتِ <b class="mono">'+clock(st.server.t0)+'</b> رفت (به ساعتِ خودت). ساعتِ سرور ممکن است یکی دو ثانیه با ساعتِ تو فرق داشته باشد.':'',
+  clone(samples,opt){
+    /* search outward from the moment the attacker sent the request: 0, +1, -1, +2, -2 … */
+    const t0=opt.t0,half=opt.win/2;let tries=0;
+    for(let d=0;d<=half;d++){
+      for(const t of d?[t0+d,t0-d]:[t0]){
+        tries++;const g=lcg(t);
+        if(g()===samples[0]){
+          const off=t-t0;
+          /* hedged on purpose: with a secure server a random code can still match
+             some millisecond by chance (about 1 in 200 at ±2 s) */
+          return {ok:true,next:g,head:'یک عدد شروع پیدا شد: ساعتِ '+clock(t),
+            body:'بعد از <b>'+faN(tries)+'</b> امتحان، میلی‌ثانیه‌ای پیدا شد که دقیقاً کدِ تو را می‌سازد. '+
+              (off===0?'این دقیقاً همان ساعتِ خودت است.':'این '+faN(Math.abs(off))+' میلی‌ثانیه '+(off>0?'بعد':'قبل')+' از ساعتِ خودت است.')+
+              ' اگر این واقعاً عدد شروعِ سرور باشد، کدهای بعدی هم معلوم‌اند. پیش‌بینی نشان می‌دهد که هست یا نه.'};
+        }
+      }
+    }
+    return {ok:false,head:'در این بازه هیچ عدد شروعی پیدا نشد',
+      body:'همهٔ '+faN(tries)+' میلی‌ثانیهٔ دور و برِ ساعتِ درخواستت امتحان شد و هیچ‌کدام کدِ تو را نساخت. شاید ساعتِ سرور بیشتر از این با تو فرق دارد؛ بازه را بزرگ‌تر کن. یا شاید مولد اصلاً به ساعت ربطی ندارد.'};
+  },
+  how:['مهاجم خودش درخواست را فرستاده، پس ساعتش را می‌داند. ساعتِ سرور شاید یکی دو ثانیه جلو یا عقب باشد.',
+       'هر میلی‌ثانیهٔ دور و برِ آن لحظه را به‌عنوان عدد شروع امتحان می‌کند تا کدِ خودش ساخته شود. چند هزار امتحان فقط چند میلی‌ثانیه طول می‌کشد.',
+       'وقتی عدد شروع پیدا شد، کدِ نفرهای بعدی هم معلوم است. محدودیتِ «۵ بار تلاش» هم کمکی نمی‌کند، چون دیگر فقط یک حالت مانده.',
+       'عدد شروعی که از <span class="mono">randint</span>، شمارهٔ کاربر یا یک شمارنده بیاید هم همین‌قدر قابل حدس است.'],
+  bad:'random.seed(int(time.time()))    <c># Python</c>\nmt_srand(time());                 <c>// PHP</c>\nsrand(time(NULL));                <c>// C</c>\nrandom.seed(random.randint(0, 10**6))  <c># عدد شروعِ ضعیف</c>',
+  good:'secrets.randbelow(900000) + 100000   <c># بدون عدد شروعِ دستی</c>\nrandom_int(100000, 999999)           <c>// PHP</c>\ngetrandom(buf, sizeof buf, 0);       <c>// C (Linux)</c>'
+}
+};
+const ORDER=['mt','jv','xs','ts'];
+
+/* ═══════════════ state + UI ═══════════════ */
+const S={};
+function fresh(key,mode,win){
+  const L=LABS[key];
+  S[key]={mode:mode||'weak',server:L.newServer(mode||'weak'),samples:[],newCount:0,clone:null,
+          rounds:[],win:win||L.winDefault||0};
+}
+ORDER.forEach(k=>fresh(k));
+let active='mt';
+
+function stepState(st,L){
+  const s1=st.samples.length>=L.need, s2=st.clone&&st.clone.ok, s2f=st.clone&&!st.clone.ok;
+  const last=st.rounds[st.rounds.length-1];
+  const s3=last&&last.done&&last.hits===last.preds.length, s3f=last&&last.done&&last.hits<last.preds.length;
+  return [
+    s1?'done':'active',
+    s2?'done':s2f?'fail':(s1?'active':''),
+    s3?'done':s3f?'fail':(s2?'active':'')
+  ];
+}
+
+function renderTabs(){
+  $('#tabs').innerHTML=ORDER.map((k,i)=>{const L=LABS[k];
+    return '<button class="tab" role="tab" id="tab-'+k+'" aria-selected="'+(k===active)+'" data-k="'+k+'">'+
+      '<span class="t1">'+fa(i+1)+'. '+L.name+'</span><span class="t2">'+L.langs+'</span></button>';}).join('');
+}
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;
+  active=b.dataset.k;wantFocus=null;renderTabs();render();$('#tab-'+active).focus();});
+$('#tabs').addEventListener('keydown',e=>{
+  if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;
+  let i=ORDER.indexOf(active)+(e.key==='ArrowLeft'?1:-1);   /* RTL: left = next */
+  i=(i+ORDER.length)%ORDER.length;active=ORDER[i];wantFocus=null;renderTabs();render();$('#tab-'+active).focus();
+});
+
+/* every render rebuilds the stage, so put keyboard focus back on the same control */
+function focusKey(el){
+  if(!el||!el.closest||!el.closest('#stage'))return null;
+  for(const a of ['data-draw','data-m','data-ms','data-clone','data-predict','data-reset'])
+    if(el.hasAttribute(a))return '['+a+(el.getAttribute(a)?'="'+el.getAttribute(a)+'"':'')+']';
+  return null;
+}
+/* a control that is disabled while the cards turn (predict) gets its focus back
+   once it is enabled again, as long as focus has not moved anywhere else */
+let wantFocus=null;
+function render(){
+  const ae=document.activeElement;
+  const fk=focusKey(ae)||((!ae||ae===document.body)?wantFocus:null);
+  draw();
+  wantFocus=null;
+  if(fk){const el=$('#stage '+fk);if(el&&!el.disabled)el.focus({preventScroll:true});else wantFocus=fk;}
+}
+function draw(){
+  const L=LABS[active],st=S[active];
+  const [a,b,c]=stepState(st,L);
+  const n=st.samples.length,pct=Math.min(100,n/L.need*100);
+  const shown=st.samples.slice(-10);
+  const chips=n?((n>10?'<span class="more">و '+fa(n-10)+' عددِ قبلی</span>':'')+
+      shown.map((v,i)=>'<span class="c'+(i>=shown.length-st.newCount&&st.newCount<=10?' new':'')+'">'+esc((L.chipShow||L.show)(v))+'</span>').join(''))
+      :'<span class="empty">هنوز عددی نگرفته‌ای.</span>';
+  st.newCount=0;
+
+  let status;
+  if(st.clone){status='<div class="status '+(st.clone.ok?'ok':'bad')+'"><span class="h">'+(st.clone.ok?'✓ ':'✗ ')+st.clone.head+'</span>'+st.clone.body+'</div>';}
+  else if(n<L.need){status='<div class="status">برای کپی کردنِ مولد <b>'+fa(L.need)+'</b> عدد لازم است. فعلاً '+fa(n)+' عدد داری.</div>';}
+  else status='<div class="status">'+(L.waitNote?L.waitNote(st)+' ':'')+'همین تعداد کافی است. حالا دکمهٔ «'+L.cloneLabel+'» را بزن.</div>';
+
+  const drawBtns=L.draws.map((d,i)=>'<button class="btn '+(i===0?'srv':'ghost')+'" data-draw="'+i+'">'+
+      (d.fill&&n>=L.need?fa(L.need)+' عدد دیگر بگیر':d.t)+'</button>').join('');
+  const winSeg=L.windows?'<div class="extra">بازهٔ جست‌وجو:<div class="seg" data-win>'+
+      L.windows.map(w=>'<button data-ms="'+w.ms+'" class="'+(st.win===w.ms?'on':'')+'">'+w.t+'</button>').join('')+'</div></div>':'';
+
+  const last=st.rounds[st.rounds.length-1];
+  let predBody;
+  if(!last)predBody='<div class="idle">بعد از کپی کردنِ مولد، پیش‌بینی‌ها اینجا روی کارت‌ها نوشته می‌شوند. بعد سرور عددهای واقعی را یکی‌یکی نشان می‌دهد.</div>';
+  else predBody='<div class="cards'+(L.k===3?' k3':'')+'">'+last.preds.map((p,i)=>{
+      const rev=i<last.revealed,hit=rev&&last.ok[i];
+      return '<div class="pc'+(rev?(hit?' hit':' miss'):'')+(rev&&i===last.revealed-1&&!last.done?' flip':'')+'">'+
+        '<div class="r p"><small>پیش‌بینی مهاجم</small><span class="v">'+esc(p===null?'—':L.show(p))+'</span></div>'+
+        '<div class="r a"><small>'+(active==='ts'?'کدِ نفر '+fa(i+1):'عدد واقعی سرور')+'</small><span class="v">'+(rev?esc(L.show(last.actual[i])):'· · ·')+'</span></div>'+
+        '<div class="mark">'+(rev?(hit?'✓ درست':'✗ غلط'):'منتظر سرور')+'</div></div>';}).join('')+'</div>';
+  let sum='';
+  if(last&&last.done){const ok=last.hits===last.preds.length;
+    sum='<span class="sum '+(ok?'ok':'bad')+'" aria-live="polite">'+fa(last.hits)+' از '+fa(last.preds.length)+' درست</span>';}
+  let note='';
+  if(last&&last.done){
+    if(last.hits===last.preds.length)note='<div class="note">مهاجم هر عدد را <b>زودتر از سرور</b> می‌دانست. اگر این عددها کد تأیید بودند، مهاجم کدِ نفرهای بعدی را داشت. حالا سرور را روی <b>مولد امن</b> بگذار و دوباره امتحان کن.</div>';
+    else if(st.mode==='secure')note='<div class="note">مولدِ امن هم حافظه دارد، ولی از روی عددهایش نمی‌شود آن حافظه را پیدا کرد. برای همین هیچ‌کدام از این روش‌ها رویش جواب نمی‌دهد. برای عددهای حساس همین را به کار ببر.</div>';
+  }
+  if(st.clone&&!st.clone.ok&&st.mode==='secure'&&!last)
+    predBody='<div class="idle">حمله همین‌جا متوقف شد. از روی عددهای مولدِ امن نمی‌شود کپی ساخت. همین را می‌خواستیم ببینیم.</div>';
+
+  $('#stage').setAttribute('aria-labelledby','tab-'+active);
+  $('#stage').innerHTML=
+   '<div class="stage-head"><div class="txt"><h2>'+L.name+'<span class="chip">'+L.chip+'</span></h2><p>'+L.intro+'</p></div>'+
+     '<button class="reset" data-reset>↺ از اول</button></div>'+
+   '<div class="steps">'+
+     '<div class="step '+a+'"><span class="n">'+(a==='done'?'✓':'۱')+'</span><span class="t">جمع کردن عدد</span></div><div class="bar '+(a==='done'?'on':'')+'"><i></i></div>'+
+     '<div class="step '+b+'"><span class="n">'+(b==='done'?'✓':b==='fail'?'✗':'۲')+'</span><span class="t">کپی کردن مولد</span></div><div class="bar '+(b==='done'?'on':'')+'"><i></i></div>'+
+     '<div class="step '+c+'"><span class="n">'+(c==='done'?'✓':c==='fail'?'✗':'۳')+'</span><span class="t">پیش‌بینی</span></div>'+
+   '</div>'+
+   '<div class="duel">'+
+     '<div class="side srv">'+
+       '<div class="side-h"><span class="ic">'+ICON_SRV+'</span><div><b>سرور</b><small>عدد می‌سازد و فقط خودِ عدد را نشان می‌دهد</small></div></div>'+
+       '<div class="seg mode" data-mode>'+
+         '<button data-m="weak" class="'+(st.mode==='weak'?'on':'')+'">مولد معمولی</button>'+
+         '<button data-m="secure" class="secure '+(st.mode==='secure'?'on':'')+'">مولد امن</button></div>'+
+       '<div class="modenote">سرور الان از <span class="mono">'+esc(st.mode==='weak'?L.weak:L.secure)+'</span> استفاده می‌کند.</div>'+
+       '<div class="btns">'+drawBtns+'</div>'+
+       '<div class="meter"><div class="lab"><span>عددهای دیده‌شده</span><span><b>'+fa(n)+'</b> عدد ('+fa(L.need)+' تا لازم است)</span></div>'+
+         '<div class="track'+(pct>=100?' full':'')+'"><i style="width:'+pct+'%"></i></div></div>'+
+       '<div class="chips">'+chips+'</div>'+
+     '</div>'+
+     '<div class="side atk">'+
+       '<div class="side-h"><span class="ic">'+ICON_ATK+'</span><div><b>مهاجم (تو)</b><small>فقط عددهایی را می‌بیند که سرور نشان داده</small></div></div>'+
+       winSeg+
+       '<div class="btns"><button class="btn atk" data-clone '+(n>=L.need&&!(st.clone&&st.clone.ok)?'':'disabled')+'>'+L.cloneLabel+'</button>'+
+         '<button class="btn ghost" data-predict '+(st.clone&&st.clone.ok&&!(last&&!last.done)?'':'disabled')+'>پیش‌بینی '+fa(L.k)+' عدد بعدی</button></div>'+
+       status+
+     '</div>'+
+   '</div>'+
+   '<div class="preds"><div class="preds-h"><b>پیش‌بینی در برابر واقعیت</b>'+sum+'</div>'+predBody+note+'</div>';
+
+  $('#below').innerHTML=
+   '<div class="box"><h3>چطور کار کرد؟</h3><ol>'+L.how.map(h=>'<li>'+h+'</li>').join('')+'</ol></div>'+
+   '<div class="box"><h3>کد معادل</h3><div class="code2">'+
+     '<div><div class="lbl bad">✗ این را ننویس</div><pre class="bad">'+codeHtml(L.bad)+'</pre></div>'+
+     '<div><div class="lbl good">✓ این را بنویس</div><pre class="good">'+codeHtml(L.good)+'</pre></div>'+
+   '</div></div>';
+}
+/* each line becomes a (comment, code) pair of grid cells: beside each other on
+   a wide screen, the comment as a small label above its line on a phone */
+function codeHtml(s){
+  return s.split('\n').map(l=>{
+    const m=l.match(/^(.*?)\s*<c>(.*)<\/c>\s*$/);
+    const code=m?m[1]:l,cm=m?m[2]:'';
+    return '<span class="cm">'+esc(cm)+'</span><span class="cd">'+esc(code)+'</span>';
+  }).join('');
+}
+
+/* actions */
+$('#stage').addEventListener('click',e=>{
+  const L=LABS[active],st=S[active],t=e.target.closest('button');if(!t)return;
+  if(t.hasAttribute('data-reset')){fresh(active,st.mode,st.win);render();return;}
+  if(t.dataset.m){if(t.dataset.m!==st.mode){fresh(active,t.dataset.m,st.win);render();}return;}
+  if(t.dataset.ms){st.win=+t.dataset.ms;if(st.clone&&!st.clone.ok)st.clone=null;render();return;}
+  if(t.dataset.draw!==undefined){
+    const d=L.draws[+t.dataset.draw];
+    if(d.fresh){fresh(active,st.mode,st.win);const s2=S[active];s2.samples.push(s2.server.next());s2.newCount=1;render();return;}
+    const cnt=d.fill?(st.samples.length<L.need?L.need-st.samples.length:L.need):d.n;
+    for(let i=0;i<cnt;i++)st.samples.push(st.server.next());
+    st.newCount=Math.min(cnt,10);
+    st.clone=null;st.rounds=[];   /* new samples: the attacker has to clone again */
+    render();return;
+  }
+  if(t.hasAttribute('data-clone')){
+    st.clone=L.clone(st.samples,{win:st.win,t0:st.server.t0});st.rounds=[];render();
+    /* the clone button is now disabled; hand focus to the next step */
+    if(st.clone.ok){const pb=$('#stage [data-predict]');if(pb&&!pb.disabled)pb.focus({preventScroll:true});}
+    return;}
+  if(t.hasAttribute('data-predict')){
+    const preds=[],actual=[];
+    for(let i=0;i<L.k;i++)preds.push(st.clone.next());
+    for(let i=0;i<L.k;i++)actual.push(st.server.next());
+    st.samples.push(...actual);        /* the server really produced them */
+    const ok=preds.map((p,i)=>p===actual[i]);
+    const r={preds,actual,ok,hits:ok.filter(Boolean).length,revealed:0,done:false};
+    st.rounds.push(r);render();
+    const key=active;
+    /* the reveal keeps going even if the reader switches tabs; it stops only
+       when this lab was reset (a new state object) */
+    const tick=()=>{if(S[key]!==st||st.rounds[st.rounds.length-1]!==r)return;
+      r.revealed++;if(r.revealed>=r.preds.length)r.done=true;
+      if(active===key)render();
+      if(!r.done)setTimeout(tick,reduced()?0:320);};
+    setTimeout(tick,reduced()?0:380);
+  }
+});
+
+renderTabs();render();
+</script>
+</body>
+</html>

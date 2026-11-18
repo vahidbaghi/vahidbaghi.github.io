@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>عددی که random می‌دهد اصلاً تصادفی نیست! — وحید باقی</title>
+<meta name="description" content="عددهای تصادفیِ معمولی از یک فرمول می‌آیند. با دیدن چند تا از آن‌ها می‌شود عددهای بعدی را دقیق حساب کرد، حتی کد تأیید نفر بعدی را. این پست نشان می‌دهد این اتفاق در هر زبان چطور می‌افتد و به جایش چه باید نوشت.">
+<meta property="og:title" content="عددی که random می‌دهد اصلاً تصادفی نیست!">
+<meta property="og:description" content="عددهای تصادفیِ معمولی از یک فرمول می‌آیند. با دیدن چند تا از آن‌ها می‌شود عددهای بعدی را دقیق حساب کرد، حتی کد تأیید نفر بعدی را. این پست نشان می‌دهد این اتفاق در هر زبان چطور می‌افتد و به جایش چه باید نوشت.">
+<meta property="og:type" content="article">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css">
+<style>
+.meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;color:var(--jp-ui-font-color2);
+  font-size:12.5px;margin:-.2em 0 1.5em;max-width:none}
+.meta .dot{width:3px;height:3px;border-radius:50%;background:var(--jp-border2);flex:0 0 3px}
+.meta .tag{border:1px solid var(--jp-border2);border-radius:2px;padding:0 7px;font-size:11.5px}
+.meta .mono{direction:ltr;font-family:"JetBrains Mono",Menlo,monospace}
+.mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:12.5px}
+.jp-md code{direction:ltr;unicode-bidi:isolate;display:inline-block;max-width:100%;line-height:1.45}
+.sm-only{display:none;color:var(--jp-ui-font-color2);font-size:12.5px}
+@media (max-width:700px){.sm-only{display:block}}
+/* on a phone a long code line wraps instead of running off the cell */
+@media (max-width:700px){.jp-editor pre{white-space:pre-wrap;overflow-wrap:anywhere}}
+.labcta{display:block;border:1px solid var(--jp-brand1);border-radius:5px;padding:13px 15px;
+  margin:4px 0;text-decoration:none;background:var(--jp-layout2)}
+.labcta b{color:var(--jp-brand1);font-size:15px}
+.labcta span{display:block;color:var(--jp-ui-font-color2);font-size:12.5px;margin-top:3px}
+table.dataframe td.g{color:#1a7f37}
+/* ---- dark mode: both the stored choice and an OS preference with no stored choice ---- */
+html[data-theme="dark"] table.dataframe td.g{color:#4ac26b}
+@media (prefers-color-scheme:dark){html:not([data-theme="light"]) table.dataframe td.g{color:#4ac26b}}
+</style>
+</head>
+<body>
+<div id="cells" hidden>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h1>عددی که random می‌دهد اصلاً تصادفی نیست!</h1>
+      <div class="meta"><span class="mono">۱۴۰۵/۰۸/۲۷</span><span class="dot"></span><span class="tag">تپه‌نوردی</span><span class="dot"></span><span>امنیت</span></div>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>یه بار داشتم کد یه سایت رو می‌خوندم. دیدم کد تأیید پیامکی رو با <code>random.randint</code> می‌سازه. اولش به نظرم عادی بود.</p>
+      <p>ولی بعد یه چیزی یادم افتاد که خیلی‌ها نمی‌دونن. عددی که <code>random</code> می‌ده واقعاً تصادفی نیست. این عدد از یه فرمول ریاضی میاد. اگه چند تا از این عددها رو ببینی، می‌تونی عددهای بعدی رو <b>دقیق</b> حساب کنی. یعنی می‌شه کد تأییدِ نفر بعدی رو از قبل دونست.</p>
+      <p>تو این پست نشون می‌دم این اتفاق چطور می‌افته، تو کدوم زبان‌ها هست و به جاش چی باید نوشت. یه آزمایشگاه هم ساختم که خودت تو مرورگر امتحانش کنی.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>اول یه مولد خیلی ساده</h2>
+      <p>کامپیوتر برای ساختن عدد تصادفی معمولاً از یه «مولد شبه‌تصادفی» استفاده می‌کنه. «شبه» یعنی عددها فقط تصادفی به نظر می‌رسن. ساده‌ترین مولد این شکلیه: یه عدد تو حافظه‌ش داره و هر بار با یه فرمول عوضش می‌کنه. به این مدل مولد می‌گن <bdi>LCG</bdi>.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[1]:</div>
+        <div class="jp-editor"><pre>state <span class="o">=</span> (state <span class="o">*</span> <span class="n">1103515245</span> <span class="o">+</span> <span class="n">12345</span>) <span class="o">%</span> <span class="n">2147483648</span>
+<span class="c"># <bdi>عدد جدید هم خروجی است و هم حافظهٔ دور بعد</bdi></span></pre></div></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>همین. یه ضرب، یه جمع و یه باقی‌مونده. این عددِ جدید دو تا کار می‌کنه: هم خروجیِ همین مرحله‌ست، هم نقطهٔ شروعِ مرحلهٔ بعد.</p>
+      <p>حالا فرض کن کسی یکی از این خروجی‌ها رو ببینه. اون سه تا عدد ثابتِ فرمول راز نیستن، چون تو کدِ خودِ زبان نوشته شدن. پس با یه ضرب و یه جمع، خروجی بعدی رو حساب می‌کنه. یعنی خروجی، حافظهٔ مولد رو لو می‌ده.</p>
+      <p>مولدهای واقعی پیچیده‌ترن، ولی ایده همینه: یه حافظهٔ داخلی که با یه فرمولِ ثابت عوض می‌شه. سؤال اصلی همیشه اینه: <b>می‌شه از روی خروجی‌ها اون حافظه رو دوباره ساخت؟</b> تقریباً همیشه جوابش مثبته.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>معروف‌ترین مولد: <bdi>Mersenne Twister</bdi></h2>
+      <p>خیلی از زبان‌ها از مولدی به اسم <bdi>Mersenne Twister</bdi> استفاده می‌کنن. ماژول <code>random</code> تو <bdi>Python</bdi>، تابع <code>mt_rand</code> تو <bdi>PHP</bdi> و تابع <code>rand</code> تو <bdi>Ruby</bdi> همه همین مولدن.</p>
+      <p>حافظهٔ این مولد بزرگه: ۶۲۴ عدد. فکر کن یه دفترچه با ۶۲۴ خونه داره. هر بار که ازش عدد می‌خوای، یکی از خونه‌ها رو برمی‌داره، یه کم به‌هم می‌ریزه و بهت می‌ده. وقتی همهٔ خونه‌ها مصرف شد، از روی همون‌ها یه دفترچهٔ جدید می‌سازه.</p>
+      <p>مشکل اینجاست که این به‌هم‌ریختن <b>برگشت‌پذیره</b>. از روی هر خروجی می‌شه عددِ داخلِ همون خونه رو دقیق درآورد. پس اگه ۶۲۴ خروجیِ پشت سر هم ببینی، کل دفترچه رو داری. از اون به بعد یه کپیِ دقیق از مولدِ سرور دستته.</p>
+      <p>این کد همین کار رو می‌کنه. تابع <code>untemper</code> همون به‌هم‌ریختن رو برعکس می‌کنه:</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[2]:</div>
+        <div class="jp-editor"><pre><span class="k">import</span> random
+
+<span class="c"># <bdi>به‌هم‌ریختن را برعکس می‌کند</bdi></span>
+<span class="k">def</span> <span class="f">untemper</span>(y):
+    y <span class="o">^=</span> y <span class="o">&gt;&gt;</span> <span class="n">18</span>
+    y <span class="o">^=</span> (y <span class="o">&lt;&lt;</span> <span class="n">15</span>) <span class="o">&amp;</span> <span class="n">0xefc60000</span>
+    t <span class="o">=</span> y
+    <span class="k">for</span> _ <span class="k">in</span> <span class="b">range</span>(<span class="n">5</span>): t <span class="o">=</span> y <span class="o">^</span> ((t <span class="o">&lt;&lt;</span> <span class="n">7</span>) <span class="o">&amp;</span> <span class="n">0x9d2c5680</span>)
+    y <span class="o">=</span> t
+    t <span class="o">=</span> y
+    <span class="k">for</span> _ <span class="k">in</span> <span class="b">range</span>(<span class="n">3</span>): t <span class="o">=</span> y <span class="o">^</span> (t <span class="o">&gt;&gt;</span> <span class="n">11</span>)
+    <span class="k">return</span> t <span class="o">&amp;</span> <span class="n">0xffffffff</span>
+
+<span class="c"># <bdi>سرور؛ مهاجم از داخلش خبر ندارد</bdi></span>
+server <span class="o">=</span> random.<span class="f">Random</span>()
+
+<span class="c"># <bdi>مهاجم این ۶۲۴ عدد را دیده</bdi></span>
+seen <span class="o">=</span> [server.<span class="f">getrandbits</span>(<span class="n">32</span>) <span class="k">for</span> _ <span class="k">in</span> <span class="b">range</span>(<span class="n">624</span>)]
+
+<span class="c"># <bdi>کپیِ مولد سرور ساخته می‌شود</bdi></span>
+state <span class="o">=</span> <span class="b">tuple</span>([<span class="f">untemper</span>(v) <span class="k">for</span> v <span class="k">in</span> seen] <span class="o">+</span> [<span class="n">624</span>])
+attacker <span class="o">=</span> random.<span class="f">Random</span>()
+attacker.<span class="f">setstate</span>((<span class="n">3</span>, state, <span class="k">None</span>))
+
+<span class="b">print</span>(server.<span class="f">getrandbits</span>(<span class="n">32</span>) <span class="o">==</span> attacker.<span class="f">getrandbits</span>(<span class="n">32</span>))</pre></div></div>
+      <div class="jp-io"><div class="jp-prompt out">Out[2]:</div>
+        <div class="jp-outputs"><pre class="jp-out-txt">True</pre></div></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p>جواب <code>True</code> یعنی عدد بعدیِ سرور و عدد بعدیِ کپی دقیقاً یکی‌ان.</p>
+      <p>یه نکته: عدد ۶۲۴ برای وقتیه که مهاجم عددِ کامل رو ببینه. کد تأییدِ شش‌رقمی فقط بخشی از هر عدد رو نشون می‌ده. اونجا مهاجم نمونهٔ بیشتری لازم داره، حدود هزار تا، و حسابش هم سخت‌تره. ولی باز هم شدنیه. پس کد تأییدی که با <code>randint</code> ساخته بشه امن نیست.</p>
+      <p>یه چیز دیگه هم این مشکل رو جدی‌تر می‌کنه. معمولاً کل برنامه از یه مولدِ مشترک استفاده می‌کنه. اگه یه جای بی‌خطرِ سایت، مثلاً یه بازی ساده، عددهای این مولد رو نشون بده، مهاجم همون‌ها رو جمع می‌کنه. بعد کد تأیید یا شناسهٔ کاربرِ بعدی رو هم حساب می‌کنه. یعنی ضعفِ یه بخشِ بی‌اهمیت به یه بخشِ حساس می‌رسه.</p>
+      <a class="labcta" href="/hobby/rng-lab.html"><b>↙ همین حمله رو خودت امتحان کن</b><span>تو آزمایشگاه نمونه جمع کن، دکمهٔ پیش‌بینی رو بزن و ببین درست درمیاد یا نه. همه‌چیز تو مرورگر خودت اجرا می‌شه.</span></a>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>سه اشتباه رایج با عدد شروع</h2>
+      <p>هر مولد کارش رو با یه عدد شروع می‌کنه. اینجا بهش می‌گیم «عدد شروع»؛ تو کد اسمش <code>seed</code> هست. خیلی‌ها فکر می‌کنن با دستکاریِ این عدد، مولد امن می‌شه. این سه حالت رو زیاد دیدم.</p>
+      <p><b>۱. عدد شروعِ ثابت.</b> مثلاً همیشه ۴۲. اینجا مولد هر بار دقیقاً همون عددها رو می‌سازه. یعنی کد تأییدِ همهٔ کاربرها یکی می‌شه!</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[3]:</div>
+        <div class="jp-editor"><pre>random.<span class="f">seed</span>(<span class="n">42</span>); <span class="b">print</span>(random.<span class="f">randint</span>(<span class="n">100000</span>, <span class="n">999999</span>))
+random.<span class="f">seed</span>(<span class="n">42</span>); <span class="b">print</span>(random.<span class="f">randint</span>(<span class="n">100000</span>, <span class="n">999999</span>))</pre></div></div>
+      <div class="jp-io"><div class="jp-prompt out">Out[3]:</div>
+        <div class="jp-outputs"><pre class="jp-out-txt">770487
+770487</pre></div></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p><b>۲. عدد شروع از روی ساعت.</b> ظاهرش فکر خوبیه، چون ساعت مدام عوض می‌شه. ولی مهاجم خودش درخواست رو فرستاده و می‌دونه تقریباً چه ساعتی بوده. پس چند هزار عددِ دور و برِ اون ساعت رو امتحان می‌کنه. هر کدوم که کدِ خودش رو ساخت، همون عدد شروعِ سروره. حالا کدِ نفر بعدی رو هم می‌دونه.</p>
+      <p>محدودیتِ «۵ بار تلاش» هم کمکی نمی‌کنه. مهاجم دیگه بین ۹۰۰ هزار کد حدس نمی‌زنه. فقط دو سه حالت براش مونده.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[4]:</div>
+        <div class="jp-editor"><pre><span class="k">import</span> time
+now <span class="o">=</span> <span class="b">int</span>(time.<span class="f">time</span>())
+
+<span class="c"># <bdi>سرور با ساعت شروع می‌کند و کدِ مهاجم را می‌سازد</bdi></span>
+random.<span class="f">seed</span>(now)
+my_code <span class="o">=</span> random.<span class="f">randint</span>(<span class="n">100000</span>, <span class="n">999999</span>)
+
+<span class="c"># <bdi>مهاجم فقط می‌داند درخواستش چند ثانیه پیش بوده</bdi></span>
+<span class="k">for</span> s <span class="k">in</span> <span class="b">range</span>(now <span class="o">-</span> <span class="n">5</span>, now <span class="o">+</span> <span class="n">1</span>):
+    r <span class="o">=</span> random.<span class="f">Random</span>(s)
+    <span class="k">if</span> r.<span class="f">randint</span>(<span class="n">100000</span>, <span class="n">999999</span>) <span class="o">==</span> my_code:
+        <span class="c"># <bdi>عدد شروع پیدا شد؛ عدد بعدی کدِ نفر بعدی است</bdi></span>
+        <span class="b">print</span>(r.<span class="f">randint</span>(<span class="n">100000</span>, <span class="n">999999</span>))
+        <span class="k">break</span></pre></div></div>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <p><b>۳. عدد شروع از یه مولد ضعیف.</b> بعضی‌ها برای اینکه کار «تصادفی‌تر» بشه، خودِ عدد شروع رو هم با <code>randint</code> می‌سازن. ولی این عدد هم از همون مولدِ قابل‌پیش‌بینی میاد و چیزی رو بهتر نمی‌کنه. قاعده ساده‌ست: اگه عدد شروع قابل حدس باشه، کل مولد قابل حدسه.</p>
+      <p>پس دستکاریِ عدد شروع راه‌حل نیست. راهِ درست اینه که برای عددهای حساس اصلاً از این مولدها استفاده نکنی.</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>بقیهٔ زبان‌ها</h2>
+      <p>این مشکل مخصوصِ <bdi>Python</bdi> نیست. تقریباً هر زبانی دو جور مولد داره. یکی سریعه و برای بازی و شبیه‌سازی ساخته شده. اون یکی امنه و برای رمز و کد تأیید. اشتباه همیشه یکیه: برنامه‌نویس اولی رو جای دومی به کار می‌بره.</p>
+      <p>برای هر زبان یه خط گذاشتم که نباید بنویسی (<span class="mono">✗</span>) و یه خط که باید بنویسی (<span class="mono">✓</span>).</p>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl"><h3><bdi>JavaScript</bdi></h3>
+      <p>تابع <code>Math.random</code> تو مرورگر <bdi>Chrome</bdi> و تو <bdi>Node</bdi> از مولدی به اسم <bdi>xorshift128+</bdi> استفاده می‌کنه. حافظه‌ش فقط ۱۲۸ بیته و فرمولش خیلی ساده‌ست. اون‌قدر ساده که با حل یه دستگاه معادله، از روی فقط ۴ خروجی کل حافظه‌ش پیدا می‌شه. تو آزمایشگاه همین کار رو کردم.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[5]:</div>
+        <div class="jp-editor"><pre><span class="c">// ✗</span>
+<span class="k">const</span> otp <span class="o">=</span> Math.<span class="f">floor</span>(Math.<span class="f">random</span>() <span class="o">*</span> <span class="n">900000</span>) <span class="o">+</span> <span class="n">100000</span>;
+
+<span class="c">// ✓ Node</span>
+<span class="k">const</span> otp2 <span class="o">=</span> crypto.<span class="f">randomInt</span>(<span class="n">100000</span>, <span class="n">1000000</span>);
+
+<span class="c">// ✓ browser</span>
+<span class="k">function</span> <span class="f">randomCode</span>() {
+  <span class="k">const</span> buf <span class="o">=</span> <span class="k">new</span> <span class="f">Uint32Array</span>(<span class="n">1</span>);
+  <span class="k">const</span> limit <span class="o">=</span> <span class="n">4294967296</span> <span class="o">-</span> (<span class="n">4294967296</span> <span class="o">%</span> <span class="n">900000</span>);
+  <span class="c">// <bdi>عددهای بالای این حد دور ریخته می‌شوند تا همهٔ کدها هم‌احتمال باشند</bdi></span>
+  <span class="k">do</span> crypto.<span class="f">getRandomValues</span>(buf); <span class="k">while</span> (buf[<span class="n">0</span>] <span class="o">&gt;=</span> limit);
+  <span class="k">return</span> <span class="n">100000</span> <span class="o">+</span> (buf[<span class="n">0</span>] <span class="o">%</span> <span class="n">900000</span>);
+}</pre></div></div>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl"><h3><bdi>Java</bdi></h3>
+      <p>تو <bdi>Java</bdi>، کلاس <code>java.util.Random</code> فقط ۴۸ بیت حافظه داره. هر بار که <code>nextInt()</code> صدا زده می‌شه، ۳۲ بیت از همین حافظه مستقیم بیرون میاد. پس فقط ۱۶ بیت مخفی می‌مونه، یعنی حدود ۶۵ هزار حالت. این‌ها تو کسری از ثانیه امتحان می‌شن. با دو خروجی کل حافظه پیدا می‌شه.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[6]:</div>
+        <div class="jp-editor"><pre><span class="c">// ✗</span>
+<span class="k">int</span> otp <span class="o">=</span> <span class="k">new</span> <span class="f">Random</span>().<span class="f">nextInt</span>(<span class="n">900000</span>) <span class="o">+</span> <span class="n">100000</span>;
+
+<span class="c">// ✓</span>
+<span class="k">int</span> otp2 <span class="o">=</span> <span class="k">new</span> <span class="f">SecureRandom</span>().<span class="f">nextInt</span>(<span class="n">900000</span>) <span class="o">+</span> <span class="n">100000</span>;</pre></div></div>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl"><h3><bdi>PHP</bdi> و <bdi>WordPress</bdi></h3>
+      <p>تابع <code>mt_rand</code> تو <bdi>PHP</bdi> همون <bdi>Mersenne Twister</bdi> هست. از نسخهٔ ۷٫۱ به بعد، تابع <code>rand</code> هم همین مولد رو داره.</p>
+      <p>اینجا یه راه میان‌بر هم هست. عدد شروعِ این مولد فقط حدود ۴ میلیارد حالت داره. ابزاری به اسم <code>php_mt_seed</code> همهٔ این حالت‌ها رو تو چند دقیقه امتحان می‌کنه. با یکی دو خروجی، عدد شروعِ درست پیدا می‌شه و بقیهٔ عددها معلوم می‌شن.</p>
+      <p>خبر خوب اینکه <bdi>WordPress</bdi> این مشکل رو حل کرده. تابع <code>wp_rand</code> از نسخهٔ ۴٫۴ (سال ۲۰۱۵) امنه و تابع <code>wp_generate_password</code> هم روی همین ساخته شده. نسخه‌های خیلی قدیمی، حدود سال ۲۰۰۸، لینک بازیابی رمز رو با <code>mt_rand</code> می‌ساختن و همین باعث یه حملهٔ معروف شد. خطرِ امروز بیشتر تو افزونه‌هاییه که خودشون مستقیم <code>mt_rand</code> یا <code>rand</code> رو صدا می‌زنن.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[7]:</div>
+        <div class="jp-editor"><pre><span class="c">// ✗</span>
+$otp <span class="o">=</span> <span class="f">mt_rand</span>(<span class="n">100000</span>, <span class="n">999999</span>);
+$otp <span class="o">=</span> <span class="f">rand</span>(<span class="n">100000</span>, <span class="n">999999</span>);
+
+<span class="c">// ✓ PHP 7+</span>
+$otp <span class="o">=</span> <span class="f">random_int</span>(<span class="n">100000</span>, <span class="n">999999</span>);
+
+<span class="c">// ✓ WordPress 4.4+</span>
+$otp  <span class="o">=</span> <span class="f">wp_rand</span>(<span class="n">100000</span>, <span class="n">999999</span>);
+$pass <span class="o">=</span> <span class="f">wp_generate_password</span>(<span class="n">20</span>, <span class="k">false</span>);</pre></div></div>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl"><h3><bdi>C#</bdi> و <bdi>Go</bdi> و <bdi>C</bdi> و <bdi>Ruby</bdi></h3>
+      <p>این چهار زبان هم همین وضع رو دارن. فقط دو نکته:</p>
+      <ul>
+        <li>تو <bdi>C#</bdi>، اگه <code>new Random()</code> رو بدون عدد شروع بسازی، نسخه‌های جدید مولد بهتری بهت می‌دن. ولی اگه عدد شروع بدی، مثل <code>new Random(42)</code>، همون مولد قدیمی برمی‌گرده که با ۵۵ خروجی کپی می‌شه.</li>
+        <li>تو <bdi>Go</bdi>، تابع‌های <code>math/rand</code> از نسخهٔ ۱٫۲۰ خودشون عدد شروعِ تصادفی می‌گیرن و از نسخهٔ ۱٫۲۲ مولد بهتری دارن. ولی با <code>rand.NewSource(seed)</code> همون مولد قدیمی برمی‌گرده که با ۶۰۷ خروجی کپی می‌شه.</li>
+      </ul>
+      <p>مستنداتِ هر دو زبان هنوز می‌گن این مولدها برای کار امنیتی ساخته نشدن.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[8]:</div>
+        <div class="jp-editor"><pre><span class="c"># C#</span>
+<span class="s">✗</span> <span class="k">new</span> Random(seed).<span class="f">Next</span>()
+<span class="k">✓</span> RandomNumberGenerator.<span class="f">GetInt32</span>(<span class="n">100000</span>, <span class="n">1000000</span>)
+
+<span class="c"># Go</span>
+<span class="s">✗</span> rand.<span class="f">Intn</span>(<span class="n">900000</span>)                 <span class="c">// math/rand</span>
+<span class="k">✓</span> rand.<span class="f">Int</span>(rand.Reader, max)          <span class="c">// crypto/rand</span>
+
+<span class="c"># C</span>
+<span class="s">✗</span> <span class="f">srand</span>(<span class="f">time</span>(NULL)); <span class="f">rand</span>()
+<span class="k">✓</span> <span class="f">getrandom</span>(&amp;x, <span class="k">sizeof</span> x, <span class="n">0</span>)      <span class="c">// Linux</span>
+
+<span class="c"># Ruby</span>
+<span class="s">✗</span> <span class="f">rand</span>(<span class="n">100000</span>..<span class="n">999999</span>)
+<span class="k">✓</span> SecureRandom.<span class="f">random_number</span>(<span class="n">100000</span>..<span class="n">999999</span>)</pre></div></div>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>همه‌چیز در یک جدول</h2>
+      <p>ستونِ «چند نمونه» یعنی مهاجم با دیدنِ چند خروجی می‌تونه مولد رو کپی کنه.</p>
+      <p class="sm-only">جدول پهنه؛ برای دیدنِ همهٔ ستون‌ها، اون رو به چپ بکش.</p>
+    </div>
+  </div>
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner"><div class="jp-io">
+      <div class="jp-prompt out">Out[9]:</div>
+      <div class="jp-outputs"><table class="dataframe"><thead><tr>
+        <th>زبان</th><th>مولدِ ناامن</th><th class="l">الگوریتم</th><th>چند نمونه</th><th>جایگزینِ امن</th></tr></thead><tbody>
+        <tr><th class="l">Python</th><td class="mono">random</td><td class="l mono">Mersenne Twister</td><td>۶۲۴</td><td class="g mono">secrets</td></tr>
+        <tr><th class="l">PHP</th><td class="mono">mt_rand, rand</td><td class="l mono">Mersenne Twister</td><td>یکی دو</td><td class="g mono">random_int</td></tr>
+        <tr><th class="l">WordPress</th><td>افزونه‌هایی که <span class="mono">mt_rand</span> صدا می‌زنن</td><td class="l mono">Mersenne Twister</td><td>یکی دو</td><td class="g mono">wp_rand</td></tr>
+        <tr><th class="l">JavaScript</th><td class="mono">Math.random</td><td class="l mono">xorshift128+</td><td>۴</td><td class="g mono">crypto.randomInt</td></tr>
+        <tr><th class="l">Java</th><td class="mono">java.util.Random</td><td class="l mono">LCG</td><td>۲</td><td class="g mono">SecureRandom</td></tr>
+        <tr><th class="l">C#</th><td class="mono">new Random(seed)</td><td class="l mono">Knuth subtractive</td><td>۵۵</td><td class="g mono">RandomNumberGenerator</td></tr>
+        <tr><th class="l">Go</th><td class="mono">rand.NewSource(seed)</td><td class="l mono">lagged Fibonacci</td><td>۶۰۷</td><td class="g mono">crypto/rand</td></tr>
+        <tr><th class="l">C</th><td class="mono">rand</td><td class="l mono">LCG / additive</td><td>حدود ۳۱</td><td class="g mono">getrandom</td></tr>
+        <tr><th class="l">Ruby</th><td class="mono">rand</td><td class="l mono">Mersenne Twister</td><td>۶۲۴</td><td class="g mono">SecureRandom</td></tr>
+      </tbody></table></div>
+    </div></div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-md rtl">
+      <h2>قانون طلایی</h2>
+      <p>فقط همین یه جمله یادت بمونه: <b>اگه نباید کسی بتونه یه عدد رو حدس بزنه، اون عدد نباید از مولدِ معمولی بیاد.</b></p>
+      <p>کد تأیید، توکنِ ورود، کد تخفیف، رمز موقت و هر شناسه‌ای که نباید حدس زده بشه، همه باید از مولدِ امن بیان. مولدِ معمولی برای بازی و انیمیشن و شبیه‌سازی عالیه. فقط برای رمز و کد تأیید سراغش نرو.</p>
+      <p>آزمایشگاه رو هم حتماً یه بار امتحان کن. اول ببین مهاجم ۶ عدد بعدیِ سرور رو زودتر از خودِ سرور درست می‌گه. بعد کلید رو روی «مولد امن» بذار و ببین همون حمله شکست می‌خوره 🙂</p>
+      <a class="labcta" href="/hobby/rng-lab.html"><b>↙ آزمایشگاه پیش‌بینی عدد تصادفی</b><span>چهار مولدِ معروف، زنده و قابل امتحان، تو مرورگر خودت.</span></a>
+    </div>
+  </div>
+
+  <div class="jp-cell">
+    <div class="jp-collapser"></div>
+    <div class="jp-inner">
+      <div class="jp-io"><div class="jp-prompt">[10]:</div>
+        <div class="jp-editor"><pre>nb<span class="o">.</span><span class="f">neighbours</span>()</pre></div></div>
+      <div class="jp-io"><div class="jp-prompt out">Out[10]:</div>
+        <div class="jp-outputs"><table class="dataframe"><thead><tr><th></th><th>title</th><th>date</th></tr></thead><tbody><tr><th class="l mono">prev</th><td><a href="/blog/posts/72.html">بلندگوی مدرسه تا کجا صداش میاد؟!</a></td><td class="num">۱۴۰۵/۰۷</td></tr></tbody></table></div></div>
+    </div>
+  </div>
+</div>
+<script src="/assets/lab.js"></script>
+<script>
+Lab.chrome({ active:'post', tab:{ name:'post_73.ipynb', href:'/blog/posts/73.html' } });
+Lab.wire();
+Lab.kernel(false);
+</script>
+</body>
+</html>

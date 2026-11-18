@@ -41,6 +41,7 @@ var Lab = (function () {
     { t: 'nb', name: 'snapp_heatmap.ipynb', href: '/hobby/snapp_s-t_heatmap.html', ind: 1 },
     { t: 'nb', name: 'kalleh_products.ipynb', href: '/hobby/kalleh_snapp_products.html', ind: 1 },
     { t: 'nb', name: 'ganjoor_wordcloud.ipynb', href: '/hobby/ganjoor_wordcloud.html', ind: 1 },
+    { t: 'file', name: 'rng_lab.html', href: '/hobby/rng-lab.html', ind: 1 },
     { t: 'file', name: 'cron_simulator.html', href: '/hobby/cron.html', ind: 1 },
     { t: 'file', name: 'clinic_appointment.html', href: '/hobby/clinic-appointment.html', ind: 1 },
     { t: 'file', name: 'compare_boxes.html', href: '/hobby/compare-boxes.html', ind: 1 }
