@@ -6,6 +6,8 @@
 <script>
 /* apply the remembered site theme before first paint (same key as the rest of the site) */
 (function(){try{var t=localStorage.getItem('vb_theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+/* guided wizard by default; the free lab only if the reader picked it before */
+(function(){var v='wiz';try{if(localStorage.getItem('vb_rnglab_view')==='free')v='free';}catch(e){}document.documentElement.setAttribute('data-view',v);})();
 </script>
 <title>آزمایشگاه پیش‌بینی عدد تصادفی — وحید باقی</title>
 <meta name="description" content="یک آزمایشگاه تعاملی. از روی چند عددِ مولدِ معمولی یک کپی از آن بساز، عددهای بعدی را زودتر از سرور بگو و ببین همین کار روی مولدِ امن جواب نمی‌دهد.">
@@ -208,8 +210,85 @@ body{overflow:auto;background:var(--jp-layout0)}
   display:grid;grid-template-columns:max-content auto;grid-auto-flow:row dense;column-gap:16px}
 .code2 pre .cd{grid-column:1}
 .code2 pre .cm{grid-column:2;color:var(--cm-com)}
+.code2 pre .cm .fa{font-family:Vazirmatn,Tahoma,sans-serif;font-size:11.5px}
 .code2 pre.bad{border-inline-end:3px solid var(--bad)}
 .code2 pre.good{border-inline-end:3px solid var(--ok)}
+
+/* view switch: guided wizard or the free lab */
+.viewbar{display:flex;align-items:center;gap:10px;margin:8px 0 18px;flex-wrap:wrap}
+.viewbar .seg{flex:0 0 auto}
+.viewbar .seg button{flex:0 0 auto;padding:6px 14px}
+.viewbar small{font-size:12.5px;color:var(--jp-ui-font-color2)}
+html[data-view="free"] #wiz{display:none}
+html:not([data-view="free"]) .free-only{display:none}
+
+/* wizard */
+.wz{max-width:720px;margin:0 auto;border:1px solid var(--jp-border1);border-radius:16px;background:var(--card);
+  box-shadow:var(--shadow);padding:24px 26px 18px}
+.wz-top{display:flex;align-items:center;gap:12px;margin-bottom:16px;min-height:20px}
+.wz-top .dots{display:flex;gap:6px}
+.wz-top .dots i{width:26px;height:6px;border-radius:6px;background:var(--track);transition:background .2s}
+.wz-top .dots i.done{background:var(--ok)}
+.wz-top .dots i.on{background:var(--srv)}
+.wz-top small{font-size:12.5px;color:var(--jp-ui-font-color2)}
+.wz h2{margin:0 0 12px;font-size:22px;line-height:1.5;font-weight:700;outline:none}
+.wz p{margin:0 0 12px;font-size:15.5px;line-height:2.05;color:var(--jp-content-font-color1)}
+.wz p.sub{color:var(--jp-ui-font-color2);font-size:14px}
+.wz p .mono{font-size:.86em}
+.wz .act{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 14px}
+.wz .btn{min-height:46px;font-size:15px;padding:0 22px;border-radius:11px}
+.btn.okb{background:var(--ok);color:#fff}
+:root[data-theme="dark"] .btn.okb{color:#111}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn.okb{color:#111}}
+.wz .tip{display:flex;gap:9px;font-size:13.5px;line-height:1.9;color:var(--jp-ui-font-color2);background:var(--soft);
+  border-radius:10px;padding:10px 13px;margin:4px 0 12px}
+.wz .tip b{color:var(--jp-content-font-color1)}
+.wz .got{font-size:14px;line-height:1.9;margin:4px 0 10px;color:var(--jp-content-font-color1)}
+.wz .got .ok{color:var(--ok);font-weight:700}
+.wz .chips{margin-bottom:12px}
+.wz .status{font-size:14px;margin-bottom:10px}
+.wz .cards{margin:6px 0 4px}
+.wz .result{margin-top:12px;font-size:14.5px;line-height:1.9;border-radius:10px;padding:11px 13px}
+.wz .result.ok{border:1px solid var(--ok-bd);background:var(--ok-bg)}
+.wz .result.bad{border:1px solid var(--bad-bd);background:var(--bad-bg)}
+.wz .result .h{display:block;font-weight:700;font-size:15.5px;margin-bottom:2px}
+.wz .result.ok .h{color:var(--ok)} .wz .result.bad .h{color:var(--bad)}
+.wz .runs{list-style:none;margin:6px 0 8px;padding:0;font-size:14.5px;line-height:2}
+.wz .runs li{display:flex;gap:8px;align-items:baseline}
+.wz .runs .m{font-weight:700;flex:0 0 1.2em;text-align:center}
+.wz .runs .m.ok{color:var(--ok)} .wz .runs .m.bad{color:var(--bad)} .wz .runs .m.wait{color:var(--jp-ui-font-color3)}
+.wz ol.learn{margin:0 0 14px;padding-inline-start:1.4em;list-style-type:persian;font-size:15px;line-height:2}
+.wz ol.learn li{margin-bottom:4px}
+.wz .code2{margin:6px 0 4px}
+/* the story picture: server -> codes -> attacker */
+.flow{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px 0 20px;flex-wrap:wrap}
+.flow .who{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:13px;font-weight:600}
+.flow .who .ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center}
+.flow .who .ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.flow .who.srv .ic{background:var(--srv-bg);color:var(--srv);border:1px solid var(--srv-bd)}
+.flow .who.atk .ic{background:var(--atk-bg);color:var(--atk);border:1px solid var(--atk-bd)}
+.flow .nums{display:flex;gap:5px;align-items:center;direction:rtl}
+.flow .nums span{font-family:"JetBrains Mono",monospace;font-size:12.5px;padding:3px 7px;border-radius:6px;
+  background:var(--soft);border:1px solid var(--jp-border1)}
+.flow .nums span.q{color:var(--atk);border-style:dashed;border-color:var(--atk-bd)}
+.flow .arr{color:var(--jp-ui-font-color3);font-size:18px}
+/* generator picks */
+.picks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 8px}
+.pick{font:inherit;text-align:right;cursor:pointer;border:1px solid var(--jp-border1);background:var(--card);border-radius:12px;
+  padding:14px 15px;color:var(--jp-ui-font-color1);display:flex;flex-direction:column;gap:4px;min-width:0;
+  transition:border-color .15s,background .15s}
+.pick:hover{border-color:var(--jp-brand1)}
+.pick.on{border-color:var(--jp-brand1);background:var(--srv-bg)}
+.pick .t1{font-size:15.5px;font-weight:700}
+.pick .t2{font-size:12.5px;color:var(--jp-ui-font-color2);line-height:1.7}
+.pick .t3{font-size:12px;color:var(--atk);font-weight:600}
+.pick:focus-visible,.wz-nav .btn:focus-visible{outline:2px solid var(--jp-brand1);outline-offset:2px}
+.wz-nav{display:flex;align-items:center;gap:10px;margin-top:20px;padding-top:14px;border-top:1px solid var(--jp-border1)}
+.wz-nav .hint{flex:1;font-size:12.5px;color:var(--jp-ui-font-color3);text-align:center}
+.wz-nav .btn{min-height:42px;font-size:14.5px}
+.wz-nav .sp{flex:1}
+.wz .end{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.wz .end a.btn{text-decoration:none}
 
 .foot{text-align:center;color:var(--jp-ui-font-color3);font-size:12px;margin-top:26px}
 .foot a{color:var(--jp-brand1);text-decoration:none}
@@ -237,6 +316,19 @@ body{overflow:auto;background:var(--jp-layout0)}
   .code2 pre .cm{font-size:11px;margin-top:7px}
   .code2 pre .cm:first-child{margin-top:0}
   .code2 pre .cm:empty{display:none}
+  .wz{padding:18px 16px 14px;border-radius:14px}
+  .wz h2{font-size:19.5px}
+  .wz p{font-size:15px}
+  .picks{grid-template-columns:1fr}
+  .flow{gap:6px;flex-wrap:nowrap}
+  .flow .nums span:nth-child(3){display:none}
+  .flow .nums span{font-size:11.5px;padding:3px 5px}
+  .flow .who .ic{width:40px;height:40px}
+  .wz .act .btn{flex:1 1 100%;justify-content:center}
+  .wz-nav{flex-wrap:wrap}
+  .wz-nav .hint{order:-1;flex:1 1 100%}
+  .wz-nav .hint:empty{display:none}
+  .wz .end .btn{flex:1 1 100%;justify-content:center}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -250,13 +342,22 @@ body{overflow:auto;background:var(--jp-layout0)}
       <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="7"/><path d="M10 3a7 7 0 000 14z" fill="currentColor" stroke="none"/></svg>
     </button>
   </div>
-  <p class="lede">
+  <div class="viewbar">
+    <div class="seg" id="view" role="group" aria-label="نوع نمایش">
+      <button data-v="wiz">قدم‌به‌قدم</button><button data-v="free">حالت آزاد</button>
+    </div>
+    <small id="viewnote"></small>
+  </div>
+
+  <div id="wiz"></div>
+
+  <p class="lede free-only">
     یک سرور عدد «تصادفی» می‌سازد. یک مهاجم فقط همان عددها را می‌بیند. اینجا تو مهاجمی: چند عدد از سرور جمع کن، با آن‌ها یک <b>کپی</b> از مولد بساز و عددهای بعدیِ سرور را <b>زودتر از خودش</b> بگو. بعد سرور را روی <b>مولد امن</b> بگذار و ببین همین کار دیگر جواب نمی‌دهد. همه‌چیز در مرورگر خودت اجرا می‌شود.
   </p>
 
-  <div class="tabs" role="tablist" id="tabs"></div>
-  <div class="stage" id="stage" role="tabpanel"></div>
-  <div class="below" id="below"></div>
+  <div class="tabs free-only" role="tablist" id="tabs"></div>
+  <div class="stage free-only" id="stage" role="tabpanel"></div>
+  <div class="below free-only" id="below"></div>
 
   <div class="foot">همه‌چیز در مرورگر خودت اجرا شد و هیچ داده‌ای جایی نرفت. · <a href="/blog/posts/73.html">خواندن پست کامل</a> · <a href="/">وحید باقی</a></div>
 </div>
@@ -272,9 +373,27 @@ body{overflow:auto;background:var(--jp-layout0)}
     r.setAttribute('data-theme',next);
     try{localStorage.setItem('vb_theme',next);}catch(e){}
   });
+  /* the wizard / free-lab switch */
+  var vb=document.getElementById('view');
+  window.setView=function(v){
+    document.documentElement.setAttribute('data-view',v);
+    try{localStorage.setItem('vb_rnglab_view',v);}catch(e){}
+    paintView();
+    try{window.dispatchEvent(new CustomEvent('rnglab-view',{detail:v}));}catch(e){}
+  };
+  function paintView(){
+    var v=document.documentElement.getAttribute('data-view');
+    var bs=vb.querySelectorAll('button');
+    for(var i=0;i<bs.length;i++){var on=bs[i].getAttribute('data-v')===v;bs[i].className=on?'on':'';bs[i].setAttribute('aria-pressed',on?'true':'false');}
+    document.getElementById('viewnote').textContent=v==='free'?'همهٔ ابزارها با هم، برای کسی که داستان را می‌داند.':'یک کار در هر صفحه، با توضیح ساده.';
+  }
+  vb.addEventListener('click',function(e){var b=e.target.closest('button');if(b)window.setView(b.getAttribute('data-v'));});
+  paintView();
   if(typeof BigInt!=='function'||!window.crypto||!crypto.getRandomValues){
-    document.getElementById('stage').innerHTML='<div class="stage-head"><div class="txt"><h2>مرورگرت خیلی قدیمی است</h2>'+
-      '<p>این آزمایشگاه به <span class="mono">BigInt</span> نیاز دارد. با نسخهٔ تازهٔ <bdi>Chrome</bdi> یا <bdi>Firefox</bdi> یا <bdi>Safari</bdi> بازش کن.</p></div></div>';
+    var old='<h2>مرورگرت خیلی قدیمی است</h2>'+
+      '<p>این آزمایشگاه به <span class="mono">BigInt</span> نیاز دارد. با نسخهٔ تازهٔ <bdi>Chrome</bdi> یا <bdi>Firefox</bdi> یا <bdi>Safari</bdi> بازش کن.</p>';
+    document.getElementById('stage').innerHTML='<div class="stage-head"><div class="txt">'+old+'</div></div>';
+    document.getElementById('wiz').innerHTML='<div class="wz">'+old+'</div>';
   }
 })();
 </script>
@@ -552,10 +671,7 @@ function draw(){
   const L=LABS[active],st=S[active];
   const [a,b,c]=stepState(st,L);
   const n=st.samples.length,pct=Math.min(100,n/L.need*100);
-  const shown=st.samples.slice(-10);
-  const chips=n?((n>10?'<span class="more">و '+fa(n-10)+' عددِ قبلی</span>':'')+
-      shown.map((v,i)=>'<span class="c'+(i>=shown.length-st.newCount&&st.newCount<=10?' new':'')+'">'+esc((L.chipShow||L.show)(v))+'</span>').join(''))
-      :'<span class="empty">هنوز عددی نگرفته‌ای.</span>';
+  const chips=chipsHtml(L,st.samples,st.newCount);
   st.newCount=0;
 
   let status;
@@ -571,12 +687,7 @@ function draw(){
   const last=st.rounds[st.rounds.length-1];
   let predBody;
   if(!last)predBody='<div class="idle">بعد از کپی کردنِ مولد، پیش‌بینی‌ها اینجا روی کارت‌ها نوشته می‌شوند. بعد سرور عددهای واقعی را یکی‌یکی نشان می‌دهد.</div>';
-  else predBody='<div class="cards'+(L.k===3?' k3':'')+'">'+last.preds.map((p,i)=>{
-      const rev=i<last.revealed,hit=rev&&last.ok[i];
-      return '<div class="pc'+(rev?(hit?' hit':' miss'):'')+(rev&&i===last.revealed-1&&!last.done?' flip':'')+'">'+
-        '<div class="r p"><small>پیش‌بینی مهاجم</small><span class="v">'+esc(p===null?'—':L.show(p))+'</span></div>'+
-        '<div class="r a"><small>'+(active==='ts'?'کدِ نفر '+fa(i+1):'عدد واقعی سرور')+'</small><span class="v">'+(rev?esc(L.show(last.actual[i])):'· · ·')+'</span></div>'+
-        '<div class="mark">'+(rev?(hit?'✓ درست':'✗ غلط'):'منتظر سرور')+'</div></div>';}).join('')+'</div>';
+  else predBody=cardsHtml(L,active==='ts',last);
   let sum='';
   if(last&&last.done){const ok=last.hits===last.preds.length;
     sum='<span class="sum '+(ok?'ok':'bad')+'" aria-live="polite">'+fa(last.hits)+' از '+fa(last.preds.length)+' درست</span>';}
@@ -626,13 +737,49 @@ function draw(){
      '<div><div class="lbl good">✓ این را بنویس</div><pre class="good">'+codeHtml(L.good)+'</pre></div>'+
    '</div></div>';
 }
+/* the last ten numbers the server showed */
+function chipsHtml(L,samples,newCount){
+  const n=samples.length,shown=samples.slice(-10);
+  if(!n)return '<span class="empty">هنوز عددی نگرفته‌ای.</span>';
+  return (n>10?'<span class="more">و '+fa(n-10)+' عددِ قبلی</span>':'')+
+    shown.map((v,i)=>'<span class="c'+(i>=shown.length-newCount&&newCount<=10?' new':'')+'">'+esc((L.chipShow||L.show)(v))+'</span>').join('');
+}
+/* one card per prediction: the attacker's guess on top, the server's real number below */
+function cardsHtml(L,isTs,r){
+  return '<div class="cards'+(L.k===3?' k3':'')+'">'+r.preds.map((p,i)=>{
+    const rev=i<r.revealed,hit=rev&&r.ok[i];
+    return '<div class="pc'+(rev?(hit?' hit':' miss'):'')+(rev&&i===r.revealed-1&&!r.done?' flip':'')+'">'+
+      '<div class="r p"><small>پیش‌بینی مهاجم</small><span class="v">'+esc(p===null?'—':L.show(p))+'</span></div>'+
+      '<div class="r a"><small>'+(isTs?'کدِ نفر '+fa(i+1):'عدد واقعی سرور')+'</small><span class="v">'+(rev?esc(L.show(r.actual[i])):'· · ·')+'</span></div>'+
+      '<div class="mark">'+(rev?(hit?'✓ درست':'✗ غلط'):'منتظر سرور')+'</div></div>';}).join('')+'</div>';
+}
+/* the attacker writes k guesses, then the server really produces k numbers */
+function makeRound(L,st){
+  const preds=[],actual=[];
+  for(let i=0;i<L.k;i++)preds.push(st.clone.next());
+  for(let i=0;i<L.k;i++)actual.push(st.server.next());
+  st.samples.push(...actual);
+  const ok=preds.map((p,i)=>p===actual[i]);
+  return {preds,actual,ok,hits:ok.filter(Boolean).length,revealed:0,done:false};
+}
+/* turn the cards over one by one; stops when alive() says the round is gone */
+function reveal(r,alive,paint){
+  const tick=()=>{if(!alive())return;
+    r.revealed++;if(r.revealed>=r.preds.length)r.done=true;
+    paint();
+    if(!r.done)setTimeout(tick,reduced()?0:320);};
+  setTimeout(tick,reduced()?0:380);
+}
 /* each line becomes a (comment, code) pair of grid cells: beside each other on
    a wide screen, the comment as a small label above its line on a phone */
 function codeHtml(s){
   return s.split('\n').map(l=>{
     const m=l.match(/^(.*?)\s*<c>(.*)<\/c>\s*$/);
     const code=m?m[1]:l,cm=m?m[2]:'';
-    return '<span class="cm">'+esc(cm)+'</span><span class="cd">'+esc(code)+'</span>';
+    /* a Persian comment gets the Persian font in its own RTL run, so its letters join */
+    const pm=cm.match(/^(#|\/\/)\s*(.*[؀-ۿ].*)$/);
+    const cmHtml=pm?esc(pm[1])+' <bdi class="fa">'+esc(pm[2])+'</bdi>':esc(cm);
+    return '<span class="cm">'+cmHtml+'</span><span class="cd">'+esc(code)+'</span>';
   }).join('');
 }
 
@@ -657,25 +804,179 @@ $('#stage').addEventListener('click',e=>{
     if(st.clone.ok){const pb=$('#stage [data-predict]');if(pb&&!pb.disabled)pb.focus({preventScroll:true});}
     return;}
   if(t.hasAttribute('data-predict')){
-    const preds=[],actual=[];
-    for(let i=0;i<L.k;i++)preds.push(st.clone.next());
-    for(let i=0;i<L.k;i++)actual.push(st.server.next());
-    st.samples.push(...actual);        /* the server really produced them */
-    const ok=preds.map((p,i)=>p===actual[i]);
-    const r={preds,actual,ok,hits:ok.filter(Boolean).length,revealed:0,done:false};
+    const r=makeRound(L,st);
     st.rounds.push(r);render();
     const key=active;
     /* the reveal keeps going even if the reader switches tabs; it stops only
        when this lab was reset (a new state object) */
-    const tick=()=>{if(S[key]!==st||st.rounds[st.rounds.length-1]!==r)return;
-      r.revealed++;if(r.revealed>=r.preds.length)r.done=true;
-      if(active===key)render();
-      if(!r.done)setTimeout(tick,reduced()?0:320);};
-    setTimeout(tick,reduced()?0:380);
+    reveal(r,()=>S[key]===st&&st.rounds[st.rounds.length-1]===r,()=>{if(active===key)render();});
   }
 });
 
 renderTabs();render();
+
+/* ═══════════════ the guided wizard ═══════════════ */
+const M=x=>'<span class="mono">'+x+'</span>';
+const WZ={
+mt:{pick:'<bdi>Python</bdi> یا <bdi>PHP</bdi> یا <bdi>Ruby</bdi>',pickSub:'مولدِ <bdi>Mersenne Twister</bdi>',
+  collect:'مولدِ این زبان‌ها یک حافظهٔ ۶۲۴ خانه‌ای دارد. هر عددی که بیرون می‌دهد، از یکی از این خانه‌ها ساخته می‌شود. پس اگر ۶۲۴ عددِ پشت سر هم ببینی، همهٔ خانه‌ها را دیده‌ای.',
+  drawLabel:'۶۲۴ عدد از سرور بگیر',
+  copy:'هر عدد قبل از بیرون آمدن کمی به‌هم ریخته می‌شود. ولی این به‌هم‌ریختگی قابل برگشت است. دکمه را بزن تا هر عدد برگردد و حافظهٔ سرور دوباره ساخته شود.'},
+jv:{pick:'<bdi>Java</bdi>',pickSub:'کلاسِ '+M('java.util.Random'),
+  collect:'مولدِ <bdi>Java</bdi> فقط ۴۸ بیت حافظه دارد. هر عددی که بیرون می‌دهد، ۳۲ بیت از همین حافظه است. یعنی بیشترِ حافظه‌اش را خودش نشانت می‌دهد. ۲ عدد کافی است.',
+  drawLabel:'۲ عدد از سرور بگیر',
+  copy:'از حافظه فقط ۱۶ بیت پنهان مانده. این یعنی ۶۵٬۵۳۶ حالت. کامپیوتر همه را در کسری از ثانیه امتحان می‌کند و حالتِ درست را پیدا می‌کند.'},
+xs:{pick:'<bdi>JavaScript</bdi>',pickSub:'تابعِ '+M('Math.random')+' در <bdi>Chrome</bdi> و <bdi>Node</bdi>',
+  collect:'این مولد فقط ۱۲۸ بیت حافظه دارد. هر عددش ۵۳ بیت از این حافظه را نشان می‌دهد. پس با ۴ عدد، اطلاعاتِ کافی برای پیدا کردنِ کل حافظه داری.',
+  drawLabel:'۴ عدد از سرور بگیر',
+  copy:'هر بیتی که دیدی، یک معادله است. ۴ عدد یعنی ۲۱۲ معادله برای ۱۲۸ مجهول. دکمه را بزن تا این معادله‌ها حل شوند و حافظهٔ سرور پیدا شود.'},
+ts:{pick:'هر زبانی، با ساعت',pickSub:'سایت مولد را با ساعتِ همان لحظه شروع می‌کند',
+  collect:'این سایت برای هر کد، مولد را با ساعتِ همان لحظه شروع می‌کند. اولین عددِ مولد، کدِ توست. یک کد برای خودت بگیر. ساعتِ لحظهٔ درخواست را هم نگه می‌داریم.',
+  drawLabel:'برای خودم کد بگیر',
+  tip:'در واقعیت، مهاجم فقط یک بار برای شمارهٔ خودش کد می‌گیرد و ساعتِ آن لحظه را یادداشت می‌کند.',
+  copy:'ساعتِ سرور شاید یکی دو ثانیه با ساعتِ تو فرق داشته باشد. پس هر میلی‌ثانیهٔ دور و برِ ساعتِ درخواستت را امتحان می‌کنیم تا ببینیم کدام یکی دقیقاً کدِ تو را می‌سازد.'}
+};
+const W={step:0,k:'mt',st:null,sec:null};
+const WSTEPS=5;   /* numbered steps: pick, collect, copy, predict, secure */
+function wState(k,mode){const L=LABS[k];return {mode,server:L.newServer(mode),samples:[],clone:null,round:null,win:L.winDefault||0};}
+function wDraw(k,mode){
+  const L=LABS[k],st=wState(k,mode);
+  for(let i=0;i<L.need;i++)st.samples.push(st.server.next());
+  return st;
+}
+const runLine=(m,cls,txt)=>'<li><span class="m '+cls+'">'+m+'</span><span>'+txt+'</span></li>';
+
+function wBody(){
+  const L=LABS[W.k],Z=WZ[W.k],st=W.st,isTs=W.k==='ts';
+  let h='',next=true,hint='';
+  switch(W.step){
+  case 0:
+    h='<h2 tabindex="-1">می‌شود عددِ «تصادفی» را پیش‌بینی کرد؟</h2>'+
+      '<div class="flow"><div class="who srv"><span class="ic">'+ICON_SRV+'</span>سرور</div><span class="arr">←</span>'+
+        '<div class="nums"><span>۴۸۲۹۱۵</span><span>۱۱۰۳۷۲</span><span>۹۰۵۵۸۱</span><span class="q">؟</span></div>'+
+        '<span class="arr">←</span><div class="who atk"><span class="ic">'+ICON_ATK+'</span>تو</div></div>'+
+      '<p>خیلی از سایت‌ها برای ورود یک کدِ تأیید می‌فرستند. این کد را یک «مولدِ عددِ تصادفی» می‌سازد.</p>'+
+      '<p>ولی بیشترِ این مولدها فقط تصادفی <b>به نظر می‌رسند</b>. پشتِ هرکدام یک فرمول است. اگر چند عددش را ببینی، می‌توانی عددهای بعدی را حساب کنی.</p>'+
+      '<p>اینجا تو نقشِ مهاجم را داری. در ۵ قدمِ کوتاه همین کار را خودت انجام می‌دهی.</p>'+
+      '<p class="sub">همه‌چیز فقط در مرورگرِ خودت اجرا می‌شود و هیچ داده‌ای جایی نمی‌رود.</p>'+
+      '<div class="act"><button class="btn srv" data-w="next">شروع کن</button></div>';
+    break;
+  case 1:
+    h='<h2 tabindex="-1">سایت با کدام زبان ساخته شده؟</h2>'+
+      '<p>هر زبانِ برنامه‌نویسی مولدِ خودش را دارد. یکی را انتخاب کن. اگر نمی‌دانی، اولی را بزن.</p>'+
+      '<div class="picks">'+ORDER.map(k=>{const P=WZ[k];
+        return '<button class="pick'+(k===W.k&&W.st?' on':'')+'" data-w="pick" data-k="'+k+'"><span class="t1">'+P.pick+'</span>'+
+          '<span class="t2">'+P.pickSub+'</span><span class="t3">'+(k==='ts'?'با ۱ کد':'با '+fa(LABS[k].need)+' عدد')+' پیدا می‌شود</span></button>';}).join('')+'</div>';
+    next=!!W.st;if(!next)hint='یکی از گزینه‌ها را انتخاب کن.';
+    break;
+  case 2:
+    h='<h2 tabindex="-1">'+(isTs?'یک کد برای خودت بگیر':'چند عدد از سرور جمع کن')+'</h2><p>'+Z.collect+'</p>'+
+      '<div class="tip"><span>💡</span><span>'+(Z.tip||'در واقعیت، مهاجم این عددها را با درخواست‌های پشت سر هم به سایت جمع می‌کند.')+'</span></div>'+
+      '<div class="act"><button class="btn srv" data-w="collect">'+(st?(isTs?'یک کدِ تازه بگیر':'از اول جمع کن'):Z.drawLabel)+'</button></div>';
+    if(st){
+      h+=isTs?'<div class="got"><span class="ok">✓</span> کدِ تو: <b class="mono">'+fa(st.samples[0])+'</b>. '+L.waitNote(st)+'</div>'
+             :'<div class="got"><span class="ok">✓</span> <b>'+fa(st.samples.length)+'</b> عدد جمع شد. این‌ها فقط عددهایی است که سرور نشان داده:</div><div class="chips">'+chipsHtml(L,st.samples,0)+'</div>';
+    }else{next=false;hint='اول دکمهٔ «'+Z.drawLabel+'» را بزن.';}
+    break;
+  case 3:
+    h='<h2 tabindex="-1">یک کپی از مولدِ سرور بساز</h2><p>'+Z.copy+'</p>'+
+      '<div class="act"><button class="btn atk" data-w="clone"'+(st.clone&&st.clone.ok?' disabled':'')+'>'+L.cloneLabel+'</button></div>';
+    if(st.clone)h+='<div class="status '+(st.clone.ok?'ok':'bad')+'"><span class="h">'+(st.clone.ok?'✓ ':'✗ ')+st.clone.head+'</span>'+st.clone.body+'</div>';
+    if(!st.clone||!st.clone.ok){next=false;hint=st.clone?'یک قدم برگرد و دوباره جمع کن.':'اول دکمهٔ «'+L.cloneLabel+'» را بزن.';}
+    break;
+  case 4:{
+    const r=st.round;
+    h='<h2 tabindex="-1">'+(isTs?'کدِ نفرهای بعدی را زودتر از سرور بگو':'عددهای بعدی را زودتر از سرور بگو')+'</h2>'+
+      '<p>کپیِ تو حالا مثلِ مولدِ سرور کار می‌کند. دکمه را بزن. اول کپیِ تو '+fa(L.k)+' عددِ بعدی را می‌نویسد. بعد سرور '+(isTs?'کدهایی را که برای '+fa(L.k)+' نفرِ بعدی می‌فرستد':'عددهای واقعی‌اش را')+' یکی‌یکی نشان می‌دهد.</p>'+
+      '<div class="act"><button class="btn atk" data-w="predict"'+(r&&!r.done?' disabled':'')+'>'+(r?'دوباره پیش‌بینی کن':'پیش‌بینی کن')+'</button></div>';
+    if(r){
+      h+=cardsHtml(L,isTs,r);
+      if(r.done){const all=r.hits===r.preds.length;
+        h+=all?'<div class="result ok" aria-live="polite"><span class="h">'+fa(r.hits)+' از '+fa(r.preds.length)+' درست!</span>مهاجم همهٔ عددها را زودتر از سرور درست گفت. اگر این‌ها کدِ تأیید بودند، مهاجم کدِ بقیهٔ کاربرها را داشت.</div>'
+               :'<div class="result bad" aria-live="polite"><span class="h">'+fa(r.hits)+' از '+fa(r.preds.length)+' درست</span>این بار کپی دقیق نبود. دو قدم برگرد و دوباره جمع کن.</div>';}
+    }
+    if(!r||!r.done){next=false;hint=r?'صبر کن تا همهٔ کارت‌ها باز شوند.':'اول دکمهٔ «پیش‌بینی کن» را بزن.';}
+    break;}
+  case 5:{
+    const sc=W.sec;
+    h='<h2 tabindex="-1">حالا همین کار را روی مولدِ امن امتحان کن</h2>'+
+      '<p>فرض کن سایت درست ساخته شده. سرور به‌جای '+M(esc(L.weak))+' از '+M(esc(L.secure))+' استفاده می‌کند. همان سه کار را تکرار می‌کنیم: جمع کردن، کپی کردن و پیش‌بینی.</p>'+
+      '<div class="act"><button class="btn okb" data-w="secure"'+(sc&&sc.round&&!sc.round.done?' disabled':'')+'>'+(sc?'دوباره امتحان کن':'حمله را روی مولدِ امن تکرار کن')+'</button></div>';
+    if(sc){
+      const c=sc.st.clone,r=sc.round;
+      h+='<ul class="runs">'+runLine('✓','ok',isTs?'یک کد گرفتیم: <b class="mono">'+fa(sc.st.samples[0])+'</b>.':fa(L.need)+' عدد از سرور گرفتیم.')+
+        (c.ok?runLine('?','wait','ظاهراً یک کپی ساخته شد. ولی فقط پیش‌بینی نشان می‌دهد درست است یا نه.')
+             :runLine('✗','bad','کپی ساخته نشد. '+c.head+'.'))+
+        (r?(r.done?runLine(r.hits===r.preds.length?'✓':'✗',r.hits===r.preds.length?'ok':'bad','پیش‌بینی: '+fa(r.hits)+' از '+fa(r.preds.length)+' درست.')
+                  :runLine('…','wait','در حالِ پیش‌بینی…')):'')+
+        '</ul>';
+      if(r)h+=cardsHtml(L,isTs,r);
+      const over=!r||r.done;
+      if(over){const beat=!r||r.hits<r.preds.length;
+        h+=beat?'<div class="result ok" aria-live="polite"><span class="h">حمله شکست خورد. همین را می‌خواستیم.</span>مولدِ امن هم حافظه دارد، ولی از روی عددهایش نمی‌شود آن حافظه را پیدا کرد. پس مهاجم نمی‌تواند عددِ بعدی را بگوید.</div>'
+               :'<div class="result bad"><span class="h">این بار شانسی جور شد.</span>احتمالش خیلی کم است. یک بار دیگر امتحان کن.</div>';}
+      else{next=false;hint='صبر کن تا همهٔ کارت‌ها باز شوند.';}
+    }else{next=false;hint='اول دکمهٔ «حمله را روی مولدِ امن تکرار کن» را بزن.';}
+    break;}
+  case 6:
+    h='<h2 tabindex="-1">چه چیزی دیدیم؟</h2><ol class="learn">'+
+      '<li>مولدِ معمولی فقط تصادفی به نظر می‌رسد. پشتش یک فرمول است.</li>'+
+      '<li>'+(isTs?'وقتی عدد شروع از ساعت بیاید، با فقط یک کد می‌شود کدِ نفرهای بعدی را پیدا کرد.':'با فقط '+fa(L.need)+' عدد، مهاجم یک کپی از مولد ساخت و عددهای بعدی را زودتر از سرور دانست.')+'</li>'+
+      '<li>مولدِ امن این‌طور نیست. برای کدِ تأیید، رمز و توکن همیشه آن را به کار ببر.</li></ol>'+
+      '<div class="code2"><div><div class="lbl bad">✗ این را ننویس</div><pre class="bad">'+codeHtml(L.bad)+'</pre></div>'+
+      '<div><div class="lbl good">✓ این را بنویس</div><pre class="good">'+codeHtml(L.good)+'</pre></div></div>'+
+      '<div class="end"><button class="btn srv" data-w="again">یک مولدِ دیگر را امتحان کن</button>'+
+      '<button class="btn ghost" data-w="free">برو به حالت آزاد</button>'+
+      '<a class="btn ghost" href="/blog/posts/73.html">پستِ کامل را بخوان</a></div>';
+    break;
+  }
+  return {h,next,hint};
+}
+function wRender(moved){
+  const ae=document.activeElement;
+  const fk=ae&&ae.closest&&ae.closest('#wiz')&&ae.dataset.w?'[data-w="'+ae.dataset.w+'"]':null;
+  const {h,next,hint}=wBody();
+  const s=W.step;
+  const top=s>=1&&s<=WSTEPS?'<div class="wz-top"><div class="dots" aria-hidden="true">'+
+      Array.from({length:WSTEPS},(_,i)=>'<i class="'+(i+1<s?'done':i+1===s?'on':'')+'"></i>').join('')+
+      '</div><small>قدمِ '+fa(s)+' از '+fa(WSTEPS)+'</small></div>':'';
+  const nav=s===0?'':
+    '<div class="wz-nav"><button class="btn ghost" data-w="prev">→ قبلی</button>'+
+    '<span class="hint">'+hint+'</span>'+
+    (s<6?'<button class="btn '+(next?'srv':'ghost')+'" data-w="next"'+(next?'':' disabled')+'>'+(s===5?'جمع‌بندی':'بعدی')+' ←</button>':'')+
+    '</div>';
+  $('#wiz').innerHTML='<div class="wz">'+top+h+nav+'</div>';
+  if(moved){
+    const hd=$('#wiz h2');if(hd)hd.focus({preventScroll:true});
+    const box=$('#wiz').getBoundingClientRect();if(box.top<0)$('#wiz').scrollIntoView({block:'start',behavior:reduced()?'auto':'smooth'});
+  }else if(fk){const el=$('#wiz '+fk);if(el&&!el.disabled)el.focus({preventScroll:true});}
+}
+function wGo(step){W.step=step;wRender(true);}
+
+$('#wiz').addEventListener('click',e=>{
+  const b=e.target.closest('[data-w]');if(!b||b.disabled)return;
+  const a=b.dataset.w,L=LABS[W.k];
+  if(a==='next'){wGo(W.step+1);return;}
+  if(a==='prev'){wGo(W.step-1);return;}
+  if(a==='pick'){if(b.dataset.k!==W.k||!W.st){W.k=b.dataset.k;W.st=null;W.sec=null;}wGo(2);return;}
+  if(a==='collect'){W.st=wDraw(W.k,'weak');W.sec=null;wRender();return;}
+  if(a==='clone'){const st=W.st;st.clone=L.clone(st.samples,{win:st.win,t0:st.server.t0});st.round=null;wRender();return;}
+  if(a==='predict'){const st=W.st,r=makeRound(L,st);st.round=r;wRender();
+    reveal(r,()=>W.st===st&&st.round===r,()=>{if(W.step===4)wRender();});return;}
+  if(a==='secure'){
+    const st=wDraw(W.k,'secure');
+    st.clone=L.clone(st.samples,{win:st.win,t0:st.server.t0});
+    const sc={st,round:null};W.sec=sc;
+    if(st.clone.ok){sc.round=makeRound(L,st);reveal(sc.round,()=>W.sec===sc,()=>{if(W.step===5)wRender();});}
+    wRender();return;}
+  if(a==='again'){W.st=null;W.sec=null;wGo(1);return;}
+  if(a==='free'){window.setView('free');window.scrollTo(0,0);return;}
+});
+/* opening the free lab shows the generator the reader picked in the wizard */
+window.addEventListener('rnglab-view',e=>{
+  if(e.detail==='free'&&W.st&&active!==W.k){active=W.k;wantFocus=null;renderTabs();render();}
+});
+wRender();
 </script>
 </body>
 </html>
