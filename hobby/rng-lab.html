@@ -284,7 +284,8 @@ html:not([data-view="free"]) .free-only{display:none}
 .pick .t3{font-size:12px;color:var(--atk);font-weight:600}
 .pick:focus-visible,.wz-nav .btn:focus-visible{outline:2px solid var(--jp-brand1);outline-offset:2px}
 .wz-nav{display:flex;align-items:center;gap:10px;margin-top:20px;padding-top:14px;border-top:1px solid var(--jp-border1)}
-.wz-nav .hint{flex:1;font-size:12.5px;color:var(--jp-ui-font-color3);text-align:center}
+.wz-nav .hint{flex:1;font-size:12.5px;color:var(--jp-ui-font-color2);text-align:center}
+.wz .result .act{margin:10px 0 0}
 .wz-nav .btn{min-height:42px;font-size:14.5px}
 .wz-nav .sp{flex:1}
 .wz .end{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
@@ -325,7 +326,10 @@ html:not([data-view="free"]) .free-only{display:none}
   .flow .nums span{font-size:11.5px;padding:3px 5px}
   .flow .who .ic{width:40px;height:40px}
   .wz .act .btn{flex:1 1 100%;justify-content:center}
-  .wz-nav{flex-wrap:wrap}
+  /* Back / Next stay at the bottom of the screen while the step scrolls */
+  .wz-nav{flex-wrap:wrap;position:sticky;bottom:0;z-index:2;background:var(--card);
+    margin:20px -16px -14px;padding:10px 16px 12px;border-radius:0 0 14px 14px;box-shadow:0 -6px 12px -8px rgba(0,0,0,.18)}
+  .wz .result,.wz .status,.wz .chips,.wz .got,.wz .cards{scroll-margin-bottom:96px}
   .wz-nav .hint{order:-1;flex:1 1 100%}
   .wz-nav .hint:empty{display:none}
   .wz .end .btn{flex:1 1 100%;justify-content:center}
@@ -394,6 +398,9 @@ html:not([data-view="free"]) .free-only{display:none}
       '<p>این آزمایشگاه به <span class="mono">BigInt</span> نیاز دارد. با نسخهٔ تازهٔ <bdi>Chrome</bdi> یا <bdi>Firefox</bdi> یا <bdi>Safari</bdi> بازش کن.</p>';
     document.getElementById('stage').innerHTML='<div class="stage-head"><div class="txt">'+old+'</div></div>';
     document.getElementById('wiz').innerHTML='<div class="wz">'+old+'</div>';
+    /* nothing to switch between here */
+    document.querySelector('.viewbar').style.display='none';
+    document.querySelector('.lede').style.display='none';
   }
 })();
 </script>
@@ -819,9 +826,9 @@ renderTabs();render();
 const M=x=>'<span class="mono">'+x+'</span>';
 const WZ={
 mt:{pick:'<bdi>Python</bdi> یا <bdi>PHP</bdi> یا <bdi>Ruby</bdi>',pickSub:'مولدِ <bdi>Mersenne Twister</bdi>',
-  collect:'مولدِ این زبان‌ها یک حافظهٔ ۶۲۴ خانه‌ای دارد. هر عددی که بیرون می‌دهد، از یکی از این خانه‌ها ساخته می‌شود. پس اگر ۶۲۴ عددِ پشت سر هم ببینی، همهٔ خانه‌ها را دیده‌ای.',
+  collect:'حافظهٔ مولدِ این زبان‌ها مثلِ یک دفترچهٔ ۶۲۴ خانه‌ای است. هر عددی که بیرون می‌دهد، از یکی از این خانه‌ها ساخته می‌شود. پس اگر ۶۲۴ عددِ پشت سر هم ببینی، همهٔ خانه‌ها را دیده‌ای.',
   drawLabel:'۶۲۴ عدد از سرور بگیر',
-  copy:'هر عدد قبل از بیرون آمدن کمی به‌هم ریخته می‌شود. ولی این به‌هم‌ریختگی قابل برگشت است. دکمه را بزن تا هر عدد برگردد و حافظهٔ سرور دوباره ساخته شود.'},
+  copy:'هر عدد قبل از بیرون آمدن کمی به‌هم ریخته می‌شود. ولی این به‌هم‌ریختگی قابل برگشت است. دکمه را بزن تا هر عدد برگردد و دفترچهٔ سرور دوباره ساخته شود.'},
 jv:{pick:'<bdi>Java</bdi>',pickSub:'کلاسِ '+M('java.util.Random'),
   collect:'مولدِ <bdi>Java</bdi> فقط ۴۸ بیت حافظه دارد. هر عددی که بیرون می‌دهد، ۳۲ بیت از همین حافظه است. یعنی بیشترِ حافظه‌اش را خودش نشانت می‌دهد. ۲ عدد کافی است.',
   drawLabel:'۲ عدد از سرور بگیر',
@@ -830,13 +837,13 @@ xs:{pick:'<bdi>JavaScript</bdi>',pickSub:'تابعِ '+M('Math.random')+' در <
   collect:'این مولد فقط ۱۲۸ بیت حافظه دارد. هر عددش ۵۳ بیت از این حافظه را نشان می‌دهد. پس با ۴ عدد، اطلاعاتِ کافی برای پیدا کردنِ کل حافظه داری.',
   drawLabel:'۴ عدد از سرور بگیر',
   copy:'هر بیتی که دیدی، یک معادله است. ۴ عدد یعنی ۲۱۲ معادله برای ۱۲۸ مجهول. دکمه را بزن تا این معادله‌ها حل شوند و حافظهٔ سرور پیدا شود.'},
-ts:{pick:'هر زبانی، با ساعت',pickSub:'سایت مولد را با ساعتِ همان لحظه شروع می‌کند',
-  collect:'این سایت برای هر کد، مولد را با ساعتِ همان لحظه شروع می‌کند. اولین عددِ مولد، کدِ توست. یک کد برای خودت بگیر. ساعتِ لحظهٔ درخواست را هم نگه می‌داریم.',
+ts:{pick:'هر زبانی، با ساعت',pickSub:'مولد با ساعتِ لحظهٔ درخواست شروع می‌شود',
+  collect:'این سایت برای ساختنِ کدِ تو، مولد را با ساعتِ همان لحظه شروع می‌کند. به این ساعت می‌گوییم «عدد شروع»، یعنی عددی که مولد کارش را با آن شروع می‌کند. کدِ تو اولین عددِ این مولد است. کدهایی که بعد از تو برای بقیه فرستاده می‌شود، عددهای بعدیِ همین مولدند. یک کد برای خودت بگیر.',
   drawLabel:'برای خودم کد بگیر',
   tip:'در واقعیت، مهاجم فقط یک بار برای شمارهٔ خودش کد می‌گیرد و ساعتِ آن لحظه را یادداشت می‌کند.',
   copy:'ساعتِ سرور شاید یکی دو ثانیه با ساعتِ تو فرق داشته باشد. پس هر میلی‌ثانیهٔ دور و برِ ساعتِ درخواستت را امتحان می‌کنیم تا ببینیم کدام یکی دقیقاً کدِ تو را می‌سازد.'}
 };
-const W={step:0,k:'mt',st:null,sec:null};
+const W={step:0,k:'mt',picked:false,st:null,sec:null};
 const WSTEPS=5;   /* numbered steps: pick, collect, copy, predict, secure */
 function wState(k,mode){const L=LABS[k];return {mode,server:L.newServer(mode),samples:[],clone:null,round:null,win:L.winDefault||0};}
 function wDraw(k,mode){
@@ -862,12 +869,12 @@ function wBody(){
       '<div class="act"><button class="btn srv" data-w="next">شروع کن</button></div>';
     break;
   case 1:
-    h='<h2 tabindex="-1">سایت با کدام زبان ساخته شده؟</h2>'+
-      '<p>هر زبانِ برنامه‌نویسی مولدِ خودش را دارد. یکی را انتخاب کن. اگر نمی‌دانی، اولی را بزن.</p>'+
+    h='<h2 tabindex="-1">سایت عددهایش را با کدام مولد می‌سازد؟</h2>'+
+      '<p>هر زبانِ برنامه‌نویسی مولدِ خودش را دارد. گزینهٔ آخر زبان نیست؛ یک اشتباهِ رایج است که در هر زبانی پیش می‌آید. یکی را انتخاب کن. اگر نمی‌دانی، اولی را بزن.</p>'+
       '<div class="picks">'+ORDER.map(k=>{const P=WZ[k];
-        return '<button class="pick'+(k===W.k&&W.st?' on':'')+'" data-w="pick" data-k="'+k+'"><span class="t1">'+P.pick+'</span>'+
-          '<span class="t2">'+P.pickSub+'</span><span class="t3">'+(k==='ts'?'با ۱ کد':'با '+fa(LABS[k].need)+' عدد')+' پیدا می‌شود</span></button>';}).join('')+'</div>';
-    next=!!W.st;if(!next)hint='یکی از گزینه‌ها را انتخاب کن.';
+        return '<button class="pick'+(k===W.k&&W.picked?' on':'')+'" data-w="pick" data-k="'+k+'"><span class="t1">'+P.pick+'</span>'+
+          '<span class="t2">'+P.pickSub+'</span><span class="t3">'+(k==='ts'?'با ۱ کد':'با '+fa(LABS[k].need)+' عدد')+' کپی می‌شود</span></button>';}).join('')+'</div>';
+    next=W.picked;if(!next)hint='یکی از گزینه‌ها را انتخاب کن.';
     break;
   case 2:
     h='<h2 tabindex="-1">'+(isTs?'یک کد برای خودت بگیر':'چند عدد از سرور جمع کن')+'</h2><p>'+Z.collect+'</p>'+
@@ -875,7 +882,7 @@ function wBody(){
       '<div class="act"><button class="btn srv" data-w="collect">'+(st?(isTs?'یک کدِ تازه بگیر':'از اول جمع کن'):Z.drawLabel)+'</button></div>';
     if(st){
       h+=isTs?'<div class="got"><span class="ok">✓</span> کدِ تو: <b class="mono">'+fa(st.samples[0])+'</b>. '+L.waitNote(st)+'</div>'
-             :'<div class="got"><span class="ok">✓</span> <b>'+fa(st.samples.length)+'</b> عدد جمع شد. این‌ها فقط عددهایی است که سرور نشان داده:</div><div class="chips">'+chipsHtml(L,st.samples,0)+'</div>';
+             :'<div class="got"><span class="ok">✓</span> <b>'+fa(L.need)+'</b> عدد جمع شد. این‌ها فقط عددهایی است که سرور نشان داده:</div><div class="chips">'+chipsHtml(L,st.samples.slice(0,L.need),0)+'</div>';
     }else{next=false;hint='اول دکمهٔ «'+Z.drawLabel+'» را بزن.';}
     break;
   case 3:
@@ -893,9 +900,11 @@ function wBody(){
       h+=cardsHtml(L,isTs,r);
       if(r.done){const all=r.hits===r.preds.length;
         h+=all?'<div class="result ok" aria-live="polite"><span class="h">'+fa(r.hits)+' از '+fa(r.preds.length)+' درست!</span>مهاجم همهٔ عددها را زودتر از سرور درست گفت. اگر این‌ها کدِ تأیید بودند، مهاجم کدِ بقیهٔ کاربرها را داشت.</div>'
-               :'<div class="result bad" aria-live="polite"><span class="h">'+fa(r.hits)+' از '+fa(r.preds.length)+' درست</span>این بار کپی دقیق نبود. دو قدم برگرد و دوباره جمع کن.</div>';}
+               :'<div class="result bad" aria-live="polite"><span class="h">'+fa(r.hits)+' از '+fa(r.preds.length)+' درست</span>این بار کپی دقیق نبود. یک بار دیگر از اول جمع کن.'+
+                  '<div class="act"><button class="btn srv" data-w="redo">برگرد و دوباره جمع کن</button></div></div>';}
     }
     if(!r||!r.done){next=false;hint=r?'صبر کن تا همهٔ کارت‌ها باز شوند.':'اول دکمهٔ «پیش‌بینی کن» را بزن.';}
+    else if(r.hits<r.preds.length){next=false;hint='اول دوباره جمع کن.';}
     break;}
   case 5:{
     const sc=W.sec;
@@ -921,8 +930,9 @@ function wBody(){
   case 6:
     h='<h2 tabindex="-1">چه چیزی دیدیم؟</h2><ol class="learn">'+
       '<li>مولدِ معمولی فقط تصادفی به نظر می‌رسد. پشتش یک فرمول است.</li>'+
-      '<li>'+(isTs?'وقتی عدد شروع از ساعت بیاید، با فقط یک کد می‌شود کدِ نفرهای بعدی را پیدا کرد.':'با فقط '+fa(L.need)+' عدد، مهاجم یک کپی از مولد ساخت و عددهای بعدی را زودتر از سرور دانست.')+'</li>'+
-      '<li>مولدِ امن این‌طور نیست. برای کدِ تأیید، رمز و توکن همیشه آن را به کار ببر.</li></ol>'+
+      '<li>'+(isTs?'وقتی عدد شروع از ساعت بیاید، با فقط یک کد می‌شود کدِ نفرهای بعدی را پیدا کرد.'
+              :'با فقط '+fa(L.need)+' عدد، مهاجم یک کپی از مولد ساخت و عددهای بعدی را زودتر از سرور دانست. اینجا سرور عددِ کامل نشان می‌داد. اگر فقط کدِ شش‌رقمی نشان بدهد، عددهای بیشتری لازم است و حسابش سخت‌تر است، ولی حمله باز هم شدنی است.')+'</li>'+
+      '<li>مولدِ امن هم فرمول دارد، ولی از روی عددهایش نمی‌شود حافظه‌اش را پیدا کرد. برای کدِ تأیید، رمز و توکن همیشه آن را به کار ببر.</li></ol>'+
       '<div class="code2"><div><div class="lbl bad">✗ این را ننویس</div><pre class="bad">'+codeHtml(L.bad)+'</pre></div>'+
       '<div><div class="lbl good">✓ این را بنویس</div><pre class="good">'+codeHtml(L.good)+'</pre></div></div>'+
       '<div class="end"><button class="btn srv" data-w="again">یک مولدِ دیگر را امتحان کن</button>'+
@@ -932,9 +942,14 @@ function wBody(){
   }
   return {h,next,hint};
 }
-function wRender(moved){
+/* o.moved: a new step (focus its heading, scroll to the top of the card)
+   o.focus: where keyboard focus should go next, if the reader has not moved it elsewhere
+   o.show:  the result to bring on screen, so a phone user sees what just happened */
+function wRender(o){
+  o=o||{};
   const ae=document.activeElement;
-  const fk=ae&&ae.closest&&ae.closest('#wiz')&&ae.dataset.w?'[data-w="'+ae.dataset.w+'"]':null;
+  const inWiz=!!(ae&&ae.closest&&ae.closest('#wiz'));
+  const fk=inWiz&&ae.dataset.w?'[data-w="'+ae.dataset.w+'"]':inWiz&&ae.tagName==='H2'?'h2':null;
   const {h,next,hint}=wBody();
   const s=W.step;
   const top=s>=1&&s<=WSTEPS?'<div class="wz-top"><div class="dots" aria-hidden="true">'+
@@ -946,31 +961,49 @@ function wRender(moved){
     (s<6?'<button class="btn '+(next?'srv':'ghost')+'" data-w="next"'+(next?'':' disabled')+'>'+(s===5?'جمع‌بندی':'بعدی')+' ←</button>':'')+
     '</div>';
   $('#wiz').innerHTML='<div class="wz">'+top+h+nav+'</div>';
-  if(moved){
+  const beh=reduced()?'auto':'smooth';
+  if(o.moved){
     const hd=$('#wiz h2');if(hd)hd.focus({preventScroll:true});
-    const box=$('#wiz').getBoundingClientRect();if(box.top<0)$('#wiz').scrollIntoView({block:'start',behavior:reduced()?'auto':'smooth'});
-  }else if(fk){const el=$('#wiz '+fk);if(el&&!el.disabled)el.focus({preventScroll:true});}
+    const box=$('#wiz').getBoundingClientRect();if(box.top<0)$('#wiz').scrollIntoView({block:'start',behavior:beh});
+    return;
+  }
+  const free=inWiz||!ae||ae===document.body;   /* never pull focus away from somewhere else */
+  let el=o.focus&&free?$('#wiz '+o.focus):null;
+  if(!el||el.disabled)el=fk?$('#wiz '+fk):null;
+  if(el&&!el.disabled)el.focus({preventScroll:true});
+  if(o.show){const els=document.querySelectorAll('#wiz '+o.show);const t=els[els.length-1];if(t)t.scrollIntoView({block:'nearest',behavior:beh});}
 }
-function wGo(step){W.step=step;wRender(true);}
+function wGo(step){W.step=step;wRender({moved:true});}
+/* while the cards turn, repaint only the cards, so a tap on Back or Next is not
+   lost to a rebuilt button; the whole card is rebuilt once the round is over */
+function wTick(r,step){
+  if(W.step!==step)return;
+  if(!r.done){const c=$('#wiz .cards');if(c){c.outerHTML=cardsHtml(LABS[W.k],W.k==='ts',r);return;}}
+  wRender({focus:'[data-w="next"]',show:'.result'});
+}
 
 $('#wiz').addEventListener('click',e=>{
   const b=e.target.closest('[data-w]');if(!b||b.disabled)return;
   const a=b.dataset.w,L=LABS[W.k];
   if(a==='next'){wGo(W.step+1);return;}
   if(a==='prev'){wGo(W.step-1);return;}
-  if(a==='pick'){if(b.dataset.k!==W.k||!W.st){W.k=b.dataset.k;W.st=null;W.sec=null;}wGo(2);return;}
-  if(a==='collect'){W.st=wDraw(W.k,'weak');W.sec=null;wRender();return;}
-  if(a==='clone'){const st=W.st;st.clone=L.clone(st.samples,{win:st.win,t0:st.server.t0});st.round=null;wRender();return;}
-  if(a==='predict'){const st=W.st,r=makeRound(L,st);st.round=r;wRender();
-    reveal(r,()=>W.st===st&&st.round===r,()=>{if(W.step===4)wRender();});return;}
+  if(a==='pick'){if(b.dataset.k!==W.k||!W.picked){W.k=b.dataset.k;W.st=null;W.sec=null;}W.picked=true;wGo(2);return;}
+  if(a==='collect'){W.st=wDraw(W.k,'weak');W.sec=null;wRender({focus:'[data-w="next"]',show:'.got, .chips'});return;}
+  if(a==='redo'){W.st=wDraw(W.k,'weak');W.sec=null;wGo(2);return;}
+  if(a==='clone'){const st=W.st;st.clone=L.clone(st.samples,{win:st.win,t0:st.server.t0});st.round=null;
+    wRender({focus:'[data-w="next"]',show:'.status'});return;}
+  if(a==='predict'){const st=W.st;
+    /* the clone stays in step: each round moves it and the server forward by k */
+    const r=makeRound(L,st);st.round=r;wRender({focus:'h2',show:'.cards'});
+    reveal(r,()=>W.st===st&&st.round===r,()=>wTick(r,4));return;}
   if(a==='secure'){
     const st=wDraw(W.k,'secure');
     st.clone=L.clone(st.samples,{win:st.win,t0:st.server.t0});
     const sc={st,round:null};W.sec=sc;
-    if(st.clone.ok){sc.round=makeRound(L,st);reveal(sc.round,()=>W.sec===sc,()=>{if(W.step===5)wRender();});}
-    wRender();return;}
-  if(a==='again'){W.st=null;W.sec=null;wGo(1);return;}
-  if(a==='free'){window.setView('free');window.scrollTo(0,0);return;}
+    if(st.clone.ok){sc.round=makeRound(L,st);reveal(sc.round,()=>W.sec===sc,()=>wTick(sc.round,5));}
+    wRender(sc.round?{focus:'h2',show:'.cards'}:{focus:'[data-w="next"]',show:'.result'});return;}
+  if(a==='again'){W.st=null;W.sec=null;W.picked=false;wGo(1);return;}
+  if(a==='free'){window.setView('free');window.scrollTo(0,0);const t=$('#tab-'+active);if(t)t.focus({preventScroll:true});return;}
 });
 /* opening the free lab shows the generator the reader picked in the wizard */
 window.addEventListener('rnglab-view',e=>{
