@@ -364,7 +364,9 @@ function controlsHTML(){
   return ''+
   '<div class="card controls" id="controls">'+
     '<div class="ctl"><label for="c-sal">حقوق ماهانه در ۱۴۰۵</label>'+
-      '<select id="c-sal"><option value="50000000">۵۰ میلیون تومان</option><option value="100000000">۱۰۰ میلیون تومان</option><option value="200000000" selected>۲۰۰ میلیون تومان</option><option value="300000000">۳۰۰ میلیون تومان</option><option value="500000000">۵۰۰ میلیون تومان</option></select>'+
+      '<div class="salrow"><input id="c-sal" type="text" dir="ltr" inputmode="decimal" autocomplete="off" value="۲۰۰" aria-describedby="e-sal h-sal"><span>میلیون تومان در ماه</span></div>'+
+      '<div class="chips presets" id="c-salp" role="group" aria-label="مبلغ‌های آماده">'+[30,50,100,200,300,500].map(function(v){return '<button type="button" data-v="'+v+'" aria-pressed="'+(v===200)+'">'+fa(v)+' میلیون</button>';}).join('')+'</div>'+
+      '<span class="err" id="e-sal" role="status"></span>'+
       '<span class="hint" id="h-sal"></span></div>'+
     '<div class="ctl"><label for="c-save">چقدر از حقوقش را کنار می‌گذارد؟ <span class="val" id="v-save"></span></label>'+
       '<input type="range" id="c-save" min="10" max="100" step="5" value="50"><span class="hint" id="h-save"></span></div>'+
@@ -407,7 +409,39 @@ function controlsHTML(){
 }
 
 function wire(){
-  $('#c-sal').addEventListener('change',function(e){S.salary=+e.target.value;update();});
+  /* custom salary, typed in millions of tomans; Persian or Latin digits, ٬ or , as separators */
+  var salT,salIn=$('#c-sal');
+  function paintPresets(){Array.prototype.forEach.call($('#c-salp').children,function(b){b.setAttribute('aria-pressed',String(+b.getAttribute('data-v')*1e6===S.salary));});}
+  /* "150", "۱۵۰", "1,500", "۲٬۵۰۰" (thousands), "12,5" / "۷۵٫۵" / "7.5" (decimal). Anything else is an error. */
+  function parseMillions(text){
+    var t=String(text).replace(/[‌-‏‪-‮⁦-⁩\s]/g,'')
+      .replace(/[۰-۹]/g,function(d){return '۰۱۲۳۴۵۶۷۸۹'.indexOf(d);}).replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d);})
+      .replace(/٬/g,'').replace(/٫/g,'.');
+    if(t==='')return {err:'empty'};
+    if(/^[+-]/.test(t))return {err:t[0]==='-'?'neg':'nan'};
+    if(/^\d{1,3}([,.]\d{3})+$/.test(t)&&!(/,/.test(t)&&/\./.test(t)))t=t.replace(/[,.]/g,'');   /* 1,500 or 1.000.000 */
+    else t=t.replace(',','.');                                                               /* 12,5 */
+    if(!/^\d+(\.\d+)?$/.test(t))return {err:'nan'};
+    return {v:Number(t)};
+  }
+  var lastGood=S.salary;
+  function showErr(msg){$('#e-sal').textContent=msg;salIn.setAttribute('aria-invalid',msg?'true':'false');}
+  function readSalary(){
+    var r=parseMillions(salIn.value),v=r.v,err='';
+    if(r.err==='neg')err='حقوق نمی‌تواند منفی باشد.';
+    else if(r.err)err='یک عدد بنویس، مثلاً ۱۵۰ (یعنی ۱۵۰ میلیون تومان).';
+    else if(v<1)err='حقوق باید دست‌کم ۱ میلیون تومان باشد.';
+    else if(v>100000)err='بیشتر از ۱۰۰ هزار میلیون (۱۰۰ میلیارد) تومان را حساب نمی‌کنیم.';
+    showErr(err);
+    if(err)return false;
+    S.salary=Math.round(v*1e6);lastGood=S.salary;paintPresets();update();return true;
+  }
+  salIn.addEventListener('input',function(){clearTimeout(salT);showErr('');salT=setTimeout(readSalary,350);});
+  salIn.addEventListener('keydown',function(e){if(e.key==='Enter'){clearTimeout(salT);readSalary();}});
+  /* leaving the field with a bad value puts back the last salary that was used */
+  salIn.addEventListener('blur',function(){clearTimeout(salT);if(!readSalary()){salIn.value=trimNum(lastGood/1e6);showErr('');}});
+  $('#c-salp').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var v=+b.getAttribute('data-v');
+    clearTimeout(salT);salIn.value=fa(v);showErr('');S.salary=v*1e6;lastGood=S.salary;paintPresets();update();});
   $('#c-save').addEventListener('input',function(e){S.save=+e.target.value;update();});
   $('#c-area').addEventListener('input',function(e){S.area=+e.target.value;update();});
   $('#c-dist').addEventListener('change',function(e){S.district=+e.target.value;update();});
