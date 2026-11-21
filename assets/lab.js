@@ -190,6 +190,13 @@ var Lab = (function () {
 
     viewer();
 
+    /* every post ends in a comment box (assets/comment.js) */
+    if (act === 'post') {
+      var cs = document.createElement('script');
+      cs.src = '/assets/comment.js?v=1';
+      document.body.appendChild(cs);
+    }
+
     /* selecting a cell, the way the real thing does */
     document.getElementById('jp-nb').addEventListener('click', function (e) {
       var c = e.target.closest('.jp-cell'); if (!c) return;
