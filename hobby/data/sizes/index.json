@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21 00:46 UTC",
+ "updated": "2026-11-21 02:28 UTC",
  "categories": [
   {
    "key": "fridge",
@@ -8,7 +8,7 @@
    "count": 371,
    "listed": 1000,
    "checked": 1000,
-   "updated": "2026-11-21 00:46 UTC"
+   "updated": "2026-11-21 02:28 UTC"
   },
   {
    "key": "washer",
@@ -53,7 +53,7 @@
    "count": 102,
    "listed": 600,
    "checked": 600,
-   "updated": "2026-11-21 00:46 UTC"
+   "updated": "2026-11-21 02:28 UTC"
   },
   {
    "key": "radiator",
@@ -197,7 +197,7 @@
    "count": 54,
    "listed": 300,
    "checked": 300,
-   "updated": "2026-11-21 00:45 UTC"
+   "updated": "2026-11-21 02:27 UTC"
   },
   {
    "key": "safe",
