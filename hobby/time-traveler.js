@@ -61,7 +61,8 @@ var STRATS=[
   {k:'trav',name:'مسافر زمان',          col:'--s1', note:'با دانستن همهٔ قیمت‌های آینده، بهترین ترتیب خرید و فروش را با حساب کارمزد انتخاب می‌کند'},
   {k:'usd', name:'پس‌انداز دلاری',      col:'--s2', note:'هر ماه دلار می‌خرد و نگه می‌دارد'},
   {k:'dep', name:'سپردهٔ بانکی',        col:'--s3', note:'هر ماه پول را در سپردهٔ یک‌ساله می‌گذارد'},
-  {k:'gold',name:'پس‌انداز طلا',        col:'--s4', note:'هر ماه طلا می‌خرد و نگه می‌دارد'}
+  {k:'gold',name:'پس‌انداز طلا',        col:'--s4', note:'هر ماه طلا می‌خرد و نگه می‌دارد'},
+  {k:'mpt', name:'سبد متنوع',           col:'--s5', note:'هر سال با آمار گذشته ترکیبی از دارایی‌ها می‌سازد (مارکویتز)'}
 ];
 var CARS=[
   ['none','بدون ماشین'],
@@ -81,8 +82,9 @@ function carModelAt(key,t){
 
 /* ---------- state ---------- */
 var S={salary:200e6, save:50, index:'cpi', area:75, district:0, car:'cheap', fee:1, est:true,
-  assets:{dep:true,usd:true,gold:true,coin:true,tedpix:true,btc:true,eth:true}, cohort:1370};
-var FIRST_BORN=1352, LAST_BORN=1385;
+  assets:{dep:true,usd:true,gold:true,coin:true,tedpix:true,btc:true,eth:true}, cohort:1370, risk:'mid', age:20};
+/* people who reach the starting age between Farvardin 1372 (first official Tehran house price) and 1405 */
+var FIRST_START=1372, LAST_START=1405;
 
 /* ---------- prepared arrays ---------- */
 var P={}, F={};
@@ -176,9 +178,134 @@ function backward(T,kmin,c,act,store){
   }
   return B;
 }
+/* ---------- diversified portfolio (Markowitz mean-variance), no knowledge of the future ----------
+   Every Farvardin the saver looks only at the past: monthly returns of the last 60 months (at least 24) of each
+   risky asset that has that much history, and the current one-year deposit rate as the safe return. Weights w
+   (long only, each risky asset at most 40%, the rest in the deposit) maximise  w·(mu - rf) - (lambda/2) w'Σw,
+   solved by projected gradient ascent. The portfolio is rebalanced to w once a year, paying the buy/sell costs on
+   what changes hands, and every month's saving is bought at the same weights. */
+var RISK={low:{name:'محتاط',lam:12},mid:{name:'متعادل',lam:4},high:{name:'جسور',lam:1.5}};
+var MPT_CAP=0.4,MPT_WIN=60,MPT_MIN=36;
+function projectCapped(w,cap){ /* onto {0<=w_i<=cap, sum w_i <= 1} */
+  var n=w.length,i,s=0,o=new Float64Array(n);
+  for(i=0;i<n;i++){o[i]=Math.min(cap,Math.max(0,w[i]));s+=o[i];}
+  if(s<=1)return o;
+  var lo=0,hi=1;for(i=0;i<n;i++)hi=Math.max(hi,w[i]);
+  for(var it=0;it<60;it++){var tau=(lo+hi)/2;s=0;for(i=0;i<n;i++)s+=Math.min(cap,Math.max(0,w[i]-tau));if(s>1)lo=tau;else hi=tau;}
+  for(i=0;i<n;i++)o[i]=Math.min(cap,Math.max(0,w[i]-hi));
+  return o;
+}
+function mptWeights(t,act,lam){
+  var A=ASSETS.length,w=new Float64Array(A),safe=act[1]?1:0,cand=[],i,m;
+  for(i=2;i<A;i++){if(!act[i])continue;var p=P[ASSETS[i].k],h=0;
+    for(m=t;m>0&&p[m]===p[m]&&p[m-1]===p[m-1]&&h<MPT_WIN;m--)h++;
+    if(h>=MPT_MIN)cand.push({i:i,h:h});}
+  if(!cand.length){w[safe]=1;return w;}
+  var L=Math.min.apply(null,cand.map(function(c){return c.h;})),n=cand.length;
+  var R=cand.map(function(c){var p=P[ASSETS[c.i].k],r=[];for(var k=t-L;k<t;k++)r.push(p[k+1]/p[k]-1);return r;});
+  var rf=!safe?0:t+1<N?P.dep[t+1]/P.dep[t]-1:P.dep[t]/P.dep[t-1]-1;
+  var mu=R.map(function(r){return r.reduce(function(a,b){return a+b;},0)/L-rf;});
+  var avg=R.map(function(r){return r.reduce(function(a,b){return a+b;},0)/L;});
+  var S2=[];for(var a=0;a<n;a++){S2.push([]);for(var b=0;b<n;b++){var s=0;for(var k=0;k<L;k++)s+=(R[a][k]-avg[a])*(R[b][k]-avg[b]);S2[a].push(s/(L-1));}}
+  /* largest eigenvalue of the covariance by power iteration: the safe step for projected gradient */
+  var v=new Float64Array(n).fill(1/Math.sqrt(n)),ev=0;
+  for(var pi=0;pi<60;pi++){var nv=new Float64Array(n),nn=0;for(a=0;a<n;a++){for(b=0;b<n;b++)nv[a]+=S2[a][b]*v[b];nn+=nv[a]*nv[a];}
+    nn=Math.sqrt(nn);if(!(nn>0))break;ev=nn;for(a=0;a<n;a++)v[a]=nv[a]/nn;}
+  var step=1/(lam*ev+1e-12),x=new Float64Array(n);
+  for(var it=0;it<6000;it++){
+    var g=new Float64Array(n);
+    for(a=0;a<n;a++){var sx=0;for(b=0;b<n;b++)sx+=S2[a][b]*x[b];g[a]=mu[a]-lam*sx;}
+    var y=new Float64Array(n);for(a=0;a<n;a++)y[a]=x[a]+step*g[a];
+    y=projectCapped(y,MPT_CAP);
+    var d=0;for(a=0;a<n;a++)d+=Math.abs(y[a]-x[a]);x=y;
+    if(d<1e-10)break;
+  }
+  var tot=0;for(a=0;a<n;a++){if(x[a]<0.005)x[a]=0;w[cand[a].i]=x[a];tot+=x[a];}
+  w[safe]+=1-tot;
+  return w;
+}
+/* weights for every Farvardin (and the first month), shared by all cohorts */
+var PLAN_CACHE={};
+function mptPlan(act,lam){
+  var key=act.join('')+'|'+lam;if(PLAN_CACHE[key])return PLAN_CACHE[key];
+  var plan=PLAN_CACHE[key]={};
+  for(var t=0;t<N;t++){if(ym(t)[1]===1)plan[t]=mptWeights(t,act,lam);}
+  return plan;
+}
+function simulateMPT(co,sal,rate,c,plan){
+  var A=ASSETS.length,h=new Float64Array(A),W=new Float64Array(N),w=null,log=[];W.fill(NaN);
+  for(var k=co.s;k<N;k++){
+    if(plan[k]){ /* rebalance: sell what is above target, buy what is below, both paying their cost */
+      w=plan[k];var V=0,a;for(a=0;a<A;a++)V+=h[a];
+      if(V>0){var Va=V;for(var fx=0;fx<6;fx++){var cost=0;for(a=0;a<A;a++)cost+=Math.abs(h[a]-w[a]*Va)*c[a];Va=V-cost;}
+        for(a=0;a<A;a++)h[a]=w[a]*Va;}
+      log.push({k:k,w:w});
+    }
+    var x=sal[k];if(x===x){x*=rate;for(var a2=0;a2<A;a2++)if(w[a2]>0)h[a2]+=x*w[a2]*(1-c[a2]);}
+    var liq=0;for(var a3=0;a3<A;a3++)liq+=h[a3]*(1-c[a3]);W[k]=liq;
+    if(k<N-1)for(var a4=0;a4<A;a4++){if(!h[a4])continue;var p=P[ASSETS[a4].k],g=p[k+1]/p[k];h[a4]*=g===g?g:1;}
+  }
+  return {W:W,log:log};
+}
+
+/* ---------- forecast for people who have not bought yet ----------
+   Block bootstrap: a future is stitched together from random 12-month stretches of the real past (every month
+   in which all the series this saver needs exist, up to the last known month), keeping prices, inflation, house
+   and car moving together as they did. Salary follows inflation and each saver keeps doing what they did; the
+   traveller and the portfolio hold the latest portfolio weights (from today nobody knows the future), rebalanced
+   yearly. 250 futures up to 30 years; the page shows the median and the 10-90% range.
+   All cohorts of one saver type share the same futures (fixed seed), so a richer saver never gets a later date.
+   Wealth is linear in today's wealth W0 and today's monthly saving s0, so each path is walked once:
+   liquid(t) = W0·a(t) + s0·b(t), compared with target0·g(t). */
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+var FC_PATHS=250,FC_YEARS=30,FC_SEED=1405;
+function forecastAll(res,key,weights,c,need){
+  var L=res.lastKnown,out={};need=need.filter(function(j){return res.cohorts[j].s<=L;});
+  if(!need.length||!weights)return out;
+  var A=ASSETS.length,use=[],a,m;for(a=0;a<A;a++)if(weights[a]>0)use.push(a);
+  var tg=res.tgt,ok=[];
+  for(m=0;m<L;m++){
+    if(!(tg[m]===tg[m]&&tg[m+1]===tg[m+1]))continue;
+    var good=true;for(var u=0;u<use.length;u++){var p=P[ASSETS[use[u]].k];if(!(p[m]===p[m]&&p[m+1]===p[m+1])){good=false;break;}}
+    if(good)ok.push(m);
+  }
+  var starts=[];for(var q=0;q+11<ok.length;q++)if(ok[q+11]-ok[q]===11)starts.push(ok[q]);
+  if(starts.length<12)return out;
+  var nu=use.length,G=[],wv=new Float64Array(nu),buy=new Float64Array(nu),keep=new Float64Array(nu),gT=new Float64Array(L),gS=new Float64Array(L);
+  for(var u2=0;u2<nu;u2++){var pa=P[ASSETS[use[u2]].k],ga=new Float64Array(L);for(m=0;m<L;m++)ga[m]=pa[m+1]/pa[m];G.push(ga);
+    wv[u2]=weights[use[u2]];keep[u2]=1-c[use[u2]];buy[u2]=wv[u2]*keep[u2];}
+  for(m=0;m<L;m++){gT[m]=tg[m+1]/tg[m];gS[m]=cpiAt(m+1)/cpiAt(m);}
+  var sal0=(res.sal[L]===res.sal[L]?res.sal[L]:res.sal[L-1])*S.save/100,tgt0=tg[L];
+  var W0=need.map(function(j){return res.W[key][j][L];}),hits=need.map(function(){return [];});
+  var r=rng(FC_SEED),H=FC_YEARS*12,ha=new Float64Array(nu),hb=new Float64Array(nu);
+  for(var path=0;path<FC_PATHS;path++){
+    for(u2=0;u2<nu;u2++){ha[u2]=wv[u2]/keep[u2];hb[u2]=0;}
+    var gt=1,sf=1,bk=0,bs=0,left=need.length,done=new Uint8Array(need.length);
+    for(var t=1;t<=H&&left;t++){
+      if(bk===0)bs=starts[Math.floor(r()*starts.length)];
+      var mm=bs+bk;bk=bk===11?0:bk+1;
+      gt*=gT[mm];sf*=gS[mm];
+      var VA=0,VB=0;
+      for(u2=0;u2<nu;u2++){ha[u2]*=G[u2][mm];hb[u2]*=G[u2][mm];VA+=ha[u2];VB+=hb[u2];}
+      if(t%12===0&&nu>1)for(u2=0;u2<nu;u2++){ha[u2]=VA*wv[u2];hb[u2]=VB*wv[u2];}
+      var la=0,lb=0;
+      for(u2=0;u2<nu;u2++){hb[u2]+=sf*buy[u2];la+=ha[u2]*keep[u2];lb+=hb[u2]*keep[u2];}
+      var need$=tgt0*gt;
+      for(var q2=0;q2<need.length;q2++){if(done[q2])continue;
+        if(W0[q2]*la+sal0*lb>=need$){done[q2]=1;left--;hits[q2].push(t);}}
+    }
+    for(q2=0;q2<need.length;q2++)if(!done[q2])hits[q2].push(Infinity);
+  }
+  var from=starts[0];
+  need.forEach(function(j,q3){var o=hits[q3].sort(function(x,y){return x-y;});
+    var pick=function(f){return o[Math.min(o.length-1,Math.floor(f*o.length))];};
+    out[j]={p10:pick(0.1),p50:pick(0.5),p90:pick(0.9),from:L,win:from};});
+  return out;
+}
+
 function compute(){
   var c=costs(),act=activeMask(),sal=salaryArr(),tgt=targetArr(),rate=S.save/100;
-  var cohorts=[];for(var b=FIRST_BORN;b<=LAST_BORN;b++){var s=idx(b+20,1);if(s>=0&&s<N)cohorts.push({born:b,s:s});}
+  var cohorts=[];for(var b=FIRST_START-S.age;b<=LAST_START-S.age;b++){var s=idx(b+S.age,1);if(s>=0&&s<N)cohorts.push({born:b,s:s});}
   var kmin=cohorts[0].s;
   var res={cohorts:cohorts,sal:sal,tgt:tgt,W:{}};
   STRATS.forEach(function(st){res.W[st.k]=cohorts.map(function(){var a=new Float64Array(N);a.fill(NaN);return a;});});
@@ -200,6 +327,9 @@ function compute(){
       }
     });
   });
+  /* diversified portfolio */
+  var plan=mptPlan(act,RISK[S.risk].lam);res.plan=plan;res.mptLog=[];
+  cohorts.forEach(function(co,j){var sim=simulateMPT(co,sal,rate,c,plan);res.W.mpt[j]=sim.W;res.mptLog[j]=sim.log;});
   /* first month the wealth covers house + car */
   res.lastKnown=-1;for(var q=N-1;q>=0;q--)if(tgt[q]===tgt[q]){res.lastKnown=q;break;}
   res.hit={};
@@ -210,6 +340,15 @@ function compute(){
       return -1;
     });
   });
+  /* forecasts for whoever has not bought by the last known month */
+  var L=res.lastKnown,pw=null;for(var y=L;y>=0;y--)if(plan[y]){pw=plan[y];break;}
+  var one=function(i){var w=new Float64Array(ASSETS.length);w[i]=1;return w;};
+  var WTS={usd:one(2),gold:one(3),dep:one(1),mpt:pw,trav:pw};
+  res.fc={};
+  STRATS.forEach(function(st){
+    var need=[];cohorts.forEach(function(co,j){if(res.hit[st.k][j]<0)need.push(j);});
+    var f=forecastAll(res,st.k,WTS[st.k],c,need);
+    res.fc[st.k]=cohorts.map(function(co,j){return f[j]||null;});});
   return res;
 }
 /* the traveller's actual moves for one cohort, up to month T */
@@ -337,6 +476,17 @@ function growWords(g,a){ /* «۴ برابر شد» or «۳۵٪ گران شد»; 
   return fa(Math.round((g-1)*100))+'٪ گران شد';
 }
 function pctOf(w,tg){return Math.floor(w/tg*100);}
+/* forecasts are rough: whole years only */
+function fcN(m){if(m===Infinity)return 'بیش از ۳۰';if(m<12)return 'کمتر از ۱';return fa(Math.round(m/12));}
+function fcYears(m){return fcN(m)+' سال';}
+function fcShort(f){ /* «حدود ۸ سال دیگر» */
+  if(!f)return '';var after=f.from<N-1?' بعد از '+mlabel(f.from):' دیگر';
+  return f.p50===Infinity?'بیش از ۳۰ سال'+after:(f.p50<12?'کمتر از یک سال':'حدود '+fcYears(f.p50))+after;}
+function fcRange(f){if(!f||f.p50===Infinity||f.p90<24)return '';var a=fcN(f.p10),b=fcN(f.p90);if(a===b)return '';return a+' تا '+b+' سال';}
+function fcCell(f){ /* compact text for the table */
+  if(!f)return '';
+  var main=f.p50===Infinity?'بیش از ۳۰ سال':f.p50<12?'کمتر از ۱ سال':fa(Math.round(f.p50/12))+' سال '+(f.from<N-1?'بعد':'دیگر');
+  return '<span class="fc">پیش‌بینی: '+main+'</span>'+(fcRange(f)?'<span class="fcr">('+fcRange(f)+')</span>':'');}
 /* what the purchase costs in month t: house + car, in words */
 function needParts(t){
   var h=D.series.house[t]*S.area*houseRatio(),ca=S.car==='none'?null:carAt(S.car,t);
@@ -368,6 +518,8 @@ function controlsHTML(){
       '<div class="chips presets" id="c-salp" role="group" aria-label="مبلغ‌های آماده">'+[30,50,100,200,300,500].map(function(v){return '<button type="button" data-v="'+v+'" aria-pressed="'+(v===200)+'">'+fa(v)+' میلیون</button>';}).join('')+'</div>'+
       '<span class="err" id="e-sal" role="status"></span>'+
       '<span class="hint" id="h-sal"></span></div>'+
+    '<div class="ctl"><label for="c-age">از چند سالگی حقوق می‌گیرد؟ <span class="val" id="v-age"></span></label>'+
+      '<input type="range" id="c-age" min="10" max="40" step="1" value="20"><span class="hint" id="h-age"></span></div>'+
     '<div class="ctl"><label for="c-save">چقدر از حقوقش را کنار می‌گذارد؟ <span class="val" id="v-save"></span></label>'+
       '<input type="range" id="c-save" min="10" max="100" step="5" value="50"><span class="hint" id="h-save"></span></div>'+
     '<div class="ctl"><span class="lbl">حقوقش در سال‌های قبل چقدر بود؟</span>'+
@@ -379,8 +531,11 @@ function controlsHTML(){
       '<span class="hint" id="h-dist"></span></div>'+
     '<div class="ctl"><label for="c-car">کدام ماشین؟</label><select id="c-car">'+cars+'</select>'+
       '<span class="hint" id="h-car"></span></div>'+
-    '<div class="ctl wide"><span class="lbl">مسافر زمان پولش را کجاها می‌تواند بگذارد؟</span>'+
+    '<div class="ctl wide"><span class="lbl">مسافر زمان و سبد متنوع پولشان را کجاها می‌توانند بگذارند؟</span>'+
       '<div class="chips" id="c-assets">'+chips+'</div><span class="hint" id="h-assets"></span></div>'+
+    '<div class="ctl"><span class="lbl">سبد متنوع چقدر ریسک می‌پذیرد؟</span>'+
+      '<div class="seg" id="c-risk"><button data-v="low">محتاط</button><button data-v="mid" class="on">متعادل</button><button data-v="high">جسور</button></div>'+
+      '<span class="hint">محتاط بیشتر پول را در بانک نگه می‌دارد. جسور بیشتر سراغ بورس و رمزارز می‌رود. هیچ دارایی بیش از ۴۰٪ سبد نمی‌شود و بقیه در بانک (اگر خاموش باشد، نقد) می‌ماند.</span></div>'+
     '<div class="ctl"><span class="lbl">هزینهٔ هر خرید و فروش</span>'+
       '<div class="seg" id="c-fee"><button data-v="0">صفر</button><button data-v="1" class="on">معمولی</button><button data-v="2">دو برابر</button><button data-v="3">سه برابر</button></div>'+
       '<span class="hint" id="h-fee"></span></div>'+
@@ -443,11 +598,13 @@ function wire(){
   $('#c-salp').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var v=+b.getAttribute('data-v');
     clearTimeout(salT);salIn.value=fa(v);showErr('');S.salary=v*1e6;lastGood=S.salary;paintPresets();update();});
   $('#c-save').addEventListener('input',function(e){S.save=+e.target.value;update();});
+  /* a new starting age keeps the same calendar story: born earlier or later, same first payday */
+  $('#c-age').addEventListener('input',function(e){var a=+e.target.value;S.cohort+=S.age-a;S.age=a;update();});
   $('#c-area').addEventListener('input',function(e){S.area=+e.target.value;update();});
   $('#c-dist').addEventListener('change',function(e){S.district=+e.target.value;update();});
   $('#c-car').addEventListener('change',function(e){S.car=e.target.value;update();});
   $('#c-car').value=S.car;
-  [['#c-index','index',function(v){return v;}],['#c-est','est',function(v){return v==='1';}],['#c-fee','fee',function(v){return +v;}]].forEach(function(x){
+  [['#c-index','index',function(v){return v;}],['#c-est','est',function(v){return v==='1';}],['#c-fee','fee',function(v){return +v;}],['#c-risk','risk',function(v){return v;}]].forEach(function(x){
     $(x[0]).addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
       S[x[1]]=x[2](b.getAttribute('data-v'));
       Array.prototype.forEach.call($(x[0]).querySelectorAll('button'),function(z){z.className=z===b?'on':'';});update();});
@@ -479,6 +636,9 @@ function render(){
   var g=goal();
   /* the intro follows the controls */
   $('#lede-sal').textContent=money(S.salary);
+  $('#lede-age').textContent=fa(S.age)+' سالگی';
+  $('#v-age').textContent=fa(S.age)+' سالگی';
+  $('#h-age').textContent='یعنی متولدین '+fa(FIRST_START-S.age)+' تا '+fa(LAST_START-S.age)+' را می‌بینی: کسانی که بین ۱۳۷۲ و ۱۴۰۵ به این سن رسیدند. قبل از ۱۳۷۲ قیمت رسمی خانهٔ تهران نداریم.';
   $('#lede-index').textContent=S.index==='cpi'?'هم‌پای گرانی':'هم‌پای حقوق کارگری';
   Array.prototype.forEach.call(document.querySelectorAll('.lede-goal'),function(e){e.textContent=g;});
   $('#v-save').textContent=fa(S.save)+'٪';
@@ -506,9 +666,9 @@ function notYet(){return R.lastKnown<N-1?'تا '+mlabel(R.lastKnown)+' نه':'ه
 function drawMain(){
   var co=R.cohorts,g=goal(),L=R.lastKnown,sel=cohortIndex();
   $('#t1').textContent='چند سال طول می‌کشید تا '+g+' بخرد؟';
-  $('#cap1').textContent='هر ردیف یک سال تولد است. در هر خانه نوشته آن نفر چند سال بعد از بیست‌سالگی توانست '+g+' بخرد. هر چه میله کوتاه‌تر، زودتر خریده.';
+  $('#cap1').textContent='هر ردیف یک سال تولد است. در هر خانه نوشته آن نفر چند سال بعد از '+fa(S.age)+' سالگی توانست '+g+' بخرد. هر چه میله کوتاه‌تر، زودتر خریده.';
   $('#cond1').textContent='خانهٔ '+fa(S.area)+' متری '+(S.district?'در منطقهٔ '+fa(S.district):'با قیمت میانگین تهران')+(S.car==='none'?'، بدون ماشین':'، با '+carShort(S.car))+'. حقوق در ۱۴۰۵: '+money(S.salary)+'. پس‌انداز: '+fa(S.save)+'٪ حقوق.';
-  $('#hint1').textContent='خانه‌های راه‌راه یعنی آن نفر '+(L<N-1?'تا '+mlabel(L)+'، آخرین آمار رسمی قیمت خانه،':'تا امروز')+' نتوانسته بخرد؛ کنارش نوشته چند درصد پول را دارد. روی هر ردیف بزن تا داستانش را پایین‌تر بخوانی.';
+  $('#hint1').textContent='خانه‌های راه‌راه یعنی آن نفر '+(L<N-1?'تا '+mlabel(L)+'، آخرین آمار رسمی قیمت خانه،':'تا امروز')+' نتوانسته بخرد؛ زیرش نوشته چند درصد پول را دارد. «پیش‌بینی» یعنی حدوداً چند سال دیگر می‌تواند بخرد و پرانتز زیرش بازهٔ محتمل است. پیش‌بینی حدس است، نه آمار: ۲۵۰ آیندهٔ ممکن از تکه‌های واقعی سال‌های گذشته ساخته شده و عدد وسط و بازهٔ بیشترِ آن‌ها آمده است. روی هر ردیف بزن تا داستانش را پایین‌تر بخوانی.';
   var maxY=0;STRATS.forEach(function(st){co.forEach(function(c,j){var h=R.hit[st.k][j];if(h>=0)maxY=Math.max(maxY,(h-c.s+1)/12);});});
   if(!maxY)maxY=1;
   var h='<table class="ytbl"><thead><tr><th class="yb">متولد</th>'+STRATS.map(function(st){return '<th><i style="--c:var('+st.col+')"></i>'+st.name+'</th>';}).join('')+'</tr></thead><tbody>';
@@ -519,7 +679,7 @@ function drawMain(){
       if(t>=0){var y=(t-c.s+1)/12;
         cell='<div class="cell" style="--c:var('+st.col+')"><span class="t">'+yearsCell(t-c.s+1)+'</span><span class="bar" style="width:'+Math.max(4,y/maxY*100).toFixed(1)+'%"></span></div>';}
       else if(L<c.s)cell='<div class="cell na"><span class="t">آمار نیست</span></div>';
-      else cell='<div class="cell no" style="--c:var('+st.col+')"><span class="t">'+(L<N-1?'تا '+MONTHS[ym(L)[1]-1]+' '+fa(ym(L)[0])+' نه':'هنوز نه')+'</span><span class="p">'+fa(pctOf(R.W[st.k][j][L],R.tgt[L]))+'٪ پول را دارد</span><span class="bar"></span></div>';
+      else cell='<div class="cell no" style="--c:var('+st.col+')"><span class="t">'+(L<N-1?'تا '+MONTHS[ym(L)[1]-1]+' '+fa(ym(L)[0])+' نه':'هنوز نه')+'</span><span class="p">'+fa(pctOf(R.W[st.k][j][L],R.tgt[L]))+'٪ پول را دارد</span><span class="bar"></span>'+fcCell(R.fc[st.k][j])+'</div>';
       h+='<td>'+cell+'</td>';});
     h+='</tr>';});
   var fj=document.activeElement&&document.activeElement.closest?document.activeElement.closest('#ch1 tbody tr'):null;
@@ -566,6 +726,32 @@ function storyTrav(j,c,T,hit){
   h+='<p>خودش روی هم '+money(saved)+' از حقوقش کنار گذاشت. با این خرید و فروش‌ها، در '+mlabel(T)+' دارایی‌اش به <b>'+money(W)+'</b> رسید؛ یعنی هر تومانی که کنار گذاشته بود به‌طور میانگین '+trimNum(W/saved)+' تومان شد.</p>';
   return h;
 }
+function fcStory(f,k){
+  if(!f)return '';
+  var who=k==='trav'||k==='mpt'?'اگر از '+(f.from<N-1?mlabel(f.from):'امروز')+' به بعد با همین ترکیبِ سبد متنوع ادامه دهد (آینده را دیگر کسی نمی‌داند)':'اگر از '+(f.from<N-1?mlabel(f.from):'امروز')+' به بعد هم همین کار را ادامه دهد';
+  if(f.p50===Infinity)return '<p class="fcp"><b>پیش‌بینی:</b> '+who+'، در بیشتر آینده‌های ممکن تا ۳۰ سال هم نمی‌تواند بخرد.</p>';
+  var win=ym(f.win)[0]>1376?' (آینده‌ها فقط از تکه‌های '+fa(ym(f.win)[0])+' به بعد ساخته شده‌اند، چون بعضی دارایی‌های این سبد پیش از آن نبودند)':'';
+  return '<p class="fcp"><b>پیش‌بینی:</b> '+who+' و آینده شبیه سال‌های گذشته باشد'+win+'، '+(f.p50<12?'کمتر از یک سال':'حدود '+fcYears(f.p50))+' بعد می‌تواند بخرد'+(fcRange(f)?' (به احتمال زیاد '+fcRange(f)+')':'')+'. این حدس است، نه آمار.</p>';
+}
+function storyMPT(j,c,T){
+  var log=R.mptLog[j].filter(function(e){return e.k<=T;}),saved=0;
+  for(var k=c.s;k<=T;k++){var x=R.sal[k];if(x===x)saved+=x*S.save/100;}
+  var W=R.W.mpt[j][T],rk=RISK[S.risk].name;
+  var h='<p>این نفر آینده را نمی‌داند. هر فروردین با قیمت‌های '+fa(MPT_WIN/12)+' سال گذشته حساب کرد کدام ترکیب، برای کسی با ریسک‌پذیری «'+rk+'»، بیشترین سود را با کمترین بالا و پایین می‌دهد (روش مارکویتز). هیچ دارایی بیش از '+fa(MPT_CAP*100)+'٪ سبد نشد و بقیه '+(S.assets.dep?'در بانک':'به‌صورت پول نقد (بانک خاموش است)')+' ماند. هر سال سبدش را به آن ترکیب برگرداند و پس‌انداز هر ماه را هم با همان نسبت خرید.</p>';
+  if(log.length){
+    h+='<p class="mini">ترکیب سبد در هر سال:</p><div class="mix">'+log.map(function(e){
+      var segs='',parts=[];
+      for(var a=0;a<ASSETS.length;a++){var w=e.w[a];if(w<0.005)continue;
+        segs+='<div title="'+ASSETS[a].name+' '+fa(Math.round(w*100))+'٪" style="width:'+(w*100).toFixed(1)+'%;background:var('+ASSETS[a].col+')"></div>';
+        parts.push({a:a,w:w});}
+      parts.sort(function(x,y){return y.w-x.w;});
+      return '<div class="mrow"><span class="my">'+fa(ym(e.k)[0])+'</span><div class="strip">'+segs+'</div><span class="mt">'+parts.slice(0,2).map(function(p){return ASSETS[p.a].name+' '+fa(Math.round(p.w*100))+'٪';}).join('، ')+'</span></div>';}).join('')+'</div>';
+    var used={};log.forEach(function(e){for(var a=0;a<ASSETS.length;a++)if(e.w[a]>=0.005)used[a]=1;});
+    h+='<div class="legend">'+Object.keys(used).map(function(a){return '<span><i class="dot" style="--c:var('+ASSETS[a].col+')"></i>'+ASSETS[a].name+'</span>';}).join('')+'</div>';
+  }
+  h+='<p>خودش روی هم '+money(saved)+' کنار گذاشت و در '+mlabel(T)+' دارایی‌اش، بعد از کارمزدها، <b>'+money(W)+'</b> بود.</p>';
+  return h;
+}
 function storySaver(st,j,c,T){
   var a=st.k,ai=a==='usd'?2:a==='gold'?3:1,cc=Math.min(0.4,ASSETS[ai].c*S.fee),p=P[a],units=0,saved=0;
   for(var k=c.s;k<=T;k++){var x=R.sal[k];if(x!==x)continue;saved+=x*S.save/100;if(k<T)units+=x*S.save/100*(1-cc)/p[k];}
@@ -586,17 +772,18 @@ function drawDetail(){
     if(!drawDetail.once||r1.left<r2.left||r1.right>r2.right){pc.scrollLeft+=(r1.left+r1.width/2)-(r2.left+r2.width/2);drawDetail.once=1;}}
   $('#d-title').textContent='داستان متولد '+fa(c.born);
   var sal0=R.sal[c.s];
-  $('#d-sub').textContent='در فروردین '+fa(c.born+20)+' بیست ساله شد. اولین حقوقش ماهی '+money(sal0)+' بود و '+saveWords()+' ('+money(sal0*S.save/100)+') را کنار می‌گذاشت. چهار نفر با همین حقوق را کنار هم ببین: یکی مسافر زمان است و سه نفر آدم معمولی.';
+  $('#d-sub').textContent='در فروردین '+fa(c.born+S.age)+' '+fa(S.age)+' ساله شد. اولین حقوقش ماهی '+money(sal0)+' بود و '+saveWords()+' ('+money(sal0*S.save/100)+') را کنار می‌گذاشت. پنج نفر با همین حقوق را کنار هم ببین: یکی مسافر زمان است، سه نفر آدم معمولی‌اند و یکی سبد متنوع می‌سازد.';
   var hits=STRATS.map(function(st){return R.hit[st.k][j];}),L=R.lastKnown;
   $('#tiles').innerHTML=STRATS.map(function(st,si){var t=hits[si];
     var v=t>=0?years(t-c.s+1):notYet(),d,need='';
-    if(t>=0){d='در '+mlabel(t)+'، حدود '+fa(20+Math.floor((t-c.s)/12))+' سالگی';need='پول لازم آن ماه: '+money(needParts(t).total);}
+    if(t>=0){d='در '+mlabel(t)+'، حدود '+fa(S.age+Math.floor((t-c.s)/12))+' سالگی';need='پول لازم آن ماه: '+money(needParts(t).total);}
     else if(L<c.s){v='—';d='آمار رسمی خانه برای این سال‌ها نیست';}
-    else{d=(L<N-1?'در '+mlabel(L)+'، ':'امروز ')+fa(pctOf(R.W[st.k][j][L],R.tgt[L]))+'٪ پول '+g+' را '+(L<N-1?'داشت':'دارد');need='پول لازم: '+money(needParts(L).total);}
+    else{d=(L<N-1?'در '+mlabel(L)+'، ':'امروز ')+fa(pctOf(R.W[st.k][j][L],R.tgt[L]))+'٪ پول '+g+' را '+(L<N-1?'داشت':'دارد');need='پول لازم: '+money(needParts(L).total);
+      if(R.fc[st.k][j])need+='<br>پیش‌بینی: '+fcShort(R.fc[st.k][j]);}
     return '<div class="tile"><div class="k"><i style="--c:var('+st.col+')"></i>'+st.name+'</div><div class="v">'+v+'</div><div class="d">'+d+'</div>'+(need?'<div class="d need">'+need+'</div>':'')+'</div>';}).join('');
   var noData=L<c.s;
   $('#ch2').parentNode.style.display=noData?'none':'';
-  if(noData){$('#stories').innerHTML='<div class="note">آمار رسمی قیمت خانه تا مرداد ۱۴۰۳ است و این نفر بعد از آن بیست ساله شد. برای دیدن داستانش، بالا «با تخمین» را انتخاب کن.</div>';$('#qnote').innerHTML='';return;}
+  if(noData){$('#stories').innerHTML='<div class="note">آمار رسمی قیمت خانه تا مرداد ۱۴۰۳ است و این نفر بعد از آن '+fa(S.age)+' ساله شد. برای دیدن داستانش، بالا «با تخمین» را انتخاب کن.</div>';$('#qnote').innerHTML='';return;}
   /* progress chart: share of the price saved, 0-100%, each line stops on the day it buys */
   var lastHit=hits.indexOf(-1)>=0?L:Math.max.apply(null,hits);
   var end=Math.min(N-1,Math.max(c.s+11,lastHit+12)),start=c.s,n=end-start+1,ser=[];
@@ -623,10 +810,10 @@ function drawDetail(){
   $('#stories').innerHTML=STRATS.map(function(st,si){
     var t=hits[si],T=t>=0?t:L;
     if(T<c.s)return '';
-    var body=st.k==='trav'?storyTrav(j,c,T,t>=0):storySaver(st,j,c,T);
+    var body=st.k==='trav'?storyTrav(j,c,T,t>=0):st.k==='mpt'?storyMPT(j,c,T):storySaver(st,j,c,T);
     var past=L<N-1;
     var endTxt=t>=0?'<p class="ok">همان ماه '+g+' را خرید: '+needWords(t)+'.</p>':
-      '<p class="no">ولی در '+mlabel(T)+'، '+g+' روی هم '+money(needParts(T).total)+' می‌ارزید'+(S.car==='none'?'':' ('+needWords(T,true)+')')+'. پس '+(past?'تا آن ماه':'هنوز')+' فقط '+fa(pctOf(R.W[st.k][j][T],R.tgt[T]))+'٪ پولش را '+(past?'داشت':'دارد')+'.</p>';
+      '<p class="no">ولی در '+mlabel(T)+'، '+g+' روی هم '+money(needParts(T).total)+' می‌ارزید'+(S.car==='none'?'':' ('+needWords(T,true)+')')+'. پس '+(past?'تا آن ماه':'هنوز')+' فقط '+fa(pctOf(R.W[st.k][j][T],R.tgt[T]))+'٪ پولش را '+(past?'داشت':'دارد')+'.</p>'+fcStory(R.fc[st.k][j],st.k);
     return '<div class="scard" style="--c:var('+st.col+')"><h4><i></i>'+st.name+' — '+(t>=0?years(t-c.s+1):notYet())+'</h4>'+body+endTxt+'</div>';}).join('');
   qualityNote(j,hits);
 }
@@ -697,7 +884,7 @@ function assumeHTML(){
 }
 
 /* ---------- boot ---------- */
-fetch('/hobby/data/time-traveler/data.json?v=1').then(function(r){return r.json();}).then(function(d){
+fetch('/hobby/data/time-traveler/data.json?v=3').then(function(r){return r.json();}).then(function(d){
   D=d;prep();CPIY=yearAvg(D.series.cpi);WAGEY=yearAvg(D.series.wage);
   for(var i=idx(1405,1);i<N;i++)if(D.series.cpi[i]!=null)CPI_MONTHS_1405++;
   $('#app').innerHTML=controlsHTML();

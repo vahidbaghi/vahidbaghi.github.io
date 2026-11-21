@@ -171,6 +171,14 @@ ul.assume b{color:var(--jp-ui-font-color1);font-weight:600}
 .cell.no .t{color:var(--jp-ui-font-color2)}
 .cell.no .bar{width:100%;background:repeating-linear-gradient(135deg,var(--c) 0 3px,transparent 3px 7px);opacity:.55}
 .cell.na .t{color:var(--jp-ui-font-color3)}
+.cell .fc{font-size:11.5px;color:var(--jp-ui-font-color1);font-weight:500;line-height:1.45;margin-top:2px}
+.cell .fcr{font-size:10.5px;color:var(--jp-ui-font-color2);line-height:1.4}
+.scard p.fcp{background:var(--soft);border-radius:8px;padding:6px 10px;font-size:13px}
+.mix{display:flex;flex-direction:column;gap:3px;margin:2px 0 4px}
+.mrow{display:grid;grid-template-columns:36px minmax(0,1fr) minmax(0,9.5em);align-items:center;gap:6px;font-size:11.5px;color:var(--jp-ui-font-color2)}
+.mrow .strip{height:10px;margin:0}
+.mrow .my{font-weight:600;color:var(--jp-ui-font-color1)}
+.mrow .mt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cond{margin:0 0 8px;font-size:12.5px;color:var(--jp-ui-font-color1);background:var(--soft);border-radius:8px;padding:6px 10px;line-height:1.8}
 .chartbox text.ttl{font-size:11.5px;font-weight:600;fill:var(--jp-ui-font-color2)}
 .chartbox text.band{font-size:11.5px;font-weight:600;fill:var(--jp-ui-font-color2)}
@@ -224,7 +232,7 @@ ul.assume b{color:var(--jp-ui-font-color1);font-weight:600}
     </button>
   </div>
   <p class="lede">
-    فرض کن از <b>بیست‌سالگی</b> حقوقی می‌گرفتی که امروز، در ۱۴۰۵، برابر <b id="lede-sal">۲۰۰ میلیون تومان</b> است و هر سال <span id="lede-index">هم‌پای گرانی</span> بالا می‌رفت.
+    فرض کن از <b id="lede-age">۲۰ سالگی</b> حقوقی می‌گرفتی که امروز، در ۱۴۰۵، برابر <b id="lede-sal">۲۰۰ میلیون تومان</b> است و هر سال <span id="lede-index">هم‌پای گرانی</span> بالا می‌رفت.
     حالا فرض کن <b>مسافر زمان</b> بودی و از قبل می‌دانستی دلار و طلا و سکه و بورس و بیت‌کوین کِی گران و کِی ارزان می‌شوند.
     پس پولت را همیشه جایی می‌گذاشتی که قرار بود بیشتر از همه بالا برود. چند سال طول می‌کشید تا در تهران <b class="lede-goal">خانه و ماشین</b> بخری؟
     این صفحه جواب را برای متولدین هر سال حساب می‌کند و کنارش نشان می‌دهد آدم معمولی که فقط دلار یا طلا می‌خرید یا پولش را در بانک می‌گذاشت، چقدر صبر می‌کرد.
@@ -247,7 +255,7 @@ ul.assume b{color:var(--jp-ui-font-color1);font-weight:600}
   });
 })();
 </script>
-<script src="/hobby/time-traveler.js?v=6"></script>
+<script src="/hobby/time-traveler.js?v=8"></script>
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177888668-1"></script>
