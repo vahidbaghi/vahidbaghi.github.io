@@ -59,6 +59,9 @@ table.dataframe td.ds{text-align:right;max-width:440px;color:var(--jp-ui-font-co
 <script>
 var fa = Lab.fa;
 var WORKS = [
+  ['مسافر زمان و خانه در تهران',
+   'اگر قیمت دلار و طلا و بورس و بیت‌کوین را از قبل می‌دانستی، چند سال بعد از بیست‌سالگی خانه و ماشین می‌خریدی؟',
+   'نمودار', 'js', '/hobby/time-traveler.html'],
   ['هیت‌مپ مرکزیت ایستگاه‌های مترو تهران',
    'کدام ایستگاه گلوگاه شبکه است؟ مرکزیت بینابینی روی کل گراف مترو.',
    'نقشه', 'plotly', '/hobby/tehran_metro_stations_betweenness_heatmap.html'],
@@ -97,7 +100,7 @@ document.getElementById('o-list').innerHTML =
       '<td class="l mono hide-sm">'+w[3]+'</td>' +
       '<td class="ds hide-sm">'+w[1]+'</td></tr>';
   }).join('') +
-  '</tbody></table><div class="df-shape code">8 rows × 4 columns</div>';
+  '</tbody></table><div class="df-shape code">'+WORKS.length+' rows × 4 columns</div>';
 
 Lab.chrome({ active: 'hobby', tab: { name: 'index.ipynb', href: '/hobby/' } });
 Lab.wire();

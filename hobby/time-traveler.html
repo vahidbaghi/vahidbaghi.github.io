@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>
+(function(){try{var t=localStorage.getItem('vb_theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+<title>مسافر زمان و خانه در تهران — وحید باقی</title>
+<meta name="description" content="اگر از بیست‌سالگی حقوق خوب می‌گرفتی و قیمت دلار و طلا و بورس و بیت‌کوین را از قبل می‌دانستی، چند سال طول می‌کشید تا در تهران خانه و ماشین بخری؟ یک شبیه‌سازی با داده‌های رسمی و منبع‌دار.">
+<meta property="og:title" content="مسافر زمان و خانه در تهران">
+<meta property="og:description" content="متولد هر سال، اگر آینده را می‌دانست، چند سال بعد از بیست‌سالگی خانه و ماشین می‌خرید؟">
+<meta property="og:type" content="website">
+<link rel="icon" href="/favicon.ico">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Vazirmatn:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/lab.css?v=1">
+<style>
+:root{
+  --card:#ffffff; --soft:#f6f7f9; --track:#e6e8eb; --shadow:0 1px 2px rgba(0,0,0,.05),0 4px 14px rgba(0,0,0,.05);
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#008300; --s7:#6250d6; --s8:#e34948;
+  --neutral:#8a8987; --target:#0b0b0b; --grid:rgba(0,0,0,.08); --axis:rgba(0,0,0,.55);
+  --warn-bg:#fff7e6; --warn-bd:#f0c36d; --warn-ink:#7a4b00;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --card:#1b1b1b; --soft:#262626; --track:#3a3a3a; --shadow:none;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#0ca30c; --s7:#9085e9; --s8:#e66767;
+  --neutral:#8f8e8a; --target:#f0efec; --grid:rgba(255,255,255,.10); --axis:rgba(255,255,255,.6);
+  --warn-bg:#2b2416; --warn-bd:#6b5420; --warn-ink:#f0c36d;
+}}
+:root[data-theme="dark"]{
+  --card:#1b1b1b; --soft:#262626; --track:#3a3a3a; --shadow:none;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#0ca30c; --s7:#9085e9; --s8:#e66767;
+  --neutral:#8f8e8a; --target:#f0efec; --grid:rgba(255,255,255,.10); --axis:rgba(255,255,255,.6);
+  --warn-bg:#2b2416; --warn-bd:#6b5420; --warn-ink:#f0c36d;
+}
+body{overflow:auto;background:var(--jp-layout0)}
+.mono{font-family:"JetBrains Mono",Menlo,monospace;direction:ltr;unicode-bidi:isolate}
+.wrap{max-width:1040px;margin:0 auto;padding:22px 16px 12vh}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.top h1{font-size:26px;font-weight:700;margin:0;line-height:1.35;flex:1;min-width:0}
+.top a.back{font-size:13px;color:var(--jp-brand1);text-decoration:none;white-space:nowrap}
+.themebtn{width:36px;height:36px;flex:0 0 36px;display:grid;place-items:center;border-radius:8px;
+  border:1px solid var(--jp-border1);background:var(--card);color:var(--jp-ui-font-color1);cursor:pointer}
+.themebtn:hover{background:var(--jp-hover)}
+.themebtn svg{width:18px;height:18px}
+.lede{color:var(--jp-ui-font-color2);font-size:14.5px;line-height:1.95;margin:8px 0 18px;max-width:780px}
+.lede b{color:var(--jp-content-font-color1);font-weight:600}
+h2.sec{font-size:18px;margin:34px 0 6px}
+p.sub{margin:0 0 12px;color:var(--jp-ui-font-color2);font-size:13.5px;line-height:1.9;max-width:780px}
+
+.card{border:1px solid var(--jp-border1);border-radius:14px;background:var(--card);box-shadow:var(--shadow)}
+.controls{padding:14px 16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 18px}
+.ctl{display:flex;flex-direction:column;gap:6px;min-width:0}
+.ctl>label,.ctl>.lbl{font-size:12.5px;color:var(--jp-ui-font-color2);font-weight:500}
+.ctl .val{font-size:14px;font-weight:600;color:var(--jp-ui-font-color1)}
+.ctl input[type=range]{width:100%;accent-color:var(--jp-brand1)}
+.ctl select,.ctl input[type=number]{font:inherit;font-size:14px;padding:7px 9px;border-radius:8px;
+  border:1px solid var(--jp-border1);background:var(--card);color:var(--jp-ui-font-color1);min-width:0;width:100%}
+.ctl.wide{grid-column:1 / -1}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-size:13px;display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:20px;
+  border:1px solid var(--jp-border1);background:var(--card);color:var(--jp-ui-font-color2);cursor:pointer;user-select:none}
+.chip .sw{width:9px;height:9px;border-radius:50%;background:var(--c);opacity:.35}
+.chip[aria-pressed="true"]{color:var(--jp-ui-font-color1);border-color:var(--jp-border2);background:var(--soft)}
+.chip[aria-pressed="true"] .sw{opacity:1}
+.seg{display:inline-flex;border:1px solid var(--jp-border1);border-radius:8px;overflow:hidden;width:max-content;max-width:100%}
+.seg button{font:inherit;font-size:13px;border:0;background:var(--card);color:var(--jp-ui-font-color2);padding:6px 11px;cursor:pointer}
+.seg button+button{border-inline-start:1px solid var(--jp-border1)}
+.seg button.on{background:var(--soft);color:var(--jp-ui-font-color1);font-weight:600}
+.chip:focus-visible,.seg button:focus-visible,select:focus-visible,input:focus-visible,.cohort:focus-visible{outline:2px solid var(--jp-brand1);outline-offset:2px}
+.hint{font-size:12px;color:var(--jp-ui-font-color3);line-height:1.7}
+
+.chartcard{margin-top:14px;padding:14px 14px 8px}
+.chartcard h3{margin:0 0 2px;font-size:15.5px}
+.chartcard .cap{margin:0 0 8px;font-size:12.5px;color:var(--jp-ui-font-color2);line-height:1.8}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--jp-ui-font-color2);margin:4px 0 6px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{display:inline-block;width:16px;height:3px;border-radius:2px;background:var(--c)}
+.legend i.dot{width:9px;height:9px;border-radius:50%}
+.legend i.dash{background:repeating-linear-gradient(90deg,var(--c) 0 5px,transparent 5px 8px);height:2px}
+.legend i.dott{background:repeating-linear-gradient(90deg,var(--c) 0 2px,transparent 2px 5px);height:2px}
+.chartbox{position:relative;width:100%}
+.chartbox svg{display:block;width:100%;height:auto;overflow:visible}
+.chartbox text{font-family:Vazirmatn,sans-serif;fill:var(--axis);font-size:11px}
+.chartbox .num{font-family:"JetBrains Mono",monospace;font-size:10.5px}
+.tip{position:absolute;pointer-events:none;background:var(--card);border:1px solid var(--jp-border2);border-radius:8px;
+  padding:8px 10px;font-size:12.5px;line-height:1.75;box-shadow:0 4px 16px rgba(0,0,0,.14);min-width:170px;max-width:270px;
+  color:var(--jp-ui-font-color1);z-index:5;display:none}
+.tip b{font-weight:600}
+.tip .r{display:flex;align-items:center;gap:6px;justify-content:space-between}
+.tip .r i{width:8px;height:8px;border-radius:50%;background:var(--c);flex:0 0 8px}
+.tip .r span{flex:1}
+.tip .muted{color:var(--jp-ui-font-color2)}
+
+.cohorts{display:flex;gap:4px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:thin}
+.cohort{font:inherit;font-size:12.5px;border:1px solid var(--jp-border1);background:var(--card);color:var(--jp-ui-font-color2);
+  border-radius:7px;padding:4px 8px;cursor:pointer;white-space:nowrap}
+.cohort.on{border-color:var(--jp-brand1);color:var(--jp-ui-font-color1);background:var(--soft);font-weight:600}
+.story{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:10px 0 4px}
+.tile{border:1px solid var(--jp-border1);border-radius:10px;padding:10px 12px;background:var(--soft);min-width:0}
+.tile .k{font-size:12px;color:var(--jp-ui-font-color2);display:flex;align-items:center;gap:6px}
+.tile .k i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.tile .v{font-size:19px;font-weight:700;margin-top:2px}
+.tile .d{font-size:12px;color:var(--jp-ui-font-color2);margin-top:2px;line-height:1.7}
+.trades{font-size:13px;line-height:1.9;color:var(--jp-ui-font-color2);margin:8px 0 2px}
+.trades ol{margin:4px 0 0;padding-inline-start:22px}
+.trades li b{color:var(--jp-ui-font-color1);font-weight:600}
+.strip{display:flex;height:14px;border-radius:4px;overflow:hidden;margin:6px 0 2px;direction:ltr}
+.strip div{height:100%}
+
+.note{border:1px solid var(--warn-bd);background:var(--warn-bg);color:var(--warn-ink);border-radius:10px;padding:10px 12px;
+  font-size:13px;line-height:1.9;margin:12px 0}
+table.src{width:100%;border-collapse:collapse;font-size:13px;line-height:1.75}
+table.src th,table.src td{border-bottom:1px solid var(--jp-border1);padding:8px 8px;text-align:right;vertical-align:top}
+table.src th{font-weight:600;color:var(--jp-ui-font-color2);font-size:12.5px;white-space:nowrap}
+table.src td a{color:var(--jp-brand1);text-decoration:none}
+table.src td a:hover{text-decoration:underline}
+.conf{display:inline-block;font-size:11.5px;border-radius:20px;padding:0 8px;border:1px solid var(--jp-border2);white-space:nowrap}
+.tblwrap{overflow-x:auto}
+ul.assume{margin:6px 0;padding-inline-start:20px;font-size:13.5px;line-height:2;color:var(--jp-ui-font-color2);max-width:800px}
+ul.assume b{color:var(--jp-ui-font-color1);font-weight:600}
+.foot{margin-top:40px;font-size:12.5px;color:var(--jp-ui-font-color3)}
+.foot a{color:var(--jp-brand1);text-decoration:none}
+.loading{padding:40px;text-align:center;color:var(--jp-ui-font-color2)}
+@media (max-width:760px){
+  .controls{grid-template-columns:minmax(0,1fr)}
+  .story{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .top h1{font-size:21px}
+  .hide-sm{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <h1>مسافر زمان و خانه در تهران</h1>
+    <a class="back" href="/hobby/">← کارهای تعاملی</a>
+    <button class="themebtn" id="theme" title="تم روشن یا تاریک" aria-label="تغییر تم">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="7"/><path d="M10 3a7 7 0 000 14z" fill="currentColor" stroke="none"/></svg>
+    </button>
+  </div>
+  <p class="lede">
+    فرض کن از <b>بیست‌سالگی</b> حقوقی می‌گرفتی که امروز، در ۱۴۰۵، برابر <b>۲۰۰ میلیون تومان</b> است و هر سال هم‌پای تورم بالا می‌رفت.
+    حالا فرض کن <b>مسافر زمان</b> بودی و از قبل می‌دانستی دلار و طلا و سکه و بورس و بیت‌کوین کِی بالا می‌روند و کِی پایین می‌آیند.
+    پس‌اندازت را با دانستن همهٔ قیمت‌های آینده، به بهترین ترتیب ممکن می‌خریدی و می‌فروختی و کارمزد هر معامله را هم می‌دادی. چند سال طول می‌کشید تا در تهران <b>خانه و ماشین</b> بخری؟
+    این صفحه جواب را برای متولدین هر سال حساب می‌کند و کنارش نشان می‌دهد آدم معمولی که فقط دلار یا طلا می‌خرید یا پولش را در بانک می‌گذاشت، چقدر صبر می‌کرد.
+  </p>
+
+  <div id="app"><div class="card loading">در حال بارگذاری داده‌ها…</div></div>
+
+  <div class="foot">همهٔ حساب‌ها در مرورگر خودت انجام می‌شود. · <a href="/hobby/data/time-traveler/data.json">دادهٔ ماهانه</a> · <a href="/hobby/">کارهای تعاملی</a> · <a href="/">وحید باقی</a></div>
+</div>
+
+<script>
+(function(){
+  document.getElementById('theme').addEventListener('click',function(){
+    var r=document.documentElement;
+    var cur=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
+    var next=cur==='dark'?'light':'dark';
+    r.setAttribute('data-theme',next);
+    try{localStorage.setItem('vb_theme',next);}catch(e){}
+    window.dispatchEvent(new Event('vb-theme'));
+  });
+})();
+</script>
+<script src="/hobby/time-traveler.js?v=1"></script>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177888668-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-177888668-1');
+</script>
+</body>
+</html>
