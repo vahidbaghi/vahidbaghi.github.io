@@ -115,6 +115,19 @@ table.src th,table.src td{border-bottom:1px solid var(--jp-border1);padding:8px 
 table.src th{font-weight:600;color:var(--jp-ui-font-color2);font-size:12.5px;white-space:nowrap}
 table.src td a{color:var(--jp-brand1);text-decoration:none}
 table.src td a:hover{text-decoration:underline}
+table.src td.per{white-space:nowrap;color:var(--jp-ui-font-color2)}
+@media (max-width:760px){
+  table.src thead{display:none}
+  table.src,table.src tbody,table.src tr,table.src td{display:block;width:auto}
+  table.src tr{padding:10px 12px;border-bottom:1px solid var(--jp-border1)}
+  table.src td{border:0;padding:1px 0}
+  table.src td.per{display:inline-block;white-space:normal;font-size:12.5px;margin-inline-end:8px}
+  table.src td:last-child{display:inline-block}
+  table.src td:nth-child(3){margin-top:4px}
+  table.src tr{display:flex;flex-wrap:wrap;align-items:center}
+  table.src td:nth-child(1){flex:1 1 100%}
+  table.src td:nth-child(3){order:3;flex:1 1 100%}
+}
 .conf{display:inline-block;font-size:11.5px;border-radius:20px;padding:0 8px;border:1px solid var(--jp-border2);white-space:nowrap}
 .tblwrap{overflow-x:auto}
 ul.assume{margin:6px 0;padding-inline-start:20px;font-size:13.5px;line-height:2;color:var(--jp-ui-font-color2);max-width:800px}
@@ -122,11 +135,40 @@ ul.assume b{color:var(--jp-ui-font-color1);font-weight:600}
 .foot{margin-top:40px;font-size:12.5px;color:var(--jp-ui-font-color3)}
 .foot a{color:var(--jp-brand1);text-decoration:none}
 .loading{padding:40px;text-align:center;color:var(--jp-ui-font-color2)}
+.seg{flex-wrap:wrap}
+.cond{margin:0 0 8px;font-size:12.5px;color:var(--jp-ui-font-color1);background:var(--soft);border-radius:8px;padding:6px 10px;line-height:1.8}
+.chartbox text.ttl{font-size:11.5px;font-weight:600;fill:var(--jp-ui-font-color2)}
+.chartbox text.band{font-size:11.5px;font-weight:600;fill:var(--jp-ui-font-color2)}
+.legend i.ldash{background:repeating-linear-gradient(90deg,var(--c) 0 8px,transparent 8px 11px);height:2px}
+.pick{display:flex;align-items:center;gap:8px;margin:4px 0 2px}
+.pick>span{font-size:12.5px;color:var(--jp-ui-font-color2);white-space:nowrap}
+.pick .cohorts{flex:1;min-width:0}
+.tile .need{color:var(--jp-ui-font-color1);font-weight:500}
+.stories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px;align-items:start}
+.scard{border:1px solid var(--jp-border1);border-top:3px solid var(--c);border-radius:12px;background:var(--card);padding:12px 14px;
+  font-size:13.5px;line-height:1.95;color:var(--jp-ui-font-color1);min-width:0}
+.scard h4{margin:0 0 4px;font-size:15px;display:flex;align-items:center;gap:7px}
+.scard h4 i{width:10px;height:10px;border-radius:50%;background:var(--c);flex:0 0 10px}
+.scard p{margin:6px 0}
+.scard p.mini{font-size:12.5px;color:var(--jp-ui-font-color2);margin:8px 0 2px}
+.scard ol{margin:2px 0 6px;padding-inline-start:22px;list-style-type:persian}
+.scard ol li{margin:2px 0}
+.scard p.ok,.scard p.no{border-radius:8px;padding:6px 10px;margin-top:8px}
+.scard p.ok{background:var(--soft);font-weight:500}
+.scard p.no{background:var(--warn-bg);color:var(--warn-ink)}
+.scard .strip{height:12px}
+.logbox{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--jp-ui-font-color2);margin:6px 0 4px;cursor:pointer}
 @media (max-width:760px){
   .controls{grid-template-columns:minmax(0,1fr)}
   .story{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stories{grid-template-columns:minmax(0,1fr)}
   .top h1{font-size:21px}
   .hide-sm{display:none}
+  .lede{font-size:14px}
+  .chartcard{padding:12px 10px 6px}
+  .pick{flex-direction:column;align-items:stretch;gap:4px}
+  .tile .v{font-size:17px}
+  .tip{max-width:240px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -141,9 +183,9 @@ ul.assume b{color:var(--jp-ui-font-color1);font-weight:600}
     </button>
   </div>
   <p class="lede">
-    فرض کن از <b>بیست‌سالگی</b> حقوقی می‌گرفتی که امروز، در ۱۴۰۵، برابر <b>۲۰۰ میلیون تومان</b> است و هر سال هم‌پای تورم بالا می‌رفت.
-    حالا فرض کن <b>مسافر زمان</b> بودی و از قبل می‌دانستی دلار و طلا و سکه و بورس و بیت‌کوین کِی بالا می‌روند و کِی پایین می‌آیند.
-    پس‌اندازت را با دانستن همهٔ قیمت‌های آینده، به بهترین ترتیب ممکن می‌خریدی و می‌فروختی و کارمزد هر معامله را هم می‌دادی. چند سال طول می‌کشید تا در تهران <b>خانه و ماشین</b> بخری؟
+    فرض کن از <b>بیست‌سالگی</b> حقوقی می‌گرفتی که امروز، در ۱۴۰۵، برابر <b id="lede-sal">۲۰۰ میلیون تومان</b> است و هر سال <span id="lede-index">هم‌پای گرانی</span> بالا می‌رفت.
+    حالا فرض کن <b>مسافر زمان</b> بودی و از قبل می‌دانستی دلار و طلا و سکه و بورس و بیت‌کوین کِی گران و کِی ارزان می‌شوند.
+    پس پولت را همیشه جایی می‌گذاشتی که قرار بود بیشتر از همه بالا برود. چند سال طول می‌کشید تا در تهران <b class="lede-goal">خانه و ماشین</b> بخری؟
     این صفحه جواب را برای متولدین هر سال حساب می‌کند و کنارش نشان می‌دهد آدم معمولی که فقط دلار یا طلا می‌خرید یا پولش را در بانک می‌گذاشت، چقدر صبر می‌کرد.
   </p>
 
@@ -164,7 +206,7 @@ ul.assume b{color:var(--jp-ui-font-color1);font-weight:600}
   });
 })();
 </script>
-<script src="/hobby/time-traveler.js?v=1"></script>
+<script src="/hobby/time-traveler.js?v=3"></script>
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177888668-1"></script>

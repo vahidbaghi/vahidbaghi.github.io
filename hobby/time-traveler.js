@@ -65,8 +65,8 @@ var STRATS=[
 ];
 var CARS=[
   ['none','بدون ماشین'],
-  ['cheap','ارزان‌ترین ماشین هر سال (پراید، بعد پراید ۱۱۱، بعد کوییک)'],
-  ['mid','ماشین متوسط هر سال (پژو ۴۰۵، بعد تارا)'],
+  ['cheap','ارزان‌ترین ماشین هر سال'],
+  ['mid','ماشین متوسط هر سال'],
   ['pride','پراید (صبا)'],['pride_111','پراید ۱۱۱'],['pride_131','پراید ۱۳۱'],['saina','ساینا'],['quick','کوییک'],
   ['tiba2','تیبا ۲'],['peugeot_206_t2','پژو ۲۰۶ تیپ ۲'],['peugeot_405','پژو ۴۰۵'],['peugeot_pars','پژو پارس'],
   ['samand','سمند'],['dena','دنا'],['dena_plus','دنا پلاس'],['tara','تارا'],['shahin','شاهین'],['toyota_camry','تویوتا کمری']
@@ -249,8 +249,9 @@ function logTicks(lo,hi){var t=[];for(var e=Math.floor(Math.log10(lo));e<=Math.c
 /* opts: n, xLabel(i), xTicks[], series[{key,color,values[],dash,open[],markers,width}], yLog, yFmt, height, tip(i), onClick(i), marks[{i,label}] */
 function chart(box,opts){
   box.innerHTML='';
-  var W=Math.max(320,box.clientWidth||700),Hh=opts.height||300,m={l:58,r:12,t:12,b:30};
-  if(W<480)m.l=50;
+  var W=Math.max(300,box.clientWidth||700),Hh=opts.height||300,m={l:52,r:12,t:opts.yTitle?30:14,b:opts.xTitle?48:30};
+  if(W<480)m.l=44;
+  if(opts.ml)m.l=opts.ml;
   var svg=el('svg',{viewBox:'0 0 '+W+' '+Hh,role:'img','aria-label':opts.label||''},box);
   svg.style.direction='ltr';
   var iw=W-m.l-m.r,ih=Hh-m.t-m.b,n=opts.n;
@@ -258,14 +259,23 @@ function chart(box,opts){
   if(!all.length)return;
   var lo=Math.min.apply(null,all),hi=Math.max.apply(null,all),ys,ticks;
   if(opts.yLog){lo=lo/1.3;hi=hi*1.3;var L0=Math.log10(lo),L1=Math.log10(hi);ys=function(v){return m.t+ih-(Math.log10(v)-L0)/(L1-L0)*ih;};ticks=logTicks(lo,hi);}
-  else{ticks=niceLin(Math.max(hi,opts.yMin||0));var top=ticks[ticks.length-1];ys=function(v){return m.t+ih-v/top*ih;};}
+  else{ticks=niceLin(Math.max(hi,opts.yMin||0));var top=ticks[ticks.length-1];ys=function(v){return m.t+ih-v/top*ih;};
+    if(opts.tickMax!=null)ticks=ticks.filter(function(t){return t<=opts.tickMax;});}
   var xs=function(i){return m.l+(n<=1?iw/2:i/(n-1)*iw);};
   var g=el('g',{},svg);
   ticks.forEach(function(t){var y=ys(t);el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y,stroke:css('--grid'),'stroke-width':1},g);
     var tx=el('text',{x:m.l-6,y:y+3.5,'text-anchor':'end'},g);tx.textContent=opts.yFmt(t);});
   (opts.xTicks||[]).forEach(function(i){var x=xs(i);el('line',{x1:x,x2:x,y1:m.t+ih,y2:m.t+ih+4,stroke:css('--axis')},g);
-    var tx=el('text',{x:x,y:Hh-10,'text-anchor':'middle'},g);tx.textContent=opts.xLabel(i);});
+    var tx=el('text',{x:x,y:m.t+ih+17,'text-anchor':'middle'},g);tx.textContent=opts.xLabel(i);});
   el('line',{x1:m.l,x2:W-m.r,y1:m.t+ih,y2:m.t+ih,stroke:css('--axis'),'stroke-width':1},g);
+  if(opts.yTitle){var yt=el('text',{x:4,y:13,'text-anchor':'start','class':'ttl'},g);yt.textContent=opts.yTitle;}
+  if(opts.xTitle){var xt2=el('text',{x:m.l+iw/2,y:Hh-6,'text-anchor':'middle','class':'ttl'},g);xt2.textContent=opts.xTitle;}
+  (opts.bands||[]).forEach(function(bd){var y=ys(bd.v);
+    el('line',{x1:m.l,x2:W-m.r,y1:y,y2:y,stroke:css('--axis'),'stroke-width':1,'stroke-dasharray':'4 4'},g);
+    /* the label sits in the y-axis column (side) or, for a line at the very top, in the margin above it */
+    var atTop=y-16<m.t,bt=bd.side?el('text',{x:m.l-6,y:y+3.5,'text-anchor':'end','class':'band'},g):
+      el('text',{x:atTop?W-m.r-4:m.l+6,y:atTop?m.t-10:y-6,'text-anchor':atTop?'end':'start','class':'band'},g);
+    bt.textContent=bd.label;});
   opts.series.forEach(function(s){
     var col=s.color,segs=[],cur=[];
     for(var i=0;i<n;i++){var v=s.values[i];var ok=v!=null&&isFinite(v)&&(!opts.yLog||v>0)&&!(s.open&&s.open[i])&&!(opts.yMax&&v>opts.yMax);
@@ -285,37 +295,70 @@ function chart(box,opts){
     if(s.markers){for(var i2=0;i2<n;i2++){var v2=s.values[i2];if(v2==null||!isFinite(v2))continue;
       var open=s.open&&s.open[i2];
       el('circle',{cx:xs(i2),cy:ys(Math.max(v2,opts.yLog?lo:0)),r:open?3.6:4,fill:open?css('--card'):col,stroke:open?col:css('--card'),'stroke-width':open?1.8:1.5},svg);
-      if(open){var cy=ys(v2);el('path',{d:'M'+(xs(i2)-3)+' '+(cy-7)+'L'+xs(i2)+' '+(cy-11)+'L'+(xs(i2)+3)+' '+(cy-7),fill:'none',stroke:col,'stroke-width':1.5},svg);}
     }}
     if(s.dots){s.dots.forEach(function(i3){var v3=s.values[i3];if(v3==null)return;el('circle',{cx:xs(i3),cy:ys(v3),r:4.5,fill:col,stroke:css('--card'),'stroke-width':2},svg);});}
   });
-  (opts.marks||[]).forEach(function(mk){var x=xs(mk.i);el('line',{x1:x,x2:x,y1:m.t,y2:m.t+ih,stroke:css('--axis'),'stroke-width':1,'stroke-dasharray':'2 3'},svg);});
+  var markEls=(opts.marks||[]).map(function(mk){var x=xs(mk.i);return el('line',{x1:x,x2:x,y1:m.t,y2:m.t+ih,stroke:css('--axis'),'stroke-width':1,'stroke-dasharray':'2 3'},svg);});
   /* hover layer */
   var cross=el('line',{x1:0,x2:0,y1:m.t,y2:m.t+ih,stroke:css('--axis'),'stroke-width':1,visibility:'hidden'},svg);
-  var hit=el('rect',{x:m.l,y:m.t,width:iw,height:ih,fill:'transparent',style:'cursor:'+(opts.onClick?'pointer':'crosshair')},svg);
+  var hit=el('rect',{x:m.l,y:m.t,width:iw,height:ih,fill:'transparent',style:'touch-action:pan-y;cursor:'+(opts.onClick?'pointer':'crosshair')},svg);
   var tip=document.createElement('div');tip.className='tip';box.appendChild(tip);
   function at(ev){var r=svg.getBoundingClientRect(),x=(ev.clientX-r.left)*W/r.width;var i=Math.round((x-m.l)/iw*(n-1));return Math.max(0,Math.min(n-1,i));}
-  function show(ev){var i=at(ev),html=opts.tip(i);if(!html){tip.style.display='none';cross.setAttribute('visibility','hidden');return;}
+  var lastI=-1;
+  function show(ev){var i=at(ev),html=opts.tip(i);lastI=i;if(!html){tip.style.display='none';cross.setAttribute('visibility','hidden');return;}
     cross.setAttribute('x1',xs(i));cross.setAttribute('x2',xs(i));cross.setAttribute('visibility','visible');
     tip.innerHTML=html;tip.style.display='block';
     var r=box.getBoundingClientRect(),px=ev.clientX-r.left,py=ev.clientY-r.top,tw=tip.offsetWidth,th=tip.offsetHeight;
     var left=px+14;if(left+tw>r.width)left=px-tw-14;if(left<0)left=Math.max(0,r.width-tw);
     var tp=py-th-10;if(tp<0)tp=py+16;
     tip.style.left=left+'px';tip.style.top=tp+'px';}
-  hit.addEventListener('pointermove',show);
-  hit.addEventListener('pointerdown',function(ev){show(ev);if(opts.onClick&&ev.pointerType==='mouse')opts.onClick(at(ev));});
-  hit.addEventListener('click',function(ev){if(opts.onClick)opts.onClick(at(ev));});
-  hit.addEventListener('pointerleave',function(){tip.style.display='none';cross.setAttribute('visibility','hidden');});
+  function hide(){tip.style.display='none';cross.setAttribute('visibility','hidden');}
+  var lastType='mouse';
+  hit.addEventListener('pointermove',function(ev){lastType=ev.pointerType;show(ev);});
+  hit.addEventListener('pointerdown',function(ev){lastType=ev.pointerType;show(ev);});
+  hit.addEventListener('click',function(ev){if(opts.onClick)opts.onClick(lastI>=0?lastI:at(ev));});
+  /* on a phone the finger lifts right away: keep the tip until the next tap elsewhere */
+  hit.addEventListener('pointerleave',function(){if(lastType==='mouse')hide();});
+  box._hideTip=hide;
+  return {setMark:function(i){markEls.forEach(function(l){var x=xs(i);l.setAttribute('x1',x);l.setAttribute('x2',x);});}};
 }
 
 /* ---------- UI ---------- */
-var R=null;
+var R=null,MAIN=null;
+function goal(){return S.car==='none'?'خانه':'خانه و ماشین';}
+function carShort(k){return carName(k).replace(/ \(.*\)$/,'');}
+function houseRatio(){return S.district?D.district_ratio[S.district][0]:1;}
+function lastHouseIdx(){for(var i=N-1;i>=0;i--){if(D.series.house[i]!=null&&(S.est||i<=D.house_official_end))return i;}return -1;}
+function faN(n){return fa(Math.round(n).toLocaleString('en-US').replace(/,/g,'٬'));}
+function saveWords(){return S.save===50?'نصف حقوقش':S.save===100?'همهٔ حقوقش':S.save===25?'یک‌چهارم حقوقش':fa(S.save)+'٪ حقوقش';}
+function growWords(g,a){ /* «۴ برابر شد» or «۳۵٪ گران شد»; a deposit earns, it does not get dearer */
+  if(a==='dep')return g>=2?'پولش '+trimNum(g)+' برابر شد':fa(Math.round((g-1)*100))+'٪ سود گرفت';
+  if(g>=2)return trimNum(g)+' برابر شد';
+  return fa(Math.round((g-1)*100))+'٪ گران شد';
+}
+function pctOf(w,tg){return Math.floor(w/tg*100);}
+/* what the purchase costs in month t: house + car, in words */
+function needParts(t){
+  var h=D.series.house[t]*S.area*houseRatio(),ca=S.car==='none'?null:carAt(S.car,t);
+  return {house:h,car:ca?ca.v:0,carName:ca?carShort(carModelAt(S.car,t)):'',total:h+(ca?ca.v:0)};
+}
+function needWords(t,noTotal){
+  var p=needParts(t),h='خانهٔ '+fa(S.area)+' متری '+(S.district?'در منطقهٔ '+fa(S.district):'در تهران')+' به قیمت '+money(p.house);
+  if(S.car==='none')return h;
+  return h+' و '+p.carName+' به قیمت '+money(p.car)+(noTotal?'':'؛ روی هم '+money(p.total));
+}
+
+function distOptions(){
+  var L=lastHouseIdx(),base=L>=0?D.series.house[L]:null,o='';
+  o+='<option value="0">میانگین تهران'+(base?' — متری '+moneyShort(base):'')+'</option>';
+  for(var d=1;d<=22;d++){if(!D.district_ratio[d])continue;
+    o+='<option value="'+d+'">منطقهٔ '+fa(d)+(base?' — متری '+moneyShort(base*D.district_ratio[d][0]):'')+'</option>';}
+  return o;
+}
 function controlsHTML(){
-  var dist='<option value="0">میانگین کل تهران</option>';
-  for(var d=1;d<=22;d++){if(D.district_ratio[d])dist+='<option value="'+d+'">منطقهٔ '+fa(d)+' (حدود '+trimNum(D.district_ratio[d][0])+' برابر میانگین)</option>';}
-  var cars=CARS.map(function(c){var m=D.cars[c[0]],yr=m?' — '+fa(m.years[0])+' تا '+fa(m.years[1]):'';
+  var cars=CARS.map(function(c){var m=D.cars[c[0]];
     if(c[0]!=='none'&&c[0]!=='cheap'&&c[0]!=='mid'&&!m)return '';
-    return '<option value="'+c[0]+'">'+esc(c[1])+yr+'</option>';}).join('');
+    return '<option value="'+c[0]+'">'+esc(c[1])+'</option>';}).join('');
   var chips=ASSETS.filter(function(a){return !a.fixed;}).map(function(a){
     return '<button class="chip" data-asset="'+a.k+'" aria-pressed="true" style="--c:var('+a.col+')"><span class="sw"></span>'+a.name+'</button>';}).join('');
   return ''+
@@ -323,40 +366,42 @@ function controlsHTML(){
     '<div class="ctl"><label for="c-sal">حقوق ماهانه در ۱۴۰۵</label>'+
       '<select id="c-sal"><option value="50000000">۵۰ میلیون تومان</option><option value="100000000">۱۰۰ میلیون تومان</option><option value="200000000" selected>۲۰۰ میلیون تومان</option><option value="300000000">۳۰۰ میلیون تومان</option><option value="500000000">۵۰۰ میلیون تومان</option></select>'+
       '<span class="hint" id="h-sal"></span></div>'+
-    '<div class="ctl"><label for="c-save">چه سهمی از حقوق پس‌انداز می‌شود؟ <span class="val" id="v-save"></span></label>'+
-      '<input type="range" id="c-save" min="10" max="100" step="5" value="50"><span class="hint">بقیهٔ حقوق خرج زندگی می‌شود.</span></div>'+
-    '<div class="ctl"><span class="lbl">حقوق در سال‌های قبل با چه چیزی بالا می‌رفت؟</span>'+
-      '<div class="seg" id="c-index"><button data-v="cpi" class="on">تورم</button><button data-v="wage">حداقل دستمزد پایه</button></div>'+
+    '<div class="ctl"><label for="c-save">چقدر از حقوقش را کنار می‌گذارد؟ <span class="val" id="v-save"></span></label>'+
+      '<input type="range" id="c-save" min="10" max="100" step="5" value="50"><span class="hint" id="h-save"></span></div>'+
+    '<div class="ctl"><span class="lbl">حقوقش در سال‌های قبل چقدر بود؟</span>'+
+      '<div class="seg" id="c-index"><button data-v="cpi" class="on">هم‌پای گرانی</button><button data-v="wage">هم‌پای حقوق کارگری</button></div>'+
       '<span class="hint" id="h-index"></span></div>'+
-    '<div class="ctl"><label for="c-area">متراژ خانه: <span class="val" id="v-area"></span></label>'+
-      '<input type="range" id="c-area" min="40" max="200" step="5" value="75"><span class="hint">میانهٔ واحدهای معامله‌شده در تهران حدود ۷۵ متر است.</span></div>'+
-    '<div class="ctl"><label for="c-dist">محلهٔ خانه</label><select id="c-dist">'+dist+'</select>'+
-      '<span class="hint">قیمت هر منطقه به نسبت میانگین تهران در سال‌های ۱۳۹۶ تا ۱۴۰۳ حساب شده است.</span></div>'+
-    '<div class="ctl"><label for="c-car">ماشین</label><select id="c-car">'+cars+'</select>'+
-      '<span class="hint">در سال‌هایی که یک مدل تولید نمی‌شد، ماشینی با همان قیمت واقعی (تعدیل‌شده با تورم) حساب می‌شود.</span></div>'+
-    '<div class="ctl wide"><span class="lbl">مسافر زمان از قیمت کدام‌ها خبر دارد و با کدام‌ها معامله می‌کند؟</span>'+
+    '<div class="ctl"><label for="c-area">خانه چند متری باشد؟ <span class="val" id="v-area"></span></label>'+
+      '<input type="range" id="c-area" min="40" max="200" step="5" value="75"><span class="hint">بیشتر خانه‌هایی که در تهران خرید و فروش می‌شوند بین ۵۰ تا ۸۰ متر هستند.</span></div>'+
+    '<div class="ctl"><label for="c-dist">کدام منطقهٔ تهران؟</label><select id="c-dist"></select>'+
+      '<span class="hint" id="h-dist"></span></div>'+
+    '<div class="ctl"><label for="c-car">کدام ماشین؟</label><select id="c-car">'+cars+'</select>'+
+      '<span class="hint" id="h-car"></span></div>'+
+    '<div class="ctl wide"><span class="lbl">مسافر زمان پولش را کجاها می‌تواند بگذارد؟</span>'+
       '<div class="chips" id="c-assets">'+chips+'</div><span class="hint" id="h-assets"></span></div>'+
-    '<div class="ctl"><label for="c-fee">کارمزد و اختلاف قیمت خرید و فروش: <span class="val" id="v-fee"></span></label>'+
-      '<input type="range" id="c-fee" min="0" max="3" step="0.5" value="1"><span class="hint">۱ یعنی تخمین معمولی: دلار ۱٪، طلا ۲٪، سکه ۱٫۵٪، بورس ۰٫۶٪، رمزارز ۱٪ در هر خرید یا فروش.</span></div>'+
-    '<div class="ctl"><span class="lbl">قیمت خانه بعد از مرداد ۱۴۰۳</span>'+
-      '<div class="seg" id="c-est"><button data-v="1" class="on">با برآورد</button><button data-v="0">فقط دادهٔ رسمی</button></div>'+
-      '<span class="hint">بانک مرکزی از شهریور ۱۴۰۳ گزارش قیمت مسکن تهران را منتشر نکرده است.</span></div>'+
+    '<div class="ctl"><span class="lbl">هزینهٔ هر خرید و فروش</span>'+
+      '<div class="seg" id="c-fee"><button data-v="0">صفر</button><button data-v="1" class="on">معمولی</button><button data-v="2">دو برابر</button><button data-v="3">سه برابر</button></div>'+
+      '<span class="hint" id="h-fee"></span></div>'+
+    '<div class="ctl"><span class="lbl">قیمت خانه در دو سال اخیر</span>'+
+      '<div class="seg" id="c-est"><button data-v="1" class="on">با تخمین</button><button data-v="0">فقط آمار رسمی</button></div>'+
+      '<span class="hint">بانک مرکزی از شهریور ۱۴۰۳ قیمت خانه را اعلام نکرده است. «با تخمین» برای بعد از آن از آمار مرکز آمار و قیمت آگهی‌ها استفاده می‌کند. «فقط آمار رسمی» حساب را در مرداد ۱۴۰۳ تمام می‌کند.</span></div>'+
   '</div>'+
-  '<div class="card chartcard"><h3>چند سال بعد از بیست‌سالگی خانه و ماشین می‌خرید؟</h3>'+
-    '<p class="cap" id="cap1"></p><div class="legend" id="leg1"></div><div class="chartbox" id="ch1"></div>'+
+  '<div class="card chartcard"><h3 id="t1"></h3>'+
+    '<p class="cap" id="cap1"></p><p class="cond" id="cond1"></p><div class="legend" id="leg1"></div><div class="chartbox" id="ch1"></div>'+
     '<p class="hint" id="hint1"></p></div>'+
   '<h2 class="sec" id="d-title"></h2><p class="sub" id="d-sub"></p>'+
-  '<div class="cohorts" id="cohorts"></div>'+
+  '<div class="pick"><span>سال تولد دیگری را ببین:</span><div class="cohorts" id="cohorts"></div></div>'+
   '<div class="story" id="tiles"></div>'+
-  '<div class="card chartcard"><h3>بیشترین پولی که هر ماه می‌شد نقد کرد، در برابر قیمت خانه و ماشین</h3>'+
+  '<div class="card chartcard"><h3 id="t2"></h3>'+
     '<p class="cap" id="cap2"></p>'+
-    '<div class="legend" id="leg2"></div><div class="chartbox" id="ch2"></div>'+
-    '<div class="trades" id="trades"></div></div>'+
+    '<div class="legend" id="leg2"></div><div class="chartbox" id="ch2"></div></div>'+
+  '<div class="stories" id="stories"></div>'+
   '<div id="qnote"></div>'+
   '<h2 class="sec">داده‌ها را خودت ببین</h2>'+
-  '<p class="sub">هر عدد این صفحه از یک منبع مشخص آمده است. خط پر یعنی عدد ماهانهٔ منبع، خط‌چین بلند یعنی عدد سالانه یا فصلی که بین ماه‌ها پخش شده، خط‌چین کوتاه یعنی درون‌یابی بین دو عدد واقعی و نقطه‌چین یعنی برآورد از یک سری ضعیف‌تر.</p>'+
-  '<div class="card chartcard"><div class="ctl" style="max-width:360px"><label for="c-series">کدام سری؟</label><select id="c-series"></select></div>'+
-    '<p class="cap" id="cap3"></p><div class="chartbox" id="ch3"></div></div>'+
+  '<p class="sub">هر عدد این صفحه از یک منبع مشخص آمده است. یک سری را انتخاب کن تا ببینی از اول تا امروز چطور تغییر کرده است.</p>'+
+  '<div class="card chartcard"><div class="ctl" style="max-width:420px"><label for="c-series">کدام قیمت؟</label><select id="c-series"></select></div>'+
+    '<p class="cap" id="cap3"></p><div class="legend" id="leg3"></div><div class="chartbox" id="ch3"></div>'+
+    '<label class="logbox"><input type="checkbox" id="c-log"> بزرگ‌نمایی سال‌های قدیم (هر خط افقی ده برابر خط پایینی)</label></div>'+
   '<h2 class="sec">منبع هر داده</h2><div class="card tblwrap" id="sources"></div>'+
   '<h2 class="sec">فرض‌های شبیه‌سازی</h2><ul class="assume" id="assume"></ul>';
 }
@@ -367,9 +412,8 @@ function wire(){
   $('#c-area').addEventListener('input',function(e){S.area=+e.target.value;update();});
   $('#c-dist').addEventListener('change',function(e){S.district=+e.target.value;update();});
   $('#c-car').addEventListener('change',function(e){S.car=e.target.value;update();});
-  $('#c-fee').addEventListener('input',function(e){S.fee=+e.target.value;update();});
   $('#c-car').value=S.car;
-  [['#c-index','index',function(v){return v;}],['#c-est','est',function(v){return v==='1';}]].forEach(function(x){
+  [['#c-index','index',function(v){return v;}],['#c-est','est',function(v){return v==='1';}],['#c-fee','fee',function(v){return +v;}]].forEach(function(x){
     $(x[0]).addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
       S[x[1]]=x[2](b.getAttribute('data-v'));
       Array.prototype.forEach.call($(x[0]).querySelectorAll('button'),function(z){z.className=z===b?'on':'';});update();});
@@ -378,8 +422,10 @@ function wire(){
     S.assets[k]=!S.assets[k];b.setAttribute('aria-pressed',S.assets[k]?'true':'false');update();});
   $('#c-series').innerHTML=DATASERIES.map(function(s,i){return '<option value="'+i+'">'+s.name+'</option>';}).join('');
   $('#c-series').addEventListener('change',drawData);
-  var t;window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(render,150);});
+  $('#c-log').addEventListener('change',drawData);
+  var t,lastW=window.innerWidth;window.addEventListener('resize',function(){if(window.innerWidth===lastW)return;lastW=window.innerWidth;clearTimeout(t);t=setTimeout(render,150);});
   window.addEventListener('vb-theme',render);
+  document.addEventListener('pointerdown',function(ev){Array.prototype.forEach.call(document.querySelectorAll('.chartbox'),function(b){if(b._hideTip&&!b.contains(ev.target))b._hideTip();});});
   try{var mq=matchMedia('(prefers-color-scheme:dark)');if(mq.addEventListener)mq.addEventListener('change',render);else if(mq.addListener)mq.addListener(render);}catch(e){}
 }
 var pending=null;
@@ -388,14 +434,27 @@ function update(){if(pending)return;pending=requestAnimationFrame(function(){pen
 function cohortIndex(){for(var j=0;j<R.cohorts.length;j++)if(R.cohorts[j].born===S.cohort)return j;return R.cohorts.length-1;}
 function render(){
   if(!R)return;
+  var g=goal();
+  /* the intro follows the controls */
+  $('#lede-sal').textContent=money(S.salary);
+  $('#lede-index').textContent=S.index==='cpi'?'هم‌پای گرانی':'هم‌پای حقوق کارگری';
+  Array.prototype.forEach.call(document.querySelectorAll('.lede-goal'),function(e){e.textContent=g;});
   $('#v-save').textContent=fa(S.save)+'٪';
   $('#v-area').textContent=fa(S.area)+' متر';
-  $('#v-fee').textContent=S.fee===0?'بدون کارمزد':trimNum(S.fee)+' برابر تخمین معمولی';
   var w05=D.min_wage_1405,usdNow=P.usd[N-1];
-  $('#h-sal').textContent=(w05?'حدود '+trimNum(S.salary/w05)+' برابر حداقل دستمزد پایهٔ ۱۴۰۵':'')+(usdNow===usdNow?' و حدود '+fa(Math.round(S.salary/usdNow).toLocaleString('en-US').replace(/,/g,'٬'))+' دلار در ماه با دلار آبان ۱۴۰۵.':'');
+  $('#h-sal').textContent='حداقل حقوق پایهٔ کارگری در ۱۴۰۵ ماهی '+money(w05)+' است. حقوق '+moneyShort(S.salary)+' تومانی یعنی حدود '+trimNum(S.salary/w05)+' برابر آن. با دلارِ '+mlabel(N-1)+' (هر دلار '+money(usdNow)+')، این حقوق ماهی حدود '+faN(S.salary/usdNow)+' دلار می‌شود.';
+  $('#h-save').textContent='یعنی با حقوق ۱۴۰۵ ماهی '+money(S.salary*S.save/100)+' کنار می‌گذارد.'+(S.save<100?' بقیه خرج اجاره و زندگی می‌شود.':' یعنی همهٔ حقوق؛ این فقط برای مقایسه است.');
+  var s90=R.sal[idx(1390,1)],s80=R.sal[idx(1380,1)];
+  $('#h-index').textContent=(S.index==='cpi'?'یعنی حقوقش همیشه همان قدرت خرید امروز را داشت و فقط هم‌پای گرانی بالا رفت.':'یعنی همیشه همین چند برابرِ حداقل حقوق کارگری را می‌گرفت.')+' با این حساب حقوقش در ۱۳۸۰ ماهی '+money(s80)+' و در ۱۳۹۰ ماهی '+money(s90)+' بود.';
+  var dsel=$('#c-dist');dsel.innerHTML=distOptions();dsel.value=String(S.district);
+  var L=lastHouseIdx();
+  $('#h-dist').textContent=L>=0?'یعنی خانهٔ '+fa(S.area)+' متری '+(S.district?'در این منطقه':'با قیمت میانگین تهران')+' در '+mlabel(L)+' حدود '+money(D.series.house[L]*S.area*houseRatio())+' می‌ارزید.'+(S.district?' قیمت هر منطقه از آمار بانک مرکزی (۱۳۹۶ تا ۱۴۰۳) نسبت به کل تهران حساب شده است.':''):'';
+  if(S.car==='none')$('#h-car').textContent='فقط خانه حساب می‌شود.';
+  else{var tm=L>=0?L:N-1,ca=carAt(S.car,tm),nm=carShort(carModelAt(S.car,tm));
+    $('#h-car').textContent=(S.car==='cheap'?'تا ۱۳۸۹ پراید، تا ۱۴۰۱ پراید ۱۱۱ و بعد کوییک. ':S.car==='mid'?'تا ۱۴۰۱ پژو ۴۰۵ و بعد تارا. ':'')+(ca?(ca.f==='x'?nm+' در '+mlabel(tm)+' در بازار نیست؛ ماشینی با همان ارزش حدود '+money(ca.v)+' است. ':nm+' در '+mlabel(tm)+' حدود '+money(ca.v)+' است. '):'')+'در سال‌هایی که این مدل در بازار نبود، ماشینی با همان ارزش حساب می‌شود.';}
+  $('#h-fee').textContent='وقتی دلار یا طلا یا سهام می‌خری و بعد می‌فروشی، کمی از پولت می‌رود: کارمزد صرافی، اجرت طلا، کارمزد کارگزاری. در حالت «معمولی»، برای هر ۱۰۰ میلیون خرید یا فروش، دلار ۱ میلیون، طلا ۲، سکه ۱٫۵، سهام ۰٫۶ و رمزارز ۱ میلیون هزینه دارد.';
   var anyOn=Object.keys(S.assets).some(function(k){return S.assets[k];});
-  $('#h-assets').textContent=anyOn?'':'هیچ دارایی‌ای انتخاب نشده، پس مسافر زمان فقط پول نقد نگه می‌دارد و از سه پس‌اندازکنندهٔ معمولی هم عقب می‌ماند.';
-  $('#h-index').textContent=S.index==='cpi'?'حقوق هر سال = حقوق ۱۴۰۵ ضرب در نسبت شاخص تورم آن سال به ۱۴۰۵ (برای ۱۴۰۵ میانگین '+fa(CPI_MONTHS_1405)+' ماهِ منتشرشده).':'حقوق هر سال همان چند برابرِ حداقل دستمزد پایهٔ آن سال است.';
+  $('#h-assets').textContent=anyOn?'روی هر کدام بزنی، از دست مسافر زمان خارج می‌شود.':'هیچ‌کدام انتخاب نشده، پس مسافر زمان فقط پول نقد نگه می‌دارد و از بقیه هم عقب می‌ماند.';
   drawMain();drawDetail();drawData();
 }
 function legend(box,items){
@@ -403,132 +462,181 @@ function legend(box,items){
 }
 function notYet(){return R.lastKnown<N-1?'تا '+mlabel(R.lastKnown)+' نه':'هنوز نه';}
 function drawMain(){
-  var co=R.cohorts,n=co.length;
-  $('#hint1').textContent=(R.lastKnown<N-1?'دایرهٔ توخالی با فلش یعنی تا '+mlabel(R.lastKnown)+'، آخرین ماهی که قیمت رسمی خانه را داریم، نتوانسته بخرد. بعد از آن داده نیست.':'دایرهٔ توخالی با فلش یعنی تا امروز ('+mlabel(N-1)+') هنوز نتوانسته بخرد. عدد آن، سال‌هایی است که تا امروز گذشته.')+' روی هر سال بزن تا جزئیاتش را ببینی.';
+  var co=R.cohorts,n=co.length,g=goal();
+  $('#t1').textContent='چند سال طول می‌کشید تا '+g+' بخرد؟';
+  $('#cap1').textContent='هر نقطه یک نفر است. جای افقی نقطه، سال تولد اوست. ارتفاعش یعنی چند سال بعد از بیست‌سالگی توانست '+g+' بخرد. هر چه پایین‌تر، زودتر.';
+  $('#cond1').textContent='خانهٔ '+fa(S.area)+' متری '+(S.district?'در منطقهٔ '+fa(S.district):'با قیمت میانگین تهران')+(S.car==='none'?'، بدون ماشین':'، با '+carShort(S.car))+'. حقوق در ۱۴۰۵: '+money(S.salary)+'. پس‌انداز: '+fa(S.save)+'٪ حقوق.';
+  $('#hint1').textContent='دایره‌های توخالیِ ردیف بالا (نخریده) یعنی آن نفر '+(R.lastKnown<N-1?'تا '+mlabel(R.lastKnown)+'، آخرین آمار رسمی،':'تا امروز')+' نتوانسته بخرد. روی هر سال تولد بزن تا داستانش را پایین‌تر بخوانی.';
   legend($('#leg1'),STRATS.map(function(s){return {col:s.col,name:s.name,cls:'dot'};}));
-  var houseTxt=fa(S.area)+' متری در '+(S.district?'منطقهٔ '+fa(S.district):'تهران (میانگین)');
-  $('#cap1').textContent='خانهٔ '+houseTxt+(S.car==='none'?' بدون ماشین':' به‌علاوهٔ '+carName(S.car).replace(/ \(.*\)$/,''))+'، با پس‌انداز '+fa(S.save)+'٪ از حقوقی که در ۱۴۰۵ برابر '+money(S.salary)+' است.';
-  var series=STRATS.map(function(st){
+  var maxY=0;STRATS.forEach(function(st){co.forEach(function(c,j){var h=R.hit[st.k][j];if(h>=0)maxY=Math.max(maxY,(h-c.s+1)/12);});});
+  var top=Math.max(5,Math.ceil(maxY/5)*5),gap=top/12,band=top+gap*2;
+  var series=STRATS.map(function(st,si){
     var vals=[],open=[];
     co.forEach(function(c,j){var h=R.hit[st.k][j];
       if(h>=0){vals.push((h-c.s+1)/12);open.push(false);}
-      else if(R.lastKnown>=c.s){vals.push((R.lastKnown-c.s+1)/12);open.push(true);}
+      else if(R.lastKnown>=c.s){vals.push(band+gap*0.55*(si-1.5));open.push(true);}
       else{vals.push(null);open.push(true);}});
     return {key:st.k,color:css(st.col),values:vals,open:open,markers:true};
   });
-  /* draw lines only through solved points: hollow points are kept off the line */
-  var xt=[];for(var i=0;i<n;i++)if((co[i].born%5)===0)xt.push(i);
-  chart($('#ch1'),{n:n,height:320,series:series,yLog:false,yMin:5,label:'سال‌های لازم برای خرید خانه و ماشین، به تفکیک سال تولد',
-    yFmt:function(v){return fa(v)+' سال';},xTicks:xt,xLabel:function(i){return fa(co[i].born);},
+  var narrow=$('#ch1').clientWidth<520,xt=[];for(var i=0;i<n;i++)if((co[i].born%(narrow?10:5))===0)xt.push(i);
+  MAIN=chart($('#ch1'),{n:n,height:narrow?310:350,series:series,yMin:band+gap,tickMax:top,bands:[{v:band,label:'نخریده',side:true}],
+    yTitle:'چند سال صبر',xTitle:'سال تولد',label:'سال‌های لازم برای خرید، به تفکیک سال تولد',
+    yFmt:function(v){return fa(v);},xTicks:xt,xLabel:function(i){return fa(co[i].born);},
     marks:[{i:Math.max(0,cohortIndex())}],
-    onClick:function(i){S.cohort=co[i].born;drawMain();drawDetail();},
+    onClick:function(i){S.cohort=co[i].born;if(MAIN)MAIN.setMark(i);drawDetail();},
     tip:function(i){var c=co[i];var h='<b>متولد '+fa(c.born)+'</b> <span class="muted">(بیست‌ساله در '+fa(c.born+20)+')</span>';
       STRATS.forEach(function(st){var t=R.hit[st.k][i];
-        h+='<div class="r"><i style="--c:var('+st.col+')"></i><span>'+st.name+'</span><b>'+(t>=0?years(t-c.s+1):notYet())+'</b></div>';});
-      return h;}});
+        h+='<div class="r"><i style="--c:var('+st.col+')"></i><span>'+st.name+'</span><b>'+(t>=0?years(t-c.s+1):R.lastKnown<c.s?'آمار نیست':notYet())+'</b></div>';});
+      return h+'<div class="muted">داستانش پایین‌تر آمده است</div>';}});
+}
+
+/* the four stories */
+function storyTrav(j,c,T,hit){
+  var rp=replay(c,T),comp=rp.comp,runs=[];
+  comp.forEach(function(e){if(e.final)return;var l=runs[runs.length-1];if(l&&l.a===e.dom)l.k1=e.k+1;else runs.push({a:e.dom,k0:e.k,k1:e.k+1});});
+  runs.forEach(function(r){var p=P[ASSETS[r.a].k];r.g=p[r.k1]/p[r.k0];});
+  var big=runs.filter(function(r){return r.a!==0&&r.g>=1.03;}).sort(function(a,b){return b.g-a.g;}).slice(0,5).sort(function(a,b){return a.k0-b.k0;});
+  var invested=runs.some(function(r){return r.a!==0;});
+  var saved=0;for(var k=c.s;k<=T;k++){var x=R.sal[k];if(x===x)saved+=x*S.save/100;}
+  var W=R.W.trav[j][T];
+  if(!invested)return '<p>این بار مسافر زمان هیچ جایی برای گذاشتن پول نداشت (همهٔ گزینه‌ها بالا خاموش است)، پس فقط پول نقد نگه داشت. خودش روی هم '+money(saved)+' کنار گذاشت و در '+mlabel(T)+' همین قدر پول داشت.</p>';
+  var h='<p>مسافر زمان از قبل می‌دانست هر چیزی کِی گران و کِی ارزان می‌شود. پس پولش را هر بار جایی گذاشت که قرار بود بیشتر از همه بالا برود و پیش از افت، آن را فروخت.</p>';
+  if(big.length){
+    h+='<p class="mini">مهم‌ترین حرکت‌هایش:</p><ol>'+big.map(function(r){var nm=ASSETS[r.a].name;
+      return '<li>از <b>'+mlabel(r.k0)+'</b> تا '+mlabel(r.k1)+' پولش را در '+nm+' گذاشت. در این مدت '+(ASSETS[r.a].k==='dep'?growWords(r.g,'dep'):nm+' '+growWords(r.g))+'.</li>';}).join('')+'</ol>';
+    if(runs.length-1>big.length)h+='<p class="mini">روی هم '+fa(runs.length-1)+' بار پولش را جابه‌جا کرد. بقیهٔ جابه‌جایی‌ها سود کمتری داشتند.</p>';
+  }
+  var tot=Math.max(1,comp.length-1),strip=runs.map(function(r){return '<div title="'+ASSETS[r.a].name+'" style="width:'+((r.k1-r.k0)/tot*100)+'%;background:var('+ASSETS[r.a].col+')"></div>';}).join('');
+  var used={};runs.forEach(function(r){used[r.a]=1;});
+  h+='<p class="mini">هر رنگ یعنی آن ماه بیشتر پولش کجا بود، از '+mlabel(c.s)+' (چپ) تا '+mlabel(T)+' (راست):</p><div class="strip">'+strip+'</div><div class="legend">'+
+    Object.keys(used).map(function(a){return '<span><i class="dot" style="--c:var('+ASSETS[a].col+')"></i>'+ASSETS[a].name+'</span>';}).join('')+'</div>';
+  h+='<p>خودش روی هم '+money(saved)+' از حقوقش کنار گذاشت. با این خرید و فروش‌ها، در '+mlabel(T)+' دارایی‌اش به <b>'+money(W)+'</b> رسید؛ یعنی هر تومانی که کنار گذاشته بود به‌طور میانگین '+trimNum(W/saved)+' تومان شد.</p>';
+  return h;
+}
+function storySaver(st,j,c,T){
+  var a=st.k,ai=a==='usd'?2:a==='gold'?3:1,cc=Math.min(0.4,ASSETS[ai].c*S.fee),p=P[a],units=0,saved=0;
+  for(var k=c.s;k<=T;k++){var x=R.sal[k];if(x!==x)continue;saved+=x*S.save/100;if(k<T)units+=x*S.save/100*(1-cc)/p[k];}
+  var W=R.W[a][j][T];
+  if(a==='usd')return '<p>هر ماه با پس‌اندازش دلار خرید و نگه داشت. تا '+mlabel(T)+' روی هم <b>'+faN(units)+' دلار</b> جمع کرد و برایش '+money(saved)+' داده بود. آن ماه هر دلار '+faN(p[T])+' تومان بود. پس بعد از کارمزد فروش، کل پولش <b>'+money(W)+'</b> می‌شد.</p>';
+  if(a==='gold')return '<p>هر ماه با پس‌اندازش طلا خرید (به قیمت جهانی طلای ۱۸ عیار) و نگه داشت. تا '+mlabel(T)+' روی هم <b>'+faN(units)+' گرم طلا</b> جمع کرد و برایش '+money(saved)+' داده بود. آن ماه هر گرم '+faN(p[T])+' تومان بود. پس بعد از کارمزد فروش، کل پولش <b>'+money(W)+'</b> می‌شد.</p>';
+  var lo=1e9,hi=0;for(var k2=c.s;k2<=T;k2++){var r=D.series.dep[k2];if(r!=null){lo=Math.min(lo,r);hi=Math.max(hi,r);}}
+  return '<p>هر ماه پس‌اندازش را در سپردهٔ بانکی گذاشت. سود سالانهٔ بانک در این سال‌ها '+(lo===hi?fa(trimNum(lo))+'٪':'بین '+trimNum(lo)+'٪ و '+trimNum(hi)+'٪')+' بود. خودش '+money(saved)+' گذاشت و با سود، در '+mlabel(T)+' پولش به <b>'+money(W)+'</b> رسید.</p>';
 }
 function drawDetail(){
-  var j=cohortIndex(),c=R.cohorts[j];S.cohort=c.born;
+  var j=cohortIndex(),c=R.cohorts[j],g=goal();S.cohort=c.born;
+  var hadFocus=document.activeElement&&document.activeElement.classList&&document.activeElement.classList.contains('cohort');
   $('#cohorts').innerHTML=R.cohorts.map(function(x){return '<button class="cohort'+(x.born===c.born?' on':'')+'" data-b="'+x.born+'">'+fa(x.born)+'</button>';}).join('');
-  $('#cohorts').onclick=function(e){var b=e.target.closest('.cohort');if(!b)return;S.cohort=+b.getAttribute('data-b');drawMain();drawDetail();};
+  $('#cohorts').onclick=function(e){var b=e.target.closest('.cohort');if(!b)return;S.cohort=+b.getAttribute('data-b');if(MAIN)MAIN.setMark(cohortIndex());drawDetail();};
   var on=$('#cohorts .on'),pc=$('#cohorts');
+  if(on&&hadFocus)on.focus({preventScroll:true});
   if(on){var r1=on.getBoundingClientRect(),r2=pc.getBoundingClientRect();
     if(!drawDetail.once||r1.left<r2.left||r1.right>r2.right){pc.scrollLeft+=(r1.left+r1.width/2)-(r2.left+r2.width/2);drawDetail.once=1;}}
-  $('#d-title').textContent='متولد '+fa(c.born)+' — بیست‌ساله در فروردین '+fa(c.born+20);
+  $('#d-title').textContent='داستان متولد '+fa(c.born);
   var sal0=R.sal[c.s];
-  $('#d-sub').textContent='در فروردین '+fa(c.born+20)+' حقوقش '+money(sal0)+' بود و '+fa(S.save)+'٪ آن را پس‌انداز می‌کرد. '+(R.tgt[c.s]===R.tgt[c.s]?'خانه و ماشین در همان ماه '+money(R.tgt[c.s])+' می‌ارزید. ':'قیمت رسمی خانه برای آن ماه در دست نیست. ')+'هر سال تولد دیگری را از ردیف زیر انتخاب کن.';
-  $('#tiles').innerHTML=STRATS.map(function(st){var t=R.hit[st.k][j];
-    var v=t>=0?years(t-c.s+1):notYet();
-    var d=t>=0?'در '+mlabel(t)+'، حدود '+fa(20+Math.floor((t-c.s)/12))+' سالگی':(function(){
-      var L=R.lastKnown;if(L<c.s)return 'برای این دوره قیمت رسمی خانه نداریم';
-      var W=R.W[st.k][j][L],tg=R.tgt[L];return (L<N-1?'در '+mlabel(L)+' ':'امروز ')+fa(Math.round(W/tg*100))+'٪ پول خانه و ماشین را داشت';})();
-    return '<div class="tile"><div class="k"><i style="--c:var('+st.col+')"></i>'+st.name+'</div><div class="v">'+v+'</div><div class="d">'+d+'</div></div>';}).join('');
-  var hits=STRATS.map(function(st){return R.hit[st.k][j];});
-  /* show up to two years after the last of the four purchases (or to today if one never buys) */
-  var lastHit=hits.indexOf(-1)>=0?N-1:Math.max.apply(null,hits);
-  var end=Math.min(N-1,lastHit+24),start=c.s,n=end-start+1;
-  var tg=[],ser=[];for(var i=0;i<n;i++)tg.push(R.tgt[start+i]===R.tgt[start+i]?R.tgt[start+i]:null);
-  STRATS.forEach(function(st,si){var v=[];for(var i=0;i<n;i++){var w=R.W[st.k][j][start+i];v.push(w===w&&w>0?w:null);}
-    ser.push({key:st.k,color:css(st.col),values:v,width:st.k==='trav'?2.4:1.8,dots:hits[si]>=0?[hits[si]-start]:[]});});
-  ser.push({key:'tgt',color:css('--target'),values:tg,dash:'6 4',width:1.6});
-  legend($('#leg2'),STRATS.map(function(s){return {col:s.col,name:s.name};}).concat([{col:'--target',name:'خانه + ماشین',cls:'dash'}]));
-  var xt=[];for(var i2=0;i2<n;i2++){var mm=ym(start+i2);if(mm[1]===1&&(n<150||mm[0]%5===0))xt.push(i2);}
-  if(n<=24){xt=[];for(var i3=0;i3<n;i3+=3)xt.push(i3);}
-  var tmax=0;tg.forEach(function(v){if(v>tmax)tmax=v;});
-  var clipped=tmax>0&&ser[0].values.some(function(v){return v>tmax*100;});
-  $('#cap2').textContent='محور عمودی لگاریتمی است، یعنی هر خط افقی ده برابر خط پایینی است. خط‌چین، قیمت خانه به‌علاوهٔ ماشین در همان ماه است.'+(clipped?' خط مسافر زمان جایی که از صد برابر قیمت خانه بالاتر می‌رود از نمودار بیرون می‌زند. عددش را با بردن نشانگر روی نمودار ببین.':'');
-  chart($('#ch2'),{n:n,height:300,series:ser,yLog:true,yMax:tmax>0?tmax*100:null,yFmt:moneyShort,xTicks:xt,label:'ثروت در برابر قیمت خانه و ماشین',
-    xLabel:function(i){return n<=24?MONTHS[ym(start+i)[1]-1].slice(0,3)+' '+fa(ym(start+i)[0]%100):fa(ym(start+i)[0]);},
+  $('#d-sub').textContent='در فروردین '+fa(c.born+20)+' بیست ساله شد. اولین حقوقش ماهی '+money(sal0)+' بود و '+saveWords()+' ('+money(sal0*S.save/100)+') را کنار می‌گذاشت. چهار نفر با همین حقوق را کنار هم ببین: یکی مسافر زمان است و سه نفر آدم معمولی.';
+  var hits=STRATS.map(function(st){return R.hit[st.k][j];}),L=R.lastKnown;
+  $('#tiles').innerHTML=STRATS.map(function(st,si){var t=hits[si];
+    var v=t>=0?years(t-c.s+1):notYet(),d,need='';
+    if(t>=0){d='در '+mlabel(t)+'، حدود '+fa(20+Math.floor((t-c.s)/12))+' سالگی';need='پول لازم آن ماه: '+money(needParts(t).total);}
+    else if(L<c.s){v='—';d='آمار رسمی خانه برای این سال‌ها نیست';}
+    else{d=(L<N-1?'در '+mlabel(L)+'، ':'امروز ')+fa(pctOf(R.W[st.k][j][L],R.tgt[L]))+'٪ پول '+g+' را '+(L<N-1?'داشت':'دارد');need='پول لازم: '+money(needParts(L).total);}
+    return '<div class="tile"><div class="k"><i style="--c:var('+st.col+')"></i>'+st.name+'</div><div class="v">'+v+'</div><div class="d">'+d+'</div>'+(need?'<div class="d need">'+need+'</div>':'')+'</div>';}).join('');
+  var noData=L<c.s;
+  $('#ch2').parentNode.style.display=noData?'none':'';
+  if(noData){$('#stories').innerHTML='<div class="note">آمار رسمی قیمت خانه تا مرداد ۱۴۰۳ است و این نفر بعد از آن بیست ساله شد. برای دیدن داستانش، بالا «با تخمین» را انتخاب کن.</div>';$('#qnote').innerHTML='';return;}
+  /* progress chart: share of the price saved, 0-100%, each line stops on the day it buys */
+  var lastHit=hits.indexOf(-1)>=0?L:Math.max.apply(null,hits);
+  var end=Math.min(N-1,Math.max(c.s+11,lastHit+12)),start=c.s,n=end-start+1,ser=[];
+  STRATS.forEach(function(st,si){var v=[];for(var i=0;i<n;i++){var t=start+i,w=R.W[st.k][j][t],tg=R.tgt[t];
+      if((hits[si]>=0&&t>hits[si])||tg!==tg||w!==w){v.push(null);continue;}
+      v.push(Math.min(100,w/tg*100));}
+    ser.push({key:st.k,color:css(st.col),values:v,width:st.k==='trav'?2.6:2,dots:hits[si]>=0?[hits[si]-start]:[]});});
+  $('#t2').textContent='هر کدام چند درصد از پول '+g+' را جمع کرده بودند؟';
+  $('#cap2').textContent='همه از صفر شروع می‌کنند. هر خطی که زودتر به خط بالا (۱۰۰٪) برسد، آن نفر زودتر خریده و خطش همان‌جا تمام می‌شود. قیمت '+g+' هم مدام بالا می‌رود، برای همین خط‌ها گاهی پایین می‌آیند.';
+  legend($('#leg2'),STRATS.map(function(s){return {col:s.col,name:s.name};}));
+  var narrow=$('#ch2').clientWidth<520,mstep=narrow?6:3,step=n<=80?12:n<=200?(narrow?60:36):(narrow?120:60),xt=[];
+  for(var i2=0;i2<n;i2++){var mm=ym(start+i2);if(n<=30?(i2%mstep===0):(mm[1]===1&&((mm[0]-ym(start)[0])*12)%step===0))xt.push(i2);}
+  chart($('#ch2'),{n:n,height:narrow?280:300,series:ser,yMin:100,bands:[{v:100,label:'پول کامل شد'}],
+    yTitle:'درصدِ پول جمع‌شده',label:'درصد پول جمع‌شده برای خرید',
+    yFmt:function(v){return fa(v)+'٪';},xTicks:xt,
+    xLabel:function(i){var a=ym(start+i);return n<=30?MONTHS[a[1]-1]+' '+fa(a[0]):fa(a[0]);},
     tip:function(i){var t=start+i,h='<b>'+mlabel(t)+'</b>';
-      STRATS.forEach(function(st){var w=R.W[st.k][j][t];h+='<div class="r"><i style="--c:var('+st.col+')"></i><span>'+st.name+'</span><b>'+money(w)+'</b></div>';});
-      h+='<div class="r"><i style="--c:var(--target)"></i><span>خانه + ماشین</span><b>'+money(R.tgt[t])+'</b></div>';
+      STRATS.forEach(function(st,si){var w=R.W[st.k][j][t],tg=R.tgt[t],txt;
+        if(hits[si]>=0&&t>hits[si])txt='خریده ✓';else txt=tg===tg&&w===w?fa(Math.min(999,pctOf(w,tg)))+'٪':'—';
+        h+='<div class="r"><i style="--c:var('+st.col+')"></i><span>'+st.name+'</span><b>'+txt+'</b></div>';});
+      if(R.tgt[t]===R.tgt[t])h+='<div class="muted">قیمت '+g+' در این ماه: '+money(R.tgt[t])+'</div>';
       return h;}});
-  /* the traveller's moves */
-  var T=hits[0]>=0?hits[0]:end;
-  var rp=replay(c,T),strip='',tot=rp.comp.length;
-  var runs=[];rp.comp.forEach(function(e){if(e.final)return;var l=runs[runs.length-1];if(l&&l.dom===e.dom)l.n++;else runs.push({dom:e.dom,n:1});});
-  strip=runs.map(function(r){return '<div title="'+ASSETS[r.dom].name+'" style="width:'+(r.n/Math.max(1,tot-1)*100)+'%;background:var('+ASSETS[r.dom].col+')"></div>';}).join('');
-  var used={};runs.forEach(function(r){used[r.dom]=1;});
-  var lg=Object.keys(used).map(function(a){return '<span><i class="dot" style="--c:var('+ASSETS[a].col+')"></i>'+ASSETS[a].name+'</span>';}).join('');
-  var items=rp.log.slice(0,14).map(function(e){return '<li><b>'+mlabel(e.k)+'</b>: بیشتر پولش را برد به '+ASSETS[e.dom].name+' (دارایی کل '+money(e.tot)+')</li>';}).join('');
-  var more=rp.log.length>14?'<li>و '+fa(rp.log.length-14)+' جابه‌جایی بزرگ دیگر</li>':'';
-  $('#trades').innerHTML='<div><b>مسافر زمان پولش را کجا نگه داشت؟</b> '+(hits[0]>=0?'از '+mlabel(start)+' تا روز خرید خانه':'از '+mlabel(start)+' تا امروز')+'، چپ به راست:</div>'+
-    '<div class="strip">'+strip+'</div><div class="legend">'+lg+'</div><ol>'+items+more+'</ol>';
+  /* stories */
+  $('#stories').innerHTML=STRATS.map(function(st,si){
+    var t=hits[si],T=t>=0?t:L;
+    if(T<c.s)return '';
+    var body=st.k==='trav'?storyTrav(j,c,T,t>=0):storySaver(st,j,c,T);
+    var past=L<N-1;
+    var endTxt=t>=0?'<p class="ok">همان ماه '+g+' را خرید: '+needWords(t)+'.</p>':
+      '<p class="no">ولی در '+mlabel(T)+'، '+g+' روی هم '+money(needParts(T).total)+' می‌ارزید'+(S.car==='none'?'':' ('+needWords(T,true)+')')+'. پس '+(past?'تا آن ماه':'هنوز')+' فقط '+fa(pctOf(R.W[st.k][j][T],R.tgt[T]))+'٪ پولش را '+(past?'داشت':'دارد')+'.</p>';
+    return '<div class="scard" style="--c:var('+st.col+')"><h4><i></i>'+st.name+' — '+(t>=0?years(t-c.s+1):notYet())+'</h4>'+body+endTxt+'</div>';}).join('');
   qualityNote(j,hits);
 }
 function qualityNote(j,hits){
   var bits=[],t=hits[0],c=R.cohorts[j];
   function fl(arr,i){return arr&&arr[i];}
   if(t>=0){
-    var hf=fl(D.series.house_f,t),uf=fl(D.series.usd_f,t);
-    if(hf==='e')bits.push('قیمت خانه در '+mlabel(t)+' برآورد است (بعد از مرداد ۱۴۰۳ بانک مرکزی آماری منتشر نکرده است).');
-    if(hf==='i')bits.push('قیمت خانه در '+mlabel(t)+' بین دو عدد واقعی درون‌یابی شده است.');
+    var hf=fl(D.series.house_f,t);
+    if(hf==='e')bits.push('قیمت خانه در '+mlabel(t)+' تخمینی است، چون بانک مرکزی بعد از مرداد ۱۴۰۳ آماری نداده است.');
+    if(hf==='i')bits.push('قیمت خانه در '+mlabel(t)+' بین دو عدد واقعی حدس زده شده است.');
     if(S.car!=='none'){var ca=carAt(S.car,t);
-      if(ca&&ca.f==='i')bits.push('قیمت ماشین در '+mlabel(t)+' بین دو سالِ دارای قیمت درون‌یابی شده است.');
+      if(ca&&ca.f==='i')bits.push('قیمت ماشین در '+mlabel(t)+' بین دو سالی که قیمت دارند حدس زده شده است.');
       if(ca&&ca.f==='f')bits.push('قیمت ماشین در '+mlabel(t)+' قیمت کارخانه است، نه بازار.');
-      if(ca&&ca.f==='x')bits.push(carName(carModelAt(S.car,t))+' در '+mlabel(t)+' در بازار نبود. قیمتش از نزدیک‌ترین سالی که قیمت دارد ('+fa(ca.m.years[0])+' تا '+fa(ca.m.years[1])+') با تورم جابه‌جا شده است، یعنی «ماشینی با همان قیمت واقعی».');}
+      if(ca&&ca.f==='x')bits.push(carShort(carModelAt(S.car,t))+' در '+mlabel(t)+' در بازار نبود. برای همین قیمت ماشینی با همان ارزش حساب شده است.');}
   }
-  var annual=0;for(var k=c.s;k<=(t>=0?t:N-1);k++)if(D.series.usd_f[k]!=='o')annual++;
-  if(annual>12)bits.push('در '+fa(Math.round(annual/12))+' سال از این دوره قیمت دلار فقط سالانه در دست است، پس مسافر زمان نوسان‌های داخل سال را نمی‌بیند و نتیجه‌اش محافظه‌کارانه است.');
-  $('#qnote').innerHTML=bits.length?'<div class="note"><b>دربارهٔ دقت این نتیجه:</b> '+bits.join(' ')+'</div>':'';
+  var annual=0;for(var k=c.s;k<=(t>=0?t:R.lastKnown);k++)if(D.series.usd_f[k]!=='o')annual++;
+  if(annual>12&&S.assets.usd)bits.push('برای '+fa(Math.round(annual/12))+' سال از این دوره فقط قیمت سالانهٔ دلار را داریم. پس مسافر زمان بالا و پایین‌های داخل سال را نمی‌بیند و در واقعیت می‌توانست زودتر بخرد.');
+  $('#qnote').innerHTML=bits.length?'<div class="note"><b>این نتیجه چقدر دقیق است؟</b> '+bits.join(' ')+'</div>':'';
 }
 
 /* ---------- data explorer ---------- */
 var DATASERIES=[
-  {k:'usd',name:'دلار بازار آزاد (تومان)'},
-  {k:'gold',name:'یک گرم طلای ۱۸ عیار به قیمت جهانی (تومان)'},
-  {k:'coin',name:'سکهٔ امامی (تومان)'},
-  {k:'house',name:'قیمت هر متر خانه در تهران (تومان)'},
-  {k:'cpi',name:'شاخص قیمت مصرف‌کننده'},
-  {k:'wage',name:'حداقل دستمزد ماهانه (تومان)'},
-  {k:'tedpix',name:'شاخص کل بورس تهران'},
-  {k:'btc',name:'بیت‌کوین (تومان)'},
-  {k:'eth',name:'اتریوم (تومان)'},
-  {k:'dep',name:'سود سپردهٔ یک‌ساله (درصد)',lin:true},
-  {k:'car',name:'قیمت ماشین انتخاب‌شده (تومان)'}
+  {k:'usd',name:'قیمت دلار در بازار آزاد'},
+  {k:'gold',name:'قیمت یک گرم طلای ۱۸ عیار (قیمت جهانی)'},
+  {k:'coin',name:'قیمت سکهٔ امامی'},
+  {k:'house',name:'قیمت هر متر خانه در تهران'},
+  {k:'wage',name:'حداقل حقوق پایهٔ کارگری (ماهانه)'},
+  {k:'car',name:'قیمت ماشینی که بالا انتخاب کرده‌ای'},
+  {k:'btc',name:'قیمت بیت‌کوین'},
+  {k:'eth',name:'قیمت اتریوم'},
+  {k:'tedpix',name:'شاخص کل بورس تهران',idx:true},
+  {k:'cpi',name:'شاخص تورم (۱۴۰۰ = ۱۰۰)',idx:true},
+  {k:'dep',name:'سود سالانهٔ سپردهٔ بانکی',pct:true}
 ];
+var QSTYLE={o:['عدد ماهانهٔ منبع',''],f:['عدد سالانه یا فصلی','ldash'],i:['حدس بین دو عدد واقعی','dash'],e:['تخمین','dott']};
 function drawData(){
-  var s=DATASERIES[+$('#c-series').value||0],vals=[],st=[];
+  var s=DATASERIES[+$('#c-series').value||0],vals=[],st=[],logOn=$('#c-log').checked;
+  $('.logbox').style.display=s.pct?'none':'';
   if(s.k==='car'){
     var key=S.car==='none'?'cheap':S.car;
     for(var i=0;i<N;i++){var ca=carAt(key,i);vals.push(ca?ca.v:null);st.push(ca?(ca.f==='x'?'e':ca.f==='a'?'f':ca.f):null);}
-    $('#cap3').textContent=carName(key)+'. برای عوض کردن مدل، ماشین را در بالای صفحه عوض کن.';
   }else{
     vals=D.series[s.k].slice();st=(D.series[s.k+'_f']||[]).map(function(f){return f==='a'?'f':f;});
-    var have=vals.map(function(v,i){return v!=null?i:-1;}).filter(function(i){return i>=0;});
-    $('#cap3').textContent=have.length?'از '+mlabel(have[0])+' تا '+mlabel(have[have.length-1])+'. محور عمودی '+(s.lin?'خطی':'لگاریتمی')+' است.':'';
   }
-  var xt=[];for(var k=0;k<N;k++)if(ym(k)[1]===1&&ym(k)[0]%5===0)xt.push(k);
-  chart($('#ch3'),{n:N,height:280,series:[{key:s.k,color:css('--s1'),values:vals,style:st}],yLog:!s.lin,
-    yFmt:s.lin?function(v){return fa(v)+'٪';}:(s.k==='cpi'||s.k==='tedpix'?function(v){return moneyShort(v);}:moneyShort),
+  var have=vals.map(function(v,i){return v!=null?i:-1;}).filter(function(i){return i>=0;});
+  var fmtV=s.pct?function(v){return trimNum(v)+'٪';}:s.idx?function(v){return moneyShort(v);}:function(v){return money(v);};
+  var cap='';
+  if(have.length){var a=have[0],b=have[have.length-1];
+    cap=(s.k==='car'?carName(S.car==='none'?'cheap':S.car)+'. ':'')+'در '+mlabel(a)+': '+fmtV(vals[a])+' · در '+mlabel(b)+': '+fmtV(vals[b])+(s.pct?'':' · یعنی حدود '+(vals[b]/vals[a]>=1000?moneyShort(vals[b]/vals[a]):vals[b]/vals[a]>=10?fa(Math.round(vals[b]/vals[a])):trimNum(vals[b]/vals[a]))+' برابر.');}
+  $('#cap3').textContent=cap;
+  var seen={};st.forEach(function(f,i){if(vals[i]!=null&&f)seen[f==='a'?'f':f]=1;});
+  $('#leg3').innerHTML=Object.keys(QSTYLE).filter(function(f){return seen[f];}).map(function(f){return '<span><i class="'+QSTYLE[f][1]+'" style="--c:var(--s1)"></i>'+QSTYLE[f][0]+'</span>';}).join('');
+  var narrow=$('#ch3').clientWidth<520,xt=[];for(var k=0;k<N;k++)if(ym(k)[1]===1&&ym(k)[0]%(narrow?10:5)===0)xt.push(k);
+  chart($('#ch3'),{n:N,height:narrow?260:280,ml:s.pct?44:62,series:[{key:s.k,color:css('--s1'),values:vals,style:st}],yLog:logOn&&!s.pct,
+    yFmt:s.pct?function(v){return fa(v)+'٪';}:moneyShort,yTitle:s.pct?'درصد':s.idx?'':'تومان',
     xTicks:xt,xLabel:function(i){return fa(ym(i)[0]);},label:s.name,
-    tip:function(i){var v=vals[i];if(v==null)return '';var q={o:'عدد ماهانهٔ منبع',a:'عدد سالانه یا فصلی',f:'عدد سالانه یا فصلی',i:'درون‌یابی',e:'برآورد از سری ضعیف‌تر'}[st[i]]||'';
-      return '<b>'+mlabel(i)+'</b><div>'+(s.lin?trimNum(v)+'٪':(s.k==='cpi'||s.k==='tedpix'?trimNum(v):money(v)))+'</div><div class="muted">'+q+'</div>';}});
+    tip:function(i){var v=vals[i];if(v==null)return '';var q=(QSTYLE[st[i]==='a'?'f':st[i]]||[''])[0];
+      return '<b>'+mlabel(i)+'</b><div>'+fmtV(v)+'</div><div class="muted">'+q+'</div>';}});
 }
 
 function sourcesHTML(){
   var rows=(D.sources||[]).map(function(s){
-    return '<tr><td><b>'+esc(s.series)+'</b></td><td class="mono" style="white-space:nowrap">'+esc(s.period)+'</td><td>'+s.html+'</td><td><span class="conf">'+esc(s.conf)+'</span></td></tr>';}).join('');
+    return '<tr><td><b>'+esc(s.series)+'</b></td><td class="per">'+esc(s.period)+'</td><td>'+s.html+'</td><td><span class="conf">'+esc(s.conf)+'</span></td></tr>';}).join('');
   return '<table class="src"><thead><tr><th>داده</th><th>دوره</th><th>منبع</th><th>اعتماد</th></tr></thead><tbody>'+rows+'</tbody></table>';
 }
 function assumeHTML(){
