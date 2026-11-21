@@ -136,6 +136,28 @@ ul.assume b{color:var(--jp-ui-font-color1);font-weight:600}
 .foot a{color:var(--jp-brand1);text-decoration:none}
 .loading{padding:40px;text-align:center;color:var(--jp-ui-font-color2)}
 .seg{flex-wrap:wrap}
+/* main table: one row per birth year, a duration and a bar in each cell */
+.ytable{margin-top:4px}
+.ytbl{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;font-variant-numeric:tabular-nums;table-layout:fixed}
+.ytbl th,.ytbl td{padding:6px 6px;border-bottom:1px solid var(--jp-border1);text-align:right;vertical-align:middle}
+.ytbl thead th{position:sticky;top:0;z-index:2;background:var(--card);font-size:12px;font-weight:600;color:var(--jp-ui-font-color2);line-height:1.5}
+.ytbl thead th i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-inline-end:5px}
+.ytbl .yb{width:64px;font-weight:700;color:var(--jp-ui-font-color1)}
+.ytbl tbody tr{cursor:pointer}
+@media (hover:hover){.ytbl tbody tr:hover td,.ytbl tbody tr:hover th{background:var(--jp-hover)}}
+.ytbl tbody tr.on td,.ytbl tbody tr.on th{background:var(--soft)}
+.ytbl tbody tr.on th{box-shadow:inset -3px 0 0 var(--jp-brand1)}
+.ytbl tbody tr.on .go{visibility:visible}
+.ytbl tbody tr:focus-visible{outline:2px solid var(--jp-brand1);outline-offset:-2px}
+.ytbl .go{visibility:hidden;display:block;font-size:11px;font-weight:500;color:var(--jp-brand1);margin-top:2px;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.cell{display:flex;flex-direction:column;gap:3px;min-width:0}
+.cell .t{color:var(--jp-ui-font-color1);line-height:1.5}
+.cell .nw{white-space:nowrap}
+.cell .p{font-size:11.5px;color:var(--jp-ui-font-color2);line-height:1.4}
+.cell .bar{height:6px;border-radius:3px;background:var(--c);max-width:100%}
+.cell.no .t{color:var(--jp-ui-font-color2)}
+.cell.no .bar{width:100%;background:repeating-linear-gradient(135deg,var(--c) 0 3px,transparent 3px 7px);opacity:.55}
+.cell.na .t{color:var(--jp-ui-font-color3)}
 .cond{margin:0 0 8px;font-size:12.5px;color:var(--jp-ui-font-color1);background:var(--soft);border-radius:8px;padding:6px 10px;line-height:1.8}
 .chartbox text.ttl{font-size:11.5px;font-weight:600;fill:var(--jp-ui-font-color2)}
 .chartbox text.band{font-size:11.5px;font-weight:600;fill:var(--jp-ui-font-color2)}
@@ -169,6 +191,12 @@ ul.assume b{color:var(--jp-ui-font-color1);font-weight:600}
   .pick{flex-direction:column;align-items:stretch;gap:4px}
   .tile .v{font-size:17px}
   .tip{max-width:240px}
+  .ytbl{font-size:12px}
+  .ytbl th,.ytbl td{padding:6px 3px}
+  .ytbl .yb{width:42px}
+  .ytbl thead th{font-size:11px}
+  .ytbl thead th i{display:block;margin:0 0 3px}
+  .cell .p{font-size:10.5px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -206,7 +234,7 @@ ul.assume b{color:var(--jp-ui-font-color1);font-weight:600}
   });
 })();
 </script>
-<script src="/hobby/time-traveler.js?v=3"></script>
+<script src="/hobby/time-traveler.js?v=5"></script>
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177888668-1"></script>

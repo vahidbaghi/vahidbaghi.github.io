@@ -324,7 +324,7 @@ function chart(box,opts){
 }
 
 /* ---------- UI ---------- */
-var R=null,MAIN=null;
+var R=null;
 function goal(){return S.car==='none'?'خانه':'خانه و ماشین';}
 function carShort(k){return carName(k).replace(/ \(.*\)$/,'');}
 function houseRatio(){return S.district?D.district_ratio[S.district][0]:1;}
@@ -387,7 +387,7 @@ function controlsHTML(){
       '<span class="hint">بانک مرکزی از شهریور ۱۴۰۳ قیمت خانه را اعلام نکرده است. «با تخمین» برای بعد از آن از آمار مرکز آمار و قیمت آگهی‌ها استفاده می‌کند. «فقط آمار رسمی» حساب را در مرداد ۱۴۰۳ تمام می‌کند.</span></div>'+
   '</div>'+
   '<div class="card chartcard"><h3 id="t1"></h3>'+
-    '<p class="cap" id="cap1"></p><p class="cond" id="cond1"></p><div class="legend" id="leg1"></div><div class="chartbox" id="ch1"></div>'+
+    '<p class="cap" id="cap1"></p><p class="cond" id="cond1"></p><div class="ytable" id="ch1"></div>'+
     '<p class="hint" id="hint1"></p></div>'+
   '<h2 class="sec" id="d-title"></h2><p class="sub" id="d-sub"></p>'+
   '<div class="pick"><span>سال تولد دیگری را ببین:</span><div class="cohorts" id="cohorts"></div></div>'+
@@ -422,6 +422,14 @@ function wire(){
     S.assets[k]=!S.assets[k];b.setAttribute('aria-pressed',S.assets[k]?'true':'false');update();});
   $('#c-series').innerHTML=DATASERIES.map(function(s,i){return '<option value="'+i+'">'+s.name+'</option>';}).join('');
   $('#c-series').addEventListener('change',drawData);
+  $('#ch1').addEventListener('click',function(e){
+    if(e.target.closest('.go')){e.preventDefault();$('#d-title').scrollIntoView({behavior:'smooth',block:'start'});return;}
+    var tr=e.target.closest('tbody tr');if(tr)selectRow(+tr.getAttribute('data-j'));});
+  $('#ch1').addEventListener('keydown',function(e){if(e.target.closest('.go'))return;var tr=e.target.closest('tbody tr');if(!tr)return;
+    var j=+tr.getAttribute('data-j');
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();selectRow(j);}
+    else if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();var k=Math.max(0,Math.min(R.cohorts.length-1,j+(e.key==='ArrowDown'?1:-1)));
+      selectRow(k);var nx=$('#ch1 tbody tr[data-j="'+k+'"]');if(nx)nx.focus();}});
   $('#c-log').addEventListener('change',drawData);
   var t,lastW=window.innerWidth;window.addEventListener('resize',function(){if(window.innerWidth===lastW)return;lastW=window.innerWidth;clearTimeout(t);t=setTimeout(render,150);});
   window.addEventListener('vb-theme',render);
@@ -462,32 +470,43 @@ function legend(box,items){
 }
 function notYet(){return R.lastKnown<N-1?'تا '+mlabel(R.lastKnown)+' نه':'هنوز نه';}
 function drawMain(){
-  var co=R.cohorts,n=co.length,g=goal();
+  var co=R.cohorts,g=goal(),L=R.lastKnown,sel=cohortIndex();
   $('#t1').textContent='چند سال طول می‌کشید تا '+g+' بخرد؟';
-  $('#cap1').textContent='هر نقطه یک نفر است. جای افقی نقطه، سال تولد اوست. ارتفاعش یعنی چند سال بعد از بیست‌سالگی توانست '+g+' بخرد. هر چه پایین‌تر، زودتر.';
+  $('#cap1').textContent='هر ردیف یک سال تولد است. در هر خانه نوشته آن نفر چند سال بعد از بیست‌سالگی توانست '+g+' بخرد. هر چه میله کوتاه‌تر، زودتر خریده.';
   $('#cond1').textContent='خانهٔ '+fa(S.area)+' متری '+(S.district?'در منطقهٔ '+fa(S.district):'با قیمت میانگین تهران')+(S.car==='none'?'، بدون ماشین':'، با '+carShort(S.car))+'. حقوق در ۱۴۰۵: '+money(S.salary)+'. پس‌انداز: '+fa(S.save)+'٪ حقوق.';
-  $('#hint1').textContent='دایره‌های توخالیِ ردیف بالا (نخریده) یعنی آن نفر '+(R.lastKnown<N-1?'تا '+mlabel(R.lastKnown)+'، آخرین آمار رسمی،':'تا امروز')+' نتوانسته بخرد. روی هر سال تولد بزن تا داستانش را پایین‌تر بخوانی.';
-  legend($('#leg1'),STRATS.map(function(s){return {col:s.col,name:s.name,cls:'dot'};}));
+  $('#hint1').textContent='خانه‌های راه‌راه یعنی آن نفر '+(L<N-1?'تا '+mlabel(L)+'، آخرین آمار رسمی قیمت خانه،':'تا امروز')+' نتوانسته بخرد؛ کنارش نوشته چند درصد پول را دارد. روی هر ردیف بزن تا داستانش را پایین‌تر بخوانی.';
   var maxY=0;STRATS.forEach(function(st){co.forEach(function(c,j){var h=R.hit[st.k][j];if(h>=0)maxY=Math.max(maxY,(h-c.s+1)/12);});});
-  var top=Math.max(5,Math.ceil(maxY/5)*5),gap=top/12,band=top+gap*2;
-  var series=STRATS.map(function(st,si){
-    var vals=[],open=[];
-    co.forEach(function(c,j){var h=R.hit[st.k][j];
-      if(h>=0){vals.push((h-c.s+1)/12);open.push(false);}
-      else if(R.lastKnown>=c.s){vals.push(band+gap*0.55*(si-1.5));open.push(true);}
-      else{vals.push(null);open.push(true);}});
-    return {key:st.k,color:css(st.col),values:vals,open:open,markers:true};
-  });
-  var narrow=$('#ch1').clientWidth<520,xt=[];for(var i=0;i<n;i++)if((co[i].born%(narrow?10:5))===0)xt.push(i);
-  MAIN=chart($('#ch1'),{n:n,height:narrow?310:350,series:series,yMin:band+gap,tickMax:top,bands:[{v:band,label:'نخریده',side:true}],
-    yTitle:'چند سال صبر',xTitle:'سال تولد',label:'سال‌های لازم برای خرید، به تفکیک سال تولد',
-    yFmt:function(v){return fa(v);},xTicks:xt,xLabel:function(i){return fa(co[i].born);},
-    marks:[{i:Math.max(0,cohortIndex())}],
-    onClick:function(i){S.cohort=co[i].born;if(MAIN)MAIN.setMark(i);drawDetail();},
-    tip:function(i){var c=co[i];var h='<b>متولد '+fa(c.born)+'</b> <span class="muted">(بیست‌ساله در '+fa(c.born+20)+')</span>';
-      STRATS.forEach(function(st){var t=R.hit[st.k][i];
-        h+='<div class="r"><i style="--c:var('+st.col+')"></i><span>'+st.name+'</span><b>'+(t>=0?years(t-c.s+1):R.lastKnown<c.s?'آمار نیست':notYet())+'</b></div>';});
-      return h+'<div class="muted">داستانش پایین‌تر آمده است</div>';}});
+  if(!maxY)maxY=1;
+  var h='<table class="ytbl"><thead><tr><th class="yb">متولد</th>'+STRATS.map(function(st){return '<th><i style="--c:var('+st.col+')"></i>'+st.name+'</th>';}).join('')+'</tr></thead><tbody>';
+  co.forEach(function(c,j){
+    var on=j===sel;
+    h+='<tr data-j="'+j+'" tabindex="'+(on?0:-1)+'" class="'+(on?'on':'')+'"'+(on?' aria-current="true"':'')+'><th class="yb" scope="row">'+fa(c.born)+'<a class="go" href="#d-title"'+(on?'':' tabindex="-1"')+'>داستان پایین‌تر</a></th>';
+    STRATS.forEach(function(st){var t=R.hit[st.k][j],cell;
+      if(t>=0){var y=(t-c.s+1)/12;
+        cell='<div class="cell" style="--c:var('+st.col+')"><span class="t">'+yearsCell(t-c.s+1)+'</span><span class="bar" style="width:'+Math.max(4,y/maxY*100).toFixed(1)+'%"></span></div>';}
+      else if(L<c.s)cell='<div class="cell na"><span class="t">آمار نیست</span></div>';
+      else cell='<div class="cell no" style="--c:var('+st.col+')"><span class="t">'+(L<N-1?'تا '+MONTHS[ym(L)[1]-1]+' '+fa(ym(L)[0])+' نه':'هنوز نه')+'</span><span class="p">'+fa(pctOf(R.W[st.k][j][L],R.tgt[L]))+'٪ پول را دارد</span><span class="bar"></span></div>';
+      h+='<td>'+cell+'</td>';});
+    h+='</tr>';});
+  var fj=document.activeElement&&document.activeElement.closest?document.activeElement.closest('#ch1 tbody tr'):null;
+  fj=fj?fj.getAttribute('data-j'):null;
+  $('#ch1').innerHTML=h+'</tbody></table>';
+  if(fj!=null){var back=$('#ch1 tbody tr[data-j="'+fj+'"]');if(back)back.focus({preventScroll:true});}
+}
+/* «۵ سال و ۳ ماه» that breaks only between the two parts on a narrow screen */
+function yearsCell(m){
+  var y=Math.floor(m/12),mo=m%12,nb=function(x){return '<span class="nw">'+x+'</span>';};
+  if(y===0)return nb(fa(mo)+' ماه');
+  if(mo===0)return nb(fa(y)+' سال');
+  return nb(fa(y)+' سال')+' '+nb('و '+fa(mo)+' ماه');
+}
+function selectRow(j){
+  S.cohort=R.cohorts[j].born;
+  Array.prototype.forEach.call(document.querySelectorAll('#ch1 tbody tr'),function(tr){
+    var on=+tr.getAttribute('data-j')===j;tr.className=on?'on':'';tr.tabIndex=on?0:-1;
+    if(on)tr.setAttribute('aria-current','true');else tr.removeAttribute('aria-current');
+    var go=tr.querySelector('.go');if(on)go.removeAttribute('tabindex');else go.setAttribute('tabindex','-1');});
+  drawDetail();
 }
 
 /* the four stories */
@@ -526,7 +545,7 @@ function drawDetail(){
   var j=cohortIndex(),c=R.cohorts[j],g=goal();S.cohort=c.born;
   var hadFocus=document.activeElement&&document.activeElement.classList&&document.activeElement.classList.contains('cohort');
   $('#cohorts').innerHTML=R.cohorts.map(function(x){return '<button class="cohort'+(x.born===c.born?' on':'')+'" data-b="'+x.born+'">'+fa(x.born)+'</button>';}).join('');
-  $('#cohorts').onclick=function(e){var b=e.target.closest('.cohort');if(!b)return;S.cohort=+b.getAttribute('data-b');if(MAIN)MAIN.setMark(cohortIndex());drawDetail();};
+  $('#cohorts').onclick=function(e){var b=e.target.closest('.cohort');if(!b)return;S.cohort=+b.getAttribute('data-b');selectRow(cohortIndex());};
   var on=$('#cohorts .on'),pc=$('#cohorts');
   if(on&&hadFocus)on.focus({preventScroll:true});
   if(on){var r1=on.getBoundingClientRect(),r2=pc.getBoundingClientRect();
