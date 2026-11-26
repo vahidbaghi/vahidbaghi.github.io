@@ -1,14 +1,14 @@
 {
- "updated": "2026-11-26 02:31 UTC",
+ "updated": "2026-11-26 04:31 UTC",
  "categories": [
   {
    "key": "fridge",
    "title": "یخچال و فریزر",
    "group": 1,
-   "count": 343,
+   "count": 351,
    "listed": 988,
-   "checked": 881,
-   "updated": "2026-11-26 02:31 UTC"
+   "checked": 912,
+   "updated": "2026-11-26 04:31 UTC"
   },
   {
    "key": "washer",
@@ -50,10 +50,10 @@
    "key": "water-heater",
    "title": "آبگرمکن",
    "group": 1,
-   "count": 104,
+   "count": 106,
    "listed": 600,
-   "checked": 553,
-   "updated": "2026-11-26 02:31 UTC"
+   "checked": 581,
+   "updated": "2026-11-26 04:31 UTC"
   },
   {
    "key": "radiator",
@@ -68,10 +68,10 @@
    "key": "wardrobe",
    "title": "کمد و بوفه",
    "group": 2,
-   "count": 43,
+   "count": 49,
    "listed": 300,
-   "checked": 201,
-   "updated": "2026-11-26 02:31 UTC"
+   "checked": 236,
+   "updated": "2026-11-26 04:31 UTC"
   },
   {
    "key": "drawer",
@@ -140,10 +140,10 @@
    "key": "aquarium",
    "title": "آکواریوم",
    "group": 2,
-   "count": 67,
+   "count": 70,
    "listed": 300,
-   "checked": 293,
-   "updated": "2026-11-26 02:31 UTC"
+   "checked": 300,
+   "updated": "2026-11-26 04:29 UTC"
   },
   {
    "key": "microwave",
@@ -167,10 +167,10 @@
    "key": "printer",
    "title": "پرینتر",
    "group": 3,
-   "count": 293,
+   "count": 319,
    "listed": 591,
-   "checked": 521,
-   "updated": "2026-11-26 02:31 UTC"
+   "checked": 555,
+   "updated": "2026-11-26 04:31 UTC"
   },
   {
    "key": "pc-case",
