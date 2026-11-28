@@ -1,14 +1,14 @@
 {
- "updated": "2026-11-28 00:46 UTC",
+ "updated": "2026-11-28 02:28 UTC",
  "categories": [
   {
    "key": "fridge",
    "title": "یخچال و فریزر",
    "group": 1,
-   "count": 370,
+   "count": 372,
    "listed": 988,
    "checked": 988,
-   "updated": "2026-11-28 00:46 UTC"
+   "updated": "2026-11-28 02:28 UTC"
   },
   {
    "key": "washer",
@@ -77,10 +77,10 @@
    "key": "drawer",
    "title": "دراور",
    "group": 2,
-   "count": 127,
+   "count": 128,
    "listed": 276,
    "checked": 276,
-   "updated": "2026-11-28 00:42 UTC"
+   "updated": "2026-11-28 02:28 UTC"
   },
   {
    "key": "shoe-cabinet",
